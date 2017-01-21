@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "4"
+  - "5"
+  - "6"
+script:
+  - npm run build
+  - npm run test:all
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
