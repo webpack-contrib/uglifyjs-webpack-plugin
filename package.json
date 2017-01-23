@@ -2,15 +2,16 @@
   "name": "uglifyjs-webpack-plugin",
   "version": "0.0.0",
   "description": "UglifyJS plugin for webpack",
-  "main": "./lib",
+  "main": "./dist",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d dist",
     "test:all": "npm run test:coverage && npm run test:lint",
     "test": "jest --",
     "test:coverage": "jest --coverage --",
     "test:watch": "jest --watch --",
     "test:lint": "eslint . --ext .js --cache",
-    "preversion": "npm run test:all && npm run build && git commit --allow-empty -am \"Update dist\""
+    "preversion": "npm run test:all && npm run build && git commit --allow-empty -am \"Update dist\"",
+    "postinstall": "node lib/post_install.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
     "plugin"
   ],
   "files": [
-    "lib"
+    "dist"
   ],
   "jest": {
     "collectCoverage": true,
@@ -62,6 +63,7 @@
     "eslint-plugin-react": "^6.9.0",
     "git-prepush-hook": "^1.0.1",
     "jest": "^18.1.0",
+    "sync-exec": "^0.6.2",
     "webpack": "^2.2.0"
   },
   "pre-push": [
