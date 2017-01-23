@@ -9,7 +9,7 @@
     "test": "jest --",
     "test:coverage": "jest --coverage --",
     "test:watch": "jest --watch --",
-    "test:lint": "eslint . --ext .js --cache",
+    "test:lint": "eslint . --ext .js --ignore-path .gitignore --cache",
     "preversion": "npm run test:all && npm run build && git commit --allow-empty -am \"Update dist\"",
     "postinstall": "node lib/post_install.js"
   },
