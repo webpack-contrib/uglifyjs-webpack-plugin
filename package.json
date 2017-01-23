@@ -23,7 +23,8 @@
     "plugin"
   ],
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "jest": {
     "collectCoverage": true,
