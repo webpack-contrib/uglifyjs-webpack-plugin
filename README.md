@@ -34,7 +34,7 @@ And, that's it!
 This plugin supports UglifyJS features as discussed below:
 
 | Property | Type | Default | Description |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | compress | boolean, object | true | See [UglifyJS documentation](http://lisperator.net/uglifyjs/compress). |
 | mangle | boolean, object | true | See below. |
 | beautify | boolean | false | Beautify output. |
