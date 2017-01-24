@@ -1,9 +1,4 @@
-3.0.0 / 2017-XX-XX
+0.1.0 / 2017-01-24
 ==================
 
-  * TODO
-
-2.0.3 / 2016-02-12
-==================
-
-  * Last release without changelogs.
+  * Initial port from webpack source.
