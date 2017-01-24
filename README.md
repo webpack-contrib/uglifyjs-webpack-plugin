@@ -1,8 +1,8 @@
 [![build status](https://secure.travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin.svg)](http://travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin) [![bitHound Score](https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin/badges/score.svg)](https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin) [![codecov](https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin)
 
-# UglifyJS Webpack Plugin (experimental!)
+# UglifyJS Webpack Plugin
 
-This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript.
+This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript. It is the same plugin as in webpack core except it has been decoupled from it. This allows you to control the version of UglifyJS you are using.
 
 ## Usage
 
