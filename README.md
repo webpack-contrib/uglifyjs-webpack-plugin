@@ -4,6 +4,8 @@
 
 This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript. It is the same plugin as in Webpack core except it has been decoupled from it. This allows you to control the version of UglifyJS you are using.
 
+> Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
+
 ## Usage
 
 First, install the plugin:
