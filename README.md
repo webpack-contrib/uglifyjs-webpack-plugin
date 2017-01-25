@@ -2,14 +2,34 @@
 
 # UglifyJS Webpack Plugin
 
-This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript. It is the same plugin as in webpack core except it has been decoupled from it. This allows you to control the version of UglifyJS you are using.
+This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript. It is the same plugin as in Webpack core except it has been decoupled from it. This allows you to control the version of UglifyJS you are using.
 
 ## Usage
 
-First, install it:
+First, install the plugin:
 
 ```bash
-npm install uglifyjs-webpack-plugin uglify-js --save-dev
+yarn add uglifyjs-webpack-plugin --dev
+```
+
+..or if you insist on using npm instead of the more advanced [Yarn](https://yarnpkg.com):
+
+```bash
+npm install uglifyjs-webpack-plugin --save-dev
+```
+
+**Important!** The plugin has a peer dependency to uglify-js, so in order to use the plugin, also uglify-js has to be installed. The currently (2017/1/25) available uglify-js npm packages, however, do not support minification of ES6 code. In order to support ES6, an ES6-capable, a.k.a. _harmony_, version of UglifyJS has to be provided.
+
+If your minification target is ES6:
+
+```bash
+yarn add git://github.com/mishoo/UglifyJS2#harmony --dev
+```
+
+If your minification target is ES5:
+
+```bash
+yarn add uglify-js --dev
 ```
 
 Then configure as follows:
