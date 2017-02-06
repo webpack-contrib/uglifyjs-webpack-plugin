@@ -2,7 +2,7 @@
 
 # UglifyJS Webpack Plugin
 
-This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript. It is the same plugin as in Webpack core except it has been decoupled from it. This allows you to control the version of UglifyJS you are using.
+This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript. It is the same plugin as in Webpack core (`webpack.optimize.UglifyJSPlugin`) except it has been decoupled from it. This allows you to control the version of UglifyJS you are using.
 
 > Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
 
@@ -74,7 +74,7 @@ This plugin supports UglifyJS features as discussed below:
 > Note: the UglifyJS docs warn that [you will probably break your source if you use property mangling](https://github.com/mishoo/UglifyJS2#mangling-property-names---mangle-props), so if you aren’t sure why you’d need this feature, you most likely shouldn’t be using it! You can tweak the behavior as below:
 
 ```javascript
-new webpack.optimize.UglifyJsPlugin({
+new UglifyJsPlugin({
   mangle: {
     // Skip mangling these
     except: ['$super', '$', 'exports', 'require']
