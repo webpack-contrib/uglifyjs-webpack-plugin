@@ -113,9 +113,15 @@ class UglifyJsPlugin {
             ast.print(stream);
             if (map) map = `${map}`;
             stream = `${stream}`;
-            asset.__UglifyJsPlugin = compilation.assets[file] = (map ?
+
+            const source = (map ?
               new SourceMapSource(stream, file, JSON.parse(map), input, inputSourceMap) :
-              new RawSource(stream));
+              new RawSource(stream)
+            );
+
+            compilation.assets[file] = source;
+            asset.__UglifyJsPlugin = source;
+
             if (warnings.length > 0) {
               compilation.warnings.push(new Error(`${file} from UglifyJs\n${warnings.join('\n')}`));
             }
