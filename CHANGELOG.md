@@ -1,3 +1,12 @@
+0.1.6 / 2017-02-15
+==================
+
+  * Allow to extract comments to separate file [webpack/webpack#4134](https://github.com/webpack/webpack/pull/4134)
+  * Allow to supress uglifyjs warnings [webpack/webpack#4200](https://github.com/webpack/webpack/pull/4200)
+  * Use const where applicable [1d78f99](https://github.com/webpack/webpack/commit/1d78f990a6af1a5b85e45b345b4f7861b03bb12b)
+  * Avoid reassigning stream with different value [92364dc](https://github.com/webpack/webpack/commit/92364dc0f72ad8c3ac0bdc74e46766658086d83a)
+  * Avoid reassigning files with different value [104398f](https://github.com/webpack/webpack/commit/104398f87a707a601427e666ed318d2338e8a003)
+
 0.1.5 / 2017-02-15
 ==================
 
