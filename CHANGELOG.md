@@ -1,4 +1,4 @@
-0.1.6 / 2017-02-15
+0.2.0 / 2017-02-19
 ==================
 
   * Allow to extract comments to separate file [webpack/webpack#4134](https://github.com/webpack/webpack/pull/4134)
