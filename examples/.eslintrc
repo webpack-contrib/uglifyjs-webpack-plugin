@@ -1,0 +1,13 @@
+{
+	"env": {
+		"browser": true,
+    "es6": true
+	},
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"rules": {
+		"keyword-spacing": 0,
+		"node/no-unsupported-features": 0
+	}
+}
