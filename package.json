@@ -1,6 +1,6 @@
 {
   "name": "uglifyjs-webpack-plugin",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "UglifyJS plugin for webpack",
   "main": "./dist",
   "scripts": {
