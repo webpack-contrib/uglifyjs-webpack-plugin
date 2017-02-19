@@ -7,6 +7,7 @@
 const SourceMapConsumer = require('source-map').SourceMapConsumer;
 const SourceMapSource = require('webpack-sources').SourceMapSource;
 const RawSource = require('webpack-sources').RawSource;
+const ConcatSource = require('webpack-sources').ConcatSource;
 const RequestShortener = require('webpack/lib/RequestShortener');
 const ModuleFilenameHelpers = require('webpack/lib/ModuleFilenameHelpers');
 const uglify = require('uglify-js');
@@ -21,6 +22,7 @@ class UglifyJsPlugin {
   apply(compiler) {
     const options = this.options;
     options.test = options.test || /\.js($|\?)/i;
+    const warningsFilter = options.warningsFilter || (() => true);
 
     const requestShortener = new RequestShortener(compiler.context);
     compiler.plugin('compilation', (compilation) => {
@@ -31,11 +33,13 @@ class UglifyJsPlugin {
         });
       }
       compilation.plugin('optimize-chunk-assets', (chunks, callback) => {
-        let files = [];
+        const files = [];
         chunks.forEach(chunk => files.push(...chunk.files));
         files.push(...compilation.additionalChunkAssets);
-        files = files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options));
-        files.forEach((file) => {
+        const filterdFiles = files.filter(
+          ModuleFilenameHelpers.matchObject.bind(undefined, options)
+        );
+        filterdFiles.forEach((file) => {
           const oldWarnFunction = uglify.AST_Node.warn_function;
           const warnings = [];
           let sourceMap;
@@ -66,6 +70,7 @@ class UglifyJsPlugin {
                   column
                 });
                 if (!original || !original.source || original.source === file) return;
+                if (!warningsFilter(original.source)) return;
                 warnings.push(`${warning.replace(/\[.+:([0-9]+),([0-9]+)\]/, '')
                   }[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
               };
@@ -101,6 +106,61 @@ class UglifyJsPlugin {
             for (const k in options.output) { // eslint-disable-line
               output[k] = options.output[k];
             }
+            const extractedComments = [];
+            if (options.extractComments) {
+              const condition = {};
+              if (typeof options.extractComments === 'string' || options.extractComments instanceof RegExp) {
+                // extractComments specifies the extract condition and
+                // output.comments specifies the preserve condition
+                condition.preserve = output.comments;
+                condition.extract = options.extractComments;
+              } else if (Object.prototype.hasOwnProperty.call(options.extractComments, 'condition')) {
+                // Extract condition is given in extractComments.condition
+                condition.preserve = output.comments;
+                condition.extract = options.extractComments.condition;
+              } else {
+                // No extract condition is given. Extract comments that
+                // match output.comments instead of preserving them
+                condition.preserve = false;
+                condition.extract = output.comments;
+              }
+
+              // Ensure that both conditions are functions
+              ['preserve', 'extract'].forEach((key) => {
+                let b;
+                let regex;
+                switch (typeof condition[key]) {
+                  case 'boolean':
+                    b = condition[key];
+                    condition[key] = () => b;
+                    break;
+                  case 'function':
+                    break;
+                  case 'string':
+                    if (condition[key] === 'all') {
+                      condition[key] = () => true;
+                      break;
+                    }
+                    regex = new RegExp(condition[key]);
+                    condition[key] = (astNode, comment) => regex.test(comment.value);
+                    break;
+                  default:
+                    regex = condition[key];
+                    condition[key] = (astNode, comment) => regex.test(comment.value);
+                }
+              });
+
+              // Redefine the comments function to extract and preserve
+              // comments according to the two conditions
+              output.comments = (astNode, comment) => {
+                if (condition.extract(astNode, comment)) {
+                  extractedComments.push(
+                    comment.type === 'comment2' ? `/*${comment.value}*/` : `//${comment.value}`
+                  );
+                }
+                return condition.preserve(astNode, comment);
+              };
+            }
             let map;
             if (options.sourceMap) {
               map = uglify.SourceMap({ // eslint-disable-line new-cap
@@ -109,19 +169,50 @@ class UglifyJsPlugin {
               });
               output.source_map = map; // eslint-disable-line camelcase
             }
-            let stream = uglify.OutputStream(output); // eslint-disable-line new-cap
+            const stream = uglify.OutputStream(output); // eslint-disable-line new-cap
             ast.print(stream);
             if (map) map = `${map}`;
-            stream = `${stream}`;
+            const stringifiedStream = `${stream}`;
+            let outputSource = (map ?
+              new SourceMapSource(stringifiedStream, file, JSON.parse(map), input, inputSourceMap) :
+              new RawSource(stringifiedStream));
+            if (extractedComments.length > 0) {
+              let commentsFile = options.extractComments.filename || `${file}.LICENSE`;
+              if (typeof commentsFile === 'function') {
+                commentsFile = commentsFile(file);
+              }
 
-            const source = (map ?
-              new SourceMapSource(stream, file, JSON.parse(map), input, inputSourceMap) :
-              new RawSource(stream)
-            );
+              // Write extracted comments to commentsFile
+              const commentsSource = new RawSource(`${extractedComments.join('\n\n')}\n`);
+              if (commentsFile in compilation.assets) {
+                // commentsFile already exists, append new comments...
+                if (compilation.assets[commentsFile] instanceof ConcatSource) {
+                  compilation.assets[commentsFile].add('\n');
+                  compilation.assets[commentsFile].add(commentsSource);
+                } else {
+                  compilation.assets[commentsFile] = new ConcatSource(
+                    compilation.assets[commentsFile], '\n', commentsSource
+                  );
+                }
+              } else {
+                compilation.assets[commentsFile] = commentsSource;
+              }
 
-            compilation.assets[file] = source;
-            asset.__UglifyJsPlugin = source;
-
+              // Add a banner to the original file
+              if (options.extractComments.banner !== false) {
+                let banner = options.extractComments.banner || `For license information please see ${commentsFile}`;
+                if (typeof banner === 'function') {
+                  banner = banner(commentsFile);
+                }
+                if (banner) {
+                  outputSource = new ConcatSource(
+                    `/*! ${banner} */\n`, outputSource
+                  );
+                }
+              }
+            }
+            asset.__UglifyJsPlugin = outputSource;
+            compilation.assets[file] = outputSource;
             if (warnings.length > 0) {
               compilation.warnings.push(new Error(`${file} from UglifyJs\n${warnings.join('\n')}`));
             }
