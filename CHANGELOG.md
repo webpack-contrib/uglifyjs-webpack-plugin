@@ -1,38 +1,43 @@
+0.2.1 / 2017-02-20
+==================
+
+	* Docs - Fix typo at readme. #10
+
 0.2.0 / 2017-02-19
 ==================
 
-  * Allow to extract comments to separate file [webpack/webpack#4134](https://github.com/webpack/webpack/pull/4134)
-  * Allow to supress uglifyjs warnings [webpack/webpack#4200](https://github.com/webpack/webpack/pull/4200)
-  * Use const where applicable [1d78f99](https://github.com/webpack/webpack/commit/1d78f990a6af1a5b85e45b345b4f7861b03bb12b)
-  * Avoid reassigning stream with different value [92364dc](https://github.com/webpack/webpack/commit/92364dc0f72ad8c3ac0bdc74e46766658086d83a)
-  * Avoid reassigning files with different value [104398f](https://github.com/webpack/webpack/commit/104398f87a707a601427e666ed318d2338e8a003)
+	* Feature - Allow to extract comments to separate file [webpack/webpack#4134](https://github.com/webpack/webpack/pull/4134)
+	* Feature - Allow to supress uglifyjs warnings [webpack/webpack#4200](https://github.com/webpack/webpack/pull/4200)
+	* Chore - Use `const` where applicable [1d78f99](https://github.com/webpack/webpack/commit/1d78f990a6af1a5b85e45b345b4f7861b03bb12b)
+	* Chore - Avoid reassigning stream with different value [92364dc](https://github.com/webpack/webpack/commit/92364dc0f72ad8c3ac0bdc74e46766658086d83a)
+	* Chore - Avoid reassigning files with different value [104398f](https://github.com/webpack/webpack/commit/104398f87a707a601427e666ed318d2338e8a003)
 
 0.1.5 / 2017-02-15
 ==================
 
-  * Docs - Add `extractComments` documentation. #7
+	* Docs - Add `extractComments` documentation. #7
 
 0.1.4 / 2017-02-06
 ==================
 
-  * Docs - Simplify example.
+	* Docs - Simplify example.
 
 0.1.3 / 2017-02-02
 ==================
 
-  * Docs - Fix table syntax. #6
+	* Docs - Fix table syntax. #6
 
 0.1.2 / 2017-01-25
 ==================
 
-  * Docs - Add note about the plugin embedded to webpack.
+	* Docs - Add note about the plugin embedded to webpack.
 
 0.1.1 / 2017-01-25
 ==================
 
-  * Docs - Update installation instructions.
+	* Docs - Update installation instructions.
 
 0.1.0 / 2017-01-24
 ==================
 
-  * Initial port from webpack source.
+	* Initial port from webpack source.
