@@ -1,14 +1,23 @@
-[![build status](https://secure.travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin.svg)](http://travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin) [![bitHound Score](https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin/badges/score.svg)](https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin) [![codecov](https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin)
+[![npm][npm]][npm-url]
+[![deps][deps]][deps-url]
+[![test][test]][test-url]
+[![coverage][cover]][cover-url]
+[![quality][quality]][quality-url]
+[![chat][chat]][chat-url]
 
-# UglifyJS Webpack Plugin
-
-This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript. It is the same plugin as in Webpack core (`webpack.optimize.UglifyJsPlugin`) except it has been decoupled from it. This allows you to control the version of UglifyJS you are using.
+<div align="center">
+  <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
+  <a href="https://github.com/webpack/webpack">
+    <img width="200" height="200" vspace="" hspace="25"
+      src="https://worldvectorlogo.com/logos/webpack.svg">
+  </a>
+  <h1>UglifyJS Webpack Plugin</h1>
+  <p>This plugin uses [UglifyJS](https://github.com/mishoo/UglifyJS2) to minify your JavaScript.<p>
+</div>
 
 > Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
 
-## Usage
-
-First, install the plugin:
+<h2 align="center">Install</h2>
 
 ```bash
 yarn add uglifyjs-webpack-plugin --dev
@@ -34,7 +43,7 @@ If your minification target is ES5:
 yarn add uglify-js --dev
 ```
 
-Then configure as follows:
+<h2 align="center">Usage</h2>
 
 ```javascript
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
@@ -49,9 +58,7 @@ module.exports = {
 };
 ```
 
-And, that's it!
-
-## Options
+<h2 align="center">Options</h2>
 
 This plugin supports UglifyJS features as discussed below:
 
@@ -68,7 +75,7 @@ This plugin supports UglifyJS features as discussed below:
 | include | RegExp, Array<RegExp> | | Test only `include` files. |
 | exclude | RegExp, Array<RegExp> | | Files to `exclude` from testing. |
 
-## Mangling
+<h2 align="center">Mangling</h2>
 
 `mangle.props (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS property mangling - see [UglifyJS documentation](https://github.com/mishoo/UglifyJS2#mangleproperties-options) for mangleProperties for options.
 
@@ -83,7 +90,8 @@ new UglifyJsPlugin({
 })
 ```
 
-## Extracting Comments
+<h2 align="center">Extracting Comments</h2>
+
 The `extractComments` option can be
 - `true`: All comments that normally would be preserved by the `comments` option will be moved to a separate file. If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE`
 - regular expression (given as `RegExp` or `string`) or a `function (astNode, comment) -> boolean`:
@@ -94,6 +102,55 @@ The `extractComments` option can be
   - `banner`: The banner text that points to the extracted file and will be added on top of the original file. will be added to the original file. Can be `false` (no banner), a `string`, or a `function (string) -> string` that will be called with the filename where extracted comments have been stored. Will be wrapped into comment.
 Default: `/*! For license information please see foo.js.LICENSE */`
 
-## License
 
-MIT.
+<h2 align="center">Maintainers</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/166921?v=3&s=150">
+        </br>
+        <a href="https://github.com/bebraw">Juho Vepsäläinen</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars2.githubusercontent.com/u/8420490?v=3&s=150">
+        </br>
+        <a href="https://github.com/d3viant0ne">Joshua Wiens</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/533616?v=3&s=150">
+        </br>
+        <a href="https://github.com/SpaceK33z">Kees Kluskens</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/3408176?v=3&s=150">
+        </br>
+        <a href="https://github.com/TheLarkInn">Sean Larkin</a>
+      </td>
+    </tr>
+  <tbody>
+</table>
+
+
+[npm]: https://img.shields.io/npm/v/uglifyjs-webpack-plugin.svg
+[npm-url]: https://npmjs.com/package/uglifyjs-webpack-plugin
+
+[deps]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin.svg
+[deps-url]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin
+
+[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat-url]: https://gitter.im/webpack/webpack
+
+[test]: https://secure.travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin.svg
+[test-url]: http://travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin
+
+[cover]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin
+
+[quality]: https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin/badges/score.svg
+[quality-url]: https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin
