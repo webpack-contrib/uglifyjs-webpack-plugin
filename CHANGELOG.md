@@ -1,3 +1,8 @@
+0.2.2 / 2017-03-02
+==================
+
+	* Bug fix - Fix `postinstall` script. Now it works if you install the packagre from repository in Node 6+.
+
 0.2.1 / 2017-02-20
 ==================
 
