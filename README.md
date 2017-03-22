@@ -19,11 +19,13 @@
 
 <h2 align="center">Install</h2>
 
+With [Yarn](https://yarnpkg.com):
+
 ```bash
 yarn add uglifyjs-webpack-plugin --dev
 ```
 
-..or if you insist on using npm instead of the more advanced [Yarn](https://yarnpkg.com):
+With NPM:
 
 ```bash
 npm install uglifyjs-webpack-plugin --save-dev
