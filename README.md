@@ -25,7 +25,7 @@ With [Yarn](https://yarnpkg.com):
 yarn add uglifyjs-webpack-plugin --dev
 ```
 
-With NPM:
+With npm:
 
 ```bash
 npm install uglifyjs-webpack-plugin --save-dev
