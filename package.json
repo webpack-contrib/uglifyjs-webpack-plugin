@@ -66,6 +66,7 @@
     "git-prepush-hook": "^1.0.1",
     "jest": "^18.1.0",
     "sync-exec": "^0.6.2",
+    "uglify-js": "^2.8.18",
     "webpack": "^2.2.0"
   },
   "engines": {
