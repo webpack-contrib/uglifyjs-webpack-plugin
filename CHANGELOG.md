@@ -1,3 +1,8 @@
+0.4.1 / 2017-04-05
+==================
+
+	* Chore - Note that cheap source maps don't work with the plugin. #22
+
 0.4.0 / 2017-03-30
 ==================
 
