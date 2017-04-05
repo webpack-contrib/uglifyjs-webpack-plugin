@@ -72,7 +72,7 @@ This plugin supports UglifyJS features as discussed below:
 | output | An object providing options for UglifyJS [OutputStream](https://github.com/mishoo/UglifyJS2/blob/master/lib/output.js) | | Lower level access to UglifyJS output. |
 | comments | boolean, RegExp, function(astNode, comment) -> boolean | Defaults to preserving comments containing `/*!`, `/**!`, `@preserve` or `@license`. | Comment related configuration. |
 | extractComments | boolean, RegExp, function (astNode, comment) -> boolean, object | false | Whether comments shall be extracted to a separate file, see below. |
-| sourceMap | boolean | false | Use SourceMaps to map error message locations to modules. This slows down the compilation. |
+| sourceMap | boolean | false | Use SourceMaps to map error message locations to modules. This slows down the compilation. **Important!** `cheap` source map options don't work with the plugin! |
 | test | RegExp, Array<RegExp> | <code>/\.js($&#124;\?)/i</code> | Test to match files against. |
 | include | RegExp, Array<RegExp> | | Test only `include` files. |
 | exclude | RegExp, Array<RegExp> | | Files to `exclude` from testing. |
