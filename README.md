@@ -76,6 +76,8 @@ This plugin supports UglifyJS features as discussed below:
 | test | RegExp, Array<RegExp> | <code>/\.js($&#124;\?)/i</code> | Test to match files against. |
 | include | RegExp, Array<RegExp> | | Test only `include` files. |
 | exclude | RegExp, Array<RegExp> | | Files to `exclude` from testing. |
+| extractComments | boolean, RegExp, object | | Extract comments to separate file (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a), since webpack 2.3.0) |
+| warningsFilter | function(source) -> boolean | | Allow to filter uglify warnings (since webpack 2.3.0) |
 
 <h2 align="center">Mangling</h2>
 
