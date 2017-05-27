@@ -5,3 +5,18 @@ coverage/
 *.log
 .eslintcache
 
+
+logs
+npm-debug.log*
+yarn-debug.log*
+/coverage
+/dist
+/local
+/reports
+/node_modules
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
