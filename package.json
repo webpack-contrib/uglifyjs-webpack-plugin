@@ -6,7 +6,6 @@
   "scripts": {
     "start": "npm run build -- -w",
     "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
-    "test:all": "npm run test:coverage && npm run test:lint",
     "test": "jest",
     "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
     "test:watch": "jest --watch",
@@ -24,10 +23,6 @@
     "appveyor:test": "npm run test",
     "webpack-defaults": "webpack-defaults"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin.git"
-  },
   "keywords": [
     "webpack",
     "uglifyjs",
@@ -36,26 +31,6 @@
   "files": [
     "dist"
   ],
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
-    "testEnvironment": "node",
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    },
-    "testRegex": "(/__tests__/.*\\.(test))\\.js$",
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.js$"
-    ]
-  },
-  "author": "webpack Contrib Team",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues"
-  },
-  "homepage": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin",
   "peerDependencies": {
     "webpack": "^2.0.0 || ^3.0.0"
   },
@@ -76,20 +51,14 @@
     "cross-env": "^5.0.0",
     "del-cli": "^1.0.0",
     "eslint": "^4.1.1",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jest": "^20.0.3",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-node": "^4.0.1",
-    "eslint-plugin-react": "^6.9.0",
     "eslint-config-webpack": "^1.2.3",
-    "git-prepush-hook": "^1.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.0",
     "nsp": "^2.6.3",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.1.0",
     "uglify-js": "^2.8.18",
-    "sync-exec": "^0.6.2",
     "webpack": "^3.0.0",
     "webpack-defaults": "^1.4.0"
   },
@@ -103,5 +72,14 @@
       "git add"
     ]
   },
-  "pre-push": []
+  "author": "webpack Contrib Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin",
+  "license": "MIT"
 }
