@@ -36,8 +36,8 @@ class UglifyJsPlugin {
 				const files = [];
 				chunks.forEach((chunk) => files.push.apply(files, chunk.files));
 				files.push.apply(files, compilation.additionalChunkAssets);
-				const filterdFiles = files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options));
-				filterdFiles.forEach((file) => {
+				const filteredFiles = files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options));
+				filteredFiles.forEach((file) => {
 					const oldWarnFunction = uglify.AST_Node.warn_function;
 					const warnings = [];
 					let sourceMap;
