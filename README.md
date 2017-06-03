@@ -17,6 +17,8 @@
 
 > Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
 
+Testing the CLA
+
 <h2 align="center">Install</h2>
 
 With [Yarn](https://yarnpkg.com):
