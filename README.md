@@ -101,7 +101,7 @@ Example configuration, this will mangle both names and properties:
 ```javascript
 new UglifyJsPlugin({
   mangle: {
-		props: true
+    props: true
   }
 })
 ```
