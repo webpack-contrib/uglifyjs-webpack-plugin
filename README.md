@@ -12,7 +12,7 @@
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>UglifyJS Webpack Plugin</h1>
-	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2">UglifyJS</a> to minify your JavaScript.<p>
+	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/v2.x">UglifyJS v2</a> to minify your JavaScript.<p>
 </div>
 
 > Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
@@ -69,7 +69,7 @@ This plugin supports UglifyJS features as discussed below:
 | compress | boolean, object | true | See [UglifyJS documentation](http://lisperator.net/uglifyjs/compress). |
 | mangle | boolean, object | true | See below. |
 | beautify | boolean | false | Beautify output. |
-| output | An object providing options for UglifyJS [OutputStream](https://github.com/mishoo/UglifyJS2/blob/master/lib/output.js) | | Lower level access to UglifyJS output. |
+| output | An object providing options for UglifyJS [OutputStream](https://github.com/mishoo/UglifyJS2/blob/v2.x/lib/output.js) | | Lower level access to UglifyJS output. |
 | comments | boolean, RegExp, function(astNode, comment) -> boolean | Defaults to preserving comments containing `/*!`, `/**!`, `@preserve` or `@license`. | Comment related configuration. |
 | extractComments | boolean, RegExp, function (astNode, comment) -> boolean, object | false | Whether comments shall be extracted to a separate file, see below. |
 | sourceMap | boolean | false | Use SourceMaps to map error message locations to modules. This slows down the compilation. **Important!** `cheap` source map options don't work with the plugin! |
@@ -81,15 +81,27 @@ This plugin supports UglifyJS features as discussed below:
 
 <h2 align="center">Mangling</h2>
 
-`mangle.props (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS property mangling - see [UglifyJS documentation](https://github.com/mishoo/UglifyJS2#mangleproperties-options) for mangleProperties for options.
-
-> Note: the UglifyJS docs warn that [you will probably break your source if you use property mangling](https://github.com/mishoo/UglifyJS2#mangling-property-names---mangle-props), so if you aren’t sure why you’d need this feature, you most likely shouldn’t be using it! You can tweak the behavior as below:
+`mangle (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS name mangling. See [UglifyJS documentation](https://github.com/mishoo/UglifyJS2/tree/v2.x#mangle) for mangle options. Example configuration, this will **not** mangle properties (see below):
 
 ```javascript
 new UglifyJsPlugin({
   mangle: {
     // Skip mangling these
     except: ['$super', '$', 'exports', 'require']
+  }
+})
+```
+
+`mangle.props (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS property mangling - see [UglifyJS documentation](https://github.com/mishoo/UglifyJS2/tree/v2.x#mangleproperties-options) for mangleProperties options.
+
+> Note: the UglifyJS docs warn that [you will probably break your source if you use property mangling](https://github.com/mishoo/UglifyJS2/tree/v2.x#mangling-property-names---mangle-props), so if you aren’t sure why you’d need this feature, you most likely shouldn’t be using it! This is **not** enabled by default.
+
+Example configuration, this will mangle both names and properties:
+
+```javascript
+new UglifyJsPlugin({
+  mangle: {
+    props: true
   }
 })
 ```
