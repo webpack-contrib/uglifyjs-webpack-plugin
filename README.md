@@ -81,7 +81,7 @@ This plugin supports UglifyJS features as discussed below:
 
 <h2 align="center">Mangling</h2>
 
-`mangle (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS name mangling. See [UglifyJS documentation(https://github.com/mishoo/UglifyJS2/tree/v2.x#mangle) for mangle options. Example configuration, this will **not** mangle properties (see below):
+`mangle (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS name mangling. See [UglifyJS documentation](https://github.com/mishoo/UglifyJS2/tree/v2.x#mangle) for mangle options. Example configuration, this will **not** mangle properties (see below):
 
 ```javascript
 new UglifyJsPlugin({
