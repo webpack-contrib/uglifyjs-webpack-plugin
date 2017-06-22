@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "source-map": "^0.5.6",
-    "uglify-js": "^2.8.29",
+    "uglify-js": "2.8.29",
     "webpack-sources": "^1.0.1"
   },
   "devDependencies": {
