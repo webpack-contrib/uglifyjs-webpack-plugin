@@ -12,7 +12,7 @@
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>UglifyJS Webpack Plugin</h1>
-	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/v2.x">UglifyJS v2</a> to minify your JavaScript.<p>
+	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">UglifyES v3</a> to minify your JavaScript.<p>
 </div>
 
 > Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
@@ -29,20 +29,6 @@ With npm:
 
 ```bash
 npm install uglifyjs-webpack-plugin --save-dev
-```
-
-**Important!** The plugin has a peer dependency to uglify-js, so in order to use the plugin, also uglify-js has to be installed. The currently (2017/1/25) available uglify-js npm packages; however, do not support minification of ES6 code. In order to support ES6, an ES6-capable, a.k.a. _harmony_, version of UglifyJS has to be provided.
-
-If your minification target is ES6:
-
-```bash
-yarn add git://github.com/mishoo/UglifyJS2#harmony-v2.8.22 --dev
-```
-
-If your minification target is ES5:
-
-```bash
-yarn add uglify-js --dev
 ```
 
 <h2 align="center">Usage</h2>

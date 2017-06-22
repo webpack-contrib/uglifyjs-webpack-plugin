@@ -10,7 +10,7 @@ const RawSource = require("webpack-sources").RawSource;
 const ConcatSource = require("webpack-sources").ConcatSource;
 const RequestShortener = require("webpack/lib/RequestShortener");
 const ModuleFilenameHelpers = require("webpack/lib/ModuleFilenameHelpers");
-const uglify = require("uglify-js");
+const uglify = require("uglify-es");
 
 class UglifyJsPlugin {
 	constructor(options) {
