@@ -42,7 +42,8 @@
   },
   "homepage": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin",
   "peerDependencies": {
-    "webpack": "^1.9 || ^2 || ^2.1.0-beta || ^2.2.0-rc || ^3.0.0"
+    "webpack": "^1.9 || ^2 || ^2.1.0-beta || ^2.2.0-rc || ^3.0.0",
+		"uglify-js": "^2.8.29"
   },
   "dependencies": {
     "source-map": "^0.5.6",
