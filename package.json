@@ -31,8 +31,7 @@
   },
   "dependencies": {
     "source-map": "^0.5.6",
-    "uglify-js": "^2.8.29",
-    "webpack-sources": "^1.0.1"
+    "uglify-es": "^3.0.19",    "webpack-sources": "^1.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -51,7 +50,6 @@
     "nsp": "^2.6.3",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.1.0",
-    "uglify-js": "^2.8.18",
     "webpack": "^3.0.0",
     "webpack-defaults": "^1.4.0"
   },
