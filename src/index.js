@@ -3,6 +3,7 @@
 	Author Tobias Koppers @sokra
 */
 "use strict";
+/* eslint-disable no-plusplus, no-continue, no-loop-func */
 
 const SourceMapConsumer = require("source-map").SourceMapConsumer;
 const SourceMapSource = require("webpack-sources").SourceMapSource;
@@ -60,12 +61,23 @@ class UglifyJsPlugin {
 					module.useSourceMap = true;
 				});
 			}
+
 			compilation.plugin("optimize-chunk-assets", (chunks, callback) => {
-				const files = [];
-				chunks.forEach((chunk) => files.push.apply(files, chunk.files));
-				files.push.apply(files, compilation.additionalChunkAssets);
-				const filteredFiles = files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options));
-				filteredFiles.forEach((file) => {
+				const files = compilation.additionalChunkAssets || [];
+
+				let file;
+				let i = chunks.length;
+
+				while(i--) {
+					files.push.apply(files, chunks[i].files); // eslint-disable-line prefer-spread
+				}
+
+				i = files.length;
+				while(i--) {
+					file = files[i];
+
+					if(!ModuleFilenameHelpers.matchObject(options, file)) continue;
+
 					const oldWarnFunction = uglify.AST_Node.warn_function;
 					const warnings = [];
 					let sourceMap;
@@ -235,7 +247,7 @@ class UglifyJsPlugin {
 					} finally {
 						uglify.AST_Node.warn_function = oldWarnFunction; // eslint-disable-line camelcase
 					}
-				});
+				}
 				callback();
 			});
 		});
