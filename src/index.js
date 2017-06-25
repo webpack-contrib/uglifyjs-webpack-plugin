@@ -63,6 +63,13 @@ class UglifyJsPlugin {
 			}
 
 			compilation.plugin("optimize-chunk-assets", (chunks, callback) => {
+				const warnings = [];
+				const output = {
+					comments: options.comments || /^\**!|@preserve|@license/,
+					beautify: options.beautify,
+					...options.output
+				};
+				const outputSourceSet = new WeakSet();
 				const files = compilation.additionalChunkAssets || [];
 
 				let file;
@@ -78,17 +85,18 @@ class UglifyJsPlugin {
 
 					if(!ModuleFilenameHelpers.matchObject(options, file)) continue;
 
-					const oldWarnFunction = uglify.AST_Node.warn_function;
-					const warnings = [];
-					let sourceMap;
+					var asset = compilation.assets[file];
+					if(outputSourceSet.has(asset)) continue;
+
+					var oldWarnFunction = uglify.AST_Node.warn_function;
+					var inputSourceMap;
+					var input;
+					var sourceMap;
+					var map;
+					var outputSource;
+					var stream;
+
 					try {
-						const asset = compilation.assets[file];
-						if(asset.__UglifyJsPlugin) {
-							compilation.assets[file] = asset.__UglifyJsPlugin;
-							return;
-						}
-						let input;
-						let inputSourceMap;
 						if(options.sourceMap) {
 							if(asset.sourceAndMap) {
 								const sourceAndMap = asset.sourceAndMap();
@@ -138,12 +146,7 @@ class UglifyJsPlugin {
 								uglify.mangle_properties(ast, options.mangle.props);
 							}
 						}
-						const output = {};
-						output.comments = Object.prototype.hasOwnProperty.call(options, "comments") ? options.comments : /^\**!|@preserve|@license/;
-						output.beautify = options.beautify;
-						for(let k in options.output) {
-							output[k] = options.output[k];
-						}
+
 						const extractedComments = [];
 						if(options.extractComments) {
 							const condition = {};
@@ -176,23 +179,28 @@ class UglifyJsPlugin {
 								return condition.preserve(astNode, comment);
 							};
 						}
-						let map;
+
 						if(options.sourceMap) {
 							map = uglify.SourceMap({ // eslint-disable-line new-cap
 								file,
 								root: "",
 							});
 							output.source_map = map; // eslint-disable-line camelcase
+							map = "" + map;
+							stream = uglify.OutputStream(output); // eslint-disable-line new-cap
+							ast.print(stream);
+							outputSource = new SourceMapSource(
+								`${stream}`, file, JSON.parse(map), input, inputSourceMap // eslint-disable-line comma-dangle
+							);
+						} else {
+							stream = uglify.OutputStream(output); // eslint-disable-line new-cap
+							ast.print(stream);
+							outputSource = new RawSource(`${stream}`);
 						}
-						const stream = uglify.OutputStream(output); // eslint-disable-line new-cap
-						ast.print(stream);
-						if(map) map = map + "";
-						const stringifiedStream = stream + "";
-						let outputSource = (map ?
-							new SourceMapSource(stringifiedStream, file, JSON.parse(map), input, inputSourceMap) :
-							new RawSource(stringifiedStream));
-						if(extractedComments.length > 0) {
+
+						if(extractedComments.length) {
 							let commentsFile = options.extractComments.filename || file + ".LICENSE";
+
 							if(typeof commentsFile === "function") {
 								commentsFile = commentsFile(file);
 							}
@@ -226,10 +234,14 @@ class UglifyJsPlugin {
 								}
 							}
 						}
-						asset.__UglifyJsPlugin = compilation.assets[file] = outputSource;
-						if(warnings.length > 0) {
+
+						compilation.assets[file] = outputSource;
+						outputSourceSet.add(outputSource);
+
+						if(warnings.length) {
 							compilation.warnings.push(new Error(file + " from UglifyJs\n" + warnings.join("\n")));
 						}
+
 					} catch(err) {
 						if(err.line) {
 							const original = sourceMap && sourceMap.originalPositionFor({
