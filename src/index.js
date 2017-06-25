@@ -12,6 +12,33 @@ const RequestShortener = require("webpack/lib/RequestShortener");
 const ModuleFilenameHelpers = require("webpack/lib/ModuleFilenameHelpers");
 const uglify = require("uglify-js");
 
+const WARN_PATTERN = /\[.+:([0-9]+),([0-9]+)\]/;
+
+function ensureConditionFunc(condition, key) {
+	switch(typeof condition[key]) {
+		case "boolean": {
+			const b = condition[key];
+			condition[key] = () => b;
+			break;
+		}
+		case "function":
+			break;
+		case "string": {
+			if(condition[key] === "all") {
+				condition[key] = () => true;
+				break;
+			}
+			const regex = new RegExp(condition[key]);
+			condition[key] = (astNode, comment) => regex.test(comment.value);
+			break;
+		}
+		default: {
+			const defaultRegex = condition[key];
+			condition[key] = (astNode, comment) => defaultRegex.test(comment.value);
+		}
+	}
+}
+
 class UglifyJsPlugin {
 	constructor(options) {
 		if(typeof options !== "object" || Array.isArray(options)) options = {};
@@ -61,7 +88,7 @@ class UglifyJsPlugin {
 							}
 							sourceMap = new SourceMapConsumer(inputSourceMap);
 							uglify.AST_Node.warn_function = (warning) => { // eslint-disable-line camelcase
-								const match = /\[.+:([0-9]+),([0-9]+)\]/.exec(warning);
+								const match = WARN_PATTERN.exec(warning);
 								const line = +match[1];
 								const column = +match[2];
 								const original = sourceMap.originalPositionFor({
@@ -70,7 +97,7 @@ class UglifyJsPlugin {
 								});
 								if(!original || !original.source || original.source === file) return;
 								if(!warningsFilter(original.source)) return;
-								warnings.push(warning.replace(/\[.+:([0-9]+),([0-9]+)\]/, "") +
+								warnings.push(warning.replace(WARN_PATTERN, "") +
 									"[" + requestShortener.shorten(original.source) + ":" + original.line + "," + original.column + "]");
 							};
 						} else {
@@ -122,27 +149,8 @@ class UglifyJsPlugin {
 							}
 
 							// Ensure that both conditions are functions
-							["preserve", "extract"].forEach(key => {
-								switch(typeof condition[key]) {
-									case "boolean":
-										var b = condition[key];
-										condition[key] = () => b;
-										break;
-									case "function":
-										break;
-									case "string":
-										if(condition[key] === "all") {
-											condition[key] = () => true;
-											break;
-										}
-										var regex = new RegExp(condition[key]);
-										condition[key] = (astNode, comment) => regex.test(comment.value);
-										break;
-									default:
-										regex = condition[key];
-										condition[key] = (astNode, comment) => regex.test(comment.value);
-								}
-							});
+							ensureConditionFunc(condition, "preserve");
+							ensureConditionFunc(condition, "extract");
 
 							// Redefine the comments function to extract and preserve
 							// comments according to the two conditions
