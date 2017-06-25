@@ -22,9 +22,10 @@ class UglifyJsPlugin {
 	apply(compiler) {
 		const options = this.options;
 		options.test = options.test || /\.js($|\?)/i;
-		const warningsFilter = options.warningsFilter || (() => true);
 
+		const warningsFilter = options.warningsFilter || (() => true);
 		const requestShortener = new RequestShortener(compiler.context);
+
 		compiler.plugin("compilation", (compilation) => {
 			if(options.sourceMap) {
 				compilation.plugin("build-module", (module) => {
