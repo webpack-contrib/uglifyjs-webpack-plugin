@@ -104,8 +104,8 @@ class UglifyJsPlugin {
 								const line = +match[1];
 								const column = +match[2];
 								const original = sourceMap.originalPositionFor({
-									line: line,
-									column: column
+									line,
+									column,
 								});
 								if(!original || !original.source || original.source === file) return;
 								if(!warningsFilter(original.source)) return;
@@ -119,13 +119,14 @@ class UglifyJsPlugin {
 							};
 						}
 						uglify.base54.reset();
-						let ast = uglify.parse(input, {
-							filename: file
+
+						var ast = uglify.parse(input, {
+							filename: file,
 						});
 						if(options.compress !== false) {
 							ast.figure_out_scope();
 							const compress = uglify.Compressor(options.compress || {
-								warnings: false
+								warnings: false,
 							}); // eslint-disable-line new-cap
 							ast = compress.compress(ast);
 						}
@@ -178,8 +179,8 @@ class UglifyJsPlugin {
 						let map;
 						if(options.sourceMap) {
 							map = uglify.SourceMap({ // eslint-disable-line new-cap
-								file: file,
-								root: ""
+								file,
+								root: "",
 							});
 							output.source_map = map; // eslint-disable-line camelcase
 						}
@@ -233,7 +234,7 @@ class UglifyJsPlugin {
 						if(err.line) {
 							const original = sourceMap && sourceMap.originalPositionFor({
 								line: err.line,
-								column: err.col
+								column: err.col,
 							});
 							if(original && original.source) {
 								compilation.errors.push(new Error(file + " from UglifyJs\n" + err.message + " [" + requestShortener.shorten(original.source) + ":" + original.line + "," + original.column + "][" + file + ":" + err.line + "," + err.col + "]"));
