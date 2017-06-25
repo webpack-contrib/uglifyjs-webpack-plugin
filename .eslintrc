@@ -6,6 +6,7 @@
 		"node": true,
 		"jasmine": true
 	},
+	"parser": "babel-eslint",
 	"rules": {
 		"quotes": ["error", "double"],
 		"no-undef": "error",
