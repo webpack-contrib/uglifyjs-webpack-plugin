@@ -62,7 +62,7 @@ class UglifyJsPlugin {
 					column: column
 				});
 
-				if(original && !original.source && original.source !== file && !warningsFilter(original.source)) {
+				if(original && original.source && original.source !== file && warningsFilter(original.source)) {
 					accWarnings.push(warning.replace(/\[.+:([0-9]+),([0-9]+)\]/, "") + "[" + requestShortener.shorten(original.source) + ":" + original.line + "," + original.column + "]");
 				}
 
@@ -73,7 +73,7 @@ class UglifyJsPlugin {
 
 	buildCommentsFunction(options, uglifyOptions, extractedComments) {
 		const condition = {};
-		const commentsOpts = uglifyOptions.comments || "some";
+		const commentsOpts = uglifyOptions.output && uglifyOptions.output.comments || "some";
 		if(typeof options.extractComments === "string" || options.extractComments instanceof RegExp) {
 			// extractComments specifies the extract condition and commentsOpts specifies the preserve condition
 			condition.preserve = commentsOpts;
@@ -87,12 +87,11 @@ class UglifyJsPlugin {
 			condition.preserve = false;
 			condition.extract = commentsOpts;
 		}
-
 		// Ensure that both conditions are functions
 		["preserve", "extract"].forEach(key => {
 			switch(typeof condition[key]) {
 				case "boolean":
-					condition[key] = () => condition[key];
+					condition[key] = condition[key] ? () => true : () => false;
 					break;
 				case "function":
 					break;
@@ -173,16 +172,17 @@ class UglifyJsPlugin {
 					const extractedComments = [];
 					let commentsFile = false;
 					if(this.options.extractComments) {
-						uglifyOptions.comments = this.buildCommentsFunction(this.options, uglifyOptions, extractedComments);
+						uglifyOptions.output = uglifyOptions.output || {};
+						uglifyOptions.output.comments = this.buildCommentsFunction(this.options, uglifyOptions, extractedComments);
 
-						let commentsFile = this.options.extractComments.filename || file + ".LICENSE";
+						commentsFile = this.options.extractComments.filename || file + ".LICENSE";
 						if(typeof commentsFile === "function") {
 							commentsFile = commentsFile(file);
 						}
 
 						// Handling banner
 						if(this.options.extractComments.banner !== false) {
-							let banner = this.options.extractComments.banner || "For license information please see " + commentsFile;
+							let banner = this.options.extractComments.banner || "/** For license information please see " + commentsFile + " */";
 							if(typeof banner === "function") {
 								banner = banner(commentsFile);
 							}
