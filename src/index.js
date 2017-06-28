@@ -240,4 +240,4 @@ class UglifyJsPlugin {
   }
 }
 
-module.exports = UglifyJsPlugin;
+export default UglifyJsPlugin;
