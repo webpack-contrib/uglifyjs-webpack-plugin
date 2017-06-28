@@ -65,9 +65,6 @@
   "engines": {
     "node": ">= 4.3 < 5.0.0 || >= 5.10"
   },
-  "pre-push": [
-    "test:all"
-  ],
   "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": [
