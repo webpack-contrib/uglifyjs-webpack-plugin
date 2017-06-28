@@ -69,7 +69,7 @@ describe('when options.extractComments', () => {
     });
   });
 
-  it('normalizes when options.extractComments is regex', () => {
+  describe('normalizes when options.extractComments is regex', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
@@ -128,7 +128,8 @@ describe('when options.extractComments', () => {
     compilation2.errors = [];
 
     eventBinding.handler(compilation2);
-    let [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+
     compilationEventBinding.handler([{
       files: ['test.js'],
     }], () => {
