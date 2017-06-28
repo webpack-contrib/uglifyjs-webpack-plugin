@@ -1,12 +1,11 @@
 {
   "presets": [
-    "es2015",
     [
       "env",
       {
         "useBuiltIns": true,
         "targets": {
-          "node": "4.3"
+          "node": 4.3
         },
         "exclude": [
           "transform-async-to-generator",
@@ -16,23 +15,15 @@
     ]
   ],
   "plugins": [
-    "syntax-object-rest-spread",
-    "transform-object-rest-spread",
     [
       "transform-object-rest-spread",
-      {
-        "useBuiltIns": true
-      }
+      { "useBuiltIns": true }
     ]
   ],
   "env": {
     "test": {
-      "presets": [
-        "env"
-      ],
-      "plugins": [
-        "transform-object-rest-spread"
-      ]
+      "presets": ["env"],
+      "plugins": ["transform-object-rest-spread"]
     }
   }
 }
