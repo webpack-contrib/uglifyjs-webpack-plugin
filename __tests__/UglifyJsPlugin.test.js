@@ -1,9 +1,7 @@
-"use strict";
+import UglifyJsPlugin from '../src/index';
 
-const UglifyJsPlugin = require("../src/index");
-
-describe("UglifyJsPlugin", () => {
-	it("has apply function", () => {
-		expect(typeof new UglifyJsPlugin().apply).toBe("function");
-	});
+describe('UglifyJsPlugin', () => {
+  it('has apply function', () => {
+    expect(typeof new UglifyJsPlugin().apply).toBe('function');
+  });
 });

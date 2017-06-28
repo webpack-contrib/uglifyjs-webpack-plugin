@@ -37,10 +37,6 @@
     "dist"
   ],
   "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
     "testEnvironment": "node",
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
@@ -76,20 +72,21 @@
     "cross-env": "^5.0.0",
     "del-cli": "^1.0.0",
     "eslint": "^4.1.1",
+    "eslint-config-webpack": "^1.2.3",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-node": "^4.0.1",
     "eslint-plugin-react": "^6.9.0",
-    "eslint-config-webpack": "^1.2.3",
     "git-prepush-hook": "^1.0.1",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.0",
+    "memory-fs": "^0.4.1",
     "nsp": "^2.6.3",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.1.0",
-    "uglify-js": "^2.8.18",
     "sync-exec": "^0.6.2",
+    "uglify-js": "^2.8.18",
     "webpack": "^3.0.0",
     "webpack-defaults": "^1.4.0"
   },
@@ -102,10 +99,6 @@
       "eslint --fix",
       "git add"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin.git"
   },
   "pre-push": []
 }
