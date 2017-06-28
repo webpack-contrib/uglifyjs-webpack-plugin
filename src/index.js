@@ -3,10 +3,19 @@
   Author Tobias Koppers @sokra
 */
 
+// TODO: temporarily disabled rules
+/* eslint-disable
+  no-undefined,
+  no-param-reassign,
+  no-underscore-dangle,
+  import/order
+*/
 import { SourceMapConsumer } from 'source-map';
 import { ConcatSource, RawSource, SourceMapSource } from 'webpack-sources';
+
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
+
 import uglify from 'uglify-js';
 
 class UglifyJsPlugin {
