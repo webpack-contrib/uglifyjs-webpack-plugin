@@ -18,12 +18,6 @@ describe('when applied with all options', () => {
 
     const plugin = new UglifyJsPlugin({
       sourceMap: true,
-      compress: {
-        warnings: true,
-      },
-      mangle: false,
-      beautify: true,
-      comments: false,
       extractComments: {
         condition: 'should be extracted',
         filename(file) {
@@ -31,6 +25,14 @@ describe('when applied with all options', () => {
         },
         banner(licenseFile) {
           return `License information can be found in ${licenseFile}`;
+        },
+      },
+      uglifyOptions: {
+        warnings: true,
+        mangle: false,
+        output: {
+          beautify: true,
+          comments: false,
         },
       },
     });
@@ -42,12 +44,14 @@ describe('when applied with all options', () => {
     const compiler = createCompiler();
     new UglifyJsPlugin({
       sourceMap: true,
-      compress: {
+      uglifyOptions: {
+        mangle: false,
+        output: {
+          beautify: true,
+          comments: false,
+        },
         warnings: true,
       },
-      mangle: false,
-      beautify: true,
-      comments: false,
       extractComments: {
         condition: 'should be extracted',
         filename(file) {
@@ -273,12 +277,14 @@ describe('when applied with all options', () => {
               const plugin = new UglifyJsPlugin({
                 warningsFilter: () => true,
                 sourceMap: true,
-                compress: {
+                uglifyOptions: {
                   warnings: true,
+                  mangle: false,
+                  output: {
+                    beautify: true,
+                    comments: false,
+                  },
                 },
-                mangle: false,
-                beautify: true,
-                comments: false,
               });
               plugin.apply(compilerEnv);
               eventBindings = pluginEnvironment.getEventBindings();
@@ -325,12 +331,14 @@ describe('when applied with all options', () => {
               const plugin = new UglifyJsPlugin({
                 warningsFilter: () => false,
                 sourceMap: true,
-                compressor: {
+                uglifyOptions: {
                   warnings: true,
+                  mangle: false,
+                  output: {
+                    beautify: true,
+                    comments: false,
+                  },
                 },
-                mangle: false,
-                beautify: true,
-                comments: false,
               });
               plugin.apply(compilerEnv);
               eventBindings = pluginEnvironment.getEventBindings();
