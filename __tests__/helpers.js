@@ -57,6 +57,7 @@ exports.removeCWD = function removeCWD(str) {
 exports.cleanErrorStack = function cleanErrorStack(error) {
   return exports.removeCWD(error.toString())
     .replace(/\n(\s+)(.*)\((.*)\)/g, '\n$1$3')
+    .replace(/([0-9]+)\:([0-9]+)/g, '$1')
     .replace(/\(|\)/g, '')
     .replace(/at /g, '');
 };

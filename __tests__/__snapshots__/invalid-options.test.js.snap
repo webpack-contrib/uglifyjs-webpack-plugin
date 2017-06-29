@@ -4,28 +4,28 @@ exports[`errors 1`] = `
 Array [
   "Error: main.js from UglifyJs
 DefaultsError: \`invalid-option\` is not a supported option
-    node_modules/uglify-js/tools/node.js:27:1, <anonymous>:86:23
-    src/index.js:243:82
+    node_modules/uglify-js/tools/node.js:27, <anonymous>:86
+    src/index.js:243
     native
-    src/index.js:53:25
-    node_modules/tapable/lib/Tapable.js:142:13
-    node_modules/webpack/lib/Compilation.js:641:10
-    node_modules/tapable/lib/Tapable.js:131:46
-    node_modules/webpack/lib/Compilation.js:637:9
-    node_modules/tapable/lib/Tapable.js:131:46
-    node_modules/webpack/lib/Compilation.js:580:8",
+    src/index.js:53
+    node_modules/tapable/lib/Tapable.js:142
+    node_modules/webpack/lib/Compilation.js:641
+    node_modules/tapable/lib/Tapable.js:131
+    node_modules/webpack/lib/Compilation.js:637
+    node_modules/tapable/lib/Tapable.js:131
+    node_modules/webpack/lib/Compilation.js:580",
   "Error: manifest.js from UglifyJs
 DefaultsError: \`invalid-option\` is not a supported option
-    node_modules/uglify-js/tools/node.js:27:1, <anonymous>:86:23
-    src/index.js:243:82
+    node_modules/uglify-js/tools/node.js:27, <anonymous>:86
+    src/index.js:243
     native
-    src/index.js:53:25
-    node_modules/tapable/lib/Tapable.js:142:13
-    node_modules/webpack/lib/Compilation.js:641:10
-    node_modules/tapable/lib/Tapable.js:131:46
-    node_modules/webpack/lib/Compilation.js:637:9
-    node_modules/tapable/lib/Tapable.js:131:46
-    node_modules/webpack/lib/Compilation.js:580:8",
+    src/index.js:53
+    node_modules/tapable/lib/Tapable.js:142
+    node_modules/webpack/lib/Compilation.js:641
+    node_modules/tapable/lib/Tapable.js:131
+    node_modules/webpack/lib/Compilation.js:637
+    node_modules/tapable/lib/Tapable.js:131
+    node_modules/webpack/lib/Compilation.js:580",
 ]
 `;
 
