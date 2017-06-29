@@ -1,117 +1,196 @@
 [![npm][npm]][npm-url]
+[![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![test][test]][test-url]
 [![coverage][cover]][cover-url]
-[![quality][quality]][quality-url]
 [![chat][chat]][chat-url]
 
+
 <div align="center">
-  <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
   <a href="https://github.com/webpack/webpack">
-    <img width="200" height="200" vspace="" hspace="25"
+    <img width="200" height="200"
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>UglifyJS Webpack Plugin</h1>
-	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/v2.x">UglifyJS v2</a> to minify your JavaScript.<p>
+	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">UglifyJS v3</a> to minify your JavaScript<p>
 </div>
 
-> Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
+> ℹ️  webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. The documentation is valid apart from the installation instructions
 
 <h2 align="center">Install</h2>
 
-With [Yarn](https://yarnpkg.com):
-
 ```bash
-yarn add uglifyjs-webpack-plugin --dev
-```
-
-With npm:
-
-```bash
-npm install uglifyjs-webpack-plugin --save-dev
+npm i -D uglifyjs-webpack-plugin
 ```
 
 <h2 align="center">Usage</h2>
 
-```javascript
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+**webpack.config.js**
+```js
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  entry: {...},
-  output: {...},
-  module: {...},
   plugins: [
-    new UglifyJsPlugin()
+    new UglifyJSPlugin()
   ]
-};
+}
 ```
 
 <h2 align="center">Options</h2>
 
-This plugin supports UglifyJS features as discussed below:
+|Name|Type|Default|Description|
+|:--:|:--:|:-----:|:----------|
+|**`test`**|`{RegExp\|Array<RegExp>}`| <code>/\.js($&#124;\?)/i</code>|Test to match files against|
+|**`include`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `include`|
+|**`exclude`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `exclude`|
+|**`parallel`**|`{Boolean\|Object}`|`false`|Use multi-process parallel running and file cache to improve the build speed|
+|**`sourceMap`**|`{Boolean}`|`false`|Use source maps to map error message locations to modules (This slows down the compilation) ⚠️ **`cheap-source-map` options don't work with this plugin**|
+|**`uglifyOptions`**|`{Object}`|[`{...defaults}`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions)|`uglify` [Options](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)|
+|**`extractComments`**|`{Boolean\|RegExp\|Function<(node, comment) -> {Boolean\|Object}>}`|`false`|Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a) (`webpack >= 2.3.0`)|
+|**`warningsFilter`**|`{Function(source) -> {Boolean}}`|``|Allow to filter uglify warnings|
 
-| Property | Type | Default | Description |
-| --- | --- | --- | --- |
-| compress | boolean, object | true | See [UglifyJS documentation](http://lisperator.net/uglifyjs/compress). |
-| mangle | boolean, object | true | See below. |
-| beautify | boolean | false | Beautify output. |
-| output | An object providing options for UglifyJS [OutputStream](https://github.com/mishoo/UglifyJS2/blob/v2.x/lib/output.js) | | Lower level access to UglifyJS output. |
-| comments | boolean, RegExp, function(astNode, comment) -> boolean | Defaults to preserving comments containing `/*!`, `/**!`, `@preserve` or `@license`. | Comment related configuration. |
-| extractComments | boolean, RegExp, function (astNode, comment) -> boolean, object | false | Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a), since webpack 2.3.0) |
-| sourceMap | boolean | false | Use SourceMaps to map error message locations to modules. This slows down the compilation. **Important!** `cheap` source map options don't work with the plugin! |
-| test | RegExp, Array<RegExp> | <code>/\.js($&#124;\?)/i</code> | Test to match files against. |
-| include | RegExp, Array<RegExp> | | Test only `include` files. |
-| exclude | RegExp, Array<RegExp> | | Files to `exclude` from testing. |
-| warningsFilter | function(source) -> boolean | | Allow to filter uglify warnings (since webpack 2.3.0) |
-| parallel | boolean, object | false | Use multi-process parallel running and file cache to improve the build speed. |
+### `test`
 
-<h2 align="center">Mangling</h2>
-
-`mangle (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS name mangling. See [UglifyJS documentation](https://github.com/mishoo/UglifyJS2/tree/v2.x#mangle) for mangle options. Example configuration, this will **not** mangle properties (see below):
-
-```javascript
-new UglifyJsPlugin({
-  mangle: {
-    // Skip mangling these
-    except: ['$super', '$', 'exports', 'require']
-  }
-})
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    test: /\.js($&#124;\?)/i
+  })
+]
 ```
 
-`mangle.props (boolean|object)` - Passing `true` or an object enables and provides options for UglifyJS property mangling - see [UglifyJS documentation](https://github.com/mishoo/UglifyJS2/tree/v2.x#mangleproperties-options) for mangleProperties options.
+### `include`
 
-> Note: the UglifyJS docs warn that [you will probably break your source if you use property mangling](https://github.com/mishoo/UglifyJS2/tree/v2.x#mangling-property-names---mangle-props), so if you aren’t sure why you’d need this feature, you most likely shouldn’t be using it! This is **not** enabled by default.
-
-Example configuration, this will mangle both names and properties:
-
-```javascript
-new UglifyJsPlugin({
-  mangle: {
-    props: true
-  }
-})
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    include: /\/includes/
+  })
+]
 ```
 
-<h2 align="center">Extracting Comments</h2>
+### `exclude`
 
-The `extractComments` option can be
-- `true`: All comments that normally would be preserved by the `comments` option will be moved to a separate file. If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE`
-- regular expression (given as `RegExp` or `string`) or a `function (astNode, comment) -> boolean`:
-  All comments that match the given expression (resp. are evaluated to `true` by the function) will be extracted to the separate file. The `comments` option specifies whether the comment will be preserved, i.e. it is possible to preserve some comments (e.g. annotations) while extracting others or even preserving comments that have been extracted.
-- an `object` consisting of the following keys, all optional:
-  - `condition`: regular expression or function (see previous point)
-  - `filename`: The file where the extracted comments will be stored. Can be either a `string` or `function (string) -> string` which will be given the original filename. Default is to append the suffix `.LICENSE` to the original filename.
-  - `banner`: The banner text that points to the extracted file and will be added on top of the original file. will be added to the original file. Can be `false` (no banner), a `string`, or a `function (string) -> string` that will be called with the filename where extracted comments have been stored. Will be wrapped into comment.
-Default: `/*! For license information please see foo.js.LICENSE */`
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    exclude: /\/excludes/
+  })
+]
+```
 
-<h2 align="center">Run in parallel</h2>
+### `parallel`
 
-The `parallel` option can be
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    parallel: true
+  })
+]
+```
 
-- `true`: Enable multi-process parallel running with file cache
-- an `object` consisting of the following keys, all optional:
-  - `workers`: The maximum number of concurrent runs. If it is `true`, it is equal to `require('os').cpus().length - 1`.
-  - `cache`: Enable file caching. If it is `true`, it is equal to `"node_modules/.cache/uglifyjs-webpack-plugin"`.
+|Name|Type|Default|Description|
+|:--:|:--:|:-----:|:----------|
+|**`cache`**|`{Boolean}`|`node_modules/.cache/uglifyjs-webpack-plugin`|Enable file caching|
+|**`workers`**|`{Boolean\|Object}`|`os.cpus().length - 1`|Number of concurrent runs, default is the `maximum`|
+
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    parallel: {
+      cache: true
+      workers: 2 // for e.g
+    }
+  })
+]
+```
+
+> ℹ️  Parallelization can speedup your build significantly and is therefore **highly recommended**
+
+### `sourceMap`
+
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    sourceMap: true
+  })
+]
+```
+
+> ⚠️ **`cheap-source-map` options don't work with this plugin**
+
+### [`uglifyOptions`](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)
+
+|Name|Type|Default|Description|
+|:--:|:--:|:-----:|:----------|
+|**`ie8`**|`{Boolean}`|`false`|Enable IE8 Support|
+|**`ecma`**|`{Number}`|`undefined`|Supported ECMAScript Version (`5`, `6`, `7` or `8`). Affects `parse`, `compress` && `output` options|
+|**[`parse`](https://github.com/mishoo/UglifyJS2/tree/harmony#parse-options)**|`{Object}`|`{}`|Additional Parse Options|
+|**[`mangle`](https://github.com/mishoo/UglifyJS2/tree/harmony#mangle-options)**|`{Boolean\|Object}`|`true`|Enable Name Mangling (See [Mangle Properties](https://github.com/mishoo/UglifyJS2/tree/harmony#mangle-properties-options) for advanced setups, use with ⚠️)|
+|**[`output`](https://github.com/mishoo/UglifyJS2/tree/harmony#output-options)**|`{Object}`|`{}`|Additional Output Options (The defaults are optimized for best compression)|
+|**[`compress`](https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options)**|`{Boolean\|Object}`|`true`|Additional Compress Options|
+|**`warnings`**|`{Boolean}`|`false`|Display Warnings|
+
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    uglifyOptions: {
+      ie8: false,
+      ecma: 8,
+      parse: {...options},
+      mangle: {
+        ...options,
+        properties: {
+          // mangle property options
+        }
+      },
+      output: {
+        comments: false,
+        beautify: false,
+        ...options
+      },
+      compress: {...options},
+      warnings: false
+    }
+  })
+]
+```
+
+### `extractComments`
+
+**`{Boolean}`**
+
+All comments that normally would be preserved by the `comments` option will be moved to a separate file. If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE`
+
+**`{RegExp|String}` or  `{Function<(node, comment) -> {Boolean}>}`**
+
+All comments that match the given expression (resp. are evaluated to `true` by the function) will be extracted to the separate file. The `comments` option specifies whether the comment will be preserved, i.e. it is possible to preserve some comments (e.g. annotations) while extracting others or even preserving comments that have been extracted.
+
+**`{Object}`**
+
+|Name|Type|Default|Description|
+|:--:|:--:|:-----:|:----------|
+|**`condition`**|`{Regex\|Function}`|``|Regular Expression or function (see previous point)|
+|**`filename`**|`{String\|Function}`|`compilation.assets[file]`|The file where the extracted comments will be stored. Can be either a `{String}` or a `{Function<(string) -> {String}>}`, which will be given the original filename. Default is to append the suffix `.LICENSE` to the original filename|
+|**`banner`**|`{Boolean\|String\|Function}`|`/*! For license information please see ${filename}.js.LICENSE */`|The banner text that points to the extracted file and will be added on top of the original file. Can be `false` (no banner), a `{String}`, or a `{Function<(string) -> {String}` that will be called with the filename where extracted comments have been stored. Will be wrapped into comment|
+
+### `warningsFilter`
+
+**webpack.config.js**
+```js
+[
+  new UglifyJsPlugin({
+    warningsFilter: (src) => true
+  })
+]
+```
 
 <h2 align="center">Maintainers</h2>
 
@@ -119,28 +198,39 @@ The `parallel` option can be
   <tbody>
     <tr>
       <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/166921?v=3&s=150">
-        </br>
-        <a href="https://github.com/bebraw">Juho Vepsäläinen</a>
+        <a href="https://github.com/hulkish">
+          <img width="150" height="150" src="https://github.com/hulkish.png?size=150">
+          </br>
+          Steven Hargrove
+        </a>
       </td>
       <td align="center">
-        <img width="150" height="150"
-        src="https://avatars2.githubusercontent.com/u/8420490?v=3&s=150">
-        </br>
-        <a href="https://github.com/d3viant0ne">Joshua Wiens</a>
+        <a href="https://github.com/bebraw">
+          <img width="150" height="150" src="https://github.com/bebraw.png?v=3&s=150">
+          </br>
+          Juho Vepsäläinen
+        </a>
       </td>
       <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/533616?v=3&s=150">
-        </br>
-        <a href="https://github.com/SpaceK33z">Kees Kluskens</a>
+        <a href="https://github.com/d3viant0ne">
+          <img width="150" height="150" src="https://github.com/d3viant0ne.png?v=3&s=150">
+          </br>
+          Joshua Wiens
+        </a>
       </td>
       <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/3408176?v=3&s=150">
-        </br>
-        <a href="https://github.com/TheLarkInn">Sean Larkin</a>
+        <a href="https://github.com/michael-ciniawsky">
+          <img width="150" height="150" src="https://github.com/michael-ciniawsky.png?v=3&s=150">
+          </br>
+          Michael Ciniawsky
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/evilebottnawi">
+          <img width="150" height="150" src="https://github.com/evilebottnawi.png?v=3&s=150">
+          </br>
+          Alexander Krasnoyarov
+        </a>
       </td>
     </tr>
   <tbody>
@@ -150,11 +240,11 @@ The `parallel` option can be
 [npm]: https://img.shields.io/npm/v/uglifyjs-webpack-plugin.svg
 [npm-url]: https://npmjs.com/package/uglifyjs-webpack-plugin
 
+[node]: https://img.shields.io/node/v/uglifyjs-webpack-plugin.svg
+[node-url]: https://nodejs.org
+
 [deps]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin.svg
 [deps-url]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin
-
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
-[chat-url]: https://gitter.im/webpack/webpack
 
 [test]: https://secure.travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin.svg
 [test-url]: http://travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin
@@ -162,5 +252,5 @@ The `parallel` option can be
 [cover]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin
 
-[quality]: https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin/badges/score.svg
-[quality-url]: https://www.bithound.io/github/webpack-contrib/uglifyjs-webpack-plugin
+[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat-url]: https://gitter.im/webpack/webpack
