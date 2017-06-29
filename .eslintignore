@@ -1,6 +1,3 @@
-*.snap
 /node_modules
 /dist
 /examples/build
-/coverage/
-/__tests__/stubs

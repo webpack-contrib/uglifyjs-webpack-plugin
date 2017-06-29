@@ -45,10 +45,8 @@ class UglifyJsPlugin {
       }
       compilation.plugin('optimize-chunk-assets', (chunks, callback) => {
         const files = [];
-        // eslint-disable-next-line prefer-spread
-        chunks.forEach(chunk => files.push.apply(files, chunk.files));
-        // eslint-disable-next-line prefer-spread
-        files.push.apply(files, compilation.additionalChunkAssets);
+        chunks.forEach(chunk => files.push(...chunk.files));
+        files.push(...compilation.additionalChunkAssets);
         const filteredFiles = files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options));
         filteredFiles.forEach((file) => {
           const oldWarnFunction = uglify.AST_Node.warn_function;
