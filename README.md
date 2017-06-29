@@ -12,8 +12,9 @@
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>UglifyJS Webpack Plugin</h1>
-	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/v2.x">UglifyJS v2</a> to minify your JavaScript.<p>
 </div>
+
+This plugin uses [UglifyJS v2](https://github.com/mishoo/UglifyJS2/tree/v2.x) to minify your JavaScript.
 
 > Note that webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions in that case.
 
