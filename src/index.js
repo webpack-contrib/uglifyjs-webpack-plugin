@@ -45,8 +45,10 @@ class UglifyJsPlugin {
       }
       compilation.plugin('optimize-chunk-assets', (chunks, callback) => {
         const files = [];
-        chunks.forEach(chunk => files.push(...chunk.files));
-        files.push(...compilation.additionalChunkAssets);
+        // eslint-disable-next-line prefer-spread
+        chunks.forEach(chunk => files.push.apply(files, chunk.files));
+        // eslint-disable-next-line prefer-spread
+        files.push.apply(files, compilation.additionalChunkAssets);
         const filteredFiles = files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options));
         filteredFiles.forEach((file) => {
           const oldWarnFunction = uglify.AST_Node.warn_function;
@@ -81,7 +83,7 @@ class UglifyJsPlugin {
                 if (!original || !original.source || original.source === file) return;
                 if (!warningsFilter(original.source)) return;
                 warnings.push(`${warning.replace(/\[.+:([0-9]+),([0-9]+)\]/, '')
-                  }[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
+                }[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
               };
             } else {
               input = asset.source();
