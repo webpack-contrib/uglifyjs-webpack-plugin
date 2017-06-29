@@ -19,8 +19,8 @@
     "release": "standard-version",
     "security": "nsp check",
     "travis:lint": "npm run lint && npm run security",
-    "travis:test": "npm run test -- --runInBand",
-    "travis:coverage": "npm run test:coverage -- --runInBand",
+    "travis:test": "npm run test",
+    "travis:coverage": "npm run test:coverage",
     "appveyor:test": "npm run test",
     "webpack-defaults": "webpack-defaults"
   },
