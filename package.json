@@ -53,7 +53,7 @@
   },
   "homepage": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin",
   "peerDependencies": {
-    "webpack": "^2.0.0 || ^3.0.0"
+    "webpack": "^2.0.0 || >= 3.0.0-rc.0 || ^3.0.0"
   },
   "dependencies": {
     "source-map": "^0.5.6",
