@@ -13,7 +13,13 @@ DefaultsError: \`invalid-option\` is not a supported option
     node_modules/tapable/lib/Tapable.js:131
     node_modules/webpack/lib/Compilation.js:637
     node_modules/tapable/lib/Tapable.js:131
-    node_modules/webpack/lib/Compilation.js:580",
+    node_modules/webpack/lib/Compilation.js:580
+    node_modules/webpack/lib/Compiler.js:510
+    node_modules/tapable/lib/Tapable.js:225
+    node_modules/webpack/lib/Compilation.js:482
+    node_modules/webpack/lib/Compilation.js:453
+    internal/process/next_tick.js:95
+    internal/process/next_tick.js:161",
   "Error: manifest.js from UglifyJs
 DefaultsError: \`invalid-option\` is not a supported option
     node_modules/uglify-js/tools/node.js:27, <anonymous>:86
@@ -25,7 +31,13 @@ DefaultsError: \`invalid-option\` is not a supported option
     node_modules/tapable/lib/Tapable.js:131
     node_modules/webpack/lib/Compilation.js:637
     node_modules/tapable/lib/Tapable.js:131
-    node_modules/webpack/lib/Compilation.js:580",
+    node_modules/webpack/lib/Compilation.js:580
+    node_modules/webpack/lib/Compiler.js:510
+    node_modules/tapable/lib/Tapable.js:225
+    node_modules/webpack/lib/Compilation.js:482
+    node_modules/webpack/lib/Compilation.js:453
+    internal/process/next_tick.js:95
+    internal/process/next_tick.js:161",
 ]
 `;
 

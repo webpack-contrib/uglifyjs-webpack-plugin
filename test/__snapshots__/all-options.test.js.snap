@@ -81,6 +81,6 @@ exports[`manifest.js 1`] = `
 exports[`warnings 1`] = `
 Array [
   "Error: main.js from UglifyJs
-Dropping unused variable a [./__tests__/stubs/entry.js:4,0]",
+Dropping unused variable a [./test/stubs/entry.js:4,0]",
 ]
 `;
