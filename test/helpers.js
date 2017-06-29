@@ -1,4 +1,4 @@
-import MemoryFileSystem from 'memory-fs';
+import MemoryFileSystem from 'memory-fs'; // eslint-disable-line import/no-extraneous-dependencies
 import webpack from 'webpack';
 
 exports.PluginEnvironment = class PluginEnvironment {
@@ -55,10 +55,8 @@ exports.removeCWD = function removeCWD(str) {
 };
 
 exports.cleanErrorStack = function cleanErrorStack(error) {
-  return exports.removeCWD(error.toString())
-    .replace(/\n(\s+)(.*)\((.*)\)/g, '\n$1$3')
-    .replace(/([0-9]+)\:([0-9]+)/g, '$1') // eslint-disable-line no-useless-escape
-    .replace(/\(|\)/g, '')
-    .replace(/at /g, '');
+  const str = exports.removeCWD(error.toString())
+    .split('\n').slice(0, 2).join('\n');
+  return str;
 };
 
