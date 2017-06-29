@@ -83,7 +83,7 @@ class UglifyJsPlugin {
                 if (!original || !original.source || original.source === file) return;
                 if (!warningsFilter(original.source)) return;
                 warnings.push(`${warning.replace(/\[.+:([0-9]+),([0-9]+)\]/, '')
-                  }[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
+                }[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
               };
             } else {
               input = asset.source();
