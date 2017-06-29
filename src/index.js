@@ -50,14 +50,14 @@ class UglifyJsPlugin {
         // eslint-disable-next-line prefer-spread
         files.push.apply(files, compilation.additionalChunkAssets);
         const filteredFiles = files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options));
+        const uglifiedAssets = new WeakSet();
         filteredFiles.forEach((file) => {
           const oldWarnFunction = uglify.AST_Node.warn_function;
           const warnings = [];
           let sourceMap;
           try {
             const asset = compilation.assets[file];
-            if (asset.__UglifyJsPlugin) {
-              compilation.assets[file] = asset.__UglifyJsPlugin;
+            if (uglifiedAssets.has(asset)) {
               return;
             }
             let input;
@@ -220,9 +220,7 @@ class UglifyJsPlugin {
                 }
               }
             }
-            compilation.assets[file] = outputSource;
-            asset.__UglifyJsPlugin = outputSource;
-
+            uglifiedAssets.add(compilation.assets[file] = outputSource);
             if (warnings.length > 0) {
               compilation.warnings.push(new Error(`${file} from UglifyJs\n${warnings.join('\n')}`));
             }
