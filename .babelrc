@@ -17,13 +17,19 @@
   "plugins": [
     [
       "transform-object-rest-spread",
-      { "useBuiltIns": true }
+      {
+        "useBuiltIns": true
+      }
     ]
   ],
   "env": {
     "test": {
-      "presets": ["env"],
-      "plugins": ["transform-object-rest-spread"]
+      "presets": [
+        "env"
+      ],
+      "plugins": [
+        "transform-object-rest-spread"
+      ]
     }
   }
 }
