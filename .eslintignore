@@ -3,4 +3,4 @@
 /dist
 /examples/build
 /coverage/
-/__tests__/stubs
+/test/stubs
