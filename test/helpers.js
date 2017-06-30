@@ -33,17 +33,9 @@ exports.compile = function compile(compiler) {
 
 exports.createCompiler = function createCompiler(options = {}) {
   const compiler = webpack({
+    bail: true,
     cache: false,
-    entry: `${__dirname}/stubs/entry.js`,
-    resolve: {
-      unsafeCache: false,
-    },
-    resolveLoader: {
-      unsafeCache: false,
-    },
-    module: {
-      unsafeCache: false,
-    },
+    entry: `${__dirname}/fixtures/entry.js`,
     output: {
       path: `${__dirname}/dist`,
       filename: '[name].[chunkhash].js',

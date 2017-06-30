@@ -8,9 +8,9 @@ import {
 describe('when applied with uglifyOptions.ecma', () => {
   it('matches snapshot for ecma 5', () => {
     const compiler = createCompiler({
-      entry: `${__dirname}/stubs/es-entry.js`,
+      entry: `${__dirname}/fixtures/es2015/entry.js`,
       output: {
-        path: `${__dirname}/dist-es`,
+        path: `${__dirname}/dist-2015`,
         filename: '[name].[chunkhash].js',
         chunkFilename: '[id].[name].[chunkhash].js',
       },
@@ -45,9 +45,9 @@ describe('when applied with uglifyOptions.ecma', () => {
 
   it('matches snapshot for ecma 6', () => {
     const compiler = createCompiler({
-      entry: `${__dirname}/stubs/es-entry.js`,
+      entry: `${__dirname}/fixtures/es2015/entry.js`,
       output: {
-        path: `${__dirname}/dist-es`,
+        path: `${__dirname}/dist-2015`,
         filename: '[name].[chunkhash].js',
         chunkFilename: '[id].[name].[chunkhash].js',
       },
@@ -82,9 +82,9 @@ describe('when applied with uglifyOptions.ecma', () => {
 
   it('matches snapshot for ecma 7', () => {
     const compiler = createCompiler({
-      entry: `${__dirname}/stubs/es-entry.js`,
+      entry: `${__dirname}/fixtures/es2015/entry.js`,
       output: {
-        path: `${__dirname}/dist-es`,
+        path: `${__dirname}/dist-2015`,
         filename: '[name].[chunkhash].js',
         chunkFilename: '[id].[name].[chunkhash].js',
       },
@@ -118,9 +118,9 @@ describe('when applied with uglifyOptions.ecma', () => {
 
   it('matches snapshot for ecma 8', () => {
     const compiler = createCompiler({
-      entry: `${__dirname}/stubs/es-entry.js`,
+      entry: `${__dirname}/fixtures/es2015/entry.js`,
       output: {
-        path: `${__dirname}/dist-es`,
+        path: `${__dirname}/dist-2015`,
         filename: '[name].[chunkhash].js',
         chunkFilename: '[id].[name].[chunkhash].js',
       },

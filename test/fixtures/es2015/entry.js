@@ -1,8 +1,8 @@
-import foo, { bar } from './es-dep';
+import foo, { bar } from './dep';
 
 function Foo() {
   const b = foo;
-  const baz = "baz" + Math.random();
+  const baz = `baz${Math.random()}`;
   return () => {
     return {
       a: b + bar + baz,
