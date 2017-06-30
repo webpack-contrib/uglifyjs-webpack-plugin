@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "test": {
+      "type": "object"
+    },
+    "output": {
+      "type": "object"
+    },
+    "mangle": {
+      "type": ["boolean", "object"]
+    },
+    "compress": {
+      "type": ["boolean", "object"]
+    },
+    "beautify": {
+      "type": "boolean"
+    },
+    "comments": {
+      "type": ["boolean", "object"]
+    },
+    "extractComments": {
+      "type": ["boolean", "object"]
+    },
+    "warningsFilter": {
+      "type": "object"
+    },
+    "include": {
+      "type": "object"
+    },
+    "exclude": {
+      "type": "object"
+    },
+    "sourceMap": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

@@ -16,6 +16,8 @@ import { ConcatSource, RawSource, SourceMapSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 
+import validateOptions from 'schema-utils';
+
 import uglify from 'uglify-js';
 
 class UglifyJsPlugin {
@@ -23,6 +25,10 @@ class UglifyJsPlugin {
     if (typeof options !== 'object' || Array.isArray(options)) {
       options = {};
     }
+
+    // eslint-disable-next-line
+    validateOptions(require('./options.json'), options, 'UglifyJS Plugin');
+
     if (typeof options.compressor !== 'undefined') {
       options.compress = options.compressor;
     }
