@@ -2,7 +2,7 @@
 
 exports[`errors 1`] = `Array []`;
 
-exports[`main.js 1`] = `
+exports[`main.0c220ec66316af2c1b24.js 1`] = `
 "webpackJsonp([ 0 ], [ function(module, exports) {
     module.exports = function() {
         console.log(7);
@@ -10,7 +10,7 @@ exports[`main.js 1`] = `
 } ], [ 0 ]);"
 `;
 
-exports[`manifest.js 1`] = `
+exports[`manifest.6afe1bc6685e9ab36c1c.js 1`] = `
 "!function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
@@ -53,7 +53,11 @@ exports[`manifest.js 1`] = `
         var head = document.getElementsByTagName(\\"head\\")[0], script = document.createElement(\\"script\\");
         script.type = \\"text/javascript\\", script.charset = \\"utf-8\\", script.async = !0, script.timeout = 12e4, 
         __webpack_require__.nc && script.setAttribute(\\"nonce\\", __webpack_require__.nc), 
-        script.src = __webpack_require__.p + \\"\\" + chunkId + \\".js\\";
+        script.src = __webpack_require__.p + \\"\\" + chunkId + \\".\\" + ({
+            \\"0\\": \\"main\\"
+        }[chunkId] || chunkId) + \\".\\" + {
+            \\"0\\": \\"0c220ec66316af2c1b24\\"
+        }[chunkId] + \\".js\\";
         var timeout = setTimeout(onScriptComplete, 12e4);
         return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
         promise;
@@ -80,7 +84,7 @@ exports[`manifest.js 1`] = `
 
 exports[`warnings 1`] = `
 Array [
-  "Error: main.js from UglifyJs
+  "Error: main.0c220ec66316af2c1b24.js from UglifyJs
 Dropping unused variable a [./test/stubs/entry.js:4,0]",
 ]
 `;

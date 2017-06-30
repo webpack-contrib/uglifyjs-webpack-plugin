@@ -31,20 +31,30 @@ exports.compile = function compile(compiler) {
   });
 };
 
-exports.createCompiler = function createCompiler(options) {
-  const compiler = webpack(options || {
-    bail: true,
+exports.createCompiler = function createCompiler(options = {}) {
+  const compiler = webpack({
     cache: false,
     entry: `${__dirname}/stubs/entry.js`,
+    resolve: {
+      unsafeCache: false,
+    },
+    resolveLoader: {
+      unsafeCache: false,
+    },
+    module: {
+      unsafeCache: false,
+    },
     output: {
       path: `${__dirname}/dist`,
-      filename: '[name].js',
+      filename: '[name].[chunkhash].js',
+      chunkFilename: '[id].[name].[chunkhash].js',
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest',
       }),
     ],
+    ...options,
   });
   compiler.outputFileSystem = new MemoryFileSystem();
   return compiler;
