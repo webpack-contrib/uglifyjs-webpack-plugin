@@ -1,9 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "test": {
-      "type": "object"
-    },
+    "test": {},
     "output": {
       "type": "object"
     },
@@ -16,15 +14,9 @@
     "beautify": {
       "type": "boolean"
     },
-    "comments": {
-      "type": ["boolean", "object"]
-    },
-    "extractComments": {
-      "type": ["boolean", "object"]
-    },
-    "warningsFilter": {
-      "type": "object"
-    },
+    "comments": {},
+    "extractComments": {},
+    "warningsFilter": {},
     "include": {
       "type": "object"
     },
