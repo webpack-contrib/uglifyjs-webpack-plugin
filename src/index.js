@@ -38,9 +38,8 @@ class UglifyJsPlugin {
       warnings,
       parse: parse || {},
       compress: compress || {},
-      /* eslint-disable no-undefined */
+      // eslint-disable-next-line no-undefined
       mangle: mangle === undefined || mangle === null ? true : mangle,
-      /* eslint-enable no-undefined */
       // Ignoring sourcemap from options
       sourceMap: null,
       output: { ...defaultUglifyOptions.output, ...output },
