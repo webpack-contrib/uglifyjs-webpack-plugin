@@ -9,6 +9,12 @@ import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import uglify from 'uglify-es';
 
+/* eslint-disable
+  no-param-reassign
+*/
+
+const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
+
 const defaultUglifyOptions = {
   output: {
     comments: /^\**!|@preserve|@license|@cc_on/,
@@ -32,14 +38,13 @@ class UglifyJsPlugin {
     this.uglifyOptions = this.options.uglifyOptions || {};
   }
 
-  static buildDefaultUglifyOptions({ ecma, warnings, parse, compress, mangle, output, toplevel, ie8 }) {
+  static buildDefaultUglifyOptions({ ecma, warnings, parse = {}, compress = {}, mangle, output, toplevel, ie8 }) {
     return {
       ecma,
       warnings,
-      parse: parse || {},
-      compress: compress || {},
-      // eslint-disable-next-line no-undefined
-      mangle: mangle === undefined || mangle === null ? true : mangle,
+      parse,
+      compress,
+      mangle: mangle == null ? true : mangle,
       // Ignoring sourcemap from options
       sourceMap: null,
       output: { ...defaultUglifyOptions.output, ...output },
@@ -66,22 +71,22 @@ class UglifyJsPlugin {
   }
 
   static buildWarnings(warnings, file, sourceMap, warningsFilter, requestShortener) {
+    if (!sourceMap) {
+      return warnings;
+    }
     return warnings.reduce((accWarnings, warning) => {
-      if (!sourceMap) {
-        accWarnings.push(warning);
-      } else {
-        const match = /\[.+:([0-9]+),([0-9]+)\]/.exec(warning);
-        const line = +match[1];
-        const column = +match[2];
-        const original = sourceMap.originalPositionFor({
-          line,
-          column,
-        });
+      const match = warningRegex.exec(warning);
+      const line = +match[1];
+      const column = +match[2];
+      const original = sourceMap.originalPositionFor({
+        line,
+        column,
+      });
 
-        if (original && original.source && original.source !== file && warningsFilter(original.source)) {
-          accWarnings.push(`${warning.replace(/\[.+:([0-9]+),([0-9]+)\]/, '')}[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
-        }
+      if (original && original.source && original.source !== file && warningsFilter(original.source)) {
+        accWarnings.push(`${warning.replace(warningRegex, '')}[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
       }
+
       return accWarnings;
     }, []);
   }
@@ -145,14 +150,18 @@ class UglifyJsPlugin {
 
   apply(compiler) {
     const requestShortener = new RequestShortener(compiler.context);
-    compiler.plugin('compilation', (compilationArg) => {
-      const compilation = compilationArg;
+    // Copy uglify options
+    const uglifyOptions = UglifyJsPlugin.buildDefaultUglifyOptions(this.uglifyOptions);
+    // Making sure output options exists if there is an extractComments options
+    if (this.options.extractComments) {
+      uglifyOptions.output = uglifyOptions.output || {};
+    }
 
+    compiler.plugin('compilation', (compilation) => {
       if (this.options.sourceMap) {
         compilation.plugin('build-module', (moduleArg) => {
           // to get detailed location info about errors
-          const moduleVar = moduleArg;
-          moduleVar.useSourceMap = true;
+          moduleArg.useSourceMap = true;
         });
       }
 
@@ -162,8 +171,8 @@ class UglifyJsPlugin {
           .concat(compilation.additionalChunkAssets || [])
           .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
           .forEach((file) => {
-            // Copy uglify options
-            const uglifyOptions = UglifyJsPlugin.buildDefaultUglifyOptions(this.uglifyOptions);
+            // Reseting sourcemap to null
+            uglifyOptions.sourceMap = null;
             let sourceMap;
             const asset = compilation.assets[file];
             if (uglifiedAssets.has(asset)) {
@@ -195,7 +204,6 @@ class UglifyJsPlugin {
               const extractedComments = [];
               let commentsFile = false;
               if (this.options.extractComments) {
-                uglifyOptions.output = uglifyOptions.output || {};
                 uglifyOptions.output.comments = UglifyJsPlugin.buildCommentsFunction(this.options, uglifyOptions, extractedComments);
 
                 commentsFile = this.options.extractComments.filename || `${file}.LICENSE`;
@@ -208,8 +216,10 @@ class UglifyJsPlugin {
               const { error, map, code, warnings } = uglify.minify({ [file]: input }, uglifyOptions);
 
               // Handling results
+              // Error case: add errors, and go to next file
               if (error) {
-                throw error;
+                compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, compilation, requestShortener));
+                return;
               }
 
               let outputSource;
