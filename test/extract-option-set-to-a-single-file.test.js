@@ -11,7 +11,11 @@ describe('when applied with extract option set to a single file', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      comments: 'all',
+      uglifyOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
       extractComments: {
         condition: /.*/,
         filename: 'extracted-comments.js',
