@@ -1,9 +1,5 @@
 sudo: false
 
-os:
-  - linux
-  - osx
-
 language: node_js
 branches:
   only:
@@ -20,6 +16,11 @@ jobs:
       script: npm run travis:$JOB_PART
     - <<: *test-latest
       nodejs: 4.3
+      env: WEBPACK_VERSION=latest JOB_PART=test
+      script: npm run travis:$JOB_PART
+    - <<: *test-latest
+      os: osx
+      node_js: 8
       env: WEBPACK_VERSION=latest JOB_PART=test
       script: npm run travis:$JOB_PART
     - <<: *test-latest
