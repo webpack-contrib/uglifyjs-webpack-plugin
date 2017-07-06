@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`uglify-es matches integrity snapshot 1`] = `"sha512-hJ0lb3CoazL8TANWJCb6TusMOvcBSZp5vRiA3PST+LzwedUOguvf4xcpPwQGRS5GnaLYll9DQEL/jr8HPAioMg=="`;
+
+exports[`uglify-es matches version snapshot 1`] = `"3.0.21"`;
