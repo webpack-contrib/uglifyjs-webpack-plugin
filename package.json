@@ -6,7 +6,8 @@
   "license": "MIT",
   "main": "dist/cjs.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "start": "npm run build -- -w",
@@ -27,14 +28,10 @@
     "travis:test": "npm run test -- --runInBand",
     "travis:coverage": "npm run test:coverage -- --runInBand",
     "appveyor:test": "npm run test",
+    "postinstall": "npm run build",
     "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
-    "source-map": "^0.5.6",
-    "uglify-es": "^3.0.21",
-    "webpack-sources": "^1.0.1"
-  },
-  "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-jest": "^20.0.3",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -42,6 +39,11 @@
     "babel-preset-env": "^1.5.2",
     "cross-env": "^5.0.1",
     "del-cli": "^1.0.0",
+    "source-map": "^0.5.6",
+    "uglify-es": "^3.0.21",
+    "webpack-sources": "^1.0.1"
+  },
+  "devDependencies": {
     "eslint": "^4.0.0",
     "eslint-config-webpack": "^1.2.3",
     "eslint-plugin-import": "^2.3.0",
