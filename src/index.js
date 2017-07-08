@@ -149,9 +149,6 @@ class UglifyJsPlugin {
   }
 
   apply(compiler) {
-    if (UglifyJsPlugin.appliedCompilers.has(compiler)) return;
-    UglifyJsPlugin.appliedCompilers.add(compiler);
-
     const requestShortener = new RequestShortener(compiler.context || process.cwd());
     // Copy uglify options
     const uglifyOptions = UglifyJsPlugin.buildDefaultUglifyOptions(this.uglifyOptions);
@@ -282,12 +279,5 @@ class UglifyJsPlugin {
     });
   }
 }
-
-Object.defineProperty(UglifyJsPlugin, 'appliedCompilers', {
-  enumerable: false,
-  configurable: false,
-  writable: false,
-  value: new WeakSet(),
-});
 
 export default UglifyJsPlugin;
