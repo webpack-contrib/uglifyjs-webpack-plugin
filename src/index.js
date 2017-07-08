@@ -3,6 +3,7 @@
   Author Tobias Koppers @sokra
 */
 
+import path from 'path';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
@@ -149,7 +150,7 @@ class UglifyJsPlugin {
   }
 
   apply(compiler) {
-    const requestShortener = new RequestShortener(compiler.context || process.cwd());
+    const requestShortener = new RequestShortener(compiler.context || path.resolve());
     // Copy uglify options
     const uglifyOptions = UglifyJsPlugin.buildDefaultUglifyOptions(this.uglifyOptions);
     // Making sure output options exists if there is an extractComments options
