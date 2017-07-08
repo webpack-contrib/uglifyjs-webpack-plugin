@@ -54,14 +54,8 @@ export function createCompiler(options = {}) {
 
 export function countPlugins({ _plugins }) {
   return Object.keys(_plugins).reduce((aggregate, name) => {
-    const currentLength = typeof aggregate[name] === 'number' ? aggregate[name].length : 0;
     const eventLength = Array.isArray(_plugins[name]) ? _plugins[name].length : 0;
-
-    if (eventLength > currentLength) {
-      Object.assign(aggregate, {
-        [name]: eventLength,
-      });
-    }
+    aggregate[name] = eventLength; // eslint-disable-line no-param-reassign
     return aggregate;
   }, {});
 }
