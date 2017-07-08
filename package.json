@@ -30,8 +30,11 @@
     "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
+    "cacache": "^9.2.9",
+    "compute-cluster": "0.0.9",
+    "find-cache-dir": "^1.0.0",
     "source-map": "^0.5.6",
-    "uglify-es": "^3.0.21",
+    "uglify-es": "^3.0.24",
     "webpack-sources": "^1.0.1"
   },
   "devDependencies": {

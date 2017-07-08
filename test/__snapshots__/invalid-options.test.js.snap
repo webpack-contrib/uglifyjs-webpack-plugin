@@ -3,9 +3,9 @@
 exports[`errors 1`] = `
 Array [
   "Error: main.0c220ec66316af2c1b24.js from UglifyJs
-DefaultsError: \`invalid-option\` is not a supported option",
+\`invalid-option\` is not a supported option",
   "Error: manifest.6afe1bc6685e9ab36c1c.js from UglifyJs
-DefaultsError: \`invalid-option\` is not a supported option",
+\`invalid-option\` is not a supported option",
 ]
 `;
 

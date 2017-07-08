@@ -95,8 +95,10 @@ describe('when applied with no options', () => {
 
         it('only calls callback once', () => {
           callback = jest.fn();
-          compilationEventBinding.handler([''], callback);
-          expect(callback.mock.calls.length).toBe(1);
+          compilationEventBinding.handler([''], () => {
+            callback();
+            expect(callback.mock.calls.length).toBe(1);
+          });
         });
 
         it('default only parses filenames ending with .js', () => {
