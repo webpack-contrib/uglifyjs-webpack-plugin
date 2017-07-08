@@ -110,7 +110,8 @@ class UglifyJsPlugin {
             try {
               let input;
               let inputSourceMap;
-              const id = path.join(compiler.context, file);
+              const dist = compiler.options ? compiler.options.output.path : '';
+              const id = path.join(dist, file);
               if (this.options.sourceMap) {
                 if (asset.sourceAndMap) {
                   const sourceAndMap = asset.sourceAndMap();

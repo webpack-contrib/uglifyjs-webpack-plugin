@@ -3,7 +3,7 @@ import path from 'path';
 import ComputeCluster from 'compute-cluster';
 import { get, put } from './cache';
 import { encode } from './serialization'; // eslint-disable-line import/newline-after-import
-const uglifyVersion = require(require.resolve('uglify-js/package.json')).version; // eslint-disable-line import/no-dynamic-require
+const uglifyVersion = require(require.resolve('uglify-es/package.json')).version; // eslint-disable-line import/no-dynamic-require
 const packageVersion = require('../../package.json').version; // eslint-disable-line import/no-dynamic-require
 
 let workerFile = path.join(__dirname, '..', '..', 'dist', 'uglify', 'worker.js');
@@ -49,7 +49,7 @@ class Uglify extends ComputeCluster {
     tasks.forEach((task, index) => {
       const json = encode(task);
       const id = task.id || task.file;
-      const cacheIdentifier = `${uglifyVersion}|${packageVersion}|${JSON.stringify(task)}|${task.input}`;
+      const cacheIdentifier = `${uglifyVersion}|${packageVersion}|${task.input}`;
       const enqueue = () => {
         this.enqueue(json, (errors, data) => {
           const done = () => step(index, data || [errors]);
