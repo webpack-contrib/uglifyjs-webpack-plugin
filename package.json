@@ -12,9 +12,9 @@
     "start": "npm run build -- -w",
     "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
     "test:all": "npm run test:coverage && npm run test:lint",
-    "test": "jest",
-    "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
-    "test:watch": "jest --watch",
+    "test": "jest --env node",
+    "test:coverage": "jest --env node --collectCoverageFrom='src/**/*.js' --coverage",
+    "test:watch": "jest --env node --watch",
     "test:lint": "eslint . --ext .js --ignore-path .gitignore --cache",
     "prebuild": "npm run clean",
     "clean": "del-cli dist",
@@ -30,8 +30,11 @@
     "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
+    "cacache": "^9.2.9",
+    "compute-cluster": "0.0.9",
+    "find-cache-dir": "^1.0.0",
     "source-map": "^0.5.6",
-    "uglify-es": "^3.0.21",
+    "uglify-es": "^3.0.24",
     "webpack-sources": "^1.0.1"
   },
   "devDependencies": {

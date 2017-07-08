@@ -17,6 +17,7 @@ describe('when applied with all options', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
+      cache: false,
       sourceMap: true,
       extractComments: {
         condition: 'should be extracted',
@@ -267,6 +268,19 @@ describe('when applied with all options', () => {
           });
         });
 
+        it('extracts license information to separate file', () => {
+          compilationEventBinding.handler([{
+            files: ['test4.js'],
+          }], () => {
+            expect(compilation.errors.length).toBe(0);
+            /* eslint-disable no-underscore-dangle */
+            expect(compilation.assets['test4.license.js']._value).toEqual(expect.stringContaining('/*! this comment should be extracted */'));
+            expect(compilation.assets['test4.license.js']._value).toEqual(expect.stringContaining('// another comment that should be extracted to a separate file'));
+            expect(compilation.assets['test4.license.js']._value).not.toEqual(expect.stringContaining('/* this will not be extracted */'));
+            /* eslint-enable no-underscore-dangle */
+          });
+        });
+
         describe('with warningsFilter set', () => {
           describe('and the filter returns true', () => {
             beforeEach(() => {
@@ -311,13 +325,14 @@ describe('when applied with all options', () => {
               compilationEventBindings = chunkPluginEnvironment.getEventBindings();
             });
 
-            it('should get all warnings', () => {
+            it('should get all warnings', (done) => {
               compilationEventBindings[1].handler([{
                 files: ['test2.js'],
               }], () => {
                 expect(compilation.warnings.length).toBe(1);
                 expect(compilation.warnings[0]).toBeInstanceOf(Error);
                 expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
+                done();
               });
             });
           });
@@ -365,26 +380,14 @@ describe('when applied with all options', () => {
               compilationEventBindings = chunkPluginEnvironment.getEventBindings();
             });
 
-            it('should get no warnings', () => {
+            it('should get no warnings', (done) => {
               compilationEventBindings[1].handler([{
                 files: ['test2.js'],
               }], () => {
                 expect(compilation.warnings.length).toBe(0);
+                done();
               });
             });
-          });
-        });
-
-        it('extracts license information to separate file', () => {
-          compilationEventBinding.handler([{
-            files: ['test4.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(0);
-            /* eslint-disable no-underscore-dangle */
-            expect(compilation.assets['test4.license.js']._value).toEqual(expect.stringContaining('/*! this comment should be extracted */'));
-            expect(compilation.assets['test4.license.js']._value).toEqual(expect.stringContaining('// another comment that should be extracted to a separate file'));
-            expect(compilation.assets['test4.license.js']._value).not.toEqual(expect.stringContaining('/* this will not be extracted */'));
-            /* eslint-enable no-underscore-dangle */
           });
         });
       });
