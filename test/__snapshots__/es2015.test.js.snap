@@ -121,7 +121,7 @@ exports[`es6: main.96c5ba3d7f23066ac123.js 1`] = `
 `;
 
 exports[`es6: manifest.a458e5044f91a97906ab.js 1`] = `
-"!(modules => {
+"(modules => {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
         var module = installedModules[moduleId] = {
@@ -217,7 +217,7 @@ exports[`es7: main.96c5ba3d7f23066ac123.js 1`] = `
 `;
 
 exports[`es7: manifest.a458e5044f91a97906ab.js 1`] = `
-"!(modules => {
+"(modules => {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
         var module = installedModules[moduleId] = {
@@ -313,7 +313,7 @@ exports[`es8: main.96c5ba3d7f23066ac123.js 1`] = `
 `;
 
 exports[`es8: manifest.a458e5044f91a97906ab.js 1`] = `
-"!(modules => {
+"(modules => {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
         var module = installedModules[moduleId] = {
