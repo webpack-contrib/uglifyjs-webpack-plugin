@@ -6,14 +6,13 @@ import { encode } from './serialization'; // eslint-disable-line import/newline-
 const uglifyVersion = require(require.resolve('uglify-es/package.json')).version; // eslint-disable-line import/no-dynamic-require
 const packageVersion = require('../../package.json').version; // eslint-disable-line import/no-dynamic-require
 
-let workerFile = path.join(__dirname, '..', '..', 'dist', 'uglify', 'worker.js');
+let workerFile = path.join(__dirname, 'worker.js');
 
 try {
+  const testWorker = path.join(__dirname, '..', '..', 'dist', 'uglify', 'worker.js');
   fs.accessSync(workerFile);
-} catch (e) {
-  // npm
-  workerFile = path.join(__dirname, 'worker.js');
-}
+  workerFile = testWorker;
+} catch (e) { } // eslint-disable-line no-empty
 
 
 class Uglify extends ComputeCluster {
