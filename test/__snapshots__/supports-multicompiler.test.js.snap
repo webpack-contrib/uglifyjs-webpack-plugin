@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compiler plugin count 1`] = `
+Object {
+  "after-emit": 1,
+  "after-resolvers": 2,
+  "before-run": 1,
+  "compilation": 32,
+  "done": 1,
+  "entry-option": 1,
+  "invalid": 1,
+  "make": 1,
+  "this-compilation": 1,
+}
+`;
+
+exports[`errors 1`] = `Array []`;
+
+exports[`errors 2`] = `Array []`;
+
+exports[`errors 3`] = `Array []`;
+
+exports[`main.4e5a10269ba18219d140.js 1`] = `
+"/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = \\"\\";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+// foo
+/* @preserve*/
+// bar
+const a = 2 + 2;
+
+module.exports = function Foo() {
+  const b = 2 + 2;
+  console.log(b + 1 + 2);
+};
+
+
+/***/ })
+/******/ ]);"
+`;
+
+exports[`main.4e5a10269ba18219d140.js 2`] = `"!function(n){function t(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var e={};t.m=n,t.c=e,t.d=function(n,e,r){t.o(n,e)||Object.defineProperty(n,e,{configurable:!1,enumerable:!0,get:r})},t.n=function(n){var e=n&&n.__esModule?function(){return n.default}:function(){return n};return t.d(e,\\"a\\",e),e},t.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},t.p=\\"\\",t(t.s=0)}([function(n,t){n.exports=function(){console.log(7)}}]);"`;
+
+exports[`main.db8335aef59d7a30f804.js 1`] = `"!function(t){function e(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,e),o.l=!0,o.exports}var r={};e.m=t,e.c=r,e.d=function(t,r,n){e.o(t,r)||Object.defineProperty(t,r,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var r=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(r,\\"a\\",r),r},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p=\\"\\",e(e.s=0)}([function(t,e,r){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});var n=r(1);e.default=function(){const t=n.b,e=\`baz\${Math.random()}\`;return()=>({a:t+n.a+e,b:t,baz:e})}},function(t,e,r){\\"use strict\\";e.a=\\"bar\\",e.b=\\"foo\\"}]);"`;
+
+exports[`warnings 1`] = `Array []`;
+
+exports[`warnings 2`] = `Array []`;
+
+exports[`warnings 3`] = `Array []`;
