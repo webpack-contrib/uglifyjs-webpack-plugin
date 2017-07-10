@@ -1,14 +1,5 @@
 import uglify from 'uglify-es';
 
-const defaultUglifyOptions = {
-  output: {
-    comments: /^\**!|@preserve|@license|@cc_on/,
-    beautify: false,
-    semicolons: true,
-    shebang: true,
-  },
-};
-
 const buildDefaultUglifyOptions = ({ ecma, warnings, parse = {}, compress = {}, mangle, output, toplevel, ie8 }) => {
   return {
     ecma,
@@ -18,13 +9,19 @@ const buildDefaultUglifyOptions = ({ ecma, warnings, parse = {}, compress = {}, 
     mangle: mangle == null ? true : mangle,
     // Ignoring sourcemap from options
     sourceMap: null,
-    output: { ...defaultUglifyOptions.output, ...output },
+    output: {
+      comments: /^\**!|@preserve|@license|@cc_on/,
+      beautify: false,
+      semicolons: true,
+      shebang: true,
+      ...output,
+    },
     toplevel,
     ie8,
   };
 };
 
-const buildCommentsFunction = (options, uglifyOptions, extractedComments) => {
+const buildComments = (options, uglifyOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = uglifyOptions.output.comments;
   if (typeof options.extractComments === 'string' || options.extractComments instanceof RegExp) {
@@ -98,7 +95,7 @@ const minify = (options) => {
     // Making sure output options exists if there is an extractComments options
     uglifyOptions.output = uglifyOptions.output || {};
 
-    uglifyOptions.output.comments = buildCommentsFunction(options, uglifyOptions, extractedComments);
+    uglifyOptions.output.comments = buildComments(options, uglifyOptions, extractedComments);
   }
 
   const { error, map, code, warnings } = uglify.minify({ [file]: input }, uglifyOptions);

@@ -4,16 +4,15 @@ import path from 'path';
 import findCacheDir from 'find-cache-dir';
 import ComputeCluster from 'compute-cluster';
 import { get, put } from './cache';
-import { encode } from './serialization'; // eslint-disable-line import/newline-after-import
-const uglifyVersion = require(require.resolve('uglify-es/package.json')).version; // eslint-disable-line import/no-dynamic-require
-const packageVersion = require('../../package.json').version; // eslint-disable-line import/no-dynamic-require
+import { encode } from './serialization';
+import versions from './versions';
 
 let workerFile = path.join(__dirname, 'worker.js');
 
 try {
-  const testWorker = path.join(__dirname, '..', '..', 'dist', 'uglify', 'worker.js');
+  const testWorkerFile = path.join(__dirname, '..', '..', 'dist', 'uglify', 'worker.js');
   fs.accessSync(workerFile);
-  workerFile = testWorker;
+  workerFile = testWorkerFile;
 } catch (e) { } // eslint-disable-line no-empty
 
 
@@ -50,7 +49,7 @@ class Uglify extends ComputeCluster {
     tasks.forEach((task, index) => {
       const json = encode(task);
       const id = task.id || task.file;
-      const cacheIdentifier = `${uglifyVersion}|${packageVersion}|${task.input}`;
+      const cacheIdentifier = `${versions.uglify}|${versions.plugin}|${task.input}`;
       const enqueue = () => {
         this.enqueue(json, (errors, data) => {
           const done = () => step(index, data || [errors]);

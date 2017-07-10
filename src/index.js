@@ -86,11 +86,7 @@ class UglifyJsPlugin {
           cache: this.options.cache,
           cacheDirectory: this.options.cacheDirectory,
         });
-        const exit = () => {
-          uglify.exit(() => {
-            callback();
-          });
-        };
+        const exit = () => uglify.exit(callback);
         const uglifiedAssets = new WeakSet();
         const tasks = [];
         chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])

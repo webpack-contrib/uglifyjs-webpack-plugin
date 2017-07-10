@@ -1,9 +1,9 @@
 import crypto from 'crypto';
 import cacache from 'cacache';
 
-const hashAlgorithm = 'sha512';
-const getHash = data => `${hashAlgorithm}-${
-  crypto.createHash(hashAlgorithm).update(data).digest('base64')
+const sha512 = 'sha512';
+const getHash = data => `${sha512}-${
+  crypto.createHash(sha512).update(data).digest('base64')
 }`;
 
 export const get = (cacheDirectory, key, identifier) => cacache.get(cacheDirectory, key).then(({ data, metadata }) => {
