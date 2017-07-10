@@ -2,7 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import findCacheDir from 'find-cache-dir';
-import ComputeCluster from 'compute-cluster';
+import workerFarm from 'worker-farm';
 import { get, put } from './cache';
 import { encode } from './serialization';
 import versions from './versions';
@@ -15,27 +15,30 @@ try {
   workerFile = testWorkerFile;
 } catch (e) { } // eslint-disable-line no-empty
 
-
-class Uglify extends ComputeCluster {
-  constructor({ cache = findCacheDir({ name: 'uglifyjs-webpack-plugin' }), workers = os.cpus().length }) {
-    super({
-      max_processes: workers,
-      max_backlog: -1,
-      module: workerFile,
-    });
+class Uglify {
+  constructor({
+    cache = findCacheDir({ name: 'uglifyjs-webpack-plugin' }),
+    workers = Math.max(os.cpus().length - 1, 1),
+  }) {
+    this.worker = workerFarm({
+      maxConcurrentWorkers: workers,
+    }, workerFile);
     this.cache = cache;
+  }
+
+  exit(callback) {
+    workerFarm.end(this.worker);
+    if (typeof callback === 'function') {
+      callback();
+    }
   }
 
   runTasks(tasks, callback) {
     let toRun = tasks.length;
     const results = [];
-    this.on('error', (err) => {
-      this.exit();
-      callback(err);
-    });
-    const step = (index, [errors, data]) => {
+    const step = (index, data) => {
       toRun -= 1;
-      results[index] = [errors ? new Error(errors.message) : null, data];
+      results[index] = data;
       if (!toRun) {
         callback(null, results);
       }
@@ -51,10 +54,10 @@ class Uglify extends ComputeCluster {
       const id = task.id || task.file;
       const cacheIdentifier = `${versions.uglify}|${versions.plugin}|${task.input}`;
       const enqueue = () => {
-        this.enqueue(json, (errors, data) => {
-          const done = () => step(index, data || [errors]);
+        this.worker(json, (errors, data) => {
+          const done = () => step(index, errors ? { error: errors.message } : data);
           if (this.cache && !errors) {
-            put(this.cacheDirectory, id, data, cacheIdentifier).then(done).catch(done);
+            put(this.cache, id, data, cacheIdentifier).then(done).catch(done);
           } else {
             done();
           }

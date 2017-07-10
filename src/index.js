@@ -145,19 +145,17 @@ class UglifyJsPlugin {
         uglify.runTasks(tasks, (tasksError, results) => {
           if (tasksError) {
             compilation.errors.push(tasksError);
-            exit();
             return;
           }
 
-          results.forEach(([moduleErrors, data = {}], index) => {
-            const errors = moduleErrors || data.error;
+          results.forEach((data, index) => {
             const { file, input, sourceMap, inputSourceMap, commentsFile } = tasks[index];
-            const { map, code, warnings, extractedComments } = data;
+            const { error, map, code, warnings, extractedComments } = data;
 
             // Handling results
             // Error case: add errors, and go to next file
-            if (errors) {
-              compilation.errors.push(UglifyJsPlugin.buildError(errors, file, sourceMap, compilation, requestShortener));
+            if (error) {
+              compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, compilation, requestShortener));
               return;
             }
 

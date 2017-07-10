@@ -1,11 +1,11 @@
 import minify from './minify';
 import { decode } from './serialization';
 
-process.on('message', (options) => {
+module.exports = (options, callback) => {
   try {
     const result = minify(decode(options));
-    process.send([null, result]);
-  } catch ({ name, message, stack }) {
-    process.send([{ name, message, stack }]);
+    callback(null, result);
+  } catch (errors) {
+    callback(errors);
   }
-});
+};
