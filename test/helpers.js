@@ -1,7 +1,7 @@
 import MemoryFileSystem from 'memory-fs'; // eslint-disable-line import/no-extraneous-dependencies
 import webpack from 'webpack';
 
-exports.PluginEnvironment = class PluginEnvironment {
+export class PluginEnvironment {
   constructor() {
     this.events = [];
   }
@@ -20,19 +20,19 @@ exports.PluginEnvironment = class PluginEnvironment {
   getEventBindings() {
     return this.events;
   }
-};
+}
 
-exports.compile = function compile(compiler) {
+export function compile(compiler) {
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => { // eslint-disable-line consistent-return
       if (err) return reject(err);
       resolve(stats);
     });
   });
-};
+}
 
-exports.createCompiler = function createCompiler(options = {}) {
-  const compiler = webpack({
+export function createCompiler(options = {}) {
+  const compiler = webpack(Array.isArray(options) ? options : {
     bail: true,
     cache: false,
     entry: `${__dirname}/fixtures/entry.js`,
@@ -50,15 +50,23 @@ exports.createCompiler = function createCompiler(options = {}) {
   });
   compiler.outputFileSystem = new MemoryFileSystem();
   return compiler;
-};
+}
 
-exports.removeCWD = function removeCWD(str) {
+export function countPlugins({ _plugins }) {
+  return Object.keys(_plugins).reduce((aggregate, name) => {
+    const eventLength = Array.isArray(_plugins[name]) ? _plugins[name].length : 0;
+    aggregate[name] = eventLength; // eslint-disable-line no-param-reassign
+    return aggregate;
+  }, {});
+}
+
+export function removeCWD(str) {
   return str.split(`${process.cwd()}/`).join('');
-};
+}
 
-exports.cleanErrorStack = function cleanErrorStack(error) {
+export function cleanErrorStack(error) {
   const str = exports.removeCWD(error.toString())
     .split('\n').slice(0, 2).join('\n');
   return str;
-};
+}
 
