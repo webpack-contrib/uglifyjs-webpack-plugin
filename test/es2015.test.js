@@ -17,7 +17,7 @@ describe('when applied with uglifyOptions.ecma', () => {
     });
 
     new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         ecma: 5,
         mangle: false,
@@ -55,7 +55,7 @@ describe('when applied with uglifyOptions.ecma', () => {
     });
 
     new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         ecma: 6,
         mangle: false,
@@ -92,7 +92,7 @@ describe('when applied with uglifyOptions.ecma', () => {
       },
     });
     new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         ecma: 7,
         mangle: false,
@@ -130,7 +130,7 @@ describe('when applied with uglifyOptions.ecma', () => {
     });
 
     new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         ecma: 8,
         mangle: false,

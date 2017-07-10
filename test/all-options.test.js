@@ -17,7 +17,7 @@ describe('when applied with all options', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       sourceMap: true,
       extractComments: {
         condition: 'should be extracted',

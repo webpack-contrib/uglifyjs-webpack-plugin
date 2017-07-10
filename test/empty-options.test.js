@@ -16,14 +16,14 @@ describe('when applied with no options', () => {
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
 
-    const plugin = new UglifyJsPlugin({ cache: false });
+    const plugin = new UglifyJsPlugin({ parallel: { cache: false } });
     plugin.apply(compilerEnv);
     eventBindings = pluginEnvironment.getEventBindings();
   });
 
   it('matches snapshot', () => {
     const compiler = createCompiler();
-    new UglifyJsPlugin({ cache: false }).apply(compiler);
+    new UglifyJsPlugin({ parallel: { cache: false } }).apply(compiler);
 
 
     return compile(compiler).then((stats) => {

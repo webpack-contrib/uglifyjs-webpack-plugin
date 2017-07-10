@@ -11,7 +11,7 @@ describe('when applied with extract option set to a single file', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         output: {
           comments: 'all',

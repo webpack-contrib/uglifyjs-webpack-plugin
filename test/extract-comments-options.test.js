@@ -11,7 +11,7 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         warnings: true,
         output: {
@@ -80,7 +80,7 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         output: {
           comments: false,
@@ -116,7 +116,7 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         output: {
           comments: false,

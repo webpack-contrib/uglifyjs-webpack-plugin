@@ -10,7 +10,7 @@ describe('when applied with invalid options', () => {
   it('matches snapshot', () => {
     const compiler = createCompiler();
     new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         output: {
           'invalid-option': true,
@@ -39,7 +39,7 @@ describe('when applied with invalid options', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      cache: false,
+      parallel: { cache: false },
       uglifyOptions: {
         output: {
           'invalid-option': true,
