@@ -81,11 +81,7 @@ class UglifyJsPlugin {
       }
 
       compilation.plugin('optimize-chunk-assets', (chunks, callback) => {
-        const uglify = new Uglify({
-          maxWorkers: this.options.maxWorkers,
-          cache: this.options.cache,
-          cacheDirectory: this.options.cacheDirectory,
-        });
+        const uglify = new Uglify(this.options.parallel);
         const exit = () => uglify.exit(callback);
         const uglifiedAssets = new WeakSet();
         const tasks = [];
