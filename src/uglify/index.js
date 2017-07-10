@@ -1,5 +1,7 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
+import findCacheDir from 'find-cache-dir';
 import ComputeCluster from 'compute-cluster';
 import { get, put } from './cache';
 import { encode } from './serialization'; // eslint-disable-line import/newline-after-import
@@ -16,13 +18,13 @@ try {
 
 
 class Uglify extends ComputeCluster {
-  constructor(options) {
+  constructor({ cache = findCacheDir({ name: 'uglifyjs-webpack-plugin' }), workers = os.cpus().length }) {
     super({
-      max_processes: options.maxWorkers,
+      max_processes: workers,
       max_backlog: -1,
       module: workerFile,
     });
-    this.options = options;
+    this.cache = cache;
   }
 
   runTasks(tasks, callback) {
@@ -52,15 +54,15 @@ class Uglify extends ComputeCluster {
       const enqueue = () => {
         this.enqueue(json, (errors, data) => {
           const done = () => step(index, data || [errors]);
-          if (this.options.cache && !errors) {
-            put(this.options.cacheDirectory, id, data, cacheIdentifier).then(done).catch(done);
+          if (this.cache && !errors) {
+            put(this.cacheDirectory, id, data, cacheIdentifier).then(done).catch(done);
           } else {
             done();
           }
         });
       };
-      if (this.options.cache) {
-        get(this.options.cacheDirectory, id, cacheIdentifier).then((data) => {
+      if (this.cache) {
+        get(this.cache, id, cacheIdentifier).then((data) => {
           step(index, data);
         }).catch((enqueue));
       } else {

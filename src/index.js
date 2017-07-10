@@ -3,9 +3,7 @@
   Author Tobias Koppers @sokra
 */
 
-import os from 'os';
 import path from 'path';
-import findCacheDir from 'find-cache-dir';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
@@ -29,9 +27,7 @@ class UglifyJsPlugin {
     this.options.test = this.options.test || /\.js($|\?)/i;
     this.options.warningsFilter = this.options.warningsFilter || (() => true);
     this.options.uglifyOptions = this.options.uglifyOptions || {};
-    this.options.maxWorkers = this.options.maxWorkers || os.cpus().length;
-    this.options.cache = this.options.cache !== false;
-    this.options.cacheDirectory = this.options.cacheDirectory || findCacheDir({ name: 'uglifyjs-webpack-plugin' });
+    this.options.parallel = this.options.parallel || {};
   }
 
   static buildError(err, file, sourceMap, requestShortener) {

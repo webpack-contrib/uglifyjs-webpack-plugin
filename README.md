@@ -77,9 +77,6 @@ This plugin supports UglifyJS features as discussed below:
 | include | RegExp, Array<RegExp> | | Test only `include` files. |
 | exclude | RegExp, Array<RegExp> | | Files to `exclude` from testing. |
 | warningsFilter | function(source) -> boolean | | Allow to filter uglify warnings (since webpack 2.3.0) |
-| maxWorkers | number | <code>require('os').cpus().length</code> | Maximum number of parallel running processes |
-| cache | boolean | true | Use the cache to speed up the run |
-| cacheDirectory | string | <code>"node_modules/.cache/uglifyjs-webpack-plugin"</code> | The given directory will be used to cache the results of the uglifyjs. |
 
 <h2 align="center">Mangling</h2>
 
