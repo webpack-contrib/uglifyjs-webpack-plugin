@@ -1,8 +1,8 @@
 import worker from '../../src/uglify/worker';
 
-describe('run worker', () => {
+describe('matches snapshot', () => {
   it('normalizes when options.extractComments is regex', (done) => {
-    worker({
+    const options = {
       file: 'test1.js',
       input: 'var foo = 1;/* hello */',
       uglifyOptions: {
@@ -11,17 +11,18 @@ describe('run worker', () => {
         },
       },
       extractComments: /foo/,
-    }, (error, data) => {
+    };
+    worker(options, (error, data) => {
       if (error) {
         throw error;
       }
-      expect(data).toMatchSnapshot('test.js');
+      expect(data).toMatchSnapshot(options.file);
       done();
     });
   });
 
   it('normalizes when uglifyOptions.output.comments is string: all', (done) => {
-    worker({
+    const options = {
       file: 'test2.js',
       input: 'var foo = 1;/* hello */',
       uglifyOptions: {
@@ -29,18 +30,18 @@ describe('run worker', () => {
           comments: 'all',
         },
       },
-      extractComments: /foo/,
-    }, (error, data) => {
+    };
+    worker(options, (error, data) => {
       if (error) {
         throw error;
       }
-      expect(data).toMatchSnapshot('test.js');
+      expect(data).toMatchSnapshot(options.file);
       done();
     });
   });
 
   it('normalizes when uglifyOptions.output.comments is string: some', (done) => {
-    worker({
+    const options = {
       file: 'test3.js',
       input: 'var foo = 1;/* hello */',
       uglifyOptions: {
@@ -48,19 +49,39 @@ describe('run worker', () => {
           comments: 'some',
         },
       },
-      extractComments: /foo/,
-    }, (error, data) => {
+    };
+    worker(options, (error, data) => {
       if (error) {
         throw error;
       }
-      expect(data).toMatchSnapshot('test.js');
+      expect(data).toMatchSnapshot(options.file);
+      done();
+    });
+  });
+
+  it('normalizes when uglifyOptions.extractComments is number', (done) => {
+    const options = {
+      file: 'test4.js',
+      input: 'var foo = 1;/* hello */',
+      uglifyOptions: {
+        output: {
+          comments: 'some',
+        },
+      },
+      extractComments: 1,
+    };
+    worker(options, (error, data) => {
+      if (error) {
+        throw error;
+      }
+      expect(data).toMatchSnapshot(options.file);
       done();
     });
   });
 
   it('when applied with extract option set to a single file', (done) => {
     const options = {
-      file: 'test4.js',
+      file: 'test5.js',
       input: '/******/ function hello(a) {console.log(a)}',
       uglifyOptions: {
         output: {
@@ -68,8 +89,13 @@ describe('run worker', () => {
         },
       },
       extractComments: {
-        condition: /.*/,
-        filename: 'extracted-comments.js',
+        condition: 'should be extracted',
+        filename(file) {
+          return file.replace(/(\.\w+)$/, '.license$1');
+        },
+        banner(licenseFile) {
+          return `License information can be found in ${licenseFile}`;
+        },
       },
     };
     worker(options, (error, data) => {
@@ -83,7 +109,7 @@ describe('run worker', () => {
 
   it('when options.inputSourceMap', (done) => {
     const options = {
-      file: 'test5.js',
+      file: 'test6.js',
       input: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
       inputSourceMap: {
         version: 3,

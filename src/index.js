@@ -21,7 +21,7 @@ class UglifyJsPlugin {
     if (typeof options !== 'object' || Array.isArray(options)) {
       this.options = {};
     } else {
-      this.options = options || {};
+      this.options = options || /* istanbul ignore next */ {};
     }
 
     this.options.test = this.options.test || /\.js($|\?)/i;

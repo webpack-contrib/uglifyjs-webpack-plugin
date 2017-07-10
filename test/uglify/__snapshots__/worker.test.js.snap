@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test.js 1`] = `
+exports[`test1.js 1`] = `
 Object {
   "code": "var foo=1;",
   "error": undefined,
@@ -10,7 +10,7 @@ Object {
 }
 `;
 
-exports[`test.js 2`] = `
+exports[`test2.js 1`] = `
 Object {
   "code": "var foo=1;",
   "error": undefined,
@@ -20,7 +20,7 @@ Object {
 }
 `;
 
-exports[`test.js 3`] = `
+exports[`test3.js 1`] = `
 Object {
   "code": "var foo=1;",
   "error": undefined,
@@ -32,17 +32,25 @@ Object {
 
 exports[`test4.js 1`] = `
 Object {
-  "code": "/******/function hello(o){console.log(o)}",
+  "code": "var foo=1;",
   "error": undefined,
-  "extractedComments": Array [
-    "/******/",
-  ],
+  "extractedComments": Array [],
   "map": undefined,
   "warnings": undefined,
 }
 `;
 
 exports[`test5.js 1`] = `
+Object {
+  "code": "/******/function hello(o){console.log(o)}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test6.js 1`] = `
 Object {
   "code": "function foo(f){if(f)return bar()}",
   "error": undefined,
