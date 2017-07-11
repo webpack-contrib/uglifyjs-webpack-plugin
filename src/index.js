@@ -81,7 +81,6 @@ class UglifyJsPlugin {
 
       compilation.plugin('optimize-chunk-assets', (chunks, callback) => {
         const uglify = new Uglify(this.options.parallel);
-        const exit = () => uglify.exit(callback);
         const uglifiedAssets = new WeakSet();
         const tasks = [];
         chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])
@@ -203,7 +202,8 @@ class UglifyJsPlugin {
             }
           });
 
-          exit();
+          uglify.exit();
+          callback();
         });
       });
     });

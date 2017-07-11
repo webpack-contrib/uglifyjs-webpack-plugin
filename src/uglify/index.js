@@ -4,6 +4,7 @@ import workerFarm from 'worker-farm';
 import { get, put } from './cache';
 import { encode } from './serialization';
 import versions from './versions';
+import worker from './worker';
 
 let workerFile = require.resolve('./worker');
 
@@ -15,18 +16,28 @@ try {
 class Uglify {
   constructor({
     cache = findCacheDir({ name: 'uglifyjs-webpack-plugin' }),
-    workers = Math.max(os.cpus().length - 1, 1),
+    workers = os.cpus().length - 1,
   }) {
-    this.worker = workerFarm({
-      maxConcurrentWorkers: workers,
-    }, workerFile);
     this.cache = cache;
+    this.workers = workers;
   }
 
-  exit(callback) {
-    workerFarm.end(this.worker);
-    if (typeof callback === 'function') {
-      callback();
+  worker(options, callback) {
+    if (this.workers > 0) {
+      this.workerFarm = workerFarm({
+        maxConcurrentWorkers: this.workers,
+      }, workerFile);
+      this.worker = this.workerFarm;
+    } else {
+      this.worker = worker;
+    }
+
+    this.worker(options, callback);
+  }
+
+  exit() {
+    if (this.workerFarm) {
+      workerFarm.end(this.workerFarm);
     }
   }
 
