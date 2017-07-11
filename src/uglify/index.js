@@ -1,18 +1,15 @@
-import fs from 'fs';
 import os from 'os';
-import path from 'path';
 import findCacheDir from 'find-cache-dir';
 import workerFarm from 'worker-farm';
 import { get, put } from './cache';
 import { encode } from './serialization';
 import versions from './versions';
 
-let workerFile = path.join(__dirname, 'worker.js');
+let workerFile = require.resolve('./worker');
 
 try {
-  const testWorkerFile = path.join(__dirname, '..', '..', 'dist', 'uglify', 'worker.js');
-  fs.accessSync(workerFile);
-  workerFile = testWorkerFile;
+  // run test
+  workerFile = require.resolve('../../dist/uglify/worker');
 } catch (e) { } // eslint-disable-line no-empty
 
 class Uglify {
@@ -51,11 +48,11 @@ class Uglify {
     }
     tasks.forEach((task, index) => {
       const json = encode(task);
-      const id = task.id || /* istanbul ignore next */ task.file;
+      const id = task.id || task.file;
       const cacheIdentifier = `${versions.uglify}|${versions.plugin}|${task.input}`;
       const enqueue = () => {
         this.worker(json, (errors, data) => {
-          const done = () => step(index, errors ? /* istanbul ignore next */ { error: errors.message } : data);
+          const done = () => step(index, errors ? { error: errors.message } : data);
           if (this.cache && !errors) {
             put(this.cache, id, data, cacheIdentifier).then(done).catch(done);
           } else {

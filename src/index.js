@@ -3,7 +3,6 @@
   Author Tobias Koppers @sokra
 */
 
-import path from 'path';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
@@ -21,7 +20,7 @@ class UglifyJsPlugin {
     if (typeof options !== 'object' || Array.isArray(options)) {
       this.options = {};
     } else {
-      this.options = options || /* istanbul ignore next */ {};
+      this.options = options || {};
     }
 
     this.options.test = this.options.test || /\.js($|\?)/i;
@@ -98,8 +97,7 @@ class UglifyJsPlugin {
             try {
               let input;
               let inputSourceMap;
-              const dist = compiler.options ? compiler.options.output.path : '';
-              const id = path.join(dist, file);
+              const id = `${compiler.outputPath}/${file}`;
               if (this.options.sourceMap) {
                 if (asset.sourceAndMap) {
                   const sourceAndMap = asset.sourceAndMap();

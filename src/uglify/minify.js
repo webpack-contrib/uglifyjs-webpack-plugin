@@ -92,9 +92,6 @@ const minify = (options) => {
 
   const extractedComments = [];
   if (extractComments) {
-    // Making sure output options exists if there is an extractComments options
-    uglifyOptions.output = uglifyOptions.output || /* istanbul ignore next */ {};
-
     uglifyOptions.output.comments = buildComments(options, uglifyOptions, extractedComments);
   }
 

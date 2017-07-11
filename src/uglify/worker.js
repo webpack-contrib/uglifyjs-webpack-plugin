@@ -6,7 +6,6 @@ module.exports = (options, callback) => {
     const result = minify(decode(options));
     callback(null, result);
   } catch (errors) {
-    /* istanbul ignore next */
     callback(errors);
   }
 };
