@@ -43,7 +43,7 @@ describe('serialization data', () => {
     json = decode(json);
     expect(json.func).not.toBe(input.func);
     expect(typeof json.func).toBe('function');
-    expect(json.func.toString()).toBe(input.func.toString());
+    expect(json.func.toString().indexOf(input.func.toString())).not.toBe(-1);
   });
 
   it('serialization regexp', () => {
@@ -56,5 +56,16 @@ describe('serialization data', () => {
     expect(json.regexp).not.toBe(input.regexp);
     expect(json.regexp instanceof RegExp).toBe(true);
     expect(json.regexp.toString()).toBe(input.regexp.toString());
+  });
+
+  it('serialized closure function should be error', () => {
+    const a = 0;
+    const b = 1;
+    const input = {
+      func: () => a + b,
+    };
+    let json = encode(input);
+    json = decode(json);
+    expect(json.func).toThrowError('multi-process');
   });
 });
