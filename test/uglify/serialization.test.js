@@ -20,7 +20,7 @@ describe('serialization data', () => {
     expect(json.boolean).toBe(data.boolean);
     expect(json.null).toBe(data.null);
     expect(json.object.string).toBe(data.object.string);
-    expect(json.array.length).toBe(json.array.length);
+    expect(json.array.length).toBe(data.array.length);
   });
 
   it('decode: deep copy of data', () => {
@@ -31,7 +31,7 @@ describe('serialization data', () => {
     expect(json.boolean).toBe(data.boolean);
     expect(json.null).toBe(data.null);
     expect(json.object.string).toBe(data.object.string);
-    expect(json.array.length).toBe(json.array.length);
+    expect(json.array.length).toBe(data.array.length);
   });
 
   it('serialization function', () => {
@@ -51,7 +51,7 @@ describe('serialization data', () => {
       regexp: /\s+/,
     };
     let json = encode(input);
-    expect(json.func).not.toBe(input.regexp);
+    expect(json.regexp).not.toBe(input.regexp);
     json = decode(json);
     expect(json.regexp).not.toBe(input.regexp);
     expect(json.regexp instanceof RegExp).toBe(true);
