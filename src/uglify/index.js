@@ -58,11 +58,10 @@ class Uglify {
       return;
     }
     tasks.forEach((task, index) => {
-      const json = encode(task);
       const id = task.id || task.file;
       const cacheIdentifier = `${versions.uglify}|${versions.plugin}|${task.input}`;
       const enqueue = () => {
-        this.worker(json, (errors, data) => {
+        this.worker(JSON.stringify(task, encode), (errors, data) => {
           const done = () => step(index, errors ? { error: errors.message } : data);
           if (this.cache && !errors) {
             put(this.cache, id, data, cacheIdentifier).then(done).catch(done);

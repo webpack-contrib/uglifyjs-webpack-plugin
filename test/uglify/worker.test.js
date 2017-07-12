@@ -1,4 +1,5 @@
 import worker from '../../src/uglify/worker';
+import { encode } from '../../src/uglify/serialization';
 
 describe('matches snapshot', () => {
   it('normalizes when options.extractComments is regex', (done) => {
@@ -12,7 +13,7 @@ describe('matches snapshot', () => {
       },
       extractComments: /foo/,
     };
-    worker(options, (error, data) => {
+    worker(JSON.stringify(options, encode), (error, data) => {
       if (error) {
         throw error;
       }
@@ -31,7 +32,7 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(options, (error, data) => {
+    worker(JSON.stringify(options, encode), (error, data) => {
       if (error) {
         throw error;
       }
@@ -50,7 +51,7 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(options, (error, data) => {
+    worker(JSON.stringify(options, encode), (error, data) => {
       if (error) {
         throw error;
       }
@@ -70,7 +71,7 @@ describe('matches snapshot', () => {
       },
       extractComments: 1,
     };
-    worker(options, (error, data) => {
+    worker(JSON.stringify(options, encode), (error, data) => {
       if (error) {
         throw error;
       }
@@ -98,7 +99,7 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(options, (error, data) => {
+    worker(JSON.stringify(options, encode), (error, data) => {
       if (error) {
         throw error;
       }
@@ -118,7 +119,7 @@ describe('matches snapshot', () => {
         mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
       },
     };
-    worker(options, (error, data) => {
+    worker(JSON.stringify(options, encode), (error, data) => {
       if (error) {
         throw error;
       }

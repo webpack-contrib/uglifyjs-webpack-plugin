@@ -2,50 +2,24 @@
   no-new-func
 */
 const toType = value => (Object.prototype.toString.call(value).slice(8, -1));
-const replace = (target, replacer, _defaults, _key) => {
-  let object;
-  const val = replacer(target, _key);
-  const type = toType(val);
+const TYPES = ['RegExp', 'Function', 'Date'];
 
-  if (type === 'Object') {
-    object = Object.create(_defaults || {});
-  } else if (type === 'Array') {
-    object = [].concat(_defaults || []);
-  } else {
-    object = val;
-  }
-
-  if (type === 'Object' || type === 'Array') {
-    for (const index in val) {
-      if (Object.prototype.hasOwnProperty.call(val, index)) {
-        object[index] = replace(val[index], replacer, object[index], index);
-      }
-    }
-    return object;
-  }
-
-  return object;
-};
-
-export const encode = options => replace(options, (value) => {
+export const encode = (key, value) => {
   const type = toType(value);
-  if (type === 'RegExp' || type === 'Function') {
+  if (TYPES.indexOf(type) !== -1) {
     return `<${type}|${value.toString()}>`;
   }
   return value;
-});
+};
 
-export const decode = options => replace(options, (value, key) => {
+export const decode = (key, value) => {
   const type = toType(value);
 
   if (type === 'String') {
     const reg = /^<(\w+)\|([\w\W]*)>$/;
     const match = value.match(reg);
     if (match) {
-      if (match[1] === 'RegExp') {
-        return Function(`return ${match[2]}`)();
-      } else if (match[1] === 'Function') {
-        // TODO Use ESlint to pre-check options
+      if (match[1] === 'Function') {
         return Function(`
           try {
             return (${match[2]}).apply(null, arguments);
@@ -57,10 +31,12 @@ export const decode = options => replace(options, (value, key) => {
             }
           }
         `);
+      } else if (TYPES.indexOf(match[1]) !== -1) {
+        return Function(`return ${match[2]}`)();
       }
     }
   }
 
   return value;
-});
+};
 
