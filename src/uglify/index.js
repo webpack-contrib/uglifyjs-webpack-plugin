@@ -58,20 +58,19 @@ class Uglify {
       return;
     }
     tasks.forEach((task, index) => {
-      const id = task.id || task.file;
       const cacheIdentifier = `${versions.uglify}|${versions.plugin}|${task.input}`;
       const enqueue = () => {
         this.worker(JSON.stringify(task, encode), (errors, data) => {
           const done = () => step(index, errors ? { error: errors.message } : data);
           if (this.cache && !errors) {
-            put(this.cache, id, data, cacheIdentifier).then(done).catch(done);
+            put(this.cache, task.cacheKey, data, cacheIdentifier).then(done).catch(done);
           } else {
             done();
           }
         });
       };
       if (this.cache) {
-        get(this.cache, id, cacheIdentifier).then((data) => {
+        get(this.cache, task.cacheKey, cacheIdentifier).then((data) => {
           step(index, data);
         }).catch((enqueue));
       } else {

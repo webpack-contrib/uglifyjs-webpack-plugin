@@ -96,7 +96,7 @@ class UglifyJsPlugin {
             try {
               let input;
               let inputSourceMap;
-              const id = `${compiler.outputPath}/${file}`;
+              const cacheKey = `${compiler.outputPath}/${file}`;
               if (this.options.sourceMap) {
                 if (asset.sourceAndMap) {
                   const sourceAndMap = asset.sourceAndMap();
@@ -121,7 +121,7 @@ class UglifyJsPlugin {
               }
 
               tasks.push({
-                id,
+                cacheKey,
                 file,
                 input,
                 sourceMap,
