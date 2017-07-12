@@ -157,6 +157,10 @@ class UglifyJsPlugin {
       uglifyOptions.output = uglifyOptions.output || {};
     }
 
+    if (typeof this.options.sourceMap === 'undefined' && (compiler.options.devtool === 'sourcemap' || compiler.options.devtool === 'source-map')) {
+      this.options.sourceMap = true;
+    }
+
     compiler.plugin('compilation', (compilation) => {
       if (this.options.sourceMap) {
         compilation.plugin('build-module', (moduleArg) => {
