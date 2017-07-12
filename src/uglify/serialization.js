@@ -2,7 +2,7 @@
   no-new-func
 */
 const toType = value => (Object.prototype.toString.call(value).slice(8, -1));
-const TYPES = ['RegExp', 'Function', 'Date'];
+const TYPES = ['RegExp', 'Function'];
 
 export const encode = (key, value) => {
   const type = toType(value);
