@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "test": {},
+    "warningsFilter": {},
+    "extractComments": {},
+    "sourceMap": {
+      "type": "boolean"
+    },
+    "uglifyOptions": {
+      "additionalProperties": true,
+      "type": "object",
+      "properties": {
+        "ecma": {
+          "type": "number",
+          "enum": [5, 6, 7, 8]
+        },
+        "warnings": {
+          "type": ["boolean", "string"],
+          "enum": [true, false, "verbose"]
+        },
+        "parse": {
+          "type": "object"
+        },
+        "compress": {
+          "type": ["boolean", "object"]
+        },
+        "mangle": {
+          "type": ["boolean", "object"],
+          "properties": {
+            "properties": {
+              "type": ["boolean", "object"]
+            }
+          }
+        },
+        "output": {
+          "type": ["object", "null"]
+        },
+        "toplevel": {
+          "type": "boolean"
+        },
+        "nameCache": {
+          "type": ["object", "null"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

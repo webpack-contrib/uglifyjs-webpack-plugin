@@ -8,6 +8,8 @@ import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import Uglify from './uglify';
+import validateOptions from 'schema-utils';
+import optionsSchema from './options-schema.json';
 
 /* eslint-disable
   no-param-reassign
@@ -16,17 +18,31 @@ import Uglify from './uglify';
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
 class UglifyJsPlugin {
-  constructor(options) {
-    if (typeof options !== 'object' || Array.isArray(options)) {
-      this.options = {};
-    } else {
-      this.options = options || {};
-    }
+  constructor(options = {}) {
+    validateOptions(optionsSchema, options, 'UglifyJsPlugin');
 
-    this.options.test = this.options.test || /\.js($|\?)/i;
-    this.options.warningsFilter = this.options.warningsFilter || (() => true);
-    this.options.uglifyOptions = this.options.uglifyOptions || {};
-    this.options.parallel = this.options.parallel || {};
+    const = {
+      uglifyOptions = {},
+      test = /\.js$/i,
+      warningsFilter = () => true,
+      extractComments,
+      sourceMap,
+      parallel,
+    } = options;
+
+    this.options = {
+      test,
+      warningsFilter,
+      extractComments,
+      sourceMap,
+      parallel,
+      uglifyOptions: {
+        output: {
+          comments: /^\**!|@preserve|@license|@cc_on/,
+        },
+        ...uglifyOptions,
+      },
+    };
   }
 
   static buildError(err, file, sourceMap, requestShortener) {
@@ -69,7 +85,6 @@ class UglifyJsPlugin {
 
   apply(compiler) {
     const requestShortener = new RequestShortener(compiler.context);
-
 
     compiler.plugin('compilation', (compilation) => {
       if (this.options.sourceMap) {
