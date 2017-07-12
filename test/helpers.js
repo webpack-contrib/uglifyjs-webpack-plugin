@@ -14,6 +14,7 @@ export class PluginEnvironment {
           handler,
         });
       },
+      options: {},
     };
   }
 

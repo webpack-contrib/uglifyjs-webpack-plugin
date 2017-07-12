@@ -32,6 +32,28 @@ describe('when applied with invalid options', () => {
     });
   });
 
+  it('throws validation errors', () => {
+    /* eslint-disable no-new */
+    expect(() => {
+      new UglifyJsPlugin({
+        test: /foo/,
+      });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({
+        uglifyOptions: null,
+      });
+    }).toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({
+        doesntExist: true,
+      });
+    }).toThrow('Validation Error');
+    /* eslint-enable no-new */
+  });
+
   it('outputs uglify errors', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
