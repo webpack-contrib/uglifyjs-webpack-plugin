@@ -9,7 +9,7 @@ import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import Uglify from './uglify';
 import validateOptions from 'schema-utils';
-import optionsSchema from './options-schema.json';
+import schema from '../options.json';
 
 /* eslint-disable
   no-param-reassign
@@ -19,7 +19,7 @@ const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
 class UglifyJsPlugin {
   constructor(options = {}) {
-    validateOptions(optionsSchema, options, 'UglifyJsPlugin');
+    validateOptions(schema, options, 'UglifyJs Plugin');
 
     const = {
       uglifyOptions = {},
