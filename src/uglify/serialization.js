@@ -13,9 +13,7 @@ export const encode = (key, value) => {
 };
 
 export const decode = (key, value) => {
-  const type = toType(value);
-
-  if (type === 'String') {
+  if (typeof value === 'string') {
     const reg = /^<(\w+)\|([\w\W]*)>$/;
     const match = value.match(reg);
     if (match) {
