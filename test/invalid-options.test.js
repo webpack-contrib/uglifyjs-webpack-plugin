@@ -55,6 +55,10 @@ describe('when applied with invalid options', () => {
     }).not.toThrow();
 
     expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ecma: 7.5 } });
+    }).toThrow('should be integer');
+
+    expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: true } });
     }).toThrow('should be integer');
 

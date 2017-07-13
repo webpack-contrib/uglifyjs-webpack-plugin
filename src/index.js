@@ -7,9 +7,9 @@ import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
-import Uglify from './uglify';
 import validateOptions from 'schema-utils';
 import schema from '../options.json';
+import Uglify from './uglify';
 
 /* eslint-disable
   no-param-reassign
@@ -21,7 +21,7 @@ class UglifyJsPlugin {
   constructor(options = {}) {
     validateOptions(schema, options, 'UglifyJs Plugin');
 
-    const = {
+    const {
       uglifyOptions = {},
       test = /\.js$/i,
       warningsFilter = () => true,
