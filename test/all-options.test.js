@@ -64,17 +64,17 @@ describe('when applied with all options', () => {
     }).apply(compiler);
 
     return compile(compiler).then((stats) => {
+      const { assets } = stats.compilation;
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
       expect(errors).toMatchSnapshot('errors');
       expect(warnings).toMatchSnapshot('warnings');
 
-      for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
+      Object.keys(assets).forEach((file) => {
+        const source = assets[file].source();
+        expect(source).toMatchSnapshot(file);
+      });
     });
   });
 
@@ -94,43 +94,43 @@ describe('when applied with all options', () => {
 
       return Promise.all([
         compile(compiler1).then((stats) => {
+          const { assets } = stats.compilation;
           const errors = stats.compilation.errors.map(cleanErrorStack);
           const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
           expect(errors).toMatchSnapshot('devtool === "sourcemap" errors');
           expect(warnings).toMatchSnapshot('devtool === "sourcemap" warnings');
 
-          for (const file in stats.compilation.assets) {
-            if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-              expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-            }
-          }
+          Object.keys(assets).forEach((file) => {
+            const source = assets[file].source();
+            expect(source).toMatchSnapshot(`devtool === "sourcemap" ${file}`);
+          });
         }),
         compile(compiler2).then((stats) => {
+          const { assets } = stats.compilation;
           const errors = stats.compilation.errors.map(cleanErrorStack);
           const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
           expect(errors).toMatchSnapshot('devtool === "source-map" errors');
           expect(warnings).toMatchSnapshot('devtool === "source-map" warnings');
 
-          for (const file in stats.compilation.assets) {
-            if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-              expect(stats.compilation.assets[file].source()).toMatchSnapshot(`devtool === "source-map" ${file}`);
-            }
-          }
+          Object.keys(assets).forEach((file) => {
+            const source = assets[file].source();
+            expect(source).toMatchSnapshot(`devtool === "source-map" ${file}`);
+          });
         }),
         compile(compiler3).then((stats) => {
+          const { assets } = stats.compilation;
           const errors = stats.compilation.errors.map(cleanErrorStack);
           const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
           expect(errors).toMatchSnapshot('devtool === "hidden-source-map" errors');
           expect(warnings).toMatchSnapshot('devtool === "hidden-source-map" warnings');
 
-          for (const file in stats.compilation.assets) {
-            if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-              expect(stats.compilation.assets[file].source()).toMatchSnapshot(`devtool === "hidden-source-map" ${file}`);
-            }
-          }
+          Object.keys(assets).forEach((file) => {
+            const source = assets[file].source();
+            expect(source).toMatchSnapshot(`devtool === "hidden-source-map" ${file}`);
+          });
         }),
       ]);
     });
