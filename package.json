@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "cacache": "^9.2.9",
+    "eslint": "^4.0.0",
+    "espree": "^3.4.3",
     "find-cache-dir": "^1.0.0",
     "source-map": "^0.5.6",
     "uglify-es": "^3.0.24",
