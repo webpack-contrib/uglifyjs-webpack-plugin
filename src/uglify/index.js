@@ -1,10 +1,10 @@
 import os from 'os';
 import findCacheDir from 'find-cache-dir';
 import workerFarm from 'worker-farm';
+import minify from './minify';
 import { get, put } from './cache';
 import { encode } from './serialization';
 import versions from './versions';
-import worker from './worker';
 
 let workerFile = require.resolve('./worker');
 
@@ -13,13 +13,10 @@ try {
   workerFile = require.resolve('../../dist/uglify/worker');
 } catch (e) { } // eslint-disable-line no-empty
 
-class Uglify {
-  constructor({
-    cache = findCacheDir({ name: 'uglifyjs-webpack-plugin' }),
-    workers = os.cpus().length - 1,
-  }) {
-    this.cache = cache;
-    this.workers = workers;
+export default class {
+  constructor({ cache, workers } = {}) {
+    this.cache = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;
+    this.workers = workers === true ? os.cpus().length - 1 : workers;
   }
 
   worker(options, callback) {
@@ -27,9 +24,16 @@ class Uglify {
       this.workerFarm = workerFarm({
         maxConcurrentWorkers: this.workers,
       }, workerFile);
-      this.worker = this.workerFarm;
+      this.worker = (opt, cb) => this.workerFarm(JSON.stringify(opt, encode), cb);
     } else {
-      this.worker = worker;
+      this.worker = (opt, cb) => {
+        try {
+          const result = minify(opt);
+          cb(null, result);
+        } catch (errors) {
+          cb(errors);
+        }
+      };
     }
 
     this.worker(options, callback);
@@ -42,6 +46,13 @@ class Uglify {
   }
 
   runTasks(tasks, callback) {
+    if (!tasks.length) {
+      process.nextTick(() => {
+        callback(null, []);
+      });
+      return;
+    }
+
     let toRun = tasks.length;
     const results = [];
     const step = (index, data) => {
@@ -51,28 +62,21 @@ class Uglify {
         callback(null, results);
       }
     };
-    if (!tasks.length) {
-      process.nextTick(() => {
-        callback(null, results);
-      });
-      return;
-    }
+
     tasks.forEach((task, index) => {
       const cacheIdentifier = `${versions.uglify}|${versions.plugin}|${task.input}`;
       const enqueue = () => {
-        this.worker(JSON.stringify(task, encode), (errors, data) => {
+        this.worker(task, (errors, data) => {
           const done = () => step(index, errors ? { error: errors.message } : data);
           if (this.cache && !errors) {
-            put(this.cache, task.cacheKey, data, cacheIdentifier).then(done).catch(done);
+            put(this.cache, task.cacheKey, data, cacheIdentifier).then(done, done);
           } else {
             done();
           }
         });
       };
       if (this.cache) {
-        get(this.cache, task.cacheKey, cacheIdentifier).then((data) => {
-          step(index, data);
-        }).catch((enqueue));
+        get(this.cache, task.cacheKey, cacheIdentifier).then(data => step(index, data), enqueue);
       } else {
         enqueue();
       }
@@ -80,4 +84,3 @@ class Uglify {
   }
 }
 
-export default Uglify;

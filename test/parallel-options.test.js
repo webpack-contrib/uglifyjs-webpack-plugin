@@ -1,4 +1,3 @@
-import os from 'os';
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import { RawSource } from 'webpack-sources';
@@ -23,7 +22,7 @@ describe('when options.parallel', () => {
     const plugin = new UglifyJsPlugin({
       parallel: {
         cache: cachePath,
-        workers: os.cpus().length,
+        workers: true,
       },
     });
     plugin.apply(compilerEnv);
