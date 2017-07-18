@@ -34,14 +34,14 @@ npm install uglifyjs-webpack-plugin --save-dev
 <h2 align="center">Usage</h2>
 
 ```javascript
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {...},
   output: {...},
   module: {...},
   plugins: [
-    new UglifyJSPlugin()
+    new UglifyJsPlugin()
   ]
 };
 ```
