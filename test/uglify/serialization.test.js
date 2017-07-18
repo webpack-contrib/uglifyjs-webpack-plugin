@@ -21,61 +21,15 @@ describe('serialization data', () => {
     expect(json.regexp).not.toBe(input.regexp);
     expect(json.regexp instanceof RegExp).toBe(true);
     expect(json.regexp.toString()).toBe(input.regexp.toString());
-
-    expect(() => JSON.parse(`{
-      "regexp": "<RegExp>process.exit()"
-    }`, decode)).toThrowError('not a regexp');
   });
 
-  it('not a pure function should be error. (no-func)', () => {
-    expect(() => JSON.parse(`{
-      "func": "<Function>function a(){},process.exit(),function b(){}"
-    }`, decode)).toThrowError('not a function');
-
-    expect(() => JSON.parse(`{
-      "func": "<Function>function {#error#}"
-    }`, decode)).toThrowError('parse failed');
-  });
-
-  it('not a pure function should be error. (no-undef)', () => {
+  it('function operation failure should report critical information.', () => {
     const a = 0;
     const b = 1;
     const input = {
       func: () => a + b,
     };
     const string = JSON.stringify(input, encode);
-    expect(() => JSON.parse(string, decode)).toThrowError('parse failed');
-  });
-
-  it('not a pure function should be error. (no-eval)', () => {
-    const input = {
-      func: () => eval('(a + b)'), // eslint-disable-line no-eval
-    };
-    const string = JSON.stringify(input, encode);
-    expect(() => JSON.parse(string, decode)).toThrowError('parse failed');
-  });
-
-  it('not a pure function should be error. (no-new-func)', () => {
-    const input = {
-      func: a => new Function('return a + 1')(a), // eslint-disable-line no-new-func
-    };
-    const string = JSON.stringify(input, encode);
-    expect(() => JSON.parse(string, decode)).toThrowError('parse failed');
-  });
-
-  it('not a pure function should be error. (no-this)', () => {
-    expect(() => JSON.parse(JSON.stringify({
-      func: function f() {
-        this.a = 1;
-      },
-    }, encode), decode)).toThrowError('parse failed');
-    expect(() => JSON.parse(JSON.stringify({
-      func: function f() {
-        function getThis() {
-          return this;
-        }
-        getThis().process.eixt();
-      },
-    }, encode), decode)).toThrowError('parse failed');
+    expect(() => (JSON.parse(string, decode)).func()).toThrowError('the option "func" performs an error in the child process:');
   });
 });
