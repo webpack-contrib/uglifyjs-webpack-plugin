@@ -14,8 +14,8 @@ encode.Function = value => String(value);
 
 export const decode = (key, value) => {
   if (typeof value === 'string') {
-    const reg = /^<([A-Z]\w+)>([\w\W]*)$/;
-    const match = value.match(reg);
+    const regex = /^<([A-Z]\w+)>([\w\W]*)$/;
+    const match = value.match(regex);
     if (match && decode[match[1]]) {
       return decode[match[1]](match[2], key);
     }
