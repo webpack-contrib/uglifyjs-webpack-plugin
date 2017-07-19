@@ -149,6 +149,7 @@ class UglifyJsPlugin {
   }
 
   apply(compiler) {
+    if (compiler.applyUnique(UglifyJsPlugin)) return;
     const requestShortener = new RequestShortener(compiler.context);
     // Copy uglify options
     const uglifyOptions = UglifyJsPlugin.buildDefaultUglifyOptions(this.uglifyOptions);

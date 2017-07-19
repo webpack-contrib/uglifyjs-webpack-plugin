@@ -4,6 +4,7 @@ import webpack from 'webpack';
 export class PluginEnvironment {
   constructor() {
     this.events = [];
+    this.uniquePlugins = new WeakSet();
   }
 
   getEnvironmentStub() {
@@ -13,6 +14,11 @@ export class PluginEnvironment {
           name,
           handler,
         });
+      },
+      applyUnique: (PluginClass) => {
+        // eslint-disable-next-line consistent-return
+        if (this.uniquePlugins.has(PluginClass)) return true;
+        this.uniquePlugins.add(PluginClass);
       },
     };
   }
@@ -54,8 +60,14 @@ export function createCompiler(options = {}) {
 
 export function countPlugins({ _plugins }) {
   return Object.keys(_plugins).reduce((aggregate, name) => {
+    const currentLength = typeof aggregate[name] === 'number' ? aggregate[name].length : 0;
     const eventLength = Array.isArray(_plugins[name]) ? _plugins[name].length : 0;
-    aggregate[name] = eventLength; // eslint-disable-line no-param-reassign
+
+    if (eventLength > currentLength) {
+      Object.assign(aggregate, {
+        [name]: eventLength,
+      });
+    }
     return aggregate;
   }, {});
 }
