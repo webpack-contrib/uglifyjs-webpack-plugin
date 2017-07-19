@@ -28,8 +28,11 @@ class UglifyJsPlugin {
   constructor(options) {
     if (typeof options !== 'object' || Array.isArray(options)) {
       this.options = {};
+    } else if (typeof options === 'object') {
+      // Deep clone to keep original object in tact
+      this.options = JSON.parse(JSON.stringify(options));
     } else {
-      this.options = options || {};
+      this.options = {};
     }
 
     this.options.test = this.options.test || /\.js($|\?)/i;
