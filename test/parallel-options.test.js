@@ -6,7 +6,7 @@ import {
   PluginEnvironment,
 } from './helpers';
 
-const cachePath = findCacheDir({ name: 'uglify-webpack-plugin.test' });
+const cachePath = findCacheDir({ name: 'uglifyjs-webpack-plugin' });
 
 cacache.rm.all(cachePath);
 
@@ -20,10 +20,7 @@ describe('when options.parallel', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      parallel: {
-        cache: cachePath,
-        workers: true,
-      },
+      parallel: true,
     });
     plugin.apply(compilerEnv);
     eventBindings = pluginEnvironment.getEventBindings();

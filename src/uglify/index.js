@@ -14,9 +14,14 @@ try {
 } catch (e) { } // eslint-disable-line no-empty
 
 export default class {
-  constructor({ cache, workers } = {}) {
+  constructor(parallel = {}) {
+    let options = parallel;
+    if (typeof parallel === 'boolean') {
+      options = { cache: parallel, workers: parallel };
+    }
+    const { cache, workers } = options;
     this.cache = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;
-    this.workers = workers === true ? os.cpus().length - 1 : workers;
+    this.workers = workers === true ? os.cpus().length - 1 : Math.min(Number(workers) || 0, os.cpus().length - 1);
   }
 
   worker(options, callback) {
