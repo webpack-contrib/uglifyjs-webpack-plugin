@@ -275,8 +275,8 @@ describe('when applied with all options', () => {
             expect(compilation.errors.length).toBe(0);
             /* eslint-disable no-underscore-dangle */
             expect(compilation.assets['test4.license.js'].source()).toContain('/*! this comment should be extracted */');
-            expect(compilation.assets['test4.license.js']._value).toEqual(expect.stringContaining('// another comment that should be extracted to a separate file'));
-            expect(compilation.assets['test4.license.js']._value).not.toEqual(expect.stringContaining('/* this will not be extracted */'));
+            expect(compilation.assets['test4.license.js'].source()).toContain('// another comment that should be extracted to a separate file');
+            expect(compilation.assets['test4.license.js'].source()).not.toEqual(expect.stringContaining('/* this will not be extracted */'));
             /* eslint-enable no-underscore-dangle */
           });
         });

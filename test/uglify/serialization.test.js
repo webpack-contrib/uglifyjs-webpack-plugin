@@ -30,6 +30,6 @@ describe('serialization data', () => {
       func: () => a + b,
     };
     const string = JSON.stringify(input, encode);
-    expect(() => (JSON.parse(string, decode)).func()).toThrowError('the option "func" performs an error in the child process:');
+    expect(() => (JSON.parse(string, decode)).func()).toThrow('the option "func" performs an error in the child process:');
   });
 });
