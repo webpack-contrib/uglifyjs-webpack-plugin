@@ -77,6 +77,7 @@ This plugin supports UglifyJS features as discussed below:
 | include | RegExp, Array<RegExp> | | Test only `include` files. |
 | exclude | RegExp, Array<RegExp> | | Files to `exclude` from testing. |
 | warningsFilter | function(source) -> boolean | | Allow to filter uglify warnings (since webpack 2.3.0) |
+| parallel | boolean, object | false | Use multi-process parallel running and file cache to improve the build speed. |
 
 <h2 align="center">Mangling</h2>
 
@@ -117,6 +118,14 @@ The `extractComments` option can be
   - `banner`: The banner text that points to the extracted file and will be added on top of the original file. will be added to the original file. Can be `false` (no banner), a `string`, or a `function (string) -> string` that will be called with the filename where extracted comments have been stored. Will be wrapped into comment.
 Default: `/*! For license information please see foo.js.LICENSE */`
 
+<h2 align="center">Run in parallel</h2>
+
+The `parallel` option can be
+
+- `true`: Enable multi-process parallel running with file cache
+- an `object` consisting of the following keys, all optional:
+  - `workers`: The maximum number of concurrent runs. If it is `true`, it is equal to `require('os').cpus().length - 1`.
+  - `cache`: Enable file caching. If it is `true`, it is equal to `"node_modules/.cache/uglifyjs-webpack-plugin"`.
 
 <h2 align="center">Maintainers</h2>
 
