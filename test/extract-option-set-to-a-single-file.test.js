@@ -11,7 +11,6 @@ describe('when applied with extract option set to a single file', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      parallel: { cache: false, workers: 0 },
       uglifyOptions: {
         output: {
           comments: 'all',
@@ -75,7 +74,7 @@ describe('when applied with extract option set to a single file', () => {
           [compilationEventBinding] = compilationEventBindings;
         });
 
-        it('preserves comments', (done) => {
+        it('preserves comments', () => {
           compilationEventBinding.handler([{
             files: ['test.js', 'test2.js', 'test3.js'],
           }], () => {
@@ -83,11 +82,10 @@ describe('when applied with extract option set to a single file', () => {
             expect(compilation.assets['test2.js'].source()).toEqual(expect.stringContaining('//'));
             expect(compilation.assets['test3.js'].source()).toEqual(expect.stringContaining('/*'));
             expect(compilation.assets['test3.js'].source()).toEqual(expect.stringContaining('//'));
-            done();
           });
         });
 
-        it('extracts comments to specified file', (done) => {
+        it('extracts comments to specified file', () => {
           compilationEventBinding.handler([{
             files: ['test.js', 'test2.js', 'test3.js'],
           }], () => {
@@ -97,7 +95,6 @@ describe('when applied with extract option set to a single file', () => {
             expect(compilation.assets['extracted-comments.js'].source()).toEqual(expect.stringContaining('/* This is a comment from test3.js */'));
             expect(compilation.assets['extracted-comments.js'].source()).toEqual(expect.stringContaining('// This is another comment from test3.js'));
             expect(compilation.assets['extracted-comments.js'].source()).not.toEqual(expect.stringContaining('function'));
-            done();
           });
         });
       });

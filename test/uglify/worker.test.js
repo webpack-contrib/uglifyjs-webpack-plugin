@@ -2,7 +2,7 @@ import worker from '../../src/uglify/worker';
 import { encode } from '../../src/uglify/serialization';
 
 describe('matches snapshot', () => {
-  it('normalizes when options.extractComments is regex', (done) => {
+  it('normalizes when options.extractComments is regex', () => {
     const options = {
       file: 'test1.js',
       input: 'var foo = 1;/* hello */',
@@ -18,11 +18,10 @@ describe('matches snapshot', () => {
         throw error;
       }
       expect(data).toMatchSnapshot(options.file);
-      done();
     });
   });
 
-  it('normalizes when uglifyOptions.output.comments is string: all', (done) => {
+  it('normalizes when uglifyOptions.output.comments is string: all', () => {
     const options = {
       file: 'test2.js',
       input: 'var foo = 1;/* hello */',
@@ -37,11 +36,10 @@ describe('matches snapshot', () => {
         throw error;
       }
       expect(data).toMatchSnapshot(options.file);
-      done();
     });
   });
 
-  it('normalizes when uglifyOptions.output.comments is string: some', (done) => {
+  it('normalizes when uglifyOptions.output.comments is string: some', () => {
     const options = {
       file: 'test3.js',
       input: 'var foo = 1;/* hello */',
@@ -56,11 +54,10 @@ describe('matches snapshot', () => {
         throw error;
       }
       expect(data).toMatchSnapshot(options.file);
-      done();
     });
   });
 
-  it('normalizes when uglifyOptions.extractComments is number', (done) => {
+  it('normalizes when uglifyOptions.extractComments is number', () => {
     const options = {
       file: 'test4.js',
       input: 'var foo = 1;/* hello */',
@@ -76,11 +73,10 @@ describe('matches snapshot', () => {
         throw error;
       }
       expect(data).toMatchSnapshot(options.file);
-      done();
     });
   });
 
-  it('when applied with extract option set to a single file', (done) => {
+  it('when applied with extract option set to a single file', () => {
     const options = {
       file: 'test5.js',
       input: '/******/ function hello(a) {console.log(a)}',
@@ -104,11 +100,10 @@ describe('matches snapshot', () => {
         throw error;
       }
       expect(data).toMatchSnapshot(options.file);
-      done();
     });
   });
 
-  it('when options.inputSourceMap', (done) => {
+  it('when options.inputSourceMap', () => {
     const options = {
       file: 'test6.js',
       input: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
@@ -124,7 +119,6 @@ describe('matches snapshot', () => {
         throw error;
       }
       expect(data).toMatchSnapshot(options.file);
-      done();
     });
   });
 });

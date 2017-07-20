@@ -52,9 +52,7 @@ export default class {
 
   runTasks(tasks, callback) {
     if (!tasks.length) {
-      process.nextTick(() => {
-        callback(null, []);
-      });
+      callback(null, []);
       return;
     }
 
@@ -71,9 +69,10 @@ export default class {
     tasks.forEach((task, index) => {
       const cacheIdentifier = `${versions.uglify}|${versions.plugin}|${task.input}`;
       const enqueue = () => {
-        this.worker(task, (errors, data) => {
-          const done = () => step(index, errors ? { error: errors.message } : data);
-          if (this.cache && !errors) {
+        this.worker(task, (error, data) => {
+          const result = error ? { error } : data;
+          const done = () => step(index, result);
+          if (this.cache && !result.error) {
             put(this.cache, task.cacheKey, data, cacheIdentifier).then(done, done);
           } else {
             done();

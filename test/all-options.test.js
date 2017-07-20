@@ -17,7 +17,6 @@ describe('when applied with all options', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      parallel: { cache: false, workers: 0 },
       sourceMap: true,
       extractComments: {
         condition: 'should be extracted',
@@ -325,14 +324,13 @@ describe('when applied with all options', () => {
               compilationEventBindings = chunkPluginEnvironment.getEventBindings();
             });
 
-            it('should get all warnings', (done) => {
+            it('should get all warnings', () => {
               compilationEventBindings[1].handler([{
                 files: ['test2.js'],
               }], () => {
                 expect(compilation.warnings.length).toBe(1);
                 expect(compilation.warnings[0]).toBeInstanceOf(Error);
                 expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
-                done();
               });
             });
           });
@@ -380,12 +378,11 @@ describe('when applied with all options', () => {
               compilationEventBindings = chunkPluginEnvironment.getEventBindings();
             });
 
-            it('should get no warnings', (done) => {
+            it('should get no warnings', () => {
               compilationEventBindings[1].handler([{
                 files: ['test2.js'],
               }], () => {
                 expect(compilation.warnings.length).toBe(0);
-                done();
               });
             });
           });

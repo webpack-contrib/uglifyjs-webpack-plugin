@@ -4,6 +4,9 @@ import { RawSource } from 'webpack-sources';
 import UglifyJsPlugin from '../src/index';
 import {
   PluginEnvironment,
+  createCompiler,
+  compile,
+  cleanErrorStack,
 } from './helpers';
 
 const cachePath = findCacheDir({ name: 'uglifyjs-webpack-plugin' });
@@ -177,6 +180,25 @@ describe('when options.parallel', () => {
           });
         });
       });
+    });
+  });
+
+  it('matches snapshot', () => {
+    const compiler = createCompiler();
+    new UglifyJsPlugin({ parallel: true }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
     });
   });
 });

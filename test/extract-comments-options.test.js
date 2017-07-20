@@ -11,7 +11,6 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      parallel: { cache: false, workers: 0 },
       uglifyOptions: {
         warnings: true,
         output: {
@@ -54,33 +53,30 @@ describe('when options.extractComments', () => {
     [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
   });
 
-  it('normalizes extractConmments', (done) => {
+  it('normalizes extractConmments', () => {
     compilationEventBinding.handler([{
       files: ['test.js'],
     }], () => {
       expect(compilation.errors.length).toBe(0);
-      done();
     });
   });
 
-  it('outputs warnings for unreachable code', (done) => {
+  it('outputs warnings for unreachable code', () => {
     compilationEventBinding.handler([{
       files: ['test.js', 'test1.js'],
     }], () => {
       expect(compilation.warnings.length).toBe(1);
       expect(compilation.warnings[0]).toBeInstanceOf(Error);
       expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
-      done();
     });
   });
 
-  it('normalizes when options.extractComments is regex', (done) => {
+  it('normalizes when options.extractComments is regex', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      parallel: { cache: false, workers: 0 },
       uglifyOptions: {
         output: {
           comments: false,
@@ -106,17 +102,15 @@ describe('when options.extractComments', () => {
       files: ['test.js'],
     }], () => {
       expect(compilation2.errors.length).toBe(0);
-      done();
     });
   });
 
-  it('converts boolean options.extractComments.condition to function', (done) => {
+  it('converts boolean options.extractComments.condition to function', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      parallel: { cache: false, workers: 0 },
       uglifyOptions: {
         output: {
           comments: false,
@@ -150,7 +144,6 @@ describe('when options.extractComments', () => {
       files: ['test.js'],
     }], () => {
       expect(compilation2.errors.length).toBe(0);
-      done();
     });
   });
 });

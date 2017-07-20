@@ -10,7 +10,6 @@ describe('when applied with invalid options', () => {
   it('matches snapshot', () => {
     const compiler = createCompiler();
     new UglifyJsPlugin({
-      parallel: { cache: false, workers: 0 },
       uglifyOptions: {
         output: {
           'invalid-option': true,
@@ -33,13 +32,12 @@ describe('when applied with invalid options', () => {
     });
   });
 
-  it('outputs uglify errors', (done) => {
+  it('outputs uglify errors', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      parallel: { cache: false, workers: 0 },
       uglifyOptions: {
         output: {
           'invalid-option': true,
@@ -67,7 +65,6 @@ describe('when applied with invalid options', () => {
       expect(compilation.errors.length).toBe(1);
       expect(compilation.errors[0]).toBeInstanceOf(Error);
       expect(compilation.errors[0].message).toEqual(expect.stringContaining('from UglifyJs'));
-      done();
     });
   });
 });
