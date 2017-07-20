@@ -40,10 +40,10 @@ class UglifyJsPlugin {
         return new Error(`${file} from UglifyJs\n${err.message} [${requestShortener.shorten(original.source)}:${original.line},${original.column}][${file}:${err.line},${err.col}]`);
       }
       return new Error(`${file} from UglifyJs\n${err.message} [${file}:${err.line},${err.col}]`);
-    } else if (err.message) {
-      return new Error(`${file} from UglifyJs\n${err.message}`);
+    } else if (err.stack) {
+      return new Error(`${file} from UglifyJs\n${err.stack}`);
     }
-    return new Error(`${file} from UglifyJs\n${err.stack}`);
+    return new Error(`${file} from UglifyJs\n${err.message}`);
   }
 
   static buildWarnings(warnings, file, sourceMap, warningsFilter, requestShortener) {
