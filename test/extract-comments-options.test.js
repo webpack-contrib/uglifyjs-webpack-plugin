@@ -71,7 +71,7 @@ describe('when options.extractComments', () => {
     });
   });
 
-  describe('normalizes when options.extractComments is regex', () => {
+  it('normalizes when options.extractComments is regex', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
@@ -105,7 +105,7 @@ describe('when options.extractComments', () => {
     });
   });
 
-  describe('converts boolean options.extractComments.condition to function', () => {
+  it('converts boolean options.extractComments.condition to function', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
