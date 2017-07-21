@@ -2,11 +2,8 @@
   "type": "object",
   "properties": {
     "test": {},
-    "warningsFilter": {},
-    "extractComments": {},
-    "sourceMap": {
-      "type": "boolean"
-    },
+    "include": {},
+    "exclude": {},
     "parallel": {
       "oneOf": [
         { "type": "boolean" },
@@ -29,6 +26,11 @@
         }
       ]
     },
+    "warningsFilter": {},
+    "extractComments": {},
+    "sourceMap": {
+      "type": "boolean"
+    },
     "uglifyOptions": {
       "additionalProperties": true,
       "type": "object",
@@ -41,6 +43,9 @@
         "warnings": {
           "type": ["boolean", "string"],
           "enum": [true, false, "verbose"]
+        },
+        "ie8": {
+          "type": "boolean"
         },
         "parse": {
           "type": "object"
