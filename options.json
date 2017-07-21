@@ -9,7 +9,7 @@
     },
     "parallel": {
       "oneOf": [
-        { "type": "boolean", "default": false },
+        { "type": "boolean" },
         {
           "type": "object",
           "properties": {
@@ -17,15 +17,13 @@
               "oneOf": [
                 { "type": "boolean" },
                 { "type": "integer" }
-              ],
-              "default": false
+              ]
             },
             "cache": {
               "oneOf": [
                 { "type": "boolean" },
                 { "type": "string" }
-              ],
-              "default": false
+              ]
             }
           }
         }
