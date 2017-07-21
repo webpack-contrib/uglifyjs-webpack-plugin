@@ -7,6 +7,30 @@
     "sourceMap": {
       "type": "boolean"
     },
+    "parallel": {
+      "oneOf": [
+        { "type": "boolean", "default": false },
+        {
+          "type": "object",
+          "properties": {
+            "workers": {
+              "oneOf": [
+                { "type": "boolean" },
+                { "type": "integer" }
+              ],
+              "default": false
+            },
+            "cache": {
+              "oneOf": [
+                { "type": "boolean" },
+                { "type": "string" }
+              ],
+              "default": false
+            }
+          }
+        }
+      ]
+    },
     "uglifyOptions": {
       "additionalProperties": true,
       "type": "object",
