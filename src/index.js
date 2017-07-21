@@ -8,7 +8,7 @@ import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
-import schema from '../options.json';
+import schema from './options.json';
 import Uglify from './uglify';
 
 /* eslint-disable
