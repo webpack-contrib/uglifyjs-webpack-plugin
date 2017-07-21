@@ -1,0 +1,78 @@
+{
+  "type": "object",
+  "properties": {
+    "test": {},
+    "include": {},
+    "exclude": {},
+    "parallel": {
+      "oneOf": [
+        { "type": "boolean" },
+        {
+          "type": "object",
+          "properties": {
+            "workers": {
+              "oneOf": [
+                { "type": "boolean" },
+                { "type": "integer" }
+              ]
+            },
+            "cache": {
+              "oneOf": [
+                { "type": "boolean" },
+                { "type": "string" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "warningsFilter": {},
+    "extractComments": {},
+    "sourceMap": {
+      "type": "boolean"
+    },
+    "uglifyOptions": {
+      "additionalProperties": true,
+      "type": "object",
+      "properties": {
+        "ecma": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 8
+        },
+        "warnings": {
+          "type": ["boolean", "string"],
+          "enum": [true, false, "verbose"]
+        },
+        "ie8": {
+          "type": "boolean"
+        },
+        "parse": {
+          "type": "object"
+        },
+        "compress": {
+          "type": ["boolean", "object"]
+        },
+        "mangle": {
+          "type": ["boolean", "object"],
+          "properties": {
+            "properties": {
+              "type": ["boolean", "object"]
+            }
+          }
+        },
+        "output": {
+          "type": ["object", "null"]
+        },
+        "toplevel": {
+          "type": "boolean"
+        },
+        "nameCache": {
+          "type": ["object", "null"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

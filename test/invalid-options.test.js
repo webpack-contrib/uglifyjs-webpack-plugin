@@ -32,6 +32,45 @@ describe('when applied with invalid options', () => {
     });
   });
 
+  it('throws validation errors', () => {
+    /* eslint-disable no-new */
+    expect(() => {
+      new UglifyJsPlugin({ test: /foo/ });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: null });
+    }).toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ doesntExist: true });
+    }).toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { emca: 5 } });
+    }).not.toThrow();
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { emca: 8 } });
+    }).not.toThrow();
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ecma: 7.5 } });
+    }).toThrow('should be integer');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ecma: true } });
+    }).toThrow('should be integer');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ecma: 3 } });
+    }).toThrow('should be >= 5');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ecma: 10 } });
+    }).toThrow('should be <= 8');
+  });
+
   it('outputs uglify errors', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
