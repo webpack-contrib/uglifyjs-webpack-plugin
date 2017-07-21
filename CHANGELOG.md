@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-beta.2"></a>
+# [1.0.0-beta.2](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2017-07-21)
+
+
+### Features
+
+* add support for `parallelization` && `caching` (`options.parallel`) ([#77](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/77)) ([ee16639](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/ee16639))
+* **index:** add `options` validation (`schema-utils`) ([#80](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/80)) ([f19b2de](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/f19b2de))
+
+
+
 <a name="1.0.0-beta.1"></a>
 # [1.0.0-beta.1](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2017-07-06)
 
