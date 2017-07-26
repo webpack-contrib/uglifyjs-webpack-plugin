@@ -103,7 +103,7 @@ module.exports = {
 [
   new UglifyJSPlugin({
     parallel: {
-      cache: true
+      cache: true,
       workers: 2 // for e.g
     }
   })
