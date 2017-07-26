@@ -86,6 +86,10 @@ class UglifyJsPlugin {
   apply(compiler) {
     const requestShortener = new RequestShortener(compiler.context);
 
+    if (typeof this.options.sourceMap === 'undefined' && ['sourcemap', 'source-map', 'hidden-source-map'].indexOf(compiler.options.devtool) > -1) {
+      this.options.sourceMap = true;
+    }
+
     compiler.plugin('compilation', (compilation) => {
       if (this.options.sourceMap) {
         compilation.plugin('build-module', (moduleArg) => {

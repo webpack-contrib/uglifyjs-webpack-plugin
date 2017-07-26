@@ -64,22 +64,76 @@ describe('when applied with all options', () => {
     }).apply(compiler);
 
     return compile(compiler).then((stats) => {
+      const { assets } = stats.compilation;
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
       expect(errors).toMatchSnapshot('errors');
       expect(warnings).toMatchSnapshot('warnings');
 
-      for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
+      Object.keys(assets).forEach((file) => {
+        const source = assets[file].source();
+        expect(source).toMatchSnapshot(file);
+      });
     });
   });
 
   it('binds one event handler', () => {
     expect(eventBindings.length).toBe(1);
+  });
+
+  describe('with compiler.optioo=ns.devtool set to "sourcemap" || "source-map" || "hidden-source-map"', () => {
+    it('matches snapshots', () => {
+      const compiler1 = createCompiler({ devtool: 'sourcemap' });
+      const compiler2 = createCompiler({ devtool: 'source-map' });
+      const compiler3 = createCompiler({ devtool: 'hidden-source-map' });
+
+      new UglifyJsPlugin().apply(compiler1);
+      new UglifyJsPlugin().apply(compiler2);
+      new UglifyJsPlugin().apply(compiler3);
+
+      return Promise.all([
+        compile(compiler1).then((stats) => {
+          const { assets } = stats.compilation;
+          const errors = stats.compilation.errors.map(cleanErrorStack);
+          const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+          expect(errors).toMatchSnapshot('devtool === "sourcemap" errors');
+          expect(warnings).toMatchSnapshot('devtool === "sourcemap" warnings');
+
+          Object.keys(assets).forEach((file) => {
+            const source = assets[file].source();
+            expect(source).toMatchSnapshot(`devtool === "sourcemap" ${file}`);
+          });
+        }),
+        compile(compiler2).then((stats) => {
+          const { assets } = stats.compilation;
+          const errors = stats.compilation.errors.map(cleanErrorStack);
+          const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+          expect(errors).toMatchSnapshot('devtool === "source-map" errors');
+          expect(warnings).toMatchSnapshot('devtool === "source-map" warnings');
+
+          Object.keys(assets).forEach((file) => {
+            const source = assets[file].source();
+            expect(source).toMatchSnapshot(`devtool === "source-map" ${file}`);
+          });
+        }),
+        compile(compiler3).then((stats) => {
+          const { assets } = stats.compilation;
+          const errors = stats.compilation.errors.map(cleanErrorStack);
+          const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+          expect(errors).toMatchSnapshot('devtool === "hidden-source-map" errors');
+          expect(warnings).toMatchSnapshot('devtool === "hidden-source-map" warnings');
+
+          Object.keys(assets).forEach((file) => {
+            const source = assets[file].source();
+            expect(source).toMatchSnapshot(`devtool === "hidden-source-map" ${file}`);
+          });
+        }),
+      ]);
+    });
   });
 
   describe('compilation handler', () => {
