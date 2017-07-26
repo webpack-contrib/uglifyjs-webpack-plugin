@@ -38,6 +38,8 @@ module.exports = {
 
 <h2 align="center">Options</h2>
 
+**NOTE** The following options are for the latest beta version. If you would like to see the options for the built-in plugin in Webpack, see the [v.0.4.6 docs](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/v0.4.6).
+
 |Name|Type|Default|Description|
 |:--:|:--:|:-----:|:----------|
 |**`test`**|`{RegExp\|Array<RegExp>}`| <code>/\.js($&#124;\?)/i</code>|Test to match files against|
