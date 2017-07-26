@@ -12,7 +12,7 @@
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>UglifyJS Webpack Plugin</h1>
-	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">UglifyJS v3</a> to minify your JavaScript<p>
+	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">UglifyJS v3 </a><a href="https://npmjs.com/package/uglify-es">(`uglify-es`)</a> to minify your JavaScript<p>
 </div>
 
 > ℹ️  webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. The documentation is valid apart from the installation instructions
@@ -38,7 +38,7 @@ module.exports = {
 
 <h2 align="center">Options</h2>
 
-:warning: The following options are for the latest beta version. If you would like to see the options for the latest built-in version of the plugin in webpack, see the [v0.4.6 docs](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/v0.4.6).
+> ⚠️ The following options are for the latest beta version. If you would like to see the options for the latest built-in version of the plugin in webpack, see the [v0.4.6 docs](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/v0.4.6).
 
 |Name|Type|Default|Description|
 |:--:|:--:|:-----:|:----------|
@@ -49,7 +49,7 @@ module.exports = {
 |**`sourceMap`**|`{Boolean}`|`false`|Use source maps to map error message locations to modules (This slows down the compilation) ⚠️ **`cheap-source-map` options don't work with this plugin**|
 |**`uglifyOptions`**|`{Object}`|[`{...defaults}`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions)|`uglify` [Options](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)|
 |**`extractComments`**|`{Boolean\|RegExp\|Function<(node, comment) -> {Boolean\|Object}>}`|`false`|Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a) (`webpack >= 2.3.0`)|
-|**`warningsFilter`**|`{Function(source) -> {Boolean}}`|``|Allow to filter uglify warnings|
+|**`warningsFilter`**|`{Function(source) -> {Boolean}}`|`undefined`|Allow to filter uglify warnings|
 
 ### `test`
 
@@ -98,7 +98,7 @@ module.exports = {
 |Name|Type|Default|Description|
 |:--:|:--:|:-----:|:----------|
 |**`cache`**|`{Boolean}`|`node_modules/.cache/uglifyjs-webpack-plugin`|Enable file caching|
-|**`workers`**|`{Boolean\|Object}`|`os.cpus().length - 1`|Number of concurrent runs, default is the `maximum`|
+|**`workers`**|`{Boolean\|Number}`|`os.cpus().length - 1`|Number of concurrent runs, default is the `maximum`|
 
 **webpack.config.js**
 ```js
