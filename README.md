@@ -15,7 +15,7 @@
 	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">UglifyJS v3 </a><a href="https://npmjs.com/package/uglify-es">(`uglify-es`)</a> to minify your JavaScript<p>
 </div>
 
-> ℹ️  webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. The documentation is valid apart from the installation instructions
+> ℹ️  webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. This is a standalone version for those that want to control the version of UglifyJS. The documentation is valid apart from the installation instructions
 
 <h2 align="center">Install</h2>
 
