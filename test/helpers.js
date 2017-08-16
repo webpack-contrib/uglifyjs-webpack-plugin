@@ -54,8 +54,8 @@ export function createCompiler(options = {}) {
 
 export function countPlugins({ _plugins }) {
   return Object.keys(_plugins).reduce((aggregate, name) => {
-    const eventLength = Array.isArray(_plugins[name]) ? _plugins[name].length : 0;
-    aggregate[name] = eventLength; // eslint-disable-line no-param-reassign
+    // eslint-disable-next-line no-param-reassign
+    aggregate[name] = Array.isArray(_plugins[name]) ? _plugins[name].length : 0;
     return aggregate;
   }, {});
 }
@@ -65,8 +65,6 @@ export function removeCWD(str) {
 }
 
 export function cleanErrorStack(error) {
-  const str = exports.removeCWD(error.toString())
-    .split('\n').slice(0, 2).join('\n');
-  return str;
+  return exports.removeCWD(error.toString()).split('\n').slice(0, 2).join('\n');
 }
 

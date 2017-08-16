@@ -45,11 +45,12 @@ module.exports = {
 |**`test`**|`{RegExp\|Array<RegExp>}`| <code>/\.js($&#124;\?)/i</code>|Test to match files against|
 |**`include`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `include`|
 |**`exclude`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `exclude`|
-|**`parallel`**|`{Boolean\|Object}`|`false`|Use multi-process parallel running and file cache to improve the build speed|
+|**`cache`**|`{Boolean\|String}`|`false`|Enable file caching|
+|**`parallel`**|`{Boolean\|Number}`|`false`|Use multi-process parallel running and file cache to improve the build speed|
 |**`sourceMap`**|`{Boolean}`|`false`|Use source maps to map error message locations to modules (This slows down the compilation) ⚠️ **`cheap-source-map` options don't work with this plugin**|
 |**`uglifyOptions`**|`{Object}`|[`{...defaults}`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions)|`uglify` [Options](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)|
 |**`extractComments`**|`{Boolean\|RegExp\|Function<(node, comment) -> {Boolean\|Object}>}`|`false`|Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a) (`webpack >= 2.3.0`)|
-|**`warningsFilter`**|`{Function(source) -> {Boolean}}`|`undefined`|Allow to filter uglify warnings|
+|**`warningsFilter`**|`{Function(source) -> {Boolean}}`|`() => true`|Allow to filter uglify warnings|
 
 ### `test`
 
@@ -84,7 +85,38 @@ module.exports = {
 ]
 ```
 
+### `cache`
+
+**`{Boolean}`**
+
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    cache: true
+  })
+]
+```
+
+Enable file caching.
+Default path to cache directory: `node_modules/.cache/uglifyjs-webpack-plugin`.
+
+**`{String}`**
+
+**webpack.config.js**
+```js
+[
+  new UglifyJSPlugin({
+    cache: 'path/to/cache'
+  })
+]
+```
+
+Path to cache directory.
+
 ### `parallel`
+
+**`{Boolean}`**
 
 **webpack.config.js**
 ```js
@@ -95,22 +127,21 @@ module.exports = {
 ]
 ```
 
-|Name|Type|Default|Description|
-|:--:|:--:|:-----:|:----------|
-|**`cache`**|`{Boolean}`|`node_modules/.cache/uglifyjs-webpack-plugin`|Enable file caching|
-|**`workers`**|`{Boolean\|Number}`|`os.cpus().length - 1`|Number of concurrent runs, default is the `maximum`|
+Enable parallelization.
+Default number of concurrent runs: `os.cpus().length - 1`.
+
+**`{Number}`**
 
 **webpack.config.js**
 ```js
 [
   new UglifyJSPlugin({
-    parallel: {
-      cache: true,
-      workers: 2 // for e.g
-    }
+    parallel: 4
   })
 ]
 ```
+
+Number of concurrent runs.
 
 > ℹ️  Parallelization can speedup your build significantly and is therefore **highly recommended**
 
@@ -169,7 +200,7 @@ module.exports = {
 
 **`{Boolean}`**
 
-All comments that normally would be preserved by the `comments` option will be moved to a separate file. If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE`
+All comments that normally would be preserved by the `comments` option will be moved to a separate file. If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE`.
 
 **`{RegExp|String}` or  `{Function<(node, comment) -> {Boolean}>}`**
 
