@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "npm run build -- -w",
-    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
+    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js' --copy-files",
     "test:all": "npm run test:coverage && npm run test:lint",
     "test": "jest",
     "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
