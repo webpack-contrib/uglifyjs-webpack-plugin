@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "npm run build -- -w",
-    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js' --copy-files",
+    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
     "test:all": "npm run test:coverage && npm run test:lint",
     "test": "jest",
     "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
@@ -39,24 +39,24 @@
     "worker-farm": "^1.4.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-jest": "^20.0.3",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.5.2",
-    "cross-env": "^5.0.1",
-    "del-cli": "^1.0.0",
-    "eslint": "^4.0.0",
-    "eslint-config-webpack": "^1.2.3",
-    "eslint-plugin-import": "^2.3.0",
-    "jest": "^20.0.4",
-    "lint-staged": "^4.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.0.5",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.9.0",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^21.2.1",
+    "lint-staged": "^4.2.3",
     "memory-fs": "^0.4.1",
-    "nsp": "^2.6.3",
+    "nsp": "^2.8.1",
     "pre-commit": "^1.2.2",
-    "standard-version": "^4.1.0",
-    "webpack": "^3.0.0",
-    "webpack-defaults": "^1.4.0"
+    "standard-version": "^4.2.0",
+    "webpack": "^3.7.1",
+    "webpack-defaults": "^1.6.0"
   },
   "repository": {
     "type": "git",
@@ -75,7 +75,7 @@
     "webpack": "^2.0.0 || ^3.0.0"
   },
   "engines": {
-    "node": ">= 4.8 < 5.0.0 || >= 5.10"
+    "node": ">= 4.3 < 5.0.0 || >= 5.10"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {
