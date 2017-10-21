@@ -10,6 +10,8 @@ import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
 import schema from './options.json';
 import Uglify from './uglify';
+import { encode } from './uglify/serialization';
+import versions from './uglify/versions';
 
 /* eslint-disable
   no-param-reassign
@@ -25,9 +27,10 @@ class UglifyJsPlugin {
       uglifyOptions = {},
       test = /\.js$/i,
       warningsFilter = () => true,
-      extractComments,
-      sourceMap,
-      parallel,
+      extractComments = false,
+      sourceMap = false,
+      cache = false,
+      parallel = false,
     } = options;
 
     this.options = {
@@ -35,6 +38,7 @@ class UglifyJsPlugin {
       warningsFilter,
       extractComments,
       sourceMap,
+      cache,
       parallel,
       uglifyOptions: {
         output: {
@@ -95,7 +99,10 @@ class UglifyJsPlugin {
       }
 
       compilation.plugin('optimize-chunk-assets', (chunks, callback) => {
-        const uglify = new Uglify(this.options.parallel);
+        const uglify = new Uglify({
+          cache: this.options.cache,
+          parallel: this.options.parallel,
+        });
         const uglifiedAssets = new WeakSet();
         const tasks = [];
         chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])
@@ -111,7 +118,7 @@ class UglifyJsPlugin {
             try {
               let input;
               let inputSourceMap;
-              const cacheKey = `${compiler.outputPath}/${file}`;
+
               if (this.options.sourceMap) {
                 if (asset.sourceAndMap) {
                   const sourceAndMap = asset.sourceAndMap();
@@ -135,8 +142,7 @@ class UglifyJsPlugin {
                 }
               }
 
-              tasks.push({
-                cacheKey,
+              const task = {
                 file,
                 input,
                 sourceMap,
@@ -144,7 +150,19 @@ class UglifyJsPlugin {
                 commentsFile,
                 extractComments: this.options.extractComments,
                 uglifyOptions: this.options.uglifyOptions,
-              });
+              };
+
+              if (this.options.cache) {
+                task.cacheKey = JSON.stringify({
+                  'uglify-es': versions.uglify,
+                  'uglifyjs-webpack-plugin': versions.plugin,
+                  'uglifyjs-webpack-plugin-options': this.options,
+                  path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
+                  input,
+                }, encode);
+              }
+
+              tasks.push(task);
             } catch (error) {
               compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, compilation, requestShortener));
             }

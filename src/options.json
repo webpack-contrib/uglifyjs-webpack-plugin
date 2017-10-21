@@ -4,26 +4,16 @@
     "test": {},
     "include": {},
     "exclude": {},
+    "cache": {
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "string" }
+      ]
+    },
     "parallel": {
       "oneOf": [
         { "type": "boolean" },
-        {
-          "type": "object",
-          "properties": {
-            "workers": {
-              "oneOf": [
-                { "type": "boolean" },
-                { "type": "integer" }
-              ]
-            },
-            "cache": {
-              "oneOf": [
-                { "type": "boolean" },
-                { "type": "string" }
-              ]
-            }
-          }
-        }
+        { "type": "integer" }
       ]
     },
     "warningsFilter": {},

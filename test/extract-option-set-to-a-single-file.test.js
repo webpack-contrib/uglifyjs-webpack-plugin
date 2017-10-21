@@ -74,6 +74,10 @@ describe('when applied with extract option set to a single file', () => {
           [compilationEventBinding] = compilationEventBindings;
         });
 
+        it('binds to optimize-chunk-assets event', () => {
+          expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
+        });
+
         it('preserves comments', () => {
           compilationEventBinding.handler([{
             files: ['test.js', 'test2.js', 'test3.js'],

@@ -22,7 +22,7 @@ describe('when options.extractComments', () => {
           },
         },
       },
-      extractComments: 1,
+      extractComments: true,
     });
     plugin.apply(compilerEnv);
 

@@ -39,11 +39,59 @@ describe('when applied with invalid options', () => {
     }).not.toThrow('Validation Error');
 
     expect(() => {
+      new UglifyJsPlugin({ doesntExist: true });
+    }).toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ cache: true });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ cache: 'path/to/cache/directory' });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ cache: {} });
+    }).toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ parallel: true });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ parallel: 2 });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ parallel: '2' });
+    }).toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ parallel: {} });
+    }).toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ sourceMap: true });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ sourceMap: 'true' });
+    }).toThrow('Validation Error');
+
+    expect(() => {
       new UglifyJsPlugin({ uglifyOptions: null });
     }).toThrow('Validation Error');
 
     expect(() => {
-      new UglifyJsPlugin({ doesntExist: true });
+      new UglifyJsPlugin({ uglifyOptions: { ie8: false } });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ie8: true } });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ie8: 'false' } });
     }).toThrow('Validation Error');
 
     expect(() => {
@@ -60,6 +108,10 @@ describe('when applied with invalid options', () => {
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: true } });
+    }).toThrow('should be integer');
+
+    expect(() => {
+      new UglifyJsPlugin({ uglifyOptions: { ecma: '5' } });
     }).toThrow('should be integer');
 
     expect(() => {

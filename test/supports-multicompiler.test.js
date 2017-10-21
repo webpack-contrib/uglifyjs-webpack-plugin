@@ -35,7 +35,7 @@ describe('when using MultiCompiler with empty options', () => {
       {
         bail: true,
         cache: false,
-        entry: `${__dirname}/fixtures/es2015/entry.js`,
+        entry: `${__dirname}/fixtures/import-export/entry.js`,
         output: {
           path: `${__dirname}/dist-MultiCompiler`,
           filename: '[name].[chunkhash].js',
