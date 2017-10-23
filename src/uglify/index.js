@@ -1,8 +1,8 @@
 import os from 'os';
-import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import workerFarm from 'worker-farm';
 import minify from './minify';
+import cache from './cache';
 import { encode } from './serialization';
 
 let workerFile = require.resolve('./worker');
@@ -14,8 +14,8 @@ try {
 
 export default class {
   constructor(options = {}) {
-    const { cache, parallel } = options;
-    this.cacheDir = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;
+    const { cache: useCache, parallel } = options;
+    this.cacheDir = useCache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : useCache;
     this.maxConcurrentWorkers = parallel === true ? os.cpus().length - 1 : Math.min(Number(parallel) || 0, os.cpus().length - 1);
   }
 
@@ -58,7 +58,8 @@ export default class {
           const done = () => step(index, result);
 
           if (this.cacheDir && !result.error) {
-            cacache.put(this.cacheDir, task.cacheKey, JSON.stringify(data)).then(done, done);
+            cache.put(this.cacheDir, task.cacheKey, JSON.stringify(data));
+            done();
           } else {
             done();
           }
@@ -66,7 +67,12 @@ export default class {
       };
 
       if (this.cacheDir) {
-        cacache.get(this.cacheDir, task.cacheKey).then(({ data }) => step(index, JSON.parse(data)), enqueue);
+        const data = cache.get(this.cacheDir, task.cacheKey);
+        if (!data) {
+          enqueue();
+        } else {
+          step(index, JSON.parse(data));
+        }
       } else {
         enqueue();
       }

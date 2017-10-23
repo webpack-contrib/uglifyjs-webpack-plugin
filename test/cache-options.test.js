@@ -1,6 +1,6 @@
-import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import UglifyJsPlugin from '../src/index';
+import cache from '../src/uglify/cache';
 import {
   PluginEnvironment,
   createCompiler,
@@ -30,7 +30,7 @@ describe('when options.cache', () => {
     let eventBindings;
     let eventBinding;
 
-    beforeAll(() => cacache.rm.all(cacheDir));
+    beforeAll(() => cache.clear(cacheDir));
 
     beforeEach(() => {
       const pluginEnvironment = new PluginEnvironment();
@@ -99,24 +99,21 @@ describe('when options.cache', () => {
           it('cache files', (done) => {
             const files = ['test.js', 'test1.js', 'test2.js', 'test3.js'];
 
-            cacache.get = jest.fn(cacache.get);
-            cacache.put = jest.fn(cacache.put);
+            cache.get = jest.fn(cache.get);
+            cache.put = jest.fn(cache.put);
 
             compilationEventBinding.handler([{
               files,
             }], () => {
               // Cache disabled so we don't run `get` or `put`
-              expect(cacache.get.mock.calls.length).toBe(0);
-              expect(cacache.put.mock.calls.length).toBe(0);
+              expect(cache.get.mock.calls.length).toBe(0);
+              expect(cache.put.mock.calls.length).toBe(0);
 
-              cacache
-                .ls(cacheDir)
-                .then((cacheEntriesList) => {
-                  const cacheEntriesListKeys = Object.keys(cacheEntriesList);
+              const cacheEntriesList = cache.list(cacheDir);
+              const cacheEntriesListKeys = Object.keys(cacheEntriesList);
 
-                  expect(cacheEntriesListKeys.length).toBe(0);
-                  done();
-                });
+              expect(cacheEntriesListKeys.length).toBe(0);
+              done();
             });
           });
         });
@@ -148,7 +145,7 @@ describe('when options.cache', () => {
     let eventBindings;
     let eventBinding;
 
-    beforeAll(() => cacache.rm.all(cacheDir));
+    beforeAll(() => cache.clear(cacheDir));
 
     beforeEach(() => {
       const pluginEnvironment = new PluginEnvironment();
@@ -217,48 +214,45 @@ describe('when options.cache', () => {
           it('cache files', (done) => {
             const files = ['test.js', 'test1.js', 'test2.js', 'test3.js'];
 
-            cacache.get = jest.fn(cacache.get);
-            cacache.put = jest.fn(cacache.put);
+            cache.get = jest.fn(cache.get);
+            cache.put = jest.fn(cache.put);
 
             compilationEventBinding.handler([{
               files,
             }], () => {
               // Try to found cached files, but we don't have their in cache
-              expect(cacache.get.mock.calls.length).toBe(4);
+              expect(cache.get.mock.calls.length).toBe(4);
               // Put files in cache
-              expect(cacache.put.mock.calls.length).toBe(4);
+              expect(cache.put.mock.calls.length).toBe(4);
 
-              cacache
-                .ls(cacheDir)
-                .then((cacheEntriesList) => {
-                  const cacheEntriesListKeys = Object.keys(cacheEntriesList);
+              const cacheEntriesList = cache.list(cacheDir);
+              const cacheEntriesListKeys = Object.keys(cacheEntriesList);
 
-                  // Make sure that we cached files
-                  expect(cacheEntriesListKeys.length).toBe(files.length);
-                  cacheEntriesListKeys.forEach((cacheJSONEntry) => {
-                    const cacheEntry = JSON.parse(cacheJSONEntry);
+              // Make sure that we cached files
+              expect(cacheEntriesListKeys.length).toBe(files.length);
+              cacheEntriesListKeys.forEach((cacheJSONEntry) => {
+                const cacheEntry = JSON.parse(cacheJSONEntry);
 
-                    expect([cacheEntry.path, cacheEntry.input])
-                      .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntry.path}`);
-                  });
+                expect([cacheEntry.path, cacheEntry.input])
+                  .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntry.path}`);
+              });
 
-                  // Reset compilation assets and mocks
-                  compilation.assets = Object.assign({}, assets);
-                  compilation.errors = [];
+              // Reset compilation assets and mocks
+              compilation.assets = Object.assign({}, assets);
+              compilation.errors = [];
 
-                  cacache.get.mockClear();
-                  cacache.put.mockClear();
+              cache.get.mockClear();
+              cache.put.mockClear();
 
-                  compilationEventBinding.handler([{
-                    files,
-                  }], () => {
-                    // Now we have cached files so we get their and don't put
-                    expect(cacache.get.mock.calls.length).toBe(4);
-                    expect(cacache.put.mock.calls.length).toBe(0);
+              compilationEventBinding.handler([{
+                files,
+              }], () => {
+                // Now we have cached files so we get their and don't put
+                expect(cache.get.mock.calls.length).toBe(4);
+                expect(cache.put.mock.calls.length).toBe(0);
 
-                    done();
-                  });
-                });
+                done();
+              });
             });
           });
         });
@@ -291,7 +285,7 @@ describe('when options.cache', () => {
     let eventBindings;
     let eventBinding;
 
-    beforeAll(() => cacache.rm.all(othercacheDir));
+    beforeAll(() => cache.clear(othercacheDir));
 
     beforeEach(() => {
       const pluginEnvironment = new PluginEnvironment();
@@ -360,48 +354,45 @@ describe('when options.cache', () => {
           it('cache files', (done) => {
             const files = ['test.js', 'test1.js', 'test2.js', 'test3.js'];
 
-            cacache.get = jest.fn(cacache.get);
-            cacache.put = jest.fn(cacache.put);
+            cache.get = jest.fn(cache.get);
+            cache.put = jest.fn(cache.put);
 
             compilationEventBinding.handler([{
               files,
             }], () => {
               // Try to found cached files, but we don't have their in cache
-              expect(cacache.get.mock.calls.length).toBe(4);
+              expect(cache.get.mock.calls.length).toBe(4);
               // Put files in cache
-              expect(cacache.put.mock.calls.length).toBe(4);
+              expect(cache.put.mock.calls.length).toBe(4);
 
-              cacache
-                .ls(othercacheDir)
-                .then((cacheEntriesList) => {
-                  const cacheEntriesListKeys = Object.keys(cacheEntriesList);
+              const cacheEntriesList = cache.list(othercacheDir);
+              const cacheEntriesListKeys = Object.keys(cacheEntriesList);
 
-                  // Make sure that we cached files
-                  expect(cacheEntriesListKeys.length).toBe(files.length);
-                  cacheEntriesListKeys.forEach((cacheJSONEntry) => {
-                    const cacheEntry = JSON.parse(cacheJSONEntry);
+              // Make sure that we cached files
+              expect(cacheEntriesListKeys.length).toBe(files.length);
+              cacheEntriesListKeys.forEach((cacheJSONEntry) => {
+                const cacheEntry = JSON.parse(cacheJSONEntry);
 
-                    expect([cacheEntry.path, cacheEntry.input])
-                      .toMatchSnapshot(`cache \`string\`: cached entry ${cacheEntry.path}`);
-                  });
+                expect([cacheEntry.path, cacheEntry.input])
+                  .toMatchSnapshot(`cache \`string\`: cached entry ${cacheEntry.path}`);
+              });
 
-                  // Reset compilation assets and mocks
-                  compilation.assets = Object.assign({}, assets);
-                  compilation.errors = [];
+              // Reset compilation assets and mocks
+              compilation.assets = Object.assign({}, assets);
+              compilation.errors = [];
 
-                  cacache.get.mockClear();
-                  cacache.put.mockClear();
+              cache.get.mockClear();
+              cache.put.mockClear();
 
-                  compilationEventBinding.handler([{
-                    files,
-                  }], () => {
-                    // Now we have cached files so we get their and don't put
-                    expect(cacache.get.mock.calls.length).toBe(4);
-                    expect(cacache.put.mock.calls.length).toBe(0);
+              compilationEventBinding.handler([{
+                files,
+              }], () => {
+                // Now we have cached files so we get their and don't put
+                expect(cache.get.mock.calls.length).toBe(4);
+                expect(cache.put.mock.calls.length).toBe(0);
 
-                    done();
-                  });
-                });
+                done();
+              });
             });
           });
         });
