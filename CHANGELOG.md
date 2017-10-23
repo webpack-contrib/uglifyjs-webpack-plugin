@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.0.0-rc.0...v1.0.0) (2017-10-23)
+
+
+### Bug Fixes
+
+* **deps:** cacache@10 with ISC licence ([#145](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/145)) ([9331034](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/9331034))
+
+
+
 <a name="1.0.0-rc.0"></a>
 # [1.0.0-rc.0](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.0.0-beta.2...v1.0.0-rc.0) (2017-10-23)
 
