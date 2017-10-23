@@ -30,7 +30,7 @@
     "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
-    "cacache": "^9.2.9",
+    "cacache": "^10.0.0",
     "find-cache-dir": "^1.0.0",
     "schema-utils": "^0.3.0",
     "source-map": "^0.5.6",
