@@ -82,7 +82,7 @@ class UglifyJsPlugin {
 						let ast = uglify.parse(input, {
 							filename: file
 						});
-						if(options.compress !== false) {
+						if(options.compress !== false && options.compress !== undefined) {
 							ast.figure_out_scope();
 							const compress = uglify.Compressor(options.compress || {
 								warnings: false
