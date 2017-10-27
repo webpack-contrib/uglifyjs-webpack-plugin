@@ -15,8 +15,6 @@
 	<p>This plugin uses <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">UglifyJS v3 </a><a href="https://npmjs.com/package/uglify-es">(`uglify-es`)</a> to minify your JavaScript</p>
 </div>
 
-> ⚠️ This documentation is for the current beta. For latest stable, see [v0.4.6](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/v0.4.6).
-
 > ℹ️  webpack contains the same plugin under `webpack.optimize.UglifyJsPlugin`. The documentation is valid apart from the installation instructions
 
 <h2 align="center">Install</h2>
@@ -40,15 +38,13 @@ module.exports = {
 
 <h2 align="center">Options</h2>
 
-> ⚠️ The following options are for the latest beta version. If you would like to see the options for the latest built-in version of the plugin in webpack, see the [v0.4.6 docs](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/v0.4.6).
-
 |Name|Type|Default|Description|
 |:--:|:--:|:-----:|:----------|
 |**`test`**|`{RegExp\|Array<RegExp>}`| <code>/\\.js$/i</code>|Test to match files against|
 |**`include`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `include`|
 |**`exclude`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `exclude`|
 |**`cache`**|`{Boolean\|String}`|`false`|Enable file caching|
-|**`parallel`**|`{Boolean\|Number}`|`false`|Use multi-process parallel running and file cache to improve the build speed|
+|**`parallel`**|`{Boolean\|Number}`|`false`|Use multi-process parallel running to improve the build speed|
 |**`sourceMap`**|`{Boolean}`|`false`|Use source maps to map error message locations to modules (This slows down the compilation) ⚠️ **`cheap-source-map` options don't work with this plugin**|
 |**`uglifyOptions`**|`{Object}`|[`{...defaults}`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions)|`uglify` [Options](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)|
 |**`extractComments`**|`{Boolean\|RegExp\|Function<(node, comment) -> {Boolean\|Object}>}`|`false`|Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a) (`webpack >= 2.3.0`)|
