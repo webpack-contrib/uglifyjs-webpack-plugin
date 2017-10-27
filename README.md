@@ -60,7 +60,7 @@ module.exports = {
 ```js
 [
   new UglifyJSPlugin({
-    test: /\.js($&#124;\?)/i
+    test: /\.js($|\?)/i
   })
 ]
 ```
