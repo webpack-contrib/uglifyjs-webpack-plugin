@@ -20,7 +20,7 @@
 <h2 align="center">Install</h2>
 
 ```bash
-npm i -D uglifyjs-webpack-plugin@beta
+npm i -D uglifyjs-webpack-plugin@latest
 ```
 
 <h2 align="center">Usage</h2>
