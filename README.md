@@ -27,11 +27,11 @@ npm i -D uglifyjs-webpack-plugin
 
 **webpack.config.js**
 ```js
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   plugins: [
-    new UglifyJSPlugin()
+    new UglifyJsPlugin()
   ]
 }
 ```
@@ -55,7 +55,7 @@ module.exports = {
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     test: /\.js($|\?)/i
   })
 ]
@@ -66,7 +66,7 @@ module.exports = {
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     include: /\/includes/
   })
 ]
@@ -77,7 +77,7 @@ module.exports = {
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     exclude: /\/excludes/
   })
 ]
@@ -90,7 +90,7 @@ module.exports = {
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     cache: true
   })
 ]
@@ -104,7 +104,7 @@ Default path to cache directory: `node_modules/.cache/uglifyjs-webpack-plugin`.
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     cache: 'path/to/cache'
   })
 ]
@@ -119,7 +119,7 @@ Path to cache directory.
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     parallel: true
   })
 ]
@@ -133,7 +133,7 @@ Default number of concurrent runs: `os.cpus().length - 1`.
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     parallel: 4
   })
 ]
@@ -148,7 +148,7 @@ Number of concurrent runs.
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     sourceMap: true
   })
 ]
@@ -171,7 +171,7 @@ Number of concurrent runs.
 **webpack.config.js**
 ```js
 [
-  new UglifyJSPlugin({
+  new UglifyJsPlugin({
     uglifyOptions: {
       ie8: false,
       ecma: 8,
