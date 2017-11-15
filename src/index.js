@@ -31,6 +31,7 @@ class UglifyJsPlugin {
       sourceMap = false,
       cache = false,
       parallel = false,
+      exclude,
     } = options;
 
     this.options = {
@@ -40,6 +41,7 @@ class UglifyJsPlugin {
       sourceMap,
       cache,
       parallel,
+      exclude,
       uglifyOptions: {
         output: {
           comments: /^\**!|@preserve|@license|@cc_on/,
