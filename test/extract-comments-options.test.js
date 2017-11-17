@@ -71,6 +71,48 @@ describe('when options.extractComments', () => {
     });
   });
 
+  it('normalizes when options.extractComments is boolean', () => {
+    const pluginEnvironment = new PluginEnvironment();
+    const compilerEnv = pluginEnvironment.getEnvironmentStub();
+    compilerEnv.context = '';
+
+    const plugin = new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          comments: false,
+        },
+      },
+      extractComments: true,
+    });
+    plugin.apply(compilerEnv);
+    const [eventBinding] = pluginEnvironment.getEventBindings();
+    const chunkPluginEnvironment = new PluginEnvironment();
+    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
+    compilation2.assets = {
+      'test.js': {
+        source: () => '// Comment\nvar foo = 1;',
+      },
+      'test1.js': {
+        source: () => '/* Comment */\nvar foo = 1;',
+      },
+    };
+    compilation2.warnings = [];
+    compilation2.errors = [];
+
+    eventBinding.handler(compilation2);
+    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+
+    compilationEventBinding.handler([{
+      files: ['test.js', 'test1.js'],
+    }], () => {
+      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
+      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
+      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
+      expect(compilation2.errors).toMatchSnapshot('errors');
+      expect(compilation2.warnings).toMatchSnapshot('warnings');
+    });
+  });
+
   it('normalizes when options.extractComments is regex', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
@@ -90,22 +132,116 @@ describe('when options.extractComments', () => {
     const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
     compilation2.assets = {
       'test.js': {
-        source: () => 'var foo = 1;',
+        source: () => '// Comment\nvar foo = 1;',
+      },
+      'test1.js': {
+        source: () => '// foo\nvar foo = 1;',
       },
     };
+    compilation2.warnings = [];
     compilation2.errors = [];
 
     eventBinding.handler(compilation2);
     [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
     compilationEventBinding.handler([{
-      files: ['test.js'],
+      files: ['test.js', 'test1.js'],
     }], () => {
-      expect(compilation2.errors.length).toBe(0);
+      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
+      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
+      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
+      expect(compilation2.errors).toMatchSnapshot('errors');
+      expect(compilation2.warnings).toMatchSnapshot('warnings');
     });
   });
 
-  it('converts boolean options.extractComments.condition to function', () => {
+  it('normalizes when options.extractComments is string', () => {
+    const pluginEnvironment = new PluginEnvironment();
+    const compilerEnv = pluginEnvironment.getEnvironmentStub();
+    compilerEnv.context = '';
+
+    const plugin = new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          comments: false,
+        },
+      },
+      extractComments: 'all',
+    });
+    plugin.apply(compilerEnv);
+    const [eventBinding] = pluginEnvironment.getEventBindings();
+    const chunkPluginEnvironment = new PluginEnvironment();
+    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
+    compilation2.assets = {
+      'test.js': {
+        source: () => '// Comment\nvar foo = 1;',
+      },
+      'test1.js': {
+        source: () => '/* Comment */\nvar foo = 1;',
+      },
+    };
+    compilation2.warnings = [];
+    compilation2.errors = [];
+
+    eventBinding.handler(compilation2);
+    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+
+    compilationEventBinding.handler([{
+      files: ['test.js', 'test1.js'],
+    }], () => {
+      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
+      expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot('test.js.LICENSE');
+      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
+      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
+      expect(compilation2.errors).toMatchSnapshot('errors');
+      expect(compilation2.warnings).toMatchSnapshot('warnings');
+    });
+  });
+
+  it('normalizes when options.extractComments is function', () => {
+    const pluginEnvironment = new PluginEnvironment();
+    const compilerEnv = pluginEnvironment.getEnvironmentStub();
+    compilerEnv.context = '';
+
+    const plugin = new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          comments: false,
+        },
+      },
+      extractComments: () => true,
+    });
+    plugin.apply(compilerEnv);
+    const [eventBinding] = pluginEnvironment.getEventBindings();
+    const chunkPluginEnvironment = new PluginEnvironment();
+    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
+    compilation2.assets = {
+      'test.js': {
+        source: () => '// Comment\nvar foo = 1;',
+      },
+      'test1.js': {
+        source: () => '/* Comment */\nvar foo = 1;',
+      },
+    };
+    compilation2.warnings = [];
+    compilation2.errors = [];
+
+    eventBinding.handler(compilation2);
+    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+
+    compilationEventBinding.handler([{
+      files: ['test.js', 'test1.js'],
+    }], () => {
+      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
+      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test.js');
+      expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot('test.js.LICENSE');
+      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
+      expect(compilation2.errors).toMatchSnapshot('errors');
+      expect(compilation2.warnings).toMatchSnapshot('warnings');
+    });
+  });
+
+  it('normalizes when options.extractComments is object', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
@@ -132,9 +268,10 @@ describe('when options.extractComments', () => {
     const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
     compilation2.assets = {
       'test.js': {
-        source: () => 'var foo = 1;',
+        source: () => '// Comment\nvar foo = 1;',
       },
     };
+    compilation2.warnings = [];
     compilation2.errors = [];
 
     eventBinding.handler(compilation2);
@@ -143,7 +280,10 @@ describe('when options.extractComments', () => {
     compilationEventBinding.handler([{
       files: ['test.js'],
     }], () => {
-      expect(compilation2.errors.length).toBe(0);
+      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
+      expect(compilation2.assets['test.license.js'].source()).toMatchSnapshot('test.license.js');
+      expect(compilation2.errors).toMatchSnapshot('errors');
+      expect(compilation2.warnings).toMatchSnapshot('warnings');
     });
   });
 });

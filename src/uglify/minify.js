@@ -38,11 +38,15 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
   const commentsOpts = uglifyOptions.output.comments;
 
   if (
+    typeof options.extractComments === 'boolean' ||
     typeof options.extractComments === 'string' ||
     options.extractComments instanceof RegExp
   ) {
     // extractComments specifies the extract condition and commentsOpts specifies the preserve condition
     condition.preserve = commentsOpts;
+    condition.extract = options.extractComments;
+  } else if (typeof options.extractComments === 'function') {
+    condition.preserve = false;
     condition.extract = options.extractComments;
   } else if (
     Object.prototype.hasOwnProperty.call(options.extractComments, 'condition')
