@@ -31,6 +31,7 @@ class UglifyJsPlugin {
       sourceMap = false,
       cache = false,
       parallel = false,
+      include,
       exclude,
     } = options;
 
@@ -41,6 +42,7 @@ class UglifyJsPlugin {
       sourceMap,
       cache,
       parallel,
+      include,
       exclude,
       uglifyOptions: {
         output: {
