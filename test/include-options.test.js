@@ -5,21 +5,21 @@ import {
   compile,
 } from './helpers';
 
-describe('when applied with exclude option', () => {
+describe('when applied with include option', () => {
   let compiler;
   beforeEach(() => {
     compiler = createCompiler({
       entry: {
-        excluded1: `${__dirname}/fixtures/excluded1.js`,
-        excluded2: `${__dirname}/fixtures/excluded2.js`,
+        included1: `${__dirname}/fixtures/included1.js`,
+        included2: `${__dirname}/fixtures/included2.js`,
         entry: `${__dirname}/fixtures/entry.js`,
       },
     });
   });
 
-  it('matches snapshot for a single exclude', () => {
+  it('matches snapshot for a single include', () => {
     new UglifyJsPlugin({
-      exclude: /excluded1/,
+      include: /included1/,
     }).apply(compiler);
 
 
@@ -38,11 +38,11 @@ describe('when applied with exclude option', () => {
     });
   });
 
-  it('matches snapshot for multiple excludes', () => {
+  it('matches snapshot for multiple includes', () => {
     new UglifyJsPlugin({
-      exclude: [
-        /excluded1/,
-        /excluded2/,
+      include: [
+        /included1/,
+        /included2/,
       ],
     }).apply(compiler);
 
