@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.0.1...v1.1.0) (2017-11-19)
+
+
+### Bug Fixes
+
+* **index:** `exclude` is ignored (`options.exclude`)  ([#164](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/164)) ([ad17690](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/ad17690))
+* pass of `{Boolean|Function}` parameters being ignored (`options.extractComments`) ([#168](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/168)) ([2c06f46](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/2c06f46))
+
+
+### Features
+
+* `include` option ([#167](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/167)) ([bbe0ef5](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/bbe0ef5))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.0.0...v1.0.1) (2017-10-24)
 
