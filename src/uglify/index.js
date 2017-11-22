@@ -28,6 +28,7 @@ export default class {
     if (this.maxConcurrentWorkers > 0) {
       this.workers = workerFarm({
         maxConcurrentWorkers: this.maxConcurrentWorkers,
+        maxConcurrentCallsPerWorker: 1
       }, workerFile);
       this.boundWorkers = (options, cb) => this.workers(JSON.stringify(options, encode), cb);
     } else {
