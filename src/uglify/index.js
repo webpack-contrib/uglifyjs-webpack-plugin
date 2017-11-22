@@ -26,10 +26,8 @@ export default class {
     }
 
     if (this.maxConcurrentWorkers > 0) {
-      this.workers = workerFarm({
-        maxConcurrentWorkers: this.maxConcurrentWorkers,
-        maxConcurrentCallsPerWorker: 1,
-      }, workerFile);
+      const workerOptions = process.platform === 'win32' ? { maxConcurrentWorkers: this.maxConcurrentWorkers, maxConcurrentCallsPerWorker: 1 } : { maxConcurrentWorkers: this.maxConcurrentWorkers };
+      this.workers = workerFarm(workerOptions, workerFile);
       this.boundWorkers = (options, cb) => this.workers(JSON.stringify(options, encode), cb);
     } else {
       this.boundWorkers = (options, cb) => {
