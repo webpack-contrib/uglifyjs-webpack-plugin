@@ -46,7 +46,7 @@ class UglifyJsPlugin {
       exclude,
       uglifyOptions: {
         output: {
-          comments: /^\**!|@preserve|@license|@cc_on/,
+          comments: false,
         },
         ...uglifyOptions,
       },

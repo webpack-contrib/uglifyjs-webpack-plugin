@@ -6,11 +6,6 @@ describe('matches snapshot', () => {
     const options = {
       file: 'test1.js',
       input: 'var foo = 1;/* hello */',
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-      },
       extractComments: /foo/,
     };
     worker(JSON.stringify(options, encode), (error, data) => {

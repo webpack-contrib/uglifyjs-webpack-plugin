@@ -13,9 +13,6 @@ describe('when options.extractComments', () => {
     const plugin = new UglifyJsPlugin({
       uglifyOptions: {
         warnings: true,
-        output: {
-          comments: false,
-        },
         mangle: {
           properties: {
             builtins: true,
@@ -77,11 +74,6 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-      },
       extractComments: true,
     });
     plugin.apply(compilerEnv);
@@ -119,11 +111,6 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-      },
       extractComments: /foo/,
     });
     plugin.apply(compilerEnv);
@@ -161,11 +148,6 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-      },
       extractComments: 'all',
     });
     plugin.apply(compilerEnv);
@@ -204,11 +186,6 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-      },
       extractComments: () => true,
     });
     plugin.apply(compilerEnv);
@@ -247,11 +224,6 @@ describe('when options.extractComments', () => {
     compilerEnv.context = '';
 
     const plugin = new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-      },
       extractComments: {
         condition: true,
         filename(file) {

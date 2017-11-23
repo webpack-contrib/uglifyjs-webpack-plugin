@@ -32,7 +32,6 @@ describe('when applied with all options', () => {
         mangle: false,
         output: {
           beautify: true,
-          comments: false,
         },
       },
     });
@@ -48,7 +47,6 @@ describe('when applied with all options', () => {
         mangle: false,
         output: {
           beautify: true,
-          comments: false,
         },
         warnings: true,
       },
@@ -295,7 +293,6 @@ describe('when applied with all options', () => {
                   mangle: false,
                   output: {
                     beautify: true,
-                    comments: false,
                   },
                 },
               });
@@ -349,7 +346,6 @@ describe('when applied with all options', () => {
                   mangle: false,
                   output: {
                     beautify: true,
-                    comments: false,
                   },
                 },
               });
