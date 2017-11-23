@@ -23,7 +23,6 @@ describe('when applied with uglifyOptions.ecma', () => {
         warnings: true,
         output: {
           beautify: true,
-          comments: false,
         },
       },
     }).apply(compiler);
@@ -60,7 +59,6 @@ describe('when applied with uglifyOptions.ecma', () => {
         warnings: true,
         output: {
           beautify: true,
-          comments: false,
         },
       },
     }).apply(compiler);
@@ -97,7 +95,6 @@ describe('when applied with uglifyOptions.ecma', () => {
         warnings: true,
         output: {
           beautify: true,
-          comments: false,
         },
       },
     }).apply(compiler);
@@ -133,7 +130,6 @@ describe('when applied with uglifyOptions.ecma', () => {
         warnings: true,
         output: {
           beautify: true,
-          comments: false,
         },
       },
     }).apply(compiler);
@@ -170,7 +166,6 @@ describe('when applied with uglifyOptions.ecma', () => {
         warnings: true,
         output: {
           beautify: true,
-          comments: false,
         },
       },
     }).apply(compiler);

@@ -20,7 +20,7 @@ const buildUglifyOptions = ({
   mangle: mangle == null ? true : mangle,
   output: {
     shebang: true,
-    comments: /^\**!|@preserve|@license|@cc_on/,
+    comments: false,
     beautify: false,
     semicolons: true,
     ...output,
@@ -37,8 +37,11 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = uglifyOptions.output.comments;
 
-  if (
-    typeof options.extractComments === 'boolean' ||
+  // /^\**!|@preserve|@license|@cc_on/
+  if (typeof options.extractComments === 'boolean') {
+    condition.preserve = commentsOpts;
+    condition.extract = /^\**!|@preserve|@license|@cc_on/;
+  } else if (
     typeof options.extractComments === 'string' ||
     options.extractComments instanceof RegExp
   ) {

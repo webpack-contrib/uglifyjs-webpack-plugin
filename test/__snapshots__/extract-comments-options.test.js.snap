@@ -8,12 +8,7 @@ exports[`errors 3`] = `Array []`;
 
 exports[`errors 4`] = `Array []`;
 
-exports[`errors 5`] = `Array []`;
-
-exports[`test.js 1`] = `
-"/*! For license information please see test.js.LICENSE */
-var foo=1;"
-`;
+exports[`test.js 1`] = `"var foo=1;"`;
 
 exports[`test.js 2`] = `"var foo=1;"`;
 
@@ -52,10 +47,7 @@ exports[`test.license.js 1`] = `
 "
 `;
 
-exports[`test1.js 1`] = `
-"/*! For license information please see test1.js.LICENSE */
-var foo=1;"
-`;
+exports[`test1.js 1`] = `"var foo=1;"`;
 
 exports[`test1.js 2`] = `
 "/*! For license information please see test1.js.LICENSE */
@@ -68,21 +60,16 @@ var foo=1;"
 `;
 
 exports[`test1.js.LICENSE 1`] = `
-"/* Comment */
-"
-`;
-
-exports[`test1.js.LICENSE 2`] = `
 "// foo
 "
 `;
 
-exports[`test1.js.LICENSE 3`] = `
+exports[`test1.js.LICENSE 2`] = `
 "/* Comment */
 "
 `;
 
-exports[`test1.js.LICENSE 4`] = `
+exports[`test1.js.LICENSE 3`] = `
 "/* Comment */
 "
 `;
@@ -94,5 +81,3 @@ exports[`warnings 2`] = `Array []`;
 exports[`warnings 3`] = `Array []`;
 
 exports[`warnings 4`] = `Array []`;
-
-exports[`warnings 5`] = `Array []`;
