@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.0...v1.1.1) (2017-11-23)
+
+
+### Bug Fixes
+
+* comments behavior (`options.uglifyOptions.comments/options.extractComments`) ([#174](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/174)) ([321c9f6](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/321c9f6))
+* **index:** ensure to nullify `inputSourceMap` if `sourcemap` is unavailable (`devtool`) ([#169](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/169)) ([062ec72](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/062ec72))
+* **index:** set `maxConcurrentCallsPerWorker` to 1 (`options.parallel`) ([#173](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/173)) ([07c57c1](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/07c57c1))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.0.1...v1.1.0) (2017-11-19)
 
