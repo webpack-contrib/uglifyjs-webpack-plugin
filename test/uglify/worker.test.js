@@ -1,5 +1,5 @@
+import serialize from 'serialize-javascript';
 import worker from '../../src/uglify/worker';
-import { encode } from '../../src/uglify/serialization';
 
 describe('matches snapshot', () => {
   it('normalizes when options.extractComments is regex', () => {
@@ -8,7 +8,7 @@ describe('matches snapshot', () => {
       input: 'var foo = 1;/* hello */',
       extractComments: /foo/,
     };
-    worker(JSON.stringify(options, encode), (error, data) => {
+    worker(serialize(options), (error, data) => {
       if (error) {
         throw error;
       }
@@ -26,7 +26,7 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(JSON.stringify(options, encode), (error, data) => {
+    worker(serialize(options), (error, data) => {
       if (error) {
         throw error;
       }
@@ -44,7 +44,7 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(JSON.stringify(options, encode), (error, data) => {
+    worker(serialize(options), (error, data) => {
       if (error) {
         throw error;
       }
@@ -63,7 +63,7 @@ describe('matches snapshot', () => {
       },
       extractComments: 1,
     };
-    worker(JSON.stringify(options, encode), (error, data) => {
+    worker(serialize(options), (error, data) => {
       if (error) {
         throw error;
       }
@@ -90,7 +90,7 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(JSON.stringify(options, encode), (error, data) => {
+    worker(serialize(options), (error, data) => {
       if (error) {
         throw error;
       }
@@ -109,7 +109,7 @@ describe('matches snapshot', () => {
         mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
       },
     };
-    worker(JSON.stringify(options, encode), (error, data) => {
+    worker(serialize(options), (error, data) => {
       if (error) {
         throw error;
       }

@@ -8,9 +8,9 @@ import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
+import serialize from 'serialize-javascript';
 import schema from './options.json';
 import Uglify from './uglify';
-import { encode } from './uglify/serialization';
 import versions from './uglify/versions';
 
 /* eslint-disable
@@ -155,13 +155,13 @@ class UglifyJsPlugin {
               };
 
               if (this.options.cache) {
-                task.cacheKey = JSON.stringify({
+                task.cacheKey = serialize({
                   'uglify-es': versions.uglify,
                   'uglifyjs-webpack-plugin': versions.plugin,
                   'uglifyjs-webpack-plugin-options': this.options,
                   path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
                   input,
-                }, encode);
+                });
               }
 
               tasks.push(task);
