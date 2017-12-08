@@ -112,9 +112,9 @@ describe('when options.cache', () => {
               cacache
                 .ls(cacheDir)
                 .then((cacheEntriesList) => {
-                  const cacheEntriesListKeys = Object.keys(cacheEntriesList);
+                  const cacheKeys = Object.keys(cacheEntriesList);
 
-                  expect(cacheEntriesListKeys.length).toBe(0);
+                  expect(cacheKeys.length).toBe(0);
                   done();
                 });
             });
@@ -231,15 +231,16 @@ describe('when options.cache', () => {
               cacache
                 .ls(cacheDir)
                 .then((cacheEntriesList) => {
-                  const cacheEntriesListKeys = Object.keys(cacheEntriesList);
+                  const cacheKeys = Object.keys(cacheEntriesList);
 
                   // Make sure that we cached files
-                  expect(cacheEntriesListKeys.length).toBe(files.length);
-                  cacheEntriesListKeys.forEach((cacheJSONEntry) => {
-                    const cacheEntry = JSON.parse(cacheJSONEntry);
+                  expect(cacheKeys.length).toBe(files.length);
+                  cacheKeys.forEach((cacheEntry) => {
+                    // eslint-disable-next-line no-new-func
+                    const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
 
-                    expect([cacheEntry.path, cacheEntry.input])
-                      .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntry.path}`);
+                    expect([cacheEntryOptions.path, cacheEntryOptions.input])
+                      .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntryOptions.path}`);
                   });
 
                   // Reset compilation assets and mocks
@@ -374,15 +375,16 @@ describe('when options.cache', () => {
               cacache
                 .ls(othercacheDir)
                 .then((cacheEntriesList) => {
-                  const cacheEntriesListKeys = Object.keys(cacheEntriesList);
+                  const cacheKeys = Object.keys(cacheEntriesList);
 
                   // Make sure that we cached files
-                  expect(cacheEntriesListKeys.length).toBe(files.length);
-                  cacheEntriesListKeys.forEach((cacheJSONEntry) => {
-                    const cacheEntry = JSON.parse(cacheJSONEntry);
+                  expect(cacheKeys.length).toBe(files.length);
+                  cacheKeys.forEach((cacheEntry) => {
+                    // eslint-disable-next-line no-new-func
+                    const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
 
-                    expect([cacheEntry.path, cacheEntry.input])
-                      .toMatchSnapshot(`cache \`string\`: cached entry ${cacheEntry.path}`);
+                    expect([cacheEntryOptions.path, cacheEntryOptions.input])
+                      .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntryOptions.path}`);
                   });
 
                   // Reset compilation assets and mocks

@@ -2,8 +2,8 @@ import os from 'os';
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import workerFarm from 'worker-farm';
+import serialize from 'serialize-javascript';
 import minify from './minify';
-import { encode } from './serialization';
 
 let workerFile = require.resolve('./worker');
 
@@ -28,7 +28,7 @@ export default class {
     if (this.maxConcurrentWorkers > 0) {
       const workerOptions = process.platform === 'win32' ? { maxConcurrentWorkers: this.maxConcurrentWorkers, maxConcurrentCallsPerWorker: 1 } : { maxConcurrentWorkers: this.maxConcurrentWorkers };
       this.workers = workerFarm(workerOptions, workerFile);
-      this.boundWorkers = (options, cb) => this.workers(JSON.stringify(options, encode), cb);
+      this.boundWorkers = (options, cb) => this.workers(serialize(options), cb);
     } else {
       this.boundWorkers = (options, cb) => {
         try {

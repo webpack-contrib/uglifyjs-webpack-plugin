@@ -1,9 +1,13 @@
 import minify from './minify';
-import { decode } from './serialization';
 
 module.exports = (options, callback) => {
   try {
-    callback(null, minify(JSON.parse(options, decode)));
+    // 'use strict' => this === undefined (Clean Scope)
+    // Safer for possible security issues, albeit not critical at all here
+    // eslint-disable-next-line no-new-func, no-param-reassign
+    options = new Function(`'use strict'\nreturn ${options}`)();
+
+    callback(null, minify(options));
   } catch (errors) {
     callback(errors);
   }
