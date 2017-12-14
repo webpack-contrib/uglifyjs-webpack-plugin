@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file. See [standa
 ## [1.1.3](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.2...v1.1.3) (2017-12-14)
 
 
+### Refactoring
+
+* use `serialize-javascript` package instead own implementatin ([#183](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/183)) ([8d7ebcd](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/8d7ebcd))
+
+
 
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.1...v1.1.2) (2017-11-30)
