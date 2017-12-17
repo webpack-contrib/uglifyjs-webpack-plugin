@@ -5,6 +5,7 @@
   "author": "webpack Contrib Team",
   "license": "MIT",
   "main": "dist/cjs.js",
+  "types": "src/index.d.ts",
   "files": [
     "dist"
   ],
