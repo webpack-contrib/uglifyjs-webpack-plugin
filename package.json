@@ -59,25 +59,25 @@
     "webpack": "^3.8.1",
     "webpack-defaults": "^1.6.0"
   },
+  "peerDependencies": {
+    "webpack": "^3.0.0 || ^4.0.0-alpha.0 || ^4.0.0"
+  },
+  "engines": {
+    "node": ">= 6.9.0 || >= 8.9.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin.git"
   },
+  "bugs": {
+    "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin",
   "keywords": [
     "webpack",
     "uglifyjs",
     "plugin"
   ],
-  "bugs": {
-    "url": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues"
-  },
-  "homepage": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin",
-  "peerDependencies": {
-    "webpack": "^2.0.0 || ^3.0.0"
-  },
-  "engines": {
-    "node": ">= 4.8 < 5.0.0 || >= 5.10"
-  },
   "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": [
