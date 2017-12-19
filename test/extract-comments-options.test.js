@@ -32,7 +32,8 @@ describe('when options.extractComments', () => {
         source: () => 'var foo = 1;',
       },
       'test1.js': {
-        source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+        source: () =>
+          'function foo(x) { if (x) { return bar(); not_called1(); } }',
         map: () => {
           return {
             version: 3,
@@ -51,21 +52,33 @@ describe('when options.extractComments', () => {
   });
 
   it('normalizes extractConmments', () => {
-    compilationEventBinding.handler([{
-      files: ['test.js'],
-    }], () => {
-      expect(compilation.errors.length).toBe(0);
-    });
+    compilationEventBinding.handler(
+      [
+        {
+          files: ['test.js'],
+        },
+      ],
+      () => {
+        expect(compilation.errors.length).toBe(0);
+      }
+    );
   });
 
   it('outputs warnings for unreachable code', () => {
-    compilationEventBinding.handler([{
-      files: ['test.js', 'test1.js'],
-    }], () => {
-      expect(compilation.warnings.length).toBe(1);
-      expect(compilation.warnings[0]).toBeInstanceOf(Error);
-      expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
-    });
+    compilationEventBinding.handler(
+      [
+        {
+          files: ['test.js', 'test1.js'],
+        },
+      ],
+      () => {
+        expect(compilation.warnings.length).toBe(1);
+        expect(compilation.warnings[0]).toBeInstanceOf(Error);
+        expect(compilation.warnings[0].message).toEqual(
+          expect.stringContaining('Dropping unreachable code')
+        );
+      }
+    );
   });
 
   it('normalizes when options.extractComments is boolean', () => {
@@ -94,15 +107,26 @@ describe('when options.extractComments', () => {
     eventBinding.handler(compilation2);
     [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
-    compilationEventBinding.handler([{
-      files: ['test.js', 'test1.js'],
-    }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
-    });
+    compilationEventBinding.handler(
+      [
+        {
+          files: ['test.js', 'test1.js'],
+        },
+      ],
+      () => {
+        expect(compilation2.assets['test.js'].source()).toMatchSnapshot(
+          'test.js'
+        );
+        expect(compilation2.assets['test1.js'].source()).toMatchSnapshot(
+          'test1.js'
+        );
+        expect(
+          compilation2.assets['test1.js.LICENSE'].source()
+        ).toMatchSnapshot('test1.js.LICENSE');
+        expect(compilation2.errors).toMatchSnapshot('errors');
+        expect(compilation2.warnings).toMatchSnapshot('warnings');
+      }
+    );
   });
 
   it('normalizes when options.extractComments is regex', () => {
@@ -131,15 +155,26 @@ describe('when options.extractComments', () => {
     eventBinding.handler(compilation2);
     [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
-    compilationEventBinding.handler([{
-      files: ['test.js', 'test1.js'],
-    }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
-    });
+    compilationEventBinding.handler(
+      [
+        {
+          files: ['test.js', 'test1.js'],
+        },
+      ],
+      () => {
+        expect(compilation2.assets['test.js'].source()).toMatchSnapshot(
+          'test.js'
+        );
+        expect(compilation2.assets['test1.js'].source()).toMatchSnapshot(
+          'test1.js'
+        );
+        expect(
+          compilation2.assets['test1.js.LICENSE'].source()
+        ).toMatchSnapshot('test1.js.LICENSE');
+        expect(compilation2.errors).toMatchSnapshot('errors');
+        expect(compilation2.warnings).toMatchSnapshot('warnings');
+      }
+    );
   });
 
   it('normalizes when options.extractComments is string', () => {
@@ -168,16 +203,29 @@ describe('when options.extractComments', () => {
     eventBinding.handler(compilation2);
     [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
-    compilationEventBinding.handler([{
-      files: ['test.js', 'test1.js'],
-    }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot('test.js.LICENSE');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
-    });
+    compilationEventBinding.handler(
+      [
+        {
+          files: ['test.js', 'test1.js'],
+        },
+      ],
+      () => {
+        expect(compilation2.assets['test.js'].source()).toMatchSnapshot(
+          'test.js'
+        );
+        expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot(
+          'test.js.LICENSE'
+        );
+        expect(compilation2.assets['test1.js'].source()).toMatchSnapshot(
+          'test1.js'
+        );
+        expect(
+          compilation2.assets['test1.js.LICENSE'].source()
+        ).toMatchSnapshot('test1.js.LICENSE');
+        expect(compilation2.errors).toMatchSnapshot('errors');
+        expect(compilation2.warnings).toMatchSnapshot('warnings');
+      }
+    );
   });
 
   it('normalizes when options.extractComments is function', () => {
@@ -206,16 +254,29 @@ describe('when options.extractComments', () => {
     eventBinding.handler(compilation2);
     [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
-    compilationEventBinding.handler([{
-      files: ['test.js', 'test1.js'],
-    }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot('test.js.LICENSE');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
-    });
+    compilationEventBinding.handler(
+      [
+        {
+          files: ['test.js', 'test1.js'],
+        },
+      ],
+      () => {
+        expect(compilation2.assets['test.js'].source()).toMatchSnapshot(
+          'test.js'
+        );
+        expect(compilation2.assets['test1.js'].source()).toMatchSnapshot(
+          'test.js'
+        );
+        expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot(
+          'test.js.LICENSE'
+        );
+        expect(
+          compilation2.assets['test1.js.LICENSE'].source()
+        ).toMatchSnapshot('test1.js.LICENSE');
+        expect(compilation2.errors).toMatchSnapshot('errors');
+        expect(compilation2.warnings).toMatchSnapshot('warnings');
+      }
+    );
   });
 
   it('normalizes when options.extractComments is object', () => {
@@ -249,13 +310,22 @@ describe('when options.extractComments', () => {
     eventBinding.handler(compilation2);
     [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
-    compilationEventBinding.handler([{
-      files: ['test.js'],
-    }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test.license.js'].source()).toMatchSnapshot('test.license.js');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
-    });
+    compilationEventBinding.handler(
+      [
+        {
+          files: ['test.js'],
+        },
+      ],
+      () => {
+        expect(compilation2.assets['test.js'].source()).toMatchSnapshot(
+          'test.js'
+        );
+        expect(compilation2.assets['test.license.js'].source()).toMatchSnapshot(
+          'test.license.js'
+        );
+        expect(compilation2.errors).toMatchSnapshot('errors');
+        expect(compilation2.warnings).toMatchSnapshot('warnings');
+      }
+    );
   });
 });

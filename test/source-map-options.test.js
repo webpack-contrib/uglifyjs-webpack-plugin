@@ -71,7 +71,9 @@ describe('when options.sourceMap', () => {
 
         it('binds two event handler', () => {
           expect(compilationEventBindings[0].name).toBe('build-module');
-          expect(compilationEventBindings[1].name).toBe('optimize-chunk-assets');
+          expect(compilationEventBindings[1].name).toBe(
+            'optimize-chunk-assets'
+          );
         });
 
         describe('build-module handler', () => {
@@ -85,7 +87,9 @@ describe('when options.sourceMap', () => {
 
           it('build-module handler', (done) => {
             const moduleArgs = { useSourceMap: false };
-            const mockBuildModuleEvent = jest.fn(() => compilationEventBinding.handler(moduleArgs));
+            const mockBuildModuleEvent = jest.fn(() =>
+              compilationEventBinding.handler(moduleArgs)
+            );
 
             mockBuildModuleEvent();
 
@@ -101,18 +105,25 @@ describe('when options.sourceMap', () => {
           });
 
           it('binds to optimize-chunk-assets event', () => {
-            expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
+            expect(compilationEventBinding.name).toEqual(
+              'optimize-chunk-assets'
+            );
           });
 
           it('only calls callback once', (done) => {
             callback = jest.fn();
-            compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
-            }], () => {
-              callback();
-              expect(callback.mock.calls.length).toBe(1);
-              done();
-            });
+            compilationEventBinding.handler(
+              [
+                {
+                  files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
+                },
+              ],
+              () => {
+                callback();
+                expect(callback.mock.calls.length).toBe(1);
+                done();
+              }
+            );
           });
         });
       });
@@ -130,7 +141,9 @@ describe('when options.sourceMap', () => {
         expect(warnings).toMatchSnapshot('source map: warnings');
 
         for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          if (
+            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+          ) {
             const asset = stats.compilation.assets[file].sourceAndMap();
 
             asset.map.sources = [];
@@ -192,7 +205,9 @@ describe('when options.sourceMap', () => {
 
         it('binds two event handler', () => {
           expect(compilationEventBindings[0].name).toBe('build-module');
-          expect(compilationEventBindings[1].name).toBe('optimize-chunk-assets');
+          expect(compilationEventBindings[1].name).toBe(
+            'optimize-chunk-assets'
+          );
         });
 
         describe('build-module handler', () => {
@@ -206,7 +221,9 @@ describe('when options.sourceMap', () => {
 
           it('build-module handler', (done) => {
             const moduleArgs = { useSourceMap: false };
-            const mockBuildModuleEvent = jest.fn(() => compilationEventBinding.handler(moduleArgs));
+            const mockBuildModuleEvent = jest.fn(() =>
+              compilationEventBinding.handler(moduleArgs)
+            );
 
             mockBuildModuleEvent();
 
@@ -222,18 +239,25 @@ describe('when options.sourceMap', () => {
           });
 
           it('binds to optimize-chunk-assets event', () => {
-            expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
+            expect(compilationEventBinding.name).toEqual(
+              'optimize-chunk-assets'
+            );
           });
 
           it('only calls callback once', (done) => {
             callback = jest.fn();
-            compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
-            }], () => {
-              callback();
-              expect(callback.mock.calls.length).toBe(1);
-              done();
-            });
+            compilationEventBinding.handler(
+              [
+                {
+                  files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
+                },
+              ],
+              () => {
+                callback();
+                expect(callback.mock.calls.length).toBe(1);
+                done();
+              }
+            );
           });
         });
       });
@@ -251,13 +275,19 @@ describe('when options.sourceMap', () => {
         expect(warnings).toMatchSnapshot('source map and parallel: warnings');
 
         for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          if (
+            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+          ) {
             const asset = stats.compilation.assets[file].sourceAndMap();
 
             asset.map.sources = [];
 
-            expect(asset.source).toMatchSnapshot(`source and parallel: asset ${file}`);
-            expect(asset.map).toMatchSnapshot(`source map and parallel: asset ${file}`);
+            expect(asset.source).toMatchSnapshot(
+              `source and parallel: asset ${file}`
+            );
+            expect(asset.map).toMatchSnapshot(
+              `source map and parallel: asset ${file}`
+            );
           }
         }
       });

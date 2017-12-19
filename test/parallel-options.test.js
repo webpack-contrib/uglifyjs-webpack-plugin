@@ -16,8 +16,8 @@ jest.mock('worker-farm', () => {
     (options, worker) =>
       (workerFarmMock = jest.fn((data, callback) =>
         // eslint-disable-next-line global-require, import/no-dynamic-require
-        require(worker)(data, callback),
-      )),
+        require(worker)(data, callback)
+      ))
   );
   mock.end = jest.fn();
   return mock;
@@ -98,7 +98,9 @@ describe('when options.parallel', () => {
           });
 
           it('binds to optimize-chunk-assets event', () => {
-            expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
+            expect(compilationEventBinding.name).toEqual(
+              'optimize-chunk-assets'
+            );
           });
 
           it('only calls callback once', (done) => {
@@ -111,14 +113,19 @@ describe('when options.parallel', () => {
           });
 
           it('parallelization', (done) => {
-            compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
-            }], () => {
-              expect(workerFarm.mock.calls.length).toBe(0);
-              expect(workerFarm.end.mock.calls.length).toBe(0);
+            compilationEventBinding.handler(
+              [
+                {
+                  files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
+                },
+              ],
+              () => {
+                expect(workerFarm.mock.calls.length).toBe(0);
+                expect(workerFarm.end.mock.calls.length).toBe(0);
 
-              done();
-            });
+                done();
+              }
+            );
           });
         });
       });
@@ -136,8 +143,12 @@ describe('when options.parallel', () => {
         expect(warnings).toMatchSnapshot('parallel `false`: warnings');
 
         for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(`parallel \`false\`: asset ${file}`);
+          if (
+            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+          ) {
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+              `parallel \`false\`: asset ${file}`
+            );
           }
         }
       });
@@ -203,7 +214,9 @@ describe('when options.parallel', () => {
           });
 
           it('binds to optimize-chunk-assets event', () => {
-            expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
+            expect(compilationEventBinding.name).toEqual(
+              'optimize-chunk-assets'
+            );
           });
 
           it('only calls callback once', (done) => {
@@ -216,16 +229,23 @@ describe('when options.parallel', () => {
           });
 
           it('parallelization', (done) => {
-            compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
-            }], () => {
-              expect(workerFarm.mock.calls.length).toBe(1);
-              expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(os.cpus().length - 1);
-              expect(workerFarmMock.mock.calls.length).toBe(4);
-              expect(workerFarm.end.mock.calls.length).toBe(1);
+            compilationEventBinding.handler(
+              [
+                {
+                  files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
+                },
+              ],
+              () => {
+                expect(workerFarm.mock.calls.length).toBe(1);
+                expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
+                  os.cpus().length - 1
+                );
+                expect(workerFarmMock.mock.calls.length).toBe(4);
+                expect(workerFarm.end.mock.calls.length).toBe(1);
 
-              done();
-            });
+                done();
+              }
+            );
           });
         });
       });
@@ -243,8 +263,12 @@ describe('when options.parallel', () => {
         expect(warnings).toMatchSnapshot('parallel `true`: warnings');
 
         for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(`parallel \`true\`: asset ${file}`);
+          if (
+            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+          ) {
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+              `parallel \`true\`: asset ${file}`
+            );
           }
         }
       });
@@ -310,7 +334,9 @@ describe('when options.parallel', () => {
           });
 
           it('binds to optimize-chunk-assets event', () => {
-            expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
+            expect(compilationEventBinding.name).toEqual(
+              'optimize-chunk-assets'
+            );
           });
 
           it('only calls callback once', (done) => {
@@ -323,18 +349,24 @@ describe('when options.parallel', () => {
           });
 
           it('parallelization', (done) => {
-            compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
-            }], () => {
-              expect(workerFarm.mock.calls.length).toBe(1);
-              // Appveyor give only one core
-              expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers)
-                .toBe(Math.min(Number(2) || 0, os.cpus().length - 1));
-              expect(workerFarmMock.mock.calls.length).toBe(4);
-              expect(workerFarm.end.mock.calls.length).toBe(1);
+            compilationEventBinding.handler(
+              [
+                {
+                  files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
+                },
+              ],
+              () => {
+                expect(workerFarm.mock.calls.length).toBe(1);
+                // Appveyor give only one core
+                expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
+                  Math.min(Number(2) || 0, os.cpus().length - 1)
+                );
+                expect(workerFarmMock.mock.calls.length).toBe(4);
+                expect(workerFarm.end.mock.calls.length).toBe(1);
 
-              done();
-            });
+                done();
+              }
+            );
           });
         });
       });
@@ -352,8 +384,12 @@ describe('when options.parallel', () => {
         expect(warnings).toMatchSnapshot('parallel `number`: warnings');
 
         for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(`parallel \`number\`: asset ${file}`);
+          if (
+            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+          ) {
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+              `parallel \`number\`: asset ${file}`
+            );
           }
         }
       });

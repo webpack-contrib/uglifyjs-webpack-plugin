@@ -74,8 +74,12 @@ describe('when using MultiCompiler with empty options', () => {
         expect(warnings).toMatchSnapshot('warnings');
 
         for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+          if (
+            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+          ) {
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+              file
+            );
           }
         }
       });

@@ -1,5 +1,5 @@
 /* eslint-disable no-new-func */
-const toType = value => (Object.prototype.toString.call(value).slice(8, -1));
+const toType = (value) => Object.prototype.toString.call(value).slice(8, -1);
 
 export const encode = (key, value) => {
   const type = toType(value);
@@ -9,8 +9,8 @@ export const encode = (key, value) => {
   return value;
 };
 
-encode.RegExp = value => String(value);
-encode.Function = value => String(value);
+encode.RegExp = (value) => String(value);
+encode.Function = (value) => String(value);
 
 export const decode = (key, value) => {
   if (typeof value === 'string') {
@@ -24,8 +24,9 @@ export const decode = (key, value) => {
   return value;
 };
 
-decode.RegExp = value => (Function(`return ${value}`)());
-decode.Function = (value, key) => Function(`
+decode.RegExp = (value) => Function(`return ${value}`)();
+decode.Function = (value, key) =>
+  Function(`
   try {
     return ${value}.apply(null, arguments);
   } catch(err) {
