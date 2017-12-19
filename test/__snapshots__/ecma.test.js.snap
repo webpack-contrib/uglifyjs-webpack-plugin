@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ecma 5: errors 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 5: ecma 5: errors 1`] = `Array []`;
 
-exports[`ecma 5: main.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 5: ecma 5: main.js 1`] = `
 "webpackJsonp([ 0 ], [ function(module, exports) {
     var Person = {
         firstName: null,
@@ -30,7 +30,7 @@ exports[`ecma 5: main.js 1`] = `
 } ], [ 0 ]);"
 `;
 
-exports[`ecma 5: manifest.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 5: ecma 5: manifest.js 1`] = `
 "!function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
@@ -100,11 +100,11 @@ exports[`ecma 5: manifest.js 1`] = `
 }([]);"
 `;
 
-exports[`ecma 5: warnings 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 5: ecma 5: warnings 1`] = `Array []`;
 
-exports[`ecma 6: errors 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 6: ecma 6: errors 1`] = `Array []`;
 
-exports[`ecma 6: main.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 6: ecma 6: main.js 1`] = `
 "webpackJsonp([ 0 ], [ function(module, exports) {
     module.exports = class {
         constructor(principal, years, rate) {
@@ -134,7 +134,7 @@ exports[`ecma 6: main.js 1`] = `
 } ], [ 0 ]);"
 `;
 
-exports[`ecma 6: manifest.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 6: ecma 6: manifest.js 1`] = `
 "!function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
@@ -204,11 +204,11 @@ exports[`ecma 6: manifest.js 1`] = `
 }([]);"
 `;
 
-exports[`ecma 6: warnings 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 6: ecma 6: warnings 1`] = `Array []`;
 
-exports[`ecma 7: errors 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 7: ecma 7: errors 1`] = `Array []`;
 
-exports[`ecma 7: main.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 7: ecma 7: main.js 1`] = `
 "webpackJsonp([ 0 ], [ function(module, exports) {
     module.exports = function(base, exponent) {
         return base ** exponent;
@@ -216,7 +216,7 @@ exports[`ecma 7: main.js 1`] = `
 } ], [ 0 ]);"
 `;
 
-exports[`ecma 7: manifest.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 7: ecma 7: manifest.js 1`] = `
 "!function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
@@ -286,11 +286,11 @@ exports[`ecma 7: manifest.js 1`] = `
 }([]);"
 `;
 
-exports[`ecma 7: warnings 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 7: ecma 7: warnings 1`] = `Array []`;
 
-exports[`ecma 8: errors 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 8: ecma 8: errors 1`] = `Array []`;
 
-exports[`ecma 8: main.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 8: ecma 8: main.js 1`] = `
 "webpackJsonp([ 0 ], [ function(module, exports) {
     module.exports = async function(url) {
         try {
@@ -303,7 +303,7 @@ exports[`ecma 8: main.js 1`] = `
 } ], [ 0 ]);"
 `;
 
-exports[`ecma 8: manifest.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 8: ecma 8: manifest.js 1`] = `
 "!function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
@@ -373,11 +373,11 @@ exports[`ecma 8: manifest.js 1`] = `
 }([]);"
 `;
 
-exports[`ecma 8: warnings 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for ecma 8: ecma 8: warnings 1`] = `Array []`;
 
-exports[`import-export: errors 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for import and export: import-export: errors 1`] = `Array []`;
 
-exports[`import-export: main.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for import and export: import-export: main.js 1`] = `
 "webpackJsonp([ 0 ], [ function(module, __webpack_exports__, __webpack_require__) {
     \\"use strict\\";
     Object.defineProperty(__webpack_exports__, \\"__esModule\\", {
@@ -398,7 +398,7 @@ exports[`import-export: main.js 1`] = `
 } ], [ 0 ]);"
 `;
 
-exports[`import-export: manifest.js 1`] = `
+exports[`when applied with uglifyOptions.ecma matches snapshot for import and export: import-export: manifest.js 1`] = `
 "!function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
@@ -468,4 +468,4 @@ exports[`import-export: manifest.js 1`] = `
 }([]);"
 `;
 
-exports[`import-export: warnings 1`] = `Array []`;
+exports[`when applied with uglifyOptions.ecma matches snapshot for import and export: import-export: warnings 1`] = `Array []`;

@@ -1,9 +1,5 @@
 import UglifyJsPlugin from '../src/index';
-import {
-  cleanErrorStack,
-  createCompiler,
-  compile,
-} from './helpers';
+import { cleanErrorStack, createCompiler, compile } from './helpers';
 
 describe('when applied with uglifyOptions.ecma', () => {
   it('matches snapshot for import and export', () => {
@@ -35,8 +31,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       expect(warnings).toMatchSnapshot('import-export: warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`import-export: ${file}`);
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+            `import-export: ${file}`
+          );
         }
       }
     });
@@ -71,8 +71,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       expect(warnings).toMatchSnapshot('ecma 5: warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 5: ${file}`);
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+            `ecma 5: ${file}`
+          );
         }
       }
     });
@@ -107,8 +111,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       expect(warnings).toMatchSnapshot('ecma 6: warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 6: ${file}`);
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+            `ecma 6: ${file}`
+          );
         }
       }
     });
@@ -142,8 +150,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       expect(warnings).toMatchSnapshot('ecma 7: warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 7: ${file}`);
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+            `ecma 7: ${file}`
+          );
         }
       }
     });
@@ -178,8 +190,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       expect(warnings).toMatchSnapshot('ecma 8: warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 8: ${file}`);
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+            `ecma 8: ${file}`
+          );
         }
       }
     });

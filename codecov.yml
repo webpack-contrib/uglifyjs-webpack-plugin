@@ -3,15 +3,8 @@ codecov:
 coverage:
   precision: 2
   round: down
-  range: "70...100"
+  range: 70...100
   status:
-    project:
-      default:
-        target: auto
-    patch:
-      default:
-        target: auto
-    changes:
-      default:
-        branches: null
-comment: off
+    project: 'no'
+    patch: 'yes'
+comment: 'off'
