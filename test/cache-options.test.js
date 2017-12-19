@@ -32,6 +32,8 @@ describe('when options.cache', () => {
 
     beforeAll(() => cacache.rm.all(cacheDir));
 
+    afterAll(() => cacache.rm.all(cacheDir));
+
     beforeEach(() => {
       const pluginEnvironment = new PluginEnvironment();
       const compilerEnv = pluginEnvironment.getEnvironmentStub();
@@ -149,6 +151,8 @@ describe('when options.cache', () => {
     let eventBinding;
 
     beforeAll(() => cacache.rm.all(cacheDir));
+
+    afterAll(() => cacache.rm.all(cacheDir));
 
     beforeEach(() => {
       const pluginEnvironment = new PluginEnvironment();
@@ -293,6 +297,8 @@ describe('when options.cache', () => {
     let eventBinding;
 
     beforeAll(() => cacache.rm.all(othercacheDir));
+
+    afterAll(() => cacache.rm.all(othercacheDir));
 
     beforeEach(() => {
       const pluginEnvironment = new PluginEnvironment();
