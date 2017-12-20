@@ -1,62 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when applied with exclude option matches snapshot for a single exclude: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
+exports[`entry.04977961bbc088511e0f.js 1`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[\\"entry\\"],{\\"./test/fixtures/entry.js\\":function(module,exports){eval(\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n\\\\n//////////////////\\\\n// WEBPACK FOOTER\\\\n// ./test/fixtures/entry.js\\\\n// module id = ./test/fixtures/entry.js\\\\n// module chunks = entry\\\\n\\\\n//# sourceURL=webpack:///./test/fixtures/entry.js?\\")}},[[\\"./test/fixtures/entry.js\\",\\"manifest\\",\\"entry\\"]]]);"`;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: errors 1`] = `Array []`;
+exports[`entry.04977961bbc088511e0f.js 2`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[\\"entry\\"],{\\"./test/fixtures/entry.js\\":function(module,exports){eval(\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n\\\\n//////////////////\\\\n// WEBPACK FOOTER\\\\n// ./test/fixtures/entry.js\\\\n// module id = ./test/fixtures/entry.js\\\\n// module chunks = entry\\\\n\\\\n//# sourceURL=webpack:///./test/fixtures/entry.js?\\")}},[[\\"./test/fixtures/entry.js\\",\\"manifest\\",\\"entry\\"]]]);"`;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
-"webpackJsonp([1],[
-/* 0 */
+exports[`errors 1`] = `Array []`;
+
+exports[`errors 2`] = `Array []`;
+
+exports[`excluded1.78ec07ad661dfa7e26b1.js 1`] = `
+"(window[\\"webpackJsonp\\"] = window[\\"webpackJsonp\\"] || []).push([[\\"excluded1\\"],{
+
+/***/ \\"./test/fixtures/excluded1.js\\":
+/*!************************************!*\\\\
+  !*** ./test/fixtures/excluded1.js ***!
+  \\\\************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = function Bar1() {
-  const b = 2 + 2;
-  console.log(b + 1 + 2);
-};
+eval(\\"module.exports = function Bar1() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n//////////////////\\\\n// WEBPACK FOOTER\\\\n// ./test/fixtures/excluded1.js\\\\n// module id = ./test/fixtures/excluded1.js\\\\n// module chunks = excluded1\\\\n\\\\n//# sourceURL=webpack:///./test/fixtures/excluded1.js?\\");
 
 /***/ })
-],[0]);"
+
+},[[\\"./test/fixtures/excluded1.js\\",\\"manifest\\",\\"excluded1\\"]]]);"
 `;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: excluded2.a96f544a34079b25c7b4.js 1`] = `"webpackJsonp([0],[,function(o,n){o.exports=function(){console.log(7)}}],[1]);"`;
+exports[`excluded1.78ec07ad661dfa7e26b1.js 2`] = `
+"(window[\\"webpackJsonp\\"] = window[\\"webpackJsonp\\"] || []).push([[\\"excluded1\\"],{
 
-exports[`when applied with exclude option matches snapshot for a single exclude: manifest.70d0d238a960e43f4454.js 1`] = `"!function(e){function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}var r=window.webpackJsonp;window.webpackJsonp=function(t,c,a){for(var u,i,f,l=0,s=[];l<t.length;l++)i=t[l],o[i]&&s.push(o[i][0]),o[i]=0;for(u in c)Object.prototype.hasOwnProperty.call(c,u)&&(e[u]=c[u]);for(r&&r(t,c,a);s.length;)s.shift()();if(a)for(l=0;l<a.length;l++)f=n(n.s=a[l]);return f};var t={},o={3:0};n.e=function(e){function r(){u.onerror=u.onload=null,clearTimeout(i);var n=o[e];0!==n&&(n&&n[1](new Error(\\"Loading chunk \\"+e+\\" failed.\\")),o[e]=void 0)}var t=o[e];if(0===t)return new Promise(function(e){e()});if(t)return t[2];var c=new Promise(function(n,r){t=o[e]=[n,r]});t[2]=c;var a=document.getElementsByTagName(\\"head\\")[0],u=document.createElement(\\"script\\");u.type=\\"text/javascript\\",u.charset=\\"utf-8\\",u.async=!0,u.timeout=12e4,n.nc&&u.setAttribute(\\"nonce\\",n.nc),u.src=n.p+\\"\\"+e+\\".\\"+({0:\\"excluded2\\",1:\\"excluded1\\",2:\\"entry\\"}[e]||e)+\\".\\"+{0:\\"a96f544a34079b25c7b4\\",1:\\"4d3a1b43eccbc2acc9d6\\",2:\\"a3533847fa24ef98733c\\"}[e]+\\".js\\";var i=setTimeout(r,12e4);return u.onerror=u.onload=r,a.appendChild(u),c},n.m=e,n.c=t,n.d=function(e,r,t){n.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:t})},n.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(r,\\"a\\",r),r},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p=\\"\\",n.oe=function(e){throw console.error(e),e}}([]);"`;
-
-exports[`when applied with exclude option matches snapshot for a single exclude: warnings 1`] = `Array []`;
-
-exports[`when applied with exclude option matches snapshot for multiple excludes: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
-
-exports[`when applied with exclude option matches snapshot for multiple excludes: errors 1`] = `Array []`;
-
-exports[`when applied with exclude option matches snapshot for multiple excludes: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
-"webpackJsonp([1],[
-/* 0 */
+/***/ \\"./test/fixtures/excluded1.js\\":
+/*!************************************!*\\\\
+  !*** ./test/fixtures/excluded1.js ***!
+  \\\\************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = function Bar1() {
-  const b = 2 + 2;
-  console.log(b + 1 + 2);
-};
+eval(\\"module.exports = function Bar1() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n//////////////////\\\\n// WEBPACK FOOTER\\\\n// ./test/fixtures/excluded1.js\\\\n// module id = ./test/fixtures/excluded1.js\\\\n// module chunks = excluded1\\\\n\\\\n//# sourceURL=webpack:///./test/fixtures/excluded1.js?\\");
 
 /***/ })
-],[0]);"
+
+},[[\\"./test/fixtures/excluded1.js\\",\\"manifest\\",\\"excluded1\\"]]]);"
 `;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: excluded2.a96f544a34079b25c7b4.js 1`] = `
-"webpackJsonp([0],[
-/* 0 */,
-/* 1 */
+exports[`excluded2.d4cd5842a2c0440dec27.js 1`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[\\"excluded2\\"],{\\"./test/fixtures/excluded2.js\\":function(module,exports){eval(\\"module.exports = function Bar2() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n//////////////////\\\\n// WEBPACK FOOTER\\\\n// ./test/fixtures/excluded2.js\\\\n// module id = ./test/fixtures/excluded2.js\\\\n// module chunks = excluded2\\\\n\\\\n//# sourceURL=webpack:///./test/fixtures/excluded2.js?\\")}},[[\\"./test/fixtures/excluded2.js\\",\\"manifest\\",\\"excluded2\\"]]]);"`;
+
+exports[`excluded2.d4cd5842a2c0440dec27.js 2`] = `
+"(window[\\"webpackJsonp\\"] = window[\\"webpackJsonp\\"] || []).push([[\\"excluded2\\"],{
+
+/***/ \\"./test/fixtures/excluded2.js\\":
+/*!************************************!*\\\\
+  !*** ./test/fixtures/excluded2.js ***!
+  \\\\************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = function Bar2() {
-  const b = 2 + 2;
-  console.log(b + 1 + 2);
-};
+eval(\\"module.exports = function Bar2() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n//////////////////\\\\n// WEBPACK FOOTER\\\\n// ./test/fixtures/excluded2.js\\\\n// module id = ./test/fixtures/excluded2.js\\\\n// module chunks = excluded2\\\\n\\\\n//# sourceURL=webpack:///./test/fixtures/excluded2.js?\\");
 
 /***/ })
-],[1]);"
+
+},[[\\"./test/fixtures/excluded2.js\\",\\"manifest\\",\\"excluded2\\"]]]);"
 `;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: manifest.70d0d238a960e43f4454.js 1`] = `"!function(e){function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}var r=window.webpackJsonp;window.webpackJsonp=function(t,c,a){for(var u,i,f,l=0,s=[];l<t.length;l++)i=t[l],o[i]&&s.push(o[i][0]),o[i]=0;for(u in c)Object.prototype.hasOwnProperty.call(c,u)&&(e[u]=c[u]);for(r&&r(t,c,a);s.length;)s.shift()();if(a)for(l=0;l<a.length;l++)f=n(n.s=a[l]);return f};var t={},o={3:0};n.e=function(e){function r(){u.onerror=u.onload=null,clearTimeout(i);var n=o[e];0!==n&&(n&&n[1](new Error(\\"Loading chunk \\"+e+\\" failed.\\")),o[e]=void 0)}var t=o[e];if(0===t)return new Promise(function(e){e()});if(t)return t[2];var c=new Promise(function(n,r){t=o[e]=[n,r]});t[2]=c;var a=document.getElementsByTagName(\\"head\\")[0],u=document.createElement(\\"script\\");u.type=\\"text/javascript\\",u.charset=\\"utf-8\\",u.async=!0,u.timeout=12e4,n.nc&&u.setAttribute(\\"nonce\\",n.nc),u.src=n.p+\\"\\"+e+\\".\\"+({0:\\"excluded2\\",1:\\"excluded1\\",2:\\"entry\\"}[e]||e)+\\".\\"+{0:\\"a96f544a34079b25c7b4\\",1:\\"4d3a1b43eccbc2acc9d6\\",2:\\"a3533847fa24ef98733c\\"}[e]+\\".js\\";var i=setTimeout(r,12e4);return u.onerror=u.onload=r,a.appendChild(u),c},n.m=e,n.c=t,n.d=function(e,r,t){n.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:t})},n.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(r,\\"a\\",r),r},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p=\\"\\",n.oe=function(e){throw console.error(e),e}}([]);"`;
+exports[`manifest.d7e54553b8dbeefe7e88.js 1`] = `"!function(e){function r(r){for(var n,u,i,l=r[0],d=r[1],s=r[2],f=0,p=[];f<l.length;f++)u=l[f],o[u]&&p.push(o[u][0]),o[u]=0;for(n in d)Object.prototype.hasOwnProperty.call(d,n)&&(e[n]=d[n]);for(a&&a(r);p.length;)p.shift()();for(c.push.apply(c,s||[]),f=0;f<c.length;f++){for(var h=c[f],v=!0,m=1;m<h.length;m++){var y=h[m];0!==o[y]&&(v=!1)}v&&(c.splice(f--,1),i=t(t.s=h[0]))}return i}function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={},o={manifest:0},c=[];t.e=function(e){var r=[],n=o[e];if(0!==n)if(n)r.push(n[2]);else{var c=new Promise(function(r,t){n=o[e]=[r,t]});r.push(n[2]=c);var u=document.getElementsByTagName(\\"head\\")[0],a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=12e4,t.nc&&a.setAttribute(\\"nonce\\",t.nc),a.src=t.p+\\"\\"+e+\\".\\"+({excluded2:\\"excluded2\\",excluded1:\\"excluded1\\",entry:\\"entry\\"}[e]||e)+\\".\\"+{excluded2:\\"d4cd5842a2c0440dec27\\",excluded1:\\"78ec07ad661dfa7e26b1\\",entry:\\"04977961bbc088511e0f\\"}[e]+\\".js\\";var i=setTimeout(function(){l({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=l;function l(r){a.onerror=a.onload=null,clearTimeout(i);var t=o[e];if(0!==t){if(t){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),c=r&&r.target&&r.target.src,u=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+n+\\": \\"+c+\\")\\");u.type=n,u.request=c,t[1](u)}o[e]=void 0}}u.appendChild(a)}return Promise.all(r)},t.m=e,t.c=n,t.d=function(e,r,n){t.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:n})},t.r=function(e){Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(r,\\"a\\",r),r},t.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},t.p=\\"\\",t.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],a=u.push.bind(u);u.push=r,u=u.slice();for(var i=0;i<u.length;i++)r(u[i])}([]);"`;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: warnings 1`] = `Array []`;
+exports[`manifest.d7e54553b8dbeefe7e88.js 2`] = `"!function(e){function r(r){for(var n,u,i,l=r[0],d=r[1],s=r[2],f=0,p=[];f<l.length;f++)u=l[f],o[u]&&p.push(o[u][0]),o[u]=0;for(n in d)Object.prototype.hasOwnProperty.call(d,n)&&(e[n]=d[n]);for(a&&a(r);p.length;)p.shift()();for(c.push.apply(c,s||[]),f=0;f<c.length;f++){for(var h=c[f],v=!0,m=1;m<h.length;m++){var y=h[m];0!==o[y]&&(v=!1)}v&&(c.splice(f--,1),i=t(t.s=h[0]))}return i}function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={},o={manifest:0},c=[];t.e=function(e){var r=[],n=o[e];if(0!==n)if(n)r.push(n[2]);else{var c=new Promise(function(r,t){n=o[e]=[r,t]});r.push(n[2]=c);var u=document.getElementsByTagName(\\"head\\")[0],a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=12e4,t.nc&&a.setAttribute(\\"nonce\\",t.nc),a.src=t.p+\\"\\"+e+\\".\\"+({excluded2:\\"excluded2\\",excluded1:\\"excluded1\\",entry:\\"entry\\"}[e]||e)+\\".\\"+{excluded2:\\"d4cd5842a2c0440dec27\\",excluded1:\\"78ec07ad661dfa7e26b1\\",entry:\\"04977961bbc088511e0f\\"}[e]+\\".js\\";var i=setTimeout(function(){l({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=l;function l(r){a.onerror=a.onload=null,clearTimeout(i);var t=o[e];if(0!==t){if(t){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),c=r&&r.target&&r.target.src,u=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+n+\\": \\"+c+\\")\\");u.type=n,u.request=c,t[1](u)}o[e]=void 0}}u.appendChild(a)}return Promise.all(r)},t.m=e,t.c=n,t.d=function(e,r,n){t.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:n})},t.r=function(e){Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(r,\\"a\\",r),r},t.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},t.p=\\"\\",t.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],a=u.push.bind(u);u.push=r,u=u.slice();for(var i=0;i<u.length;i++)r(u[i])}([]);"`;
+
+exports[`warnings 1`] = `Array []`;
+
+exports[`warnings 2`] = `Array []`;

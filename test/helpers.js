@@ -1,6 +1,8 @@
-/* eslint-disable consistent-return, import/no-extraneous-dependencies */
+/* eslint-disable consistent-return, import/no-extraneous-dependencies, import/order */
 import MemoryFileSystem from 'memory-fs';
 import webpack from 'webpack';
+
+const majorVersion = require('webpack/package.json').version.split('.')[0];
 
 export class PluginEnvironment {
   constructor() {
@@ -33,6 +35,9 @@ export function compile(compiler) {
 }
 
 export function createCompiler(options = {}) {
+  if (Number(majorVersion) >= 4) {
+    options.mode = 'development';
+  }
   const compiler = webpack(
     Array.isArray(options)
       ? options
