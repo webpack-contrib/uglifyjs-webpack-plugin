@@ -3,10 +3,10 @@ unit_tests: &unit_tests
     - checkout
     - setup_remote_docker
     - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+        key: dependency-cache-{{ checksum "package-lock.json" }}
     - run:
         name: NPM Rebuild
-        command: npm rebuild
+        command: npm install
     - run:
         name: Run unit tests.
         command: npm run ci:test
@@ -15,10 +15,10 @@ canary_tests: &canary_tests
     - checkout
     - setup_remote_docker
     - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+        key: dependency-cache-{{ checksum "package-lock.json" }}
     - run:
         name: NPM Rebuild
-        command: npm rebuild
+        command: npm install
     - run:
         name: Install Webpack Canary
         command: npm i --no-save webpack@next
@@ -35,12 +35,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
 
@@ -51,10 +51,10 @@ jobs:
       - checkout
       - setup_remote_docker
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: NPM Rebuild
-          command: npm rebuild
+          command: npm install
       - run:
           name: Run unit tests.
           command: npm run ci:coverage
@@ -81,10 +81,10 @@ jobs:
       - checkout
       - setup_remote_docker
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: NPM Rebuild
-          command: npm rebuild
+          command: npm install
       - run:
           name: Run linting.
           command: npm run lint
@@ -101,10 +101,10 @@ jobs:
       - checkout
       - setup_remote_docker
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: NPM Rebuild
-          command: npm rebuild
+          command: npm install
       - run:
           name: Validate Commit Messages
           command: npm run release:validate
