@@ -25,7 +25,6 @@ describe('when applied with no options', () => {
     const compiler = createCompiler();
     new UglifyJsPlugin().apply(compiler);
 
-
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
@@ -34,7 +33,9 @@ describe('when applied with no options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -71,7 +72,8 @@ describe('when applied with no options', () => {
             source: () => 'invalid javascript',
           },
           'test3.js': {
-            source: () => '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
+            source: () =>
+              '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
           },
         };
         compilation.errors = [];
@@ -102,84 +104,140 @@ describe('when applied with no options', () => {
         });
 
         it('default only parses filenames ending with .js', () => {
-          compilationEventBinding.handler([{
-            files: ['test', 'test.js'],
-          }], () => {
-            expect(Object.keys(compilation.assets).length).toBe(4);
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test', 'test.js'],
+              },
+            ],
+            () => {
+              expect(Object.keys(compilation.assets).length).toBe(4);
+            }
+          );
         });
 
         it('early returns if private property is already set', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            expect(compilation.assets['test.js']).toEqual({});
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test.js'],
+              },
+            ],
+            () => {
+              expect(compilation.assets['test.js']).toEqual({});
+            }
+          );
         });
 
         it('outputs stack trace errors for invalid asset', () => {
-          compilationEventBinding.handler([{
-            files: ['test1.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(1);
-            expect(compilation.errors[0]).toBeInstanceOf(Error);
-            expect(compilation.errors[0].message).toEqual(expect.stringContaining('asset.source is not a function'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test1.js'],
+              },
+            ],
+            () => {
+              expect(compilation.errors.length).toBe(1);
+              expect(compilation.errors[0]).toBeInstanceOf(Error);
+              expect(compilation.errors[0].message).toEqual(
+                expect.stringContaining('asset.source is not a function')
+              );
+            }
+          );
         });
 
         it('outputs parsing errors for invalid javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test2.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(1);
-            expect(compilation.errors[0]).toBeInstanceOf(Error);
-            expect(compilation.errors[0].message).toEqual(expect.stringContaining('Unexpected token'));
-            expect(compilation.errors[0].message).toEqual(expect.stringContaining('[test2.js:1,8]'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test2.js'],
+              },
+            ],
+            () => {
+              expect(compilation.errors.length).toBe(1);
+              expect(compilation.errors[0]).toBeInstanceOf(Error);
+              expect(compilation.errors[0].message).toEqual(
+                expect.stringContaining('Unexpected token')
+              );
+              expect(compilation.errors[0].message).toEqual(
+                expect.stringContaining('[test2.js:1,8]')
+              );
+            }
+          );
         });
 
         it('outputs no errors for valid javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test3.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(0);
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test3.js'],
+              },
+            ],
+            () => {
+              expect(compilation.errors.length).toBe(0);
+            }
+          );
         });
 
         it('outputs RawSource for valid javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test3.js'],
-          }], () => {
-            expect(compilation.assets['test3.js']).toBeInstanceOf(RawSource);
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test3.js'],
+              },
+            ],
+            () => {
+              expect(compilation.assets['test3.js']).toBeInstanceOf(RawSource);
+            }
+          );
         });
 
         it('outputs mangled javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test3.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test3.js']._value)
-              .not.toEqual(expect.stringContaining('longVariableName'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test3.js'],
+              },
+            ],
+            () => {
+              // eslint-disable-next-line no-underscore-dangle
+              expect(compilation.assets['test3.js']._value).not.toEqual(
+                expect.stringContaining('longVariableName')
+              );
+            }
+          );
         });
 
         it('compresses and does not output beautified javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test3.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test3.js']._value).not.toEqual(expect.stringContaining('\n'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test3.js'],
+              },
+            ],
+            () => {
+              // eslint-disable-next-line no-underscore-dangle
+              expect(compilation.assets['test3.js']._value).not.toEqual(
+                expect.stringContaining('\n')
+              );
+            }
+          );
         });
 
         it('preserves comments', () => {
-          compilationEventBinding.handler([{
-            files: ['test3.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test3.js']._value).toEqual(expect.stringContaining('/**'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test3.js'],
+              },
+            ],
+            () => {
+              // eslint-disable-next-line no-underscore-dangle
+              expect(compilation.assets['test3.js']._value).toEqual(
+                expect.stringContaining('/**')
+              );
+            }
+          );
         });
       });
     });

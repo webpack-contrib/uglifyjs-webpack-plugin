@@ -68,7 +68,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
     let regexStr;
     let regex;
 
-    switch (typeof (condition[key])) {
+    switch (typeof condition[key]) {
       case 'boolean':
         condition[key] = condition[key] ? () => true : () => false;
 
@@ -84,7 +84,10 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
 
         if (condition[key] === 'some') {
           condition[key] = (astNode, comment) => {
-            return comment.type === 'comment2' && /@preserve|@license|@cc_on/i.test(comment.value);
+            return (
+              comment.type === 'comment2' &&
+              /@preserve|@license|@cc_on/i.test(comment.value)
+            );
           };
 
           break;
@@ -100,7 +103,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
       default:
         regex = condition[key];
 
-        condition[key] = (astNode, comment) => (regex.test(comment.value));
+        condition[key] = (astNode, comment) => regex.test(comment.value);
     }
   });
 
@@ -109,7 +112,9 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
   return (astNode, comment) => {
     if (condition.extract(astNode, comment)) {
       extractedComments.push(
-        comment.type === 'comment2' ? `/*${comment.value}*/` : `//${comment.value}`,
+        comment.type === 'comment2'
+          ? `/*${comment.value}*/`
+          : `//${comment.value}`
       );
     }
 
@@ -135,13 +140,13 @@ const minify = (options) => {
     uglifyOptions.output.comments = buildComments(
       options,
       uglifyOptions,
-      extractedComments,
+      extractedComments
     );
   }
 
   const { error, map, code, warnings } = uglify.minify(
     { [file]: input },
-    uglifyOptions,
+    uglifyOptions
   );
 
   return { error, map, code, warnings, extractedComments };

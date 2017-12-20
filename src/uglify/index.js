@@ -10,13 +10,19 @@ let workerFile = require.resolve('./worker');
 try {
   // run test
   workerFile = require.resolve('../../dist/uglify/worker');
-} catch (e) { } // eslint-disable-line no-empty
+} catch (e) {} // eslint-disable-line no-empty
 
 export default class {
   constructor(options = {}) {
     const { cache, parallel } = options;
-    this.cacheDir = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;
-    this.maxConcurrentWorkers = parallel === true ? os.cpus().length - 1 : Math.min(Number(parallel) || 0, os.cpus().length - 1);
+    this.cacheDir =
+      cache === true
+        ? findCacheDir({ name: 'uglifyjs-webpack-plugin' })
+        : cache;
+    this.maxConcurrentWorkers =
+      parallel === true
+        ? os.cpus().length - 1
+        : Math.min(Number(parallel) || 0, os.cpus().length - 1);
   }
 
   runTasks(tasks, callback) {
@@ -26,7 +32,13 @@ export default class {
     }
 
     if (this.maxConcurrentWorkers > 0) {
-      const workerOptions = process.platform === 'win32' ? { maxConcurrentWorkers: this.maxConcurrentWorkers, maxConcurrentCallsPerWorker: 1 } : { maxConcurrentWorkers: this.maxConcurrentWorkers };
+      const workerOptions =
+        process.platform === 'win32'
+          ? {
+              maxConcurrentWorkers: this.maxConcurrentWorkers,
+              maxConcurrentCallsPerWorker: 1,
+            }
+          : { maxConcurrentWorkers: this.maxConcurrentWorkers };
       this.workers = workerFarm(workerOptions, workerFile);
       this.boundWorkers = (options, cb) => this.workers(serialize(options), cb);
     } else {
@@ -57,7 +69,9 @@ export default class {
           const done = () => step(index, result);
 
           if (this.cacheDir && !result.error) {
-            cacache.put(this.cacheDir, task.cacheKey, JSON.stringify(data)).then(done, done);
+            cacache
+              .put(this.cacheDir, task.cacheKey, JSON.stringify(data))
+              .then(done, done);
           } else {
             done();
           }
@@ -65,7 +79,9 @@ export default class {
       };
 
       if (this.cacheDir) {
-        cacache.get(this.cacheDir, task.cacheKey).then(({ data }) => step(index, JSON.parse(data)), enqueue);
+        cacache
+          .get(this.cacheDir, task.cacheKey)
+          .then(({ data }) => step(index, JSON.parse(data)), enqueue);
       } else {
         enqueue();
       }

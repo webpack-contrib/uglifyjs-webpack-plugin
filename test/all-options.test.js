@@ -69,7 +69,9 @@ describe('when applied with all options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -100,7 +102,8 @@ describe('when applied with all options', () => {
         compilation = chunkPluginEnvironment.getEnvironmentStub();
         compilation.assets = {
           'test.js': {
-            source: () => '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
+            source: () =>
+              '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
             map: () => {
               return {
                 version: 3,
@@ -122,7 +125,8 @@ describe('when applied with all options', () => {
             },
           },
           'test2.js': {
-            source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+            source: () =>
+              'function foo(x) { if (x) { return bar(); not_called1(); } }',
             map: () => {
               return {
                 version: 3,
@@ -135,7 +139,8 @@ describe('when applied with all options', () => {
           'test3.js': {
             sourceAndMap: () => {
               return {
-                source: '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
+                source:
+                  '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
                 map: {
                   version: 3,
                   sources: ['test.js'],
@@ -146,7 +151,8 @@ describe('when applied with all options', () => {
             },
           },
           'test4.js': {
-            source: () => '/*! this comment should be extracted */ function foo(longVariableName) { /* this will not be extracted */ longVariableName = 1; } // another comment that should be extracted to a separate file\n function foo2(bar) { return bar; }',
+            source: () =>
+              '/*! this comment should be extracted */ function foo(longVariableName) { /* this will not be extracted */ longVariableName = 1; } // another comment that should be extracted to a separate file\n function foo2(bar) { return bar; }',
             map: () => {
               return {
                 version: 3,
@@ -190,92 +196,161 @@ describe('when applied with all options', () => {
         });
 
         it('binds to optimize-chunk-assets event', () => {
-          expect(compilationEventBindings[1].name).toBe('optimize-chunk-assets');
+          expect(compilationEventBindings[1].name).toBe(
+            'optimize-chunk-assets'
+          );
         });
 
         it('outputs no errors for valid javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(0);
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test.js'],
+              },
+            ],
+            () => {
+              expect(compilation.errors.length).toBe(0);
+            }
+          );
         });
 
         it('outputs SourceMapSource for valid javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            expect(compilation.assets['test.js']).toBeInstanceOf(SourceMapSource);
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test.js'],
+              },
+            ],
+            () => {
+              expect(compilation.assets['test.js']).toBeInstanceOf(
+                SourceMapSource
+              );
+            }
+          );
         });
 
         it('does not output mangled javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test.js']._value).toEqual(expect.stringContaining('longVariableName'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test.js'],
+              },
+            ],
+            () => {
+              // eslint-disable-next-line no-underscore-dangle
+              expect(compilation.assets['test.js']._value).toEqual(
+                expect.stringContaining('longVariableName')
+              );
+            }
+          );
         });
 
         it('outputs beautified javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test.js']._value).toEqual(expect.stringContaining('\n'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test.js'],
+              },
+            ],
+            () => {
+              // eslint-disable-next-line no-underscore-dangle
+              expect(compilation.assets['test.js']._value).toEqual(
+                expect.stringContaining('\n')
+              );
+            }
+          );
         });
 
         it('does not preserve comments', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test.js']._value).not.toBe(expect.stringContaining('/**'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test.js'],
+              },
+            ],
+            () => {
+              // eslint-disable-next-line no-underscore-dangle
+              expect(compilation.assets['test.js']._value).not.toBe(
+                expect.stringContaining('/**')
+              );
+            }
+          );
         });
 
         it('outputs parsing errors', () => {
-          compilationEventBinding.handler([{
-            files: ['test1.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(1);
-            expect(compilation.errors[0]).toBeInstanceOf(Error);
-            expect(compilation.errors[0].message).toEqual(expect.stringContaining('[test1.js:1,0][test1.js:1,8]'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test1.js'],
+              },
+            ],
+            () => {
+              expect(compilation.errors.length).toBe(1);
+              expect(compilation.errors[0]).toBeInstanceOf(Error);
+              expect(compilation.errors[0].message).toEqual(
+                expect.stringContaining('[test1.js:1,0][test1.js:1,8]')
+              );
+            }
+          );
         });
 
         it('outputs warnings for unreachable code', () => {
-          compilationEventBinding.handler([{
-            files: ['test2.js'],
-          }], () => {
-            expect(compilation.warnings.length).toBe(1);
-            expect(compilation.warnings[0]).toBeInstanceOf(Error);
-            expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test2.js'],
+              },
+            ],
+            () => {
+              expect(compilation.warnings.length).toBe(1);
+              expect(compilation.warnings[0]).toBeInstanceOf(Error);
+              expect(compilation.warnings[0].message).toEqual(
+                expect.stringContaining('Dropping unreachable code')
+              );
+            }
+          );
         });
 
         it('works with sourceAndMap assets as well', () => {
-          compilationEventBinding.handler([{
-            files: ['test3.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(0);
-            expect(compilation.assets['test3.js']).toBeInstanceOf(SourceMapSource);
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test3.js'],
+              },
+            ],
+            () => {
+              expect(compilation.errors.length).toBe(0);
+              expect(compilation.assets['test3.js']).toBeInstanceOf(
+                SourceMapSource
+              );
+            }
+          );
         });
 
         it('extracts license information to separate file', () => {
-          compilationEventBinding.handler([{
-            files: ['test4.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(0);
-            /* eslint-disable no-underscore-dangle */
-            expect(compilation.assets['test4.license.js'].source()).toContain('/*! this comment should be extracted */');
-            expect(compilation.assets['test4.license.js'].source()).toContain('// another comment that should be extracted to a separate file');
-            expect(compilation.assets['test4.license.js'].source()).not.toEqual(expect.stringContaining('/* this will not be extracted */'));
-            /* eslint-enable no-underscore-dangle */
-          });
+          compilationEventBinding.handler(
+            [
+              {
+                files: ['test4.js'],
+              },
+            ],
+            () => {
+              expect(compilation.errors.length).toBe(0);
+              /* eslint-disable no-underscore-dangle */
+              expect(compilation.assets['test4.license.js'].source()).toContain(
+                '/*! this comment should be extracted */'
+              );
+              expect(compilation.assets['test4.license.js'].source()).toContain(
+                '// another comment that should be extracted to a separate file'
+              );
+              expect(
+                compilation.assets['test4.license.js'].source()
+              ).not.toEqual(
+                expect.stringContaining('/* this will not be extracted */')
+              );
+              /* eslint-enable no-underscore-dangle */
+            }
+          );
         });
 
         describe('with warningsFilter set', () => {
@@ -303,13 +378,15 @@ describe('when applied with all options', () => {
               compilation = chunkPluginEnvironment.getEnvironmentStub();
               compilation.assets = {
                 'test2.js': {
-                  source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+                  source: () =>
+                    'function foo(x) { if (x) { return bar(); not_called1(); } }',
                   map: () => {
                     return {
                       version: 3,
                       sources: ['test1.js'],
                       names: ['foo', 'x', 'bar', 'not_called1'],
-                      mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                      mappings:
+                        'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
                     };
                   },
                 },
@@ -322,13 +399,20 @@ describe('when applied with all options', () => {
             });
 
             it('should get all warnings', () => {
-              compilationEventBindings[1].handler([{
-                files: ['test2.js'],
-              }], () => {
-                expect(compilation.warnings.length).toBe(1);
-                expect(compilation.warnings[0]).toBeInstanceOf(Error);
-                expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
-              });
+              compilationEventBindings[1].handler(
+                [
+                  {
+                    files: ['test2.js'],
+                  },
+                ],
+                () => {
+                  expect(compilation.warnings.length).toBe(1);
+                  expect(compilation.warnings[0]).toBeInstanceOf(Error);
+                  expect(compilation.warnings[0].message).toEqual(
+                    expect.stringContaining('Dropping unreachable code')
+                  );
+                }
+              );
             });
           });
 
@@ -356,13 +440,15 @@ describe('when applied with all options', () => {
               compilation = chunkPluginEnvironment.getEnvironmentStub();
               compilation.assets = {
                 'test2.js': {
-                  source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+                  source: () =>
+                    'function foo(x) { if (x) { return bar(); not_called1(); } }',
                   map: () => {
                     return {
                       version: 3,
                       sources: ['test1.js'],
                       names: ['foo', 'x', 'bar', 'not_called1'],
-                      mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                      mappings:
+                        'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
                     };
                   },
                 },
@@ -375,11 +461,16 @@ describe('when applied with all options', () => {
             });
 
             it('should get no warnings', () => {
-              compilationEventBindings[1].handler([{
-                files: ['test2.js'],
-              }], () => {
-                expect(compilation.warnings.length).toBe(0);
-              });
+              compilationEventBindings[1].handler(
+                [
+                  {
+                    files: ['test2.js'],
+                  },
+                ],
+                () => {
+                  expect(compilation.warnings.length).toBe(0);
+                }
+              );
             });
           });
         });
