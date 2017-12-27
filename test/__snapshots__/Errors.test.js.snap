@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Errors ValidationError 1`] = `
+Array [
+  "Error: main.bundle.js from UglifyJs
+DefaultsError: \`invalid\` is not a supported option",
+  "Error: runtime.bundle.js from UglifyJs
+DefaultsError: \`invalid\` is not a supported option",
+]
+`;
+
+exports[`Errors ValidationError 2`] = `
+Array [
+  "NoModeWarning: configuration
+The 'mode' option has not been set. Set 'mode' option to 'development' or 'production' to enable defaults for this enviroment. ",
+]
+`;
+
+exports[`Errors ValidationError 3`] = `
+"(window[\\"webpackJsonp\\"] = window[\\"webpackJsonp\\"] || []).push([[0],[
+/* 0 */
+/***/ (function(module, exports) {
+
+// foo
+/* @preserve*/
+// bar
+const a = 2 + 2;
+
+module.exports = function Foo() {
+  const b = 2 + 2;
+  console.log(b + 1 + 2);
+};
+
+
+/***/ })
+],[[0,1,0]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;

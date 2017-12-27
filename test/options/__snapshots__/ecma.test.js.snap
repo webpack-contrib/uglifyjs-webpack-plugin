@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ECMAScript ES5 1`] = `
+"(window.webpackJsonp = window.webpackJsonp || []).push([ [ 0 ], [ function(module, exports) {
+    var Person = {
+        firstName: null,
+        lastName: null
+    }, Employee = Object.create(Person, {
+        id: {
+            value: null,
+            enumerable: !0,
+            configurable: !0,
+            writable: !0
+        }
+    }), Manager = Object.create(Employee, {
+        department: {
+            value: null,
+            enumerable: !0,
+            configurable: !0,
+            writable: !0
+        }
+    });
+    module.exports = {
+        Person: Person,
+        Employee: Employee,
+        Manager: Manager
+    };
+} ], [ [ 0, 1, 0 ] ] ]);"
+`;
+
+exports[`ECMAScript ES2015 1`] = `
+"(window.webpackJsonp = window.webpackJsonp || []).push([ [ 0 ], [ function(module, exports) {
+    module.exports = class {
+        constructor(principal, years, rate) {
+            this.principal = principal, this.years = years, this.rate = rate;
+        }
+        get monthlyPayment() {
+            let monthlyRate = this.rate / 100 / 12;
+            return this.principal * monthlyRate / (1 - Math.pow(1 / (1 + monthlyRate), 12 * this.years));
+        }
+        get amortization() {
+            let monthlyPayment = this.monthlyPayment, monthlyRate = this.rate / 100 / 12, balance = this.principal, amortization = [];
+            for (let y = 0; y < this.years; y++) {
+                let interestY = 0, principalY = 0;
+                for (let m = 0; m < 12; m++) {
+                    let interestM = balance * monthlyRate, principalM = monthlyPayment - interestM;
+                    interestY += interestM, principalY += principalM, balance -= principalM;
+                }
+                amortization.push({
+                    principalY,
+                    interestY,
+                    balance
+                });
+            }
+            return amortization;
+        }
+    };
+} ], [ [ 0, 1, 0 ] ] ]);"
+`;
+
+exports[`ECMAScript ES2016 1`] = `
+"(window.webpackJsonp = window.webpackJsonp || []).push([ [ 0 ], [ function(module, exports) {
+    module.exports = function(base, exponent) {
+        return base ** exponent;
+    };
+} ], [ [ 0, 1, 0 ] ] ]);"
+`;
+
+exports[`ECMAScript ES2017 1`] = `
+"(window.webpackJsonp = window.webpackJsonp || []).push([ [ 0 ], [ function(module, exports) {
+    module.exports = async function(url) {
+        try {
+            let request = await fetch(url), text = await request.text();
+            return JSON.parse(text);
+        } catch (error) {
+            console.log(\`ERROR: \${error.stack}\`);
+        }
+    };
+} ], [ [ 0, 1, 0 ] ] ]);"
+`;

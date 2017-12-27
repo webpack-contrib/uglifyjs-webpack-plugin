@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Options exclude {Array<{RegExp}>} 1`] = `
+"(window[\\"webpackJsonp\\"] = window[\\"webpackJsonp\\"] || []).push([[0],[
+/* 0 */
+/***/ (function(module, exports) {
+
+module.exports = function Bar1() {
+  const b = 2 + 2;
+  console.log(b + 1 + 2);
+};
+
+/***/ })
+],[[0,3,0]]]);
+//# sourceMappingURL=1.bundle.js.map"
+`;
+
+exports[`Options exclude {Array<{RegExp}>} 2`] = `
+"(window[\\"webpackJsonp\\"] = window[\\"webpackJsonp\\"] || []).push([[1],[
+/* 0 */,
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = function Bar2() {
+  const b = 2 + 2;
+  console.log(b + 1 + 2);
+};
+
+/***/ })
+],[[1,3,1]]]);
+//# sourceMappingURL=2.bundle.js.map"
+`;
+
+exports[`Options exclude {RegExp} 1`] = `
+"(window[\\"webpackJsonp\\"] = window[\\"webpackJsonp\\"] || []).push([[0],[
+/* 0 */
+/***/ (function(module, exports) {
+
+module.exports = function Bar1() {
+  const b = 2 + 2;
+  console.log(b + 1 + 2);
+};
+
+/***/ })
+],[[0,3,0]]]);
+//# sourceMappingURL=1.bundle.js.map"
+`;
+
+exports[`Options exclude {RegExp} 2`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[1],[,function(o,n){o.exports=function(){console.log(7)}}],[[1,3,1]]]);"`;

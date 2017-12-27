@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Plugin Defaults 1`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(o,n){o.exports=function(){console.log(7)}}],[[0,1,0]]]);"`;

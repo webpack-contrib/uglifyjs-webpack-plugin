@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Options {Boolean} - true (parallel) 1`] = `
+"(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(o,n){o.exports=function(){console.log(7)}}],[[0,1,0]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;
+
+exports[`Options {Boolean} - true (parallel) 2`] = `
+Object {
+  "file": "x",
+  "mappings": "",
+  "names": Array [],
+  "sources": Array [],
+  "version": 3,
+}
+`;
+
+exports[`Options sourceMap {Boolean} - true 1`] = `
+"(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(o,n){o.exports=function(){console.log(7)}}],[[0,1,0]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;
+
+exports[`Options sourceMap {Boolean} - true 2`] = `
+Object {
+  "file": "x",
+  "mappings": "",
+  "names": Array [],
+  "sources": Array [],
+  "version": 3,
+}
+`;

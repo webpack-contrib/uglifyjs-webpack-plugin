@@ -1,4 +1,7 @@
+const uglify = require('uglify-es/package.json').version;
+const plugin = require('../../package.json').version;
+
 export default {
-  uglify: require('uglify-es/package.json').version,
-  plugin: require('../../package.json').version,
+  uglify,
+  plugin,
 };
