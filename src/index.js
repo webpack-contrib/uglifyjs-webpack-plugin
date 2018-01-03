@@ -166,7 +166,7 @@ class UglifyJsPlugin {
 
               tasks.push(task);
             } catch (error) {
-              compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, compilation, requestShortener));
+              compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
             }
           });
 
@@ -183,7 +183,7 @@ class UglifyJsPlugin {
             // Handling results
             // Error case: add errors, and go to next file
             if (error) {
-              compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, compilation, requestShortener));
+              compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
               return;
             }
 
