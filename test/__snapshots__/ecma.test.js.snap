@@ -32,16 +32,6 @@ exports[`ecma 5: main.js 1`] = `
 
 exports[`ecma 5: manifest.js 1`] = `
 "!function(modules) {
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
     var parentJsonpFunction = window.webpackJsonp;
     window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
         for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
@@ -54,13 +44,17 @@ exports[`ecma 5: manifest.js 1`] = `
     var installedModules = {}, installedChunks = {
         1: 0
     };
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
     __webpack_require__.e = function(chunkId) {
-        function onScriptComplete() {
-            script.onerror = script.onload = null, clearTimeout(timeout);
-            var chunk = installedChunks[chunkId];
-            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
-            installedChunks[chunkId] = void 0);
-        }
         var installedChunkData = installedChunks[chunkId];
         if (0 === installedChunkData) return new Promise(function(resolve) {
             resolve();
@@ -77,8 +71,14 @@ exports[`ecma 5: manifest.js 1`] = `
             \\"0\\": \\"main\\"
         }[chunkId] || chunkId) + \\".js\\";
         var timeout = setTimeout(onScriptComplete, 12e4);
-        return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
-        promise;
+        script.onerror = script.onload = onScriptComplete;
+        function onScriptComplete() {
+            script.onerror = script.onload = null, clearTimeout(timeout);
+            var chunk = installedChunks[chunkId];
+            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
+            installedChunks[chunkId] = void 0);
+        }
+        return head.appendChild(script), promise;
     }, __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
         __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
             configurable: !1,
@@ -136,16 +136,6 @@ exports[`ecma 6: main.js 1`] = `
 
 exports[`ecma 6: manifest.js 1`] = `
 "!function(modules) {
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
     var parentJsonpFunction = window.webpackJsonp;
     window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
         for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
@@ -158,13 +148,17 @@ exports[`ecma 6: manifest.js 1`] = `
     var installedModules = {}, installedChunks = {
         1: 0
     };
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
     __webpack_require__.e = function(chunkId) {
-        function onScriptComplete() {
-            script.onerror = script.onload = null, clearTimeout(timeout);
-            var chunk = installedChunks[chunkId];
-            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
-            installedChunks[chunkId] = void 0);
-        }
         var installedChunkData = installedChunks[chunkId];
         if (0 === installedChunkData) return new Promise(function(resolve) {
             resolve();
@@ -181,8 +175,14 @@ exports[`ecma 6: manifest.js 1`] = `
             \\"0\\": \\"main\\"
         }[chunkId] || chunkId) + \\".js\\";
         var timeout = setTimeout(onScriptComplete, 12e4);
-        return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
-        promise;
+        script.onerror = script.onload = onScriptComplete;
+        function onScriptComplete() {
+            script.onerror = script.onload = null, clearTimeout(timeout);
+            var chunk = installedChunks[chunkId];
+            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
+            installedChunks[chunkId] = void 0);
+        }
+        return head.appendChild(script), promise;
     }, __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
         __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
             configurable: !1,
@@ -218,16 +218,6 @@ exports[`ecma 7: main.js 1`] = `
 
 exports[`ecma 7: manifest.js 1`] = `
 "!function(modules) {
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
     var parentJsonpFunction = window.webpackJsonp;
     window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
         for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
@@ -240,13 +230,17 @@ exports[`ecma 7: manifest.js 1`] = `
     var installedModules = {}, installedChunks = {
         1: 0
     };
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
     __webpack_require__.e = function(chunkId) {
-        function onScriptComplete() {
-            script.onerror = script.onload = null, clearTimeout(timeout);
-            var chunk = installedChunks[chunkId];
-            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
-            installedChunks[chunkId] = void 0);
-        }
         var installedChunkData = installedChunks[chunkId];
         if (0 === installedChunkData) return new Promise(function(resolve) {
             resolve();
@@ -263,8 +257,14 @@ exports[`ecma 7: manifest.js 1`] = `
             \\"0\\": \\"main\\"
         }[chunkId] || chunkId) + \\".js\\";
         var timeout = setTimeout(onScriptComplete, 12e4);
-        return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
-        promise;
+        script.onerror = script.onload = onScriptComplete;
+        function onScriptComplete() {
+            script.onerror = script.onload = null, clearTimeout(timeout);
+            var chunk = installedChunks[chunkId];
+            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
+            installedChunks[chunkId] = void 0);
+        }
+        return head.appendChild(script), promise;
     }, __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
         __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
             configurable: !1,
@@ -305,16 +305,6 @@ exports[`ecma 8: main.js 1`] = `
 
 exports[`ecma 8: manifest.js 1`] = `
 "!function(modules) {
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
     var parentJsonpFunction = window.webpackJsonp;
     window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
         for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
@@ -327,13 +317,17 @@ exports[`ecma 8: manifest.js 1`] = `
     var installedModules = {}, installedChunks = {
         1: 0
     };
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
     __webpack_require__.e = function(chunkId) {
-        function onScriptComplete() {
-            script.onerror = script.onload = null, clearTimeout(timeout);
-            var chunk = installedChunks[chunkId];
-            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
-            installedChunks[chunkId] = void 0);
-        }
         var installedChunkData = installedChunks[chunkId];
         if (0 === installedChunkData) return new Promise(function(resolve) {
             resolve();
@@ -350,8 +344,14 @@ exports[`ecma 8: manifest.js 1`] = `
             \\"0\\": \\"main\\"
         }[chunkId] || chunkId) + \\".js\\";
         var timeout = setTimeout(onScriptComplete, 12e4);
-        return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
-        promise;
+        script.onerror = script.onload = onScriptComplete;
+        function onScriptComplete() {
+            script.onerror = script.onload = null, clearTimeout(timeout);
+            var chunk = installedChunks[chunkId];
+            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
+            installedChunks[chunkId] = void 0);
+        }
+        return head.appendChild(script), promise;
     }, __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
         __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
             configurable: !1,
@@ -400,16 +400,6 @@ exports[`import-export: main.js 1`] = `
 
 exports[`import-export: manifest.js 1`] = `
 "!function(modules) {
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
     var parentJsonpFunction = window.webpackJsonp;
     window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
         for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
@@ -422,13 +412,17 @@ exports[`import-export: manifest.js 1`] = `
     var installedModules = {}, installedChunks = {
         1: 0
     };
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
     __webpack_require__.e = function(chunkId) {
-        function onScriptComplete() {
-            script.onerror = script.onload = null, clearTimeout(timeout);
-            var chunk = installedChunks[chunkId];
-            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
-            installedChunks[chunkId] = void 0);
-        }
         var installedChunkData = installedChunks[chunkId];
         if (0 === installedChunkData) return new Promise(function(resolve) {
             resolve();
@@ -445,8 +439,14 @@ exports[`import-export: manifest.js 1`] = `
             \\"0\\": \\"main\\"
         }[chunkId] || chunkId) + \\".js\\";
         var timeout = setTimeout(onScriptComplete, 12e4);
-        return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
-        promise;
+        script.onerror = script.onload = onScriptComplete;
+        function onScriptComplete() {
+            script.onerror = script.onload = null, clearTimeout(timeout);
+            var chunk = installedChunks[chunkId];
+            0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
+            installedChunks[chunkId] = void 0);
+        }
+        return head.appendChild(script), promise;
     }, __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
         __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
             configurable: !1,
