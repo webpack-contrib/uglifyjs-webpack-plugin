@@ -12,7 +12,7 @@ Object {
 
 exports[`test2.js 1`] = `
 Object {
-  "code": "var foo=1;",
+  "code": "var foo=1;/* hello */",
   "error": undefined,
   "extractedComments": Array [],
   "map": undefined,
