@@ -14,11 +14,9 @@
   "scripts": {
     "start": "npm run build -- -w",
     "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js' --copy-files",
-    "test:all": "npm run test:coverage && npm run test:lint",
     "test": "jest",
-    "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
     "test:watch": "jest --watch",
-    "test:lint": "eslint . --ext .js --ignore-path .gitignore --cache",
+    "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
     "prebuild": "npm run clean",
     "clean": "del-cli dist",
     "lint": "eslint --cache src test",
@@ -33,14 +31,14 @@
     "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
-    "cacache": "^10.0.0",
+    "cacache": "^10.0.1",
     "find-cache-dir": "^1.0.0",
     "serialize-javascript": "^1.4.0",
-    "schema-utils": "^0.3.0",
+    "schema-utils": "^0.4.2",
     "source-map": "^0.6.1",
     "uglify-es": "^3.3.4",
-    "webpack-sources": "^1.0.1",
-    "worker-farm": "^1.4.1"
+    "webpack-sources": "^1.1.0",
+    "worker-farm": "^1.5.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -54,12 +52,12 @@
     "eslint-config-webpack": "^1.2.5",
     "eslint-plugin-import": "^2.8.0",
     "jest": "^21.2.1",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^6.0.0",
     "memory-fs": "^0.4.1",
-    "nsp": "^2.8.1",
+    "nsp": "^3.1.0",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.3.0",
-    "webpack": "^3.8.1",
+    "webpack": "^3.10.0",
     "webpack-defaults": "^1.6.0"
   },
   "peerDependencies": {
