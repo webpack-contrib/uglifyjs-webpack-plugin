@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test1.js 1`] = `
+Object {
+  "code": "var foo=1;",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test2.js 1`] = `
+Object {
+  "code": "var foo=1;/* hello */",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test3.js 1`] = `
+Object {
+  "code": "var foo=1;",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test4.js 1`] = `
+Object {
+  "code": "var foo=1;",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test5.js 1`] = `
+Object {
+  "code": "/******/function hello(o){console.log(o)}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test6.js 1`] = `
+Object {
+  "code": "function foo(f){if(f)return bar()}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": "{\\"version\\":3,\\"sources\\":[\\"test1.js\\"],\\"names\\":[\\"foo\\",\\"x\\",\\"not_called1\\"],\\"mappings\\":\\"AAAA,SAASA,IAAIC,GACT,GACIA,EAAA,OACAC\\"}",
+  "warnings": undefined,
+}
+`;

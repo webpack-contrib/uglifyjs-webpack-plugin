@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1.bundle.js 1`] = `
+"/*! For license information please see extracted.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[
+/* 0 */
+/***/function(n,w){}],[[0,5,0]]]);
+//# sourceMappingURL=1.bundle.js.map"
+`;
+
+exports[`2.bundle.js 1`] = `
+"/*! For license information please see extracted.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],[
+/* 0 */
+/* 1 */
+/***/,
+/* 1 */
+/***/function(n,w){}],[[1,5,1]]]);
+//# sourceMappingURL=2.bundle.js.map"
+`;
+
+exports[`3.bundle.js 1`] = `
+"/*! For license information please see extracted.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{
+/***/2:
+/***/function(n,w){}},[[2,5,2]]]);
+//# sourceMappingURL=3.bundle.js.map"
+`;
+
+exports[`4.bundle.js 1`] = `
+"/*! For license information please see extracted.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{
+/***/3:
+/***/function(n,w){}},[[3,5,3]]]);
+//# sourceMappingURL=4.bundle.js.map"
+`;
+
+exports[`Options extract {Function} 1`] = `
+"/*! For license information please see 1.bundle.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(n,w){}],[[0,2,0]]]);
+//# sourceMappingURL=1.bundle.js.map"
+`;
+
+exports[`Options extract {Function} 2`] = `
+"/* 0 */
+
+/***/
+"
+`;
+
+exports[`Options extract {Function} 3`] = `
+"/*! For license information please see main.bundle.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],[,function(o,n){o.exports=function(){console.log(7)}}],[[1,2,1]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;
+
+exports[`Options extract {Function} 4`] = `
+"/* 0 */
+
+/* 1 */
+
+/***/
+
+/* 1 */
+
+/***/
+"
+`;
+
+exports[`Options extract {Object<{Function}>} 1`] = `
+"/*! License information can be found in main.bundle.license.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(n,w){}],[[0,1,0]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;
+
+exports[`Options extract {Object<{Function}>} 2`] = `
+"/* 0 */
+
+/***/
+
+/** @preserve This is comment 2 */
+
+/***/
+"
+`;
+
+exports[`Options extract {Regex} 1`] = `
+"/*! For license information please see 1.bundle.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(n,w){}],[[0,2,0]]]);
+//# sourceMappingURL=1.bundle.js.map"
+`;
+
+exports[`Options extract {Regex} 2`] = `
+"/* 0 */
+
+/***/
+"
+`;
+
+exports[`Options extract {Regex} 3`] = `
+"/*! For license information please see main.bundle.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],[,function(o,n){o.exports=function(){console.log(7)}}],[[1,2,1]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;
+
+exports[`Options extract {Regex} 4`] = `
+"/* 0 */
+
+/* 1 */
+
+/***/
+
+/* 1 */
+
+/***/
+"
+`;
+
+exports[`Options extract {String} 1`] = `
+"/*! For license information please see 1.bundle.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(n,w){}],[[0,2,0]]]);
+//# sourceMappingURL=1.bundle.js.map"
+`;
+
+exports[`Options extract {String} 2`] = `
+"/* 0 */
+
+/***/
+"
+`;
+
+exports[`Options extract {String} 3`] = `
+"/*! For license information please see main.bundle.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],[,function(o,n){o.exports=function(){console.log(7)}}],[[1,2,1]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;
+
+exports[`Options extract {String} 4`] = `
+"/* 0 */
+
+/* 1 */
+
+/***/
+
+/* 1 */
+
+/***/
+"
+`;
+
+exports[`extracted.js 1`] = `
+"/* 0 */
+
+/***/
+
+/* 0 */
+
+/* 1 */
+
+/***/
+
+/* 1 */
+
+/***/
+
+/***/
+
+/***/
+
+/***/
+
+/***/
+
+/***/
+
+/***/
+"
+`;
+
+exports[`main.bundle.js 1`] = `
+"/*! For license information please see extracted.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{
+/***/4:
+/***/function(n,w){}},[[4,5,4]]]);
+//# sourceMappingURL=main.bundle.js.map"
+`;
