@@ -40,7 +40,7 @@ describe('when applied with invalid options', () => {
 
     expect(() => {
       new UglifyJsPlugin({ doesntExist: true });
-    }).toThrow('Validation Error');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ cache: true });
@@ -52,7 +52,7 @@ describe('when applied with invalid options', () => {
 
     expect(() => {
       new UglifyJsPlugin({ cache: {} });
-    }).toThrow('Validation Error');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ parallel: true });
@@ -64,11 +64,11 @@ describe('when applied with invalid options', () => {
 
     expect(() => {
       new UglifyJsPlugin({ parallel: '2' });
-    }).toThrow('Validation Error');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ parallel: {} });
-    }).toThrow('Validation Error');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ sourceMap: true });
@@ -76,11 +76,11 @@ describe('when applied with invalid options', () => {
 
     expect(() => {
       new UglifyJsPlugin({ sourceMap: 'true' });
-    }).toThrow('Validation Error');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: null });
-    }).toThrow('Validation Error');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ie8: false } });
@@ -92,7 +92,7 @@ describe('when applied with invalid options', () => {
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ie8: 'false' } });
-    }).toThrow('Validation Error');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { emca: 5 } });
@@ -104,23 +104,23 @@ describe('when applied with invalid options', () => {
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: 7.5 } });
-    }).toThrow('should be integer');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: true } });
-    }).toThrow('should be integer');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: '5' } });
-    }).toThrow('should be integer');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: 3 } });
-    }).toThrow('should be >= 5');
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: 10 } });
-    }).toThrow('should be <= 8');
+    }).toThrowErrorMatchingSnapshot();
   });
 
   it('outputs uglify errors', () => {
