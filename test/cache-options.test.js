@@ -243,7 +243,7 @@ describe('when options.cache', () => {
                     // eslint-disable-next-line no-new-func
                     const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
 
-                    expect([cacheEntryOptions.path, cacheEntryOptions.input])
+                    expect([cacheEntryOptions.path, cacheEntryOptions.hash])
                       .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntryOptions.path}`);
                   });
 
@@ -389,7 +389,7 @@ describe('when options.cache', () => {
                     // eslint-disable-next-line no-new-func
                     const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
 
-                    expect([cacheEntryOptions.path, cacheEntryOptions.input])
+                    expect([cacheEntryOptions.path, cacheEntryOptions.hash])
                       .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntryOptions.path}`);
                   });
 
