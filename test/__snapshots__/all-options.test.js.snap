@@ -48,19 +48,19 @@ exports[`manifest.6afe1bc6685e9ab36c1c.js 1`] = `
         script.type = \\"text/javascript\\", script.charset = \\"utf-8\\", script.async = !0, script.timeout = 12e4, 
         __webpack_require__.nc && script.setAttribute(\\"nonce\\", __webpack_require__.nc), 
         script.src = __webpack_require__.p + \\"\\" + chunkId + \\".\\" + ({
-            \\"0\\": \\"main\\"
+            0: \\"main\\"
         }[chunkId] || chunkId) + \\".\\" + {
-            \\"0\\": \\"0c220ec66316af2c1b24\\"
+            0: \\"0c220ec66316af2c1b24\\"
         }[chunkId] + \\".js\\";
         var timeout = setTimeout(onScriptComplete, 12e4);
-        script.onerror = script.onload = onScriptComplete;
         function onScriptComplete() {
             script.onerror = script.onload = null, clearTimeout(timeout);
             var chunk = installedChunks[chunkId];
             0 !== chunk && (chunk && chunk[1](new Error(\\"Loading chunk \\" + chunkId + \\" failed.\\")), 
             installedChunks[chunkId] = void 0);
         }
-        return head.appendChild(script), promise;
+        return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
+        promise;
     }, __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
         __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
             configurable: !1,
