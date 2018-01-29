@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file. See [standa
 ## [1.1.7](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.6...v1.1.7) (2018-01-29)
 
 
+### Bug Fixes
+
+* **index:** reduce memory consumption (`cacheKey.hash`) ([#215](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/215)) ([2343274](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/2343274))
+
 
 <a name="1.1.6"></a>
 ## [1.1.6](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.5...v1.1.6) (2018-01-05)
