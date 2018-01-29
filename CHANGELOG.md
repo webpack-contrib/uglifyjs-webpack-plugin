@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.8"></a>
+## [1.1.8](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.7...v1.1.8) (2018-01-29)
+
+
+### Bug Fixes
+
+* **package:** use `prepare` instead of `prepublish` for release ([43ffa48](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/43ffa48))
+
+
+### Reverts
+
+* **README:** `mangle.props` instead of `mangle.properties` ([44b77e3](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/44b77e3))
+
+
+
 <a name="1.1.7"></a>
 ## [1.1.7](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.6...v1.1.7) (2018-01-29)
 
