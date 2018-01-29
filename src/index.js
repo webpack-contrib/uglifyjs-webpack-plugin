@@ -3,6 +3,7 @@
   Author Tobias Koppers @sokra
 */
 
+import crypto from 'crypto';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
@@ -160,7 +161,7 @@ class UglifyJsPlugin {
                   'uglifyjs-webpack-plugin': versions.plugin,
                   'uglifyjs-webpack-plugin-options': this.options,
                   path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
-                  input,
+                  hash: crypto.createHash('md5').update(input).digest('hex'),
                 });
               }
 
