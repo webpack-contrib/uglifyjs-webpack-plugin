@@ -167,6 +167,9 @@ Number of concurrent runs.
 |**[`output`](https://github.com/mishoo/UglifyJS2/tree/harmony#output-options)**|`{Object}`|`{}`|Additional Output Options (The defaults are optimized for best compression)|
 |**[`compress`](https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options)**|`{Boolean\|Object}`|`true`|Additional Compress Options|
 |**`warnings`**|`{Boolean}`|`false`|Display Warnings|
+|**`keep_classnames`**|`{Boolean}`|`undefined`|Prevent discarding or mangling of class names|
+|**`keep_fnames`**|`{Boolean}`|`false`|Prevent discarding or mangling of function names|
+|**`safari10`**|`{Boolean}`|`false`|Enable work around Safari 10/11 bugs in loop scoping and await|
 
 **webpack.config.js**
 ```js
@@ -188,7 +191,10 @@ Number of concurrent runs.
         ...options
       },
       compress: {...options},
-      warnings: false
+      warnings: false,
+      keep_classnames: false,
+      keep_fnames: false,
+      safari10: false
     }
   })
 ]

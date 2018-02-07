@@ -59,6 +59,15 @@
         },
         "nameCache": {
           "type": ["object", "null"]
+        },
+        "keep_classnames": {
+          "type": "boolean"
+        },
+        "keep_fnames": {
+          "type": "boolean"
+        },
+        "safari10": {
+          "type": "boolean"
         }
       }
     }

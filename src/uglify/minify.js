@@ -13,6 +13,11 @@ const buildUglifyOptions = ({
   warnings,
   toplevel,
   nameCache,
+  // eslint-disable-next-line camelcase
+  keep_classnames,
+  // eslint-disable-next-line camelcase
+  keep_fnames,
+  safari10,
 } = {}) => ({
   ie8,
   ecma,
@@ -31,6 +36,9 @@ const buildUglifyOptions = ({
   nameCache,
   // Ignoring sourcemap from options
   sourceMap: null,
+  keep_classnames,
+  keep_fnames,
+  safari10,
 });
 
 const buildComments = (options, uglifyOptions, extractedComments) => {
