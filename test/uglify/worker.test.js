@@ -116,4 +116,57 @@ describe('matches snapshot', () => {
       expect(data).toMatchSnapshot(options.file);
     });
   });
+
+  it('when uglifyOptions.keep_fnames is enabled', () => {
+    const options = {
+      file: 'test7.js',
+      input: 'function foo(){ return function bar() { return a; }(); }',
+      uglifyOptions: {
+        keep_fnames: true,
+      },
+    };
+
+    worker(serialize(options), (error, data) => {
+      if (error) {
+        throw error;
+      }
+      expect(data).toMatchSnapshot(options.file);
+      expect(data.code).toEqual(expect.stringContaining('bar'));
+    });
+  });
+
+  it('when uglifyOptions.keep_classnames is enabled', () => {
+    const options = {
+      file: 'test8.js',
+      input: 'function foo(){ return class Component { }; }',
+      uglifyOptions: {
+        keep_classnames: true,
+      },
+    };
+
+    worker(serialize(options), (error, data) => {
+      if (error) {
+        throw error;
+      }
+      expect(data).toMatchSnapshot(options.file);
+      expect(data.code).toEqual(expect.stringContaining('Component'));
+    });
+  });
+
+  it('when uglifyOptions.safari10 is enabled', () => {
+    const options = {
+      file: 'test9.js',
+      input: 'function f(o) { for (let n of a) { console.log(n); } }',
+      uglifyOptions: {
+        safari10: true,
+      },
+    };
+
+    worker(serialize(options), (error, data) => {
+      if (error) {
+        throw error;
+      }
+      expect(data).toMatchSnapshot(options.file);
+    });
+  });
 });
