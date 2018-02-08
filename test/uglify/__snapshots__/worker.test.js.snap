@@ -59,3 +59,33 @@ Object {
   "warnings": undefined,
 }
 `;
+
+exports[`test7.js 1`] = `
+Object {
+  "code": "function foo(){return function bar(){return a}()}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test8.js 1`] = `
+Object {
+  "code": "function foo(){return class Component{}}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`test9.js 1`] = `
+Object {
+  "code": "function f(o){for(let f of a)console.log(f)}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
