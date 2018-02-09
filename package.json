@@ -33,6 +33,7 @@
   "dependencies": {
     "cacache": "^10.0.1",
     "find-cache-dir": "^1.0.0",
+    "serialize-error": "^2.1.0",
     "serialize-javascript": "^1.4.0",
     "schema-utils": "^0.4.2",
     "source-map": "^0.6.1",
