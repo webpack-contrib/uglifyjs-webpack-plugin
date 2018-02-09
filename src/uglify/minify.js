@@ -4,19 +4,25 @@
 import uglify from 'uglify-es';
 
 const buildUglifyOptions = ({
-  ie8,
   ecma,
+  warnings,
   parse = {},
+  compress = {},
   mangle,
   output,
-  compress = {},
-  warnings,
   toplevel,
   nameCache,
-} = {}) => ({
   ie8,
+  /* eslint-disable camelcase */
+  keep_classnames,
+  keep_fnames,
+  /* eslint-enable camelcase */
+  safari10,
+} = {}) => ({
   ecma,
+  warnings,
   parse,
+  compress,
   mangle: mangle == null ? true : mangle,
   output: {
     shebang: true,
@@ -25,12 +31,14 @@ const buildUglifyOptions = ({
     semicolons: true,
     ...output,
   },
-  compress,
-  warnings,
-  toplevel,
-  nameCache,
   // Ignoring sourcemap from options
   sourceMap: null,
+  toplevel,
+  nameCache,
+  ie8,
+  keep_classnames,
+  keep_fnames,
+  safari10,
 });
 
 const buildComments = (options, uglifyOptions, extractedComments) => {
