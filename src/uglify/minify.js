@@ -40,7 +40,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
   // /^\**!|@preserve|@license|@cc_on/
   if (typeof options.extractComments === 'boolean') {
     condition.preserve = commentsOpts;
-    condition.extract = /Copyright|LICENSE|@preserve|@license|@cc_on/ig;
+    condition.extract = /^\**!Copyright|LICENSE|@preserve|@license|@cc_on/ig;
   } else if (
     typeof options.extractComments === 'string' ||
     options.extractComments instanceof RegExp
