@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.8...v1.2.0) (2018-02-16)
+
+
+### Features
+
+* **uglify:** add missing `toplevel`, `nameCache`, `keep_classnames`, `keep_fnames` and `safari10` options (`uglifyOptions`) ([#229](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/229)) ([990de2a](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/990de2a))
+
+
+
 <a name="1.1.8"></a>
 ## [1.1.8](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.1.7...v1.1.8) (2018-01-29)
 
