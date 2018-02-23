@@ -95,154 +95,170 @@ class UglifyJsPlugin {
   apply(compiler) {
     const requestShortener = new RequestShortener(compiler.context);
 
-    compiler.plugin('compilation', (compilation) => {
-      if (this.options.sourceMap) {
-        compilation.plugin('build-module', (moduleArg) => {
-          // to get detailed location info about errors
-          moduleArg.useSourceMap = true;
-        });
-      }
+    const buildMobuleFn = (moduleArg) => {
+      // to get detailed location info about errors
+      moduleArg.useSourceMap = true;
+    };
 
-      compilation.plugin('optimize-chunk-assets', (chunks, callback) => {
-        const uglify = new Uglify({
-          cache: this.options.cache,
-          parallel: this.options.parallel,
-        });
-        const uglifiedAssets = new WeakSet();
-        const tasks = [];
-        chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])
-          .concat(compilation.additionalChunkAssets || [])
-          .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
-          .forEach((file) => {
-            let sourceMap;
-            const asset = compilation.assets[file];
-            if (uglifiedAssets.has(asset)) {
-              return;
-            }
-
-            try {
-              let input;
-              let inputSourceMap;
-
-              if (this.options.sourceMap && asset.sourceAndMap) {
-                const { source, map } = asset.sourceAndMap();
-
-                input = source;
-                inputSourceMap = map;
-
-                sourceMap = new SourceMapConsumer(inputSourceMap);
-              } else {
-                input = asset.source();
-                inputSourceMap = null;
-              }
-
-              // Handling comment extraction
-              let commentsFile = false;
-              if (this.options.extractComments) {
-                commentsFile = this.options.extractComments.filename || `${file}.LICENSE`;
-                if (typeof commentsFile === 'function') {
-                  commentsFile = commentsFile(file);
-                }
-              }
-
-              const task = {
-                file,
-                input,
-                sourceMap,
-                inputSourceMap,
-                commentsFile,
-                extractComments: this.options.extractComments,
-                uglifyOptions: this.options.uglifyOptions,
-              };
-
-              if (this.options.cache) {
-                task.cacheKey = serialize({
-                  'uglify-es': versions.uglify,
-                  'uglifyjs-webpack-plugin': versions.plugin,
-                  'uglifyjs-webpack-plugin-options': this.options,
-                  path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
-                  hash: crypto.createHash('md5').update(input).digest('hex'),
-                });
-              }
-
-              tasks.push(task);
-            } catch (error) {
-              compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
-            }
-          });
-
-        uglify.runTasks(tasks, (tasksError, results) => {
-          if (tasksError) {
-            compilation.errors.push(tasksError);
+    const optimizeFn = (compilation, chunks, callback) => {
+      const uglify = new Uglify({
+        cache: this.options.cache,
+        parallel: this.options.parallel,
+      });
+      const uglifiedAssets = new WeakSet();
+      const tasks = [];
+      chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])
+        .concat(compilation.additionalChunkAssets || [])
+        .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
+        .forEach((file) => {
+          let sourceMap;
+          const asset = compilation.assets[file];
+          if (uglifiedAssets.has(asset)) {
             return;
           }
 
-          results.forEach((data, index) => {
-            const { file, input, sourceMap, inputSourceMap, commentsFile } = tasks[index];
-            const { error, map, code, warnings, extractedComments } = data;
+          try {
+            let input;
+            let inputSourceMap;
 
-            // Handling results
-            // Error case: add errors, and go to next file
-            if (error) {
-              compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
-              return;
-            }
+            if (this.options.sourceMap && asset.sourceAndMap) {
+              const { source, map } = asset.sourceAndMap();
 
-            let outputSource;
-            if (map) {
-              outputSource = new SourceMapSource(code, file, JSON.parse(map), input, inputSourceMap);
+              input = source;
+              inputSourceMap = map;
+
+              sourceMap = new SourceMapConsumer(inputSourceMap);
             } else {
-              outputSource = new RawSource(code);
+              input = asset.source();
+              inputSourceMap = null;
             }
 
-            // Write extracted comments to commentsFile
-            if (commentsFile && extractedComments.length > 0) {
-              // Add a banner to the original file
-              if (this.options.extractComments.banner !== false) {
-                let banner = this.options.extractComments.banner || `For license information please see ${commentsFile}`;
-                if (typeof banner === 'function') {
-                  banner = banner(commentsFile);
-                }
-                if (banner) {
-                  outputSource = new ConcatSource(
-                    `/*! ${banner} */\n`, outputSource,
-                  );
-                }
-              }
-
-              const commentsSource = new RawSource(`${extractedComments.join('\n\n')}\n`);
-              if (commentsFile in compilation.assets) {
-                // commentsFile already exists, append new comments...
-                if (compilation.assets[commentsFile] instanceof ConcatSource) {
-                  compilation.assets[commentsFile].add('\n');
-                  compilation.assets[commentsFile].add(commentsSource);
-                } else {
-                  compilation.assets[commentsFile] = new ConcatSource(
-                    compilation.assets[commentsFile], '\n', commentsSource,
-                  );
-                }
-              } else {
-                compilation.assets[commentsFile] = commentsSource;
+            // Handling comment extraction
+            let commentsFile = false;
+            if (this.options.extractComments) {
+              commentsFile = this.options.extractComments.filename || `${file}.LICENSE`;
+              if (typeof commentsFile === 'function') {
+                commentsFile = commentsFile(file);
               }
             }
 
-            // Updating assets
-            uglifiedAssets.add(compilation.assets[file] = outputSource);
+            const task = {
+              file,
+              input,
+              sourceMap,
+              inputSourceMap,
+              commentsFile,
+              extractComments: this.options.extractComments,
+              uglifyOptions: this.options.uglifyOptions,
+            };
 
-            // Handling warnings
-            if (warnings) {
-              const warnArr = UglifyJsPlugin.buildWarnings(warnings, file, sourceMap, this.options.warningsFilter, requestShortener);
-              if (warnArr.length > 0) {
-                compilation.warnings.push(new Error(`${file} from UglifyJs\n${warnArr.join('\n')}`));
-              }
+            if (this.options.cache) {
+              task.cacheKey = serialize({
+                'uglify-es': versions.uglify,
+                'uglifyjs-webpack-plugin': versions.plugin,
+                'uglifyjs-webpack-plugin-options': this.options,
+                path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
+                hash: crypto.createHash('md5').update(input).digest('hex'),
+              });
             }
-          });
 
-          uglify.exit();
-          callback();
+            tasks.push(task);
+          } catch (error) {
+            compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
+          }
         });
+
+      uglify.runTasks(tasks, (tasksError, results) => {
+        if (tasksError) {
+          compilation.errors.push(tasksError);
+          return;
+        }
+
+        results.forEach((data, index) => {
+          const { file, input, sourceMap, inputSourceMap, commentsFile } = tasks[index];
+          const { error, map, code, warnings, extractedComments } = data;
+
+          // Handling results
+          // Error case: add errors, and go to next file
+          if (error) {
+            compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
+            return;
+          }
+
+          let outputSource;
+          if (map) {
+            outputSource = new SourceMapSource(code, file, JSON.parse(map), input, inputSourceMap);
+          } else {
+            outputSource = new RawSource(code);
+          }
+
+          // Write extracted comments to commentsFile
+          if (commentsFile && extractedComments.length > 0) {
+            // Add a banner to the original file
+            if (this.options.extractComments.banner !== false) {
+              let banner = this.options.extractComments.banner || `For license information please see ${commentsFile}`;
+              if (typeof banner === 'function') {
+                banner = banner(commentsFile);
+              }
+              if (banner) {
+                outputSource = new ConcatSource(
+                  `/*! ${banner} */\n`, outputSource,
+                );
+              }
+            }
+
+            const commentsSource = new RawSource(`${extractedComments.join('\n\n')}\n`);
+            if (commentsFile in compilation.assets) {
+              // commentsFile already exists, append new comments...
+              if (compilation.assets[commentsFile] instanceof ConcatSource) {
+                compilation.assets[commentsFile].add('\n');
+                compilation.assets[commentsFile].add(commentsSource);
+              } else {
+                compilation.assets[commentsFile] = new ConcatSource(
+                  compilation.assets[commentsFile], '\n', commentsSource,
+                );
+              }
+            } else {
+              compilation.assets[commentsFile] = commentsSource;
+            }
+          }
+
+          // Updating assets
+          uglifiedAssets.add(compilation.assets[file] = outputSource);
+
+          // Handling warnings
+          if (warnings) {
+            const warnArr = UglifyJsPlugin.buildWarnings(warnings, file, sourceMap, this.options.warningsFilter, requestShortener);
+            if (warnArr.length > 0) {
+              compilation.warnings.push(new Error(`${file} from UglifyJs\n${warnArr.join('\n')}`));
+            }
+          }
+        });
+
+        uglify.exit();
+        callback();
       });
-    });
+    };
+
+    if (compiler.hooks) {
+      const plugin = { name: 'UglifyJSPlugin' };
+
+      compiler.hooks.compilation.tap(plugin, (compilation) => {
+        if (this.options.sourceMap) {
+          compilation.hooks.buildMobule.tap(plugin, buildMobuleFn);
+        }
+
+        compilation.hooks.optimizeChunkAssets.tapAsync(plugin, optimizeFn.bind(this, compilation));
+      });
+    } else {
+      compiler.plugin('compilation', (compilation) => {
+        if (this.options.sourceMap) {
+          compilation.plugin('build-module', buildMobuleFn);
+        }
+
+        compilation.plugin('optimize-chunk-assets', optimizeFn.bind(this, compilation));
+      });
+    }
   }
 }
 
