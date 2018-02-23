@@ -1,6 +1,6 @@
 {
   "name": "uglifyjs-webpack-plugin",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "UglifyJS plugin for webpack",
   "author": "webpack Contrib Team",
   "license": "MIT",
