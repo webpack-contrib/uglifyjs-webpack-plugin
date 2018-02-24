@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.2.1...v1.2.2) (2018-02-24)
+
+
+### Bug Fixes
+
+* **index:** typo `buildMobule` => `buildModule` ([#242](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/242)) ([259adad](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/259adad))
+* **package:** add `webpack >= v4.0.0` (`peerDependencies`) ([#239](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/239)) ([4c7f80a](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/4c7f80a))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.2.0...v1.2.1) (2018-02-23)
 
