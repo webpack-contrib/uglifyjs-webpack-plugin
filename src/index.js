@@ -1,8 +1,6 @@
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
+/* eslint-disable
+  no-param-reassign
 */
-
 import crypto from 'crypto';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
@@ -13,10 +11,6 @@ import serialize from 'serialize-javascript';
 import schema from './options.json';
 import Uglify from './uglify';
 import versions from './uglify/versions';
-
-/* eslint-disable
-  no-param-reassign
-*/
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
@@ -95,7 +89,7 @@ class UglifyJsPlugin {
   apply(compiler) {
     const requestShortener = new RequestShortener(compiler.context);
 
-    const buildMobuleFn = (moduleArg) => {
+    const buildModuleFn = (moduleArg) => {
       // to get detailed location info about errors
       moduleArg.useSourceMap = true;
     };
@@ -105,8 +99,10 @@ class UglifyJsPlugin {
         cache: this.options.cache,
         parallel: this.options.parallel,
       });
+
       const uglifiedAssets = new WeakSet();
       const tasks = [];
+
       chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])
         .concat(compilation.additionalChunkAssets || [])
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
@@ -164,7 +160,14 @@ class UglifyJsPlugin {
 
             tasks.push(task);
           } catch (error) {
-            compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
+            compilation.errors.push(
+              UglifyJsPlugin.buildError(
+                error,
+                file,
+                sourceMap,
+                requestShortener,
+              ),
+            );
           }
         });
 
@@ -181,13 +184,25 @@ class UglifyJsPlugin {
           // Handling results
           // Error case: add errors, and go to next file
           if (error) {
-            compilation.errors.push(UglifyJsPlugin.buildError(error, file, sourceMap, requestShortener));
+            compilation.errors.push(
+              UglifyJsPlugin.buildError(
+                error,
+                file,
+                sourceMap,
+                requestShortener,
+              ),
+            );
+
             return;
           }
 
           let outputSource;
           if (map) {
-            outputSource = new SourceMapSource(code, file, JSON.parse(map), input, inputSourceMap);
+            outputSource = new SourceMapSource(
+              code,
+              file,
+              JSON.parse(map), input, inputSourceMap,
+            );
           } else {
             outputSource = new RawSource(code);
           }
@@ -197,9 +212,11 @@ class UglifyJsPlugin {
             // Add a banner to the original file
             if (this.options.extractComments.banner !== false) {
               let banner = this.options.extractComments.banner || `For license information please see ${commentsFile}`;
+
               if (typeof banner === 'function') {
                 banner = banner(commentsFile);
               }
+
               if (banner) {
                 outputSource = new ConcatSource(
                   `/*! ${banner} */\n`, outputSource,
@@ -208,6 +225,7 @@ class UglifyJsPlugin {
             }
 
             const commentsSource = new RawSource(`${extractedComments.join('\n\n')}\n`);
+
             if (commentsFile in compilation.assets) {
               // commentsFile already exists, append new comments...
               if (compilation.assets[commentsFile] instanceof ConcatSource) {
@@ -228,14 +246,24 @@ class UglifyJsPlugin {
 
           // Handling warnings
           if (warnings) {
-            const warnArr = UglifyJsPlugin.buildWarnings(warnings, file, sourceMap, this.options.warningsFilter, requestShortener);
+            const warnArr = UglifyJsPlugin.buildWarnings(
+              warnings,
+              file,
+              sourceMap,
+              this.options.warningsFilter,
+              requestShortener,
+            );
+
             if (warnArr.length > 0) {
-              compilation.warnings.push(new Error(`${file} from UglifyJs\n${warnArr.join('\n')}`));
+              compilation.warnings.push(
+                new Error(`${file} from UglifyJs\n${warnArr.join('\n')}`),
+              );
             }
           }
         });
 
         uglify.exit();
+
         callback();
       });
     };
@@ -245,7 +273,7 @@ class UglifyJsPlugin {
 
       compiler.hooks.compilation.tap(plugin, (compilation) => {
         if (this.options.sourceMap) {
-          compilation.hooks.buildMobule.tap(plugin, buildMobuleFn);
+          compilation.hooks.buildModule.tap(plugin, buildModuleFn);
         }
 
         compilation.hooks.optimizeChunkAssets.tapAsync(plugin, optimizeFn.bind(this, compilation));
@@ -253,7 +281,7 @@ class UglifyJsPlugin {
     } else {
       compiler.plugin('compilation', (compilation) => {
         if (this.options.sourceMap) {
-          compilation.plugin('build-module', buildMobuleFn);
+          compilation.plugin('build-module', buildModuleFn);
         }
 
         compilation.plugin('optimize-chunk-assets', optimizeFn.bind(this, compilation));
