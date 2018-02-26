@@ -23,56 +23,56 @@ exports[`cache \`true\`: asset manifest.6afe1bc6685e9ab36c1c.js 1`] = `"!functio
 exports[`cache \`true\`: cached entry test.js 1`] = `
 Array [
   "test.js",
-  "46adcef6cf434fbddbc275218b3e093a",
+  "28e4d31993a4f0bf5420d06d6e6013b8",
 ]
 `;
 
 exports[`cache \`true\`: cached entry test.js 2`] = `
 Array [
   "test.js",
-  "46adcef6cf434fbddbc275218b3e093a",
+  "28e4d31993a4f0bf5420d06d6e6013b8",
 ]
 `;
 
 exports[`cache \`true\`: cached entry test1.js 1`] = `
 Array [
   "test1.js",
-  "6b6ccbbe331608e36cded49fd411c373",
+  "0ee8d6a0ecdd7bc2322d1e726ef41cdd",
 ]
 `;
 
 exports[`cache \`true\`: cached entry test1.js 2`] = `
 Array [
   "test1.js",
-  "6b6ccbbe331608e36cded49fd411c373",
+  "0ee8d6a0ecdd7bc2322d1e726ef41cdd",
 ]
 `;
 
 exports[`cache \`true\`: cached entry test2.js 1`] = `
 Array [
   "test2.js",
-  "975b72a762ef408dcf46a574fead7e60",
+  "ba96de0d701dab1af6ca647f97d42fb7",
 ]
 `;
 
 exports[`cache \`true\`: cached entry test2.js 2`] = `
 Array [
   "test2.js",
-  "975b72a762ef408dcf46a574fead7e60",
+  "ba96de0d701dab1af6ca647f97d42fb7",
 ]
 `;
 
 exports[`cache \`true\`: cached entry test3.js 1`] = `
 Array [
   "test3.js",
-  "fa894d635dc764c42fb6b1d4e3f6ed2b",
+  "ef8b436e106d1bbfe07b50263e91deac",
 ]
 `;
 
 exports[`cache \`true\`: cached entry test3.js 2`] = `
 Array [
   "test3.js",
-  "fa894d635dc764c42fb6b1d4e3f6ed2b",
+  "ef8b436e106d1bbfe07b50263e91deac",
 ]
 `;
 
