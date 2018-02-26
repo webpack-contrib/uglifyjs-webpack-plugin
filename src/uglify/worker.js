@@ -7,7 +7,9 @@ module.exports = (options, callback) => {
     // eslint-disable-next-line no-new-func, no-param-reassign
     options = new Function(`'use strict'\nreturn ${options}`)();
 
-    callback(null, minify(options));
+    const result = minify(options);
+
+    callback(result.error, result);
   } catch (errors) {
     callback(errors);
   }
