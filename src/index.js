@@ -20,7 +20,7 @@ class UglifyJsPlugin {
 
     const {
       uglifyOptions = {},
-      test = /\.js$/i,
+      test = /\.(js?)(\?.+)?$/i,
       warningsFilter = () => true,
       extractComments = false,
       sourceMap = false,
