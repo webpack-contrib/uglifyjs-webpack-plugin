@@ -2,6 +2,7 @@
   no-param-reassign
 */
 import crypto from 'crypto';
+import path from 'path';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
@@ -211,7 +212,8 @@ class UglifyJsPlugin {
           if (commentsFile && extractedComments.length > 0) {
             // Add a banner to the original file
             if (this.options.extractComments.banner !== false) {
-              let banner = this.options.extractComments.banner || `For license information please see ${commentsFile}`;
+              let banner = this.options.extractComments.banner
+                || `For license information please see ${path.posix.basename(commentsFile)}`;
 
               if (typeof banner === 'function') {
                 banner = banner(commentsFile);
