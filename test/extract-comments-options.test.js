@@ -258,4 +258,42 @@ describe('when options.extractComments', () => {
       expect(compilation2.warnings).toMatchSnapshot('warnings');
     });
   });
+
+  it('output respect nested directories', () => {
+    const pluginEnvironment = new PluginEnvironment();
+    const compilerEnv = pluginEnvironment.getEnvironmentStub();
+    compilerEnv.context = '';
+
+    const plugin = new UglifyJsPlugin({
+      extractComments: 'all',
+    });
+    plugin.apply(compilerEnv);
+    const [eventBinding] = pluginEnvironment.getEventBindings();
+    const chunkPluginEnvironment = new PluginEnvironment();
+    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
+    compilation2.assets = {
+      'nested/test.js': {
+        source: () => '// Comment\nvar foo = 1;',
+      },
+      'nested/nested/test1.js': {
+        source: () => '/* Comment */\nvar foo = 1;',
+      },
+    };
+    compilation2.warnings = [];
+    compilation2.errors = [];
+
+    eventBinding.handler(compilation2);
+    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+
+    compilationEventBinding.handler([{
+      files: ['nested/test.js', 'nested/nested/test1.js'],
+    }], () => {
+      expect(compilation2.assets['nested/test.js'].source()).toMatchSnapshot('nested/test.js');
+      expect(compilation2.assets['nested/test.js.LICENSE'].source()).toMatchSnapshot('nested/test1.js.LICENSE');
+      expect(compilation2.assets['nested/nested/test1.js'].source()).toMatchSnapshot('nested/nested/test1.js');
+      expect(compilation2.assets['nested/nested/test1.js.LICENSE'].source()).toMatchSnapshot('nested/nested/test1.js.LICENSE');
+      expect(compilation2.errors).toMatchSnapshot('errors');
+      expect(compilation2.warnings).toMatchSnapshot('warnings');
+    });
+  });
 });
