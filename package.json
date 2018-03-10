@@ -34,7 +34,7 @@
     "cacache": "^10.0.4",
     "find-cache-dir": "^1.0.0",
     "serialize-javascript": "^1.4.0",
-    "schema-utils": "^0.4.2",
+    "schema-utils": "^0.4.5",
     "source-map": "^0.6.1",
     "uglify-es": "^3.3.4",
     "webpack-sources": "^1.1.0",
