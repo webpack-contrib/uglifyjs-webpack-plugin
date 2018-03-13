@@ -187,7 +187,7 @@ exports[`warnings 1`] = `Array []`;
 exports[`when applied with invalid options throws validation errors 1`] = `
 "UglifyJs Plugin Invalid Options
 
-options['doesntExist'] is an invalid additional property
+options['doesntExist'] should NOT have additional properties
 "
 `;
 
