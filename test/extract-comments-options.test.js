@@ -2,10 +2,7 @@ import UglifyJsPlugin from '../src/index';
 import { PluginEnvironment } from './helpers';
 
 describe('when options.extractComments', () => {
-  let compilation;
-  let compilationEventBinding;
-
-  beforeEach(() => {
+  it('normalizes extractConmments', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
@@ -26,7 +23,7 @@ describe('when options.extractComments', () => {
     const [eventBinding] = pluginEnvironment.getEventBindings();
     const chunkPluginEnvironment = new PluginEnvironment();
 
-    compilation = chunkPluginEnvironment.getEnvironmentStub();
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
     compilation.assets = {
       'test.js': {
         source: () => 'var foo = 1;',
@@ -47,10 +44,8 @@ describe('when options.extractComments', () => {
     compilation.errors = [];
 
     eventBinding.handler(compilation);
-    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
-  });
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
-  it('normalizes extractConmments', () => {
     compilationEventBinding.handler([{
       files: ['test.js'],
     }], () => {
@@ -59,6 +54,49 @@ describe('when options.extractComments', () => {
   });
 
   it('outputs warnings for unreachable code', () => {
+    const pluginEnvironment = new PluginEnvironment();
+    const compilerEnv = pluginEnvironment.getEnvironmentStub();
+    compilerEnv.context = '';
+
+    const plugin = new UglifyJsPlugin({
+      uglifyOptions: {
+        warnings: true,
+        mangle: {
+          properties: {
+            builtins: true,
+          },
+        },
+      },
+      extractComments: true,
+    });
+    plugin.apply(compilerEnv);
+
+    const [eventBinding] = pluginEnvironment.getEventBindings();
+    const chunkPluginEnvironment = new PluginEnvironment();
+
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
+      'test.js': {
+        source: () => 'var foo = 1;',
+      },
+      'test1.js': {
+        source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+        map: () => {
+          return {
+            version: 3,
+            sources: ['test1.js'],
+            names: ['foo', 'x', 'bar', 'not_called1'],
+            mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+          };
+        },
+      },
+    };
+    compilation.warnings = [];
+    compilation.errors = [];
+
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+
     compilationEventBinding.handler([{
       files: ['test.js', 'test1.js'],
     }], () => {
@@ -68,7 +106,44 @@ describe('when options.extractComments', () => {
     });
   });
 
-  it('normalizes when options.extractComments is boolean', () => {
+  it('normalizes when options.extractComments is not specify', () => {
+    const pluginEnvironment = new PluginEnvironment();
+    const compilerEnv = pluginEnvironment.getEnvironmentStub();
+    compilerEnv.context = '';
+
+    const plugin = new UglifyJsPlugin();
+    plugin.apply(compilerEnv);
+    const [eventBinding] = pluginEnvironment.getEventBindings();
+    const chunkPluginEnvironment = new PluginEnvironment();
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
+      'test.js': {
+        source: () => '// Comment\nvar foo = 1;',
+      },
+      'test1.js': {
+        source: () => '/*! Legal Comment */\nvar foo = 1;',
+      },
+    };
+    compilation.warnings = [];
+    compilation.errors = [];
+
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+
+    compilationEventBinding.handler([{
+      files: ['test.js', 'test1.js'],
+    }], () => {
+      for (const file in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
+          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is not specify: ${file}`);
+        }
+      }
+      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is not specify: errors');
+      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is not specify: warnings');
+    });
+  });
+
+  it('normalizes when options.extractComments is boolean - "true"', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
@@ -79,29 +154,31 @@ describe('when options.extractComments', () => {
     plugin.apply(compilerEnv);
     const [eventBinding] = pluginEnvironment.getEventBindings();
     const chunkPluginEnvironment = new PluginEnvironment();
-    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
-    compilation2.assets = {
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
       'test.js': {
         source: () => '// Comment\nvar foo = 1;',
       },
       'test1.js': {
-        source: () => '/* Comment */\nvar foo = 1;',
+        source: () => '/*! Legal Comment */\nvar foo = 1;',
       },
     };
-    compilation2.warnings = [];
-    compilation2.errors = [];
+    compilation.warnings = [];
+    compilation.errors = [];
 
-    eventBinding.handler(compilation2);
-    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
     compilationEventBinding.handler([{
       files: ['test.js', 'test1.js'],
     }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
+      for (const file in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
+          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "boolean" - "true": ${file}`);
+        }
+      }
+      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "boolean" - "true": errors');
+      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "boolean" - "true": warnings');
     });
   });
 
@@ -116,8 +193,8 @@ describe('when options.extractComments', () => {
     plugin.apply(compilerEnv);
     const [eventBinding] = pluginEnvironment.getEventBindings();
     const chunkPluginEnvironment = new PluginEnvironment();
-    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
-    compilation2.assets = {
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
       'test.js': {
         source: () => '// Comment\nvar foo = 1;',
       },
@@ -125,20 +202,22 @@ describe('when options.extractComments', () => {
         source: () => '// foo\nvar foo = 1;',
       },
     };
-    compilation2.warnings = [];
-    compilation2.errors = [];
+    compilation.warnings = [];
+    compilation.errors = [];
 
-    eventBinding.handler(compilation2);
-    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
     compilationEventBinding.handler([{
       files: ['test.js', 'test1.js'],
     }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
+      for (const file in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
+          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "regex": ${file}`);
+        }
+      }
+      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "regex": errors');
+      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "regex": warnings');
     });
   });
 
@@ -153,8 +232,8 @@ describe('when options.extractComments', () => {
     plugin.apply(compilerEnv);
     const [eventBinding] = pluginEnvironment.getEventBindings();
     const chunkPluginEnvironment = new PluginEnvironment();
-    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
-    compilation2.assets = {
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
       'test.js': {
         source: () => '// Comment\nvar foo = 1;',
       },
@@ -162,21 +241,22 @@ describe('when options.extractComments', () => {
         source: () => '/* Comment */\nvar foo = 1;',
       },
     };
-    compilation2.warnings = [];
-    compilation2.errors = [];
+    compilation.warnings = [];
+    compilation.errors = [];
 
-    eventBinding.handler(compilation2);
-    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
     compilationEventBinding.handler([{
       files: ['test.js', 'test1.js'],
     }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot('test.js.LICENSE');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test1.js');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
+      for (const file in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
+          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "string": ${file}`);
+        }
+      }
+      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "string": errors');
+      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "string": warnings');
     });
   });
 
@@ -191,8 +271,8 @@ describe('when options.extractComments', () => {
     plugin.apply(compilerEnv);
     const [eventBinding] = pluginEnvironment.getEventBindings();
     const chunkPluginEnvironment = new PluginEnvironment();
-    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
-    compilation2.assets = {
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
       'test.js': {
         source: () => '// Comment\nvar foo = 1;',
       },
@@ -200,21 +280,22 @@ describe('when options.extractComments', () => {
         source: () => '/* Comment */\nvar foo = 1;',
       },
     };
-    compilation2.warnings = [];
-    compilation2.errors = [];
+    compilation.warnings = [];
+    compilation.errors = [];
 
-    eventBinding.handler(compilation2);
-    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
     compilationEventBinding.handler([{
       files: ['test.js', 'test1.js'],
     }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test1.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test.js.LICENSE'].source()).toMatchSnapshot('test.js.LICENSE');
-      expect(compilation2.assets['test1.js.LICENSE'].source()).toMatchSnapshot('test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
+      for (const file in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
+          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "function": ${file}`);
+        }
+      }
+      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "function": errors');
+      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "function": warnings');
     });
   });
 
@@ -237,29 +318,32 @@ describe('when options.extractComments', () => {
     plugin.apply(compilerEnv);
     const [eventBinding] = pluginEnvironment.getEventBindings();
     const chunkPluginEnvironment = new PluginEnvironment();
-    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
-    compilation2.assets = {
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
       'test.js': {
         source: () => '// Comment\nvar foo = 1;',
       },
     };
-    compilation2.warnings = [];
-    compilation2.errors = [];
+    compilation.warnings = [];
+    compilation.errors = [];
 
-    eventBinding.handler(compilation2);
-    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
     compilationEventBinding.handler([{
       files: ['test.js'],
     }], () => {
-      expect(compilation2.assets['test.js'].source()).toMatchSnapshot('test.js');
-      expect(compilation2.assets['test.license.js'].source()).toMatchSnapshot('test.license.js');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
+      for (const file in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
+          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "object": ${file}`);
+        }
+      }
+      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "object": errors');
+      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "object": warnings');
     });
   });
 
-  it('output respect nested directories', () => {
+  it('normalizes when options.extractComments is string - "all" && license file should be relative source file', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
     compilerEnv.context = '';
@@ -270,8 +354,8 @@ describe('when options.extractComments', () => {
     plugin.apply(compilerEnv);
     const [eventBinding] = pluginEnvironment.getEventBindings();
     const chunkPluginEnvironment = new PluginEnvironment();
-    const compilation2 = chunkPluginEnvironment.getEnvironmentStub();
-    compilation2.assets = {
+    const compilation = chunkPluginEnvironment.getEnvironmentStub();
+    compilation.assets = {
       'nested/test.js': {
         source: () => '// Comment\nvar foo = 1;',
       },
@@ -279,21 +363,22 @@ describe('when options.extractComments', () => {
         source: () => '/* Comment */\nvar foo = 1;',
       },
     };
-    compilation2.warnings = [];
-    compilation2.errors = [];
+    compilation.warnings = [];
+    compilation.errors = [];
 
-    eventBinding.handler(compilation2);
-    [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
+    eventBinding.handler(compilation);
+    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
 
     compilationEventBinding.handler([{
       files: ['nested/test.js', 'nested/nested/test1.js'],
     }], () => {
-      expect(compilation2.assets['nested/test.js'].source()).toMatchSnapshot('nested/test.js');
-      expect(compilation2.assets['nested/test.js.LICENSE'].source()).toMatchSnapshot('nested/test1.js.LICENSE');
-      expect(compilation2.assets['nested/nested/test1.js'].source()).toMatchSnapshot('nested/nested/test1.js');
-      expect(compilation2.assets['nested/nested/test1.js.LICENSE'].source()).toMatchSnapshot('nested/nested/test1.js.LICENSE');
-      expect(compilation2.errors).toMatchSnapshot('errors');
-      expect(compilation2.warnings).toMatchSnapshot('warnings');
+      for (const file in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
+          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "string" - "all" and license file should be relative source file: ${file}`);
+        }
+      }
+      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "string" - "all" and license file should be relative source file: errors');
+      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "string" - "all" and license file should be relative source file: warnings');
     });
   });
 });
