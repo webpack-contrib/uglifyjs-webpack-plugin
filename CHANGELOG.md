@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.2.3...v1.2.4) (2018-03-16)
+
+
+### Bug Fixes
+
+* **index:** correct default asset name `{RegExp}` (`options.test`) ([#259](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/259)) ([f9e55fe](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/f9e55fe))
+* **index:** don't remove legal comments by default (`options.extractComments`) ([#250](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/250)) ([b31b574](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/b31b574))
+
+
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.2.2...v1.2.3) (2018-03-10)
 
