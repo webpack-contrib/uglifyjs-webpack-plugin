@@ -39,7 +39,7 @@
     "schema-utils": "^0.3.0",
     "serialize-javascript": "^1.4.0",
     "source-map": "^0.6.1",
-    "uglify-es": "^3.2.1",
+    "uglify-es": "^3.3.9",
     "webpack-sources": "^1.0.1",
     "worker-farm": "^1.4.1"
   },
