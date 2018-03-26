@@ -78,7 +78,7 @@ describe('when options.parallel', () => {
         beforeEach(() => {
           chunkPluginEnvironment = new PluginEnvironment();
           compilation = chunkPluginEnvironment.getEnvironmentStub();
-          compilation.assets = assets;
+          compilation.assets = Object.assign({}, assets);
           compilation.errors = [];
 
           workerFarm.mockClear();
@@ -183,7 +183,8 @@ describe('when options.parallel', () => {
         beforeEach(() => {
           chunkPluginEnvironment = new PluginEnvironment();
           compilation = chunkPluginEnvironment.getEnvironmentStub();
-          compilation.assets = assets;
+          compilation.assets = Object.assign({}, assets);
+          compilation.warnings = [];
           compilation.errors = [];
 
           workerFarm.mockClear();
@@ -290,7 +291,8 @@ describe('when options.parallel', () => {
         beforeEach(() => {
           chunkPluginEnvironment = new PluginEnvironment();
           compilation = chunkPluginEnvironment.getEnvironmentStub();
-          compilation.assets = assets;
+          compilation.assets = Object.assign({}, assets);
+          compilation.warnings = [];
           compilation.errors = [];
 
           workerFarm.mockClear();

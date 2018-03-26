@@ -12,6 +12,7 @@ import serialize from 'serialize-javascript';
 import schema from './options.json';
 import Uglify from './uglify';
 import versions from './uglify/versions';
+import utils from './utils';
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
@@ -122,9 +123,18 @@ class UglifyJsPlugin {
               const { source, map } = asset.sourceAndMap();
 
               input = source;
-              inputSourceMap = map;
 
-              sourceMap = new SourceMapConsumer(inputSourceMap);
+              if (utils.isSourceMap(map)) {
+                inputSourceMap = map;
+                sourceMap = new SourceMapConsumer(inputSourceMap);
+              } else {
+                inputSourceMap = map;
+                sourceMap = null;
+
+                compilation.warnings.push(
+                  new Error(`${file} contain invalid source map`),
+                );
+              }
             } else {
               input = asset.source();
               inputSourceMap = null;
