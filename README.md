@@ -287,8 +287,8 @@ All comments that match the given expression (resp. are evaluated to `true` by t
 [deps]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin.svg
 [deps-url]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin
 
-[test]: https://secure.travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin.svg
-[test-url]: http://travis-ci.org/webpack-contrib/uglifyjs-webpack-plugin
+[test]: 	https://img.shields.io/circleci/project/github/webpack-contrib/uglifyjs-webpack-plugin.svg
+[test-url]: https://circleci.com/gh/webpack-contrib/uglifyjs-webpack-plugin
 
 [cover]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin
