@@ -1,130 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`"options.extractComments" is "boolean" - "true": errors 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": errors 1`] = `Array []`;
 
-exports[`"options.extractComments" is "boolean" - "true": test.js 1`] = `"var foo=1;"`;
+exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": test.js 1`] = `"var foo=1;"`;
 
-exports[`"options.extractComments" is "boolean" - "true": test1.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": test1.js 1`] = `
 "/*! For license information please see test1.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "boolean" - "true": test1.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": test1.js.LICENSE 1`] = `
 "/*! Legal Comment */
 "
 `;
 
-exports[`"options.extractComments" is "boolean" - "true": warnings 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": warnings 1`] = `Array []`;
 
-exports[`"options.extractComments" is "function": errors 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is function: errors 1`] = `Array []`;
 
-exports[`"options.extractComments" is "function": test.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is function: test.js 1`] = `
 "/*! For license information please see test.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "function": test.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is function: test.js.LICENSE 1`] = `
 "// Comment
 "
 `;
 
-exports[`"options.extractComments" is "function": test1.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is function: test1.js 1`] = `
 "/*! For license information please see test1.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "function": test1.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is function: test1.js.LICENSE 1`] = `
 "/* Comment */
 "
 `;
 
-exports[`"options.extractComments" is "function": warnings 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is function: warnings 1`] = `Array []`;
 
-exports[`"options.extractComments" is "object": errors 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is not specify: errors 1`] = `Array []`;
 
-exports[`"options.extractComments" is "object": test.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is not specify: test.js 1`] = `"var foo=1;"`;
+
+exports[`when options.extractComments normalizes when options.extractComments is not specify: test1.js 1`] = `
+"/*! Legal Comment */
+var foo=1;"
+`;
+
+exports[`when options.extractComments normalizes when options.extractComments is not specify: warnings 1`] = `Array []`;
+
+exports[`when options.extractComments normalizes when options.extractComments is object: errors 1`] = `Array []`;
+
+exports[`when options.extractComments normalizes when options.extractComments is object: test.js 1`] = `
 "/*! License information can be found in test.license.js */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "object": test.license.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is object: test.license.js 1`] = `
 "// Comment
 "
 `;
 
-exports[`"options.extractComments" is "object": warnings 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is object: warnings 1`] = `Array []`;
 
-exports[`"options.extractComments" is "regex": errors 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is regex: errors 1`] = `Array []`;
 
-exports[`"options.extractComments" is "regex": test.js 1`] = `"var foo=1;"`;
+exports[`when options.extractComments normalizes when options.extractComments is regex: test.js 1`] = `"var foo=1;"`;
 
-exports[`"options.extractComments" is "regex": test1.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is regex: test1.js 1`] = `
 "/*! For license information please see test1.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "regex": test1.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is regex: test1.js.LICENSE 1`] = `
 "// foo
 "
 `;
 
-exports[`"options.extractComments" is "regex": warnings 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is regex: warnings 1`] = `Array []`;
 
-exports[`"options.extractComments" is "string" - "all" and license file should be relative source file: errors 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is string - "all" && license file should be relative source file: errors 1`] = `Array []`;
 
-exports[`"options.extractComments" is "string" - "all" and license file should be relative source file: nested/nested/test1.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string - "all" && license file should be relative source file: nested/nested/test1.js 1`] = `
 "/*! For license information please see test1.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "string" - "all" and license file should be relative source file: nested/nested/test1.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string - "all" && license file should be relative source file: nested/nested/test1.js.LICENSE 1`] = `
 "/* Comment */
 "
 `;
 
-exports[`"options.extractComments" is "string" - "all" and license file should be relative source file: nested/test.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string - "all" && license file should be relative source file: nested/test.js 1`] = `
 "/*! For license information please see test.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "string" - "all" and license file should be relative source file: nested/test.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string - "all" && license file should be relative source file: nested/test.js.LICENSE 1`] = `
 "// Comment
 "
 `;
 
-exports[`"options.extractComments" is "string" - "all" and license file should be relative source file: warnings 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is string - "all" && license file should be relative source file: warnings 1`] = `Array []`;
 
-exports[`"options.extractComments" is "string": errors 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is string: errors 1`] = `Array []`;
 
-exports[`"options.extractComments" is "string": test.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string: test.js 1`] = `
 "/*! For license information please see test.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "string": test.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string: test.js.LICENSE 1`] = `
 "// Comment
 "
 `;
 
-exports[`"options.extractComments" is "string": test1.js 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string: test1.js 1`] = `
 "/*! For license information please see test1.js.LICENSE */
 var foo=1;"
 `;
 
-exports[`"options.extractComments" is "string": test1.js.LICENSE 1`] = `
+exports[`when options.extractComments normalizes when options.extractComments is string: test1.js.LICENSE 1`] = `
 "/* Comment */
 "
 `;
 
-exports[`"options.extractComments" is "string": warnings 1`] = `Array []`;
-
-exports[`"options.extractComments" is not specify: errors 1`] = `Array []`;
-
-exports[`"options.extractComments" is not specify: test.js 1`] = `"var foo=1;"`;
-
-exports[`"options.extractComments" is not specify: test1.js 1`] = `
-"/*! Legal Comment */
-var foo=1;"
-`;
-
-exports[`"options.extractComments" is not specify: warnings 1`] = `Array []`;
+exports[`when options.extractComments normalizes when options.extractComments is string: warnings 1`] = `Array []`;

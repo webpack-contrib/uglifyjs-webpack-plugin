@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-jest": "^21.2.0",
+    "babel-jest": "^22.4.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -51,7 +51,7 @@
     "eslint": "^4.14.0",
     "eslint-config-webpack": "^1.2.5",
     "eslint-plugin-import": "^2.8.0",
-    "jest": "^21.2.1",
+    "jest": "^22.4.3",
     "lint-staged": "^6.0.0",
     "memory-fs": "^0.4.1",
     "nsp": "^3.1.0",
@@ -79,5 +79,8 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
