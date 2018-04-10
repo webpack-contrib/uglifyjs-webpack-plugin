@@ -135,11 +135,11 @@ describe('when options.extractComments', () => {
     }], () => {
       for (const file in compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
-          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is not specify: ${file}`);
+          expect(compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
-      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is not specify: errors');
-      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is not specify: warnings');
+      expect(compilation.errors).toMatchSnapshot('errors');
+      expect(compilation.warnings).toMatchSnapshot('warnings');
     });
   });
 
@@ -174,11 +174,11 @@ describe('when options.extractComments', () => {
     }], () => {
       for (const file in compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
-          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "boolean" - "true": ${file}`);
+          expect(compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
-      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "boolean" - "true": errors');
-      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "boolean" - "true": warnings');
+      expect(compilation.errors).toMatchSnapshot('errors');
+      expect(compilation.warnings).toMatchSnapshot('warnings');
     });
   });
 
@@ -213,11 +213,11 @@ describe('when options.extractComments', () => {
     }], () => {
       for (const file in compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
-          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "regex": ${file}`);
+          expect(compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
-      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "regex": errors');
-      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "regex": warnings');
+      expect(compilation.errors).toMatchSnapshot('errors');
+      expect(compilation.warnings).toMatchSnapshot('warnings');
     });
   });
 
@@ -252,11 +252,11 @@ describe('when options.extractComments', () => {
     }], () => {
       for (const file in compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
-          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "string": ${file}`);
+          expect(compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
-      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "string": errors');
-      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "string": warnings');
+      expect(compilation.errors).toMatchSnapshot('errors');
+      expect(compilation.warnings).toMatchSnapshot('warnings');
     });
   });
 
@@ -291,11 +291,11 @@ describe('when options.extractComments', () => {
     }], () => {
       for (const file in compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
-          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "function": ${file}`);
+          expect(compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
-      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "function": errors');
-      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "function": warnings');
+      expect(compilation.errors).toMatchSnapshot('errors');
+      expect(compilation.warnings).toMatchSnapshot('warnings');
     });
   });
 
@@ -335,11 +335,11 @@ describe('when options.extractComments', () => {
     }], () => {
       for (const file in compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
-          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "object": ${file}`);
+          expect(compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
-      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "object": errors');
-      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "object": warnings');
+      expect(compilation.errors).toMatchSnapshot('errors');
+      expect(compilation.warnings).toMatchSnapshot('warnings');
     });
   });
 
@@ -374,11 +374,11 @@ describe('when options.extractComments', () => {
     }], () => {
       for (const file in compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(compilation.assets, file)) {
-          expect(compilation.assets[file].source()).toMatchSnapshot(`"options.extractComments" is "string" - "all" and license file should be relative source file: ${file}`);
+          expect(compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
-      expect(compilation.errors).toMatchSnapshot('"options.extractComments" is "string" - "all" and license file should be relative source file: errors');
-      expect(compilation.warnings).toMatchSnapshot('"options.extractComments" is "string" - "all" and license file should be relative source file: warnings');
+      expect(compilation.errors).toMatchSnapshot('errors');
+      expect(compilation.warnings).toMatchSnapshot('warnings');
     });
   });
 });

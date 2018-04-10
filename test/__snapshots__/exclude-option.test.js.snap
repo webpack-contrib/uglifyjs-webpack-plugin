@@ -1,14 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
+exports[`when applied with exclude option matches snapshot for a single exclude: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
 
-exports[`entry.a3533847fa24ef98733c.js 2`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
+exports[`when applied with exclude option matches snapshot for a single exclude: errors 1`] = `Array []`;
 
-exports[`errors 1`] = `Array []`;
-
-exports[`errors 2`] = `Array []`;
-
-exports[`excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
+exports[`when applied with exclude option matches snapshot for a single exclude: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
 "webpackJsonp([1],[
 /* 0 */
 /***/ (function(module, exports) {
@@ -22,7 +18,17 @@ module.exports = function Bar1() {
 ],[0]);"
 `;
 
-exports[`excluded1.4d3a1b43eccbc2acc9d6.js 2`] = `
+exports[`when applied with exclude option matches snapshot for a single exclude: excluded2.a96f544a34079b25c7b4.js 1`] = `"webpackJsonp([0],[,function(o,n){o.exports=function(){console.log(7)}}],[1]);"`;
+
+exports[`when applied with exclude option matches snapshot for a single exclude: manifest.d37b2b873f771997c745.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={3:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with exclude option matches snapshot for a single exclude: warnings 1`] = `Array []`;
+
+exports[`when applied with exclude option matches snapshot for multiple excludes: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
+
+exports[`when applied with exclude option matches snapshot for multiple excludes: errors 1`] = `Array []`;
+
+exports[`when applied with exclude option matches snapshot for multiple excludes: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
 "webpackJsonp([1],[
 /* 0 */
 /***/ (function(module, exports) {
@@ -36,9 +42,7 @@ module.exports = function Bar1() {
 ],[0]);"
 `;
 
-exports[`excluded2.a96f544a34079b25c7b4.js 1`] = `"webpackJsonp([0],[,function(o,n){o.exports=function(){console.log(7)}}],[1]);"`;
-
-exports[`excluded2.a96f544a34079b25c7b4.js 2`] = `
+exports[`when applied with exclude option matches snapshot for multiple excludes: excluded2.a96f544a34079b25c7b4.js 1`] = `
 "webpackJsonp([0],[
 /* 0 */,
 /* 1 */
@@ -53,10 +57,6 @@ module.exports = function Bar2() {
 ],[1]);"
 `;
 
-exports[`manifest.70d0d238a960e43f4454.js 1`] = `"!function(e){var n=window.webpackJsonp;window.webpackJsonp=function(r,c,a){for(var u,i,f,l=0,s=[];l<r.length;l++)i=r[l],t[i]&&s.push(t[i][0]),t[i]=0;for(u in c)Object.prototype.hasOwnProperty.call(c,u)&&(e[u]=c[u]);for(n&&n(r,c,a);s.length;)s.shift()();if(a)for(l=0;l<a.length;l++)f=o(o.s=a[l]);return f};var r={},t={3:0};function o(n){if(r[n])return r[n].exports;var t=r[n]={i:n,l:!1,exports:{}};return e[n].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.e=function(e){var n=t[e];if(0===n)return new Promise(function(e){e()});if(n)return n[2];var r=new Promise(function(r,o){n=t[e]=[r,o]});n[2]=r;var c=document.getElementsByTagName(\\"head\\")[0],a=document.createElement(\\"script\\");a.type=\\"text/javascript\\",a.charset=\\"utf-8\\",a.async=!0,a.timeout=12e4,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=o.p+\\"\\"+e+\\".\\"+({0:\\"excluded2\\",1:\\"excluded1\\",2:\\"entry\\"}[e]||e)+\\".\\"+{0:\\"a96f544a34079b25c7b4\\",1:\\"4d3a1b43eccbc2acc9d6\\",2:\\"a3533847fa24ef98733c\\"}[e]+\\".js\\";var u=setTimeout(i,12e4);function i(){a.onerror=a.onload=null,clearTimeout(u);var n=t[e];0!==n&&(n&&n[1](new Error(\\"Loading chunk \\"+e+\\" failed.\\")),t[e]=void 0)}return a.onerror=a.onload=i,c.appendChild(a),r},o.m=e,o.c=r,o.d=function(e,n,r){o.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},o.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(n,\\"a\\",n),n},o.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e}}([]);"`;
+exports[`when applied with exclude option matches snapshot for multiple excludes: manifest.d37b2b873f771997c745.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={3:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
 
-exports[`manifest.70d0d238a960e43f4454.js 2`] = `"!function(e){var n=window.webpackJsonp;window.webpackJsonp=function(r,c,a){for(var u,i,f,l=0,s=[];l<r.length;l++)i=r[l],t[i]&&s.push(t[i][0]),t[i]=0;for(u in c)Object.prototype.hasOwnProperty.call(c,u)&&(e[u]=c[u]);for(n&&n(r,c,a);s.length;)s.shift()();if(a)for(l=0;l<a.length;l++)f=o(o.s=a[l]);return f};var r={},t={3:0};function o(n){if(r[n])return r[n].exports;var t=r[n]={i:n,l:!1,exports:{}};return e[n].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.e=function(e){var n=t[e];if(0===n)return new Promise(function(e){e()});if(n)return n[2];var r=new Promise(function(r,o){n=t[e]=[r,o]});n[2]=r;var c=document.getElementsByTagName(\\"head\\")[0],a=document.createElement(\\"script\\");a.type=\\"text/javascript\\",a.charset=\\"utf-8\\",a.async=!0,a.timeout=12e4,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=o.p+\\"\\"+e+\\".\\"+({0:\\"excluded2\\",1:\\"excluded1\\",2:\\"entry\\"}[e]||e)+\\".\\"+{0:\\"a96f544a34079b25c7b4\\",1:\\"4d3a1b43eccbc2acc9d6\\",2:\\"a3533847fa24ef98733c\\"}[e]+\\".js\\";var u=setTimeout(i,12e4);function i(){a.onerror=a.onload=null,clearTimeout(u);var n=t[e];0!==n&&(n&&n[1](new Error(\\"Loading chunk \\"+e+\\" failed.\\")),t[e]=void 0)}return a.onerror=a.onload=i,c.appendChild(a),r},o.m=e,o.c=r,o.d=function(e,n,r){o.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},o.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(n,\\"a\\",n),n},o.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e}}([]);"`;
-
-exports[`warnings 1`] = `Array []`;
-
-exports[`warnings 2`] = `Array []`;
+exports[`when applied with exclude option matches snapshot for multiple excludes: warnings 1`] = `Array []`;

@@ -31,12 +31,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(errors).toMatchSnapshot('import-export: errors');
-      expect(warnings).toMatchSnapshot('import-export: warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`import-export: ${file}`);
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
     });
@@ -67,12 +67,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(errors).toMatchSnapshot('ecma 5: errors');
-      expect(warnings).toMatchSnapshot('ecma 5: warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 5: ${file}`);
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
     });
@@ -103,12 +103,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(errors).toMatchSnapshot('ecma 6: errors');
-      expect(warnings).toMatchSnapshot('ecma 6: warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 6: ${file}`);
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
     });
@@ -138,12 +138,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(errors).toMatchSnapshot('ecma 7: errors');
-      expect(warnings).toMatchSnapshot('ecma 7: warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 7: ${file}`);
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
     });
@@ -174,12 +174,12 @@ describe('when applied with uglifyOptions.ecma', () => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(errors).toMatchSnapshot('ecma 8: errors');
-      expect(warnings).toMatchSnapshot('ecma 8: warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
         if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(`ecma 8: ${file}`);
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
     });

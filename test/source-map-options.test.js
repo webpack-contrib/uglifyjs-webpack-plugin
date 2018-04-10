@@ -126,8 +126,8 @@ describe('when options.sourceMap', () => {
         const errors = stats.compilation.errors.map(cleanErrorStack);
         const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('source map: errors');
-        expect(warnings).toMatchSnapshot('source map: warnings');
+        expect(errors).toMatchSnapshot('errors');
+        expect(warnings).toMatchSnapshot('warnings');
 
         for (const file in stats.compilation.assets) {
           if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
@@ -135,8 +135,8 @@ describe('when options.sourceMap', () => {
 
             asset.map.sources = [];
 
-            expect(asset.source).toMatchSnapshot(`source: asset ${file}`);
-            expect(asset.map).toMatchSnapshot(`source map: asset ${file}`);
+            expect(asset.source).toMatchSnapshot(`asset ${file}`);
+            expect(asset.map).toMatchSnapshot(`source map ${file}`);
           }
         }
       });
@@ -247,8 +247,8 @@ describe('when options.sourceMap', () => {
         const errors = stats.compilation.errors.map(cleanErrorStack);
         const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('source map and parallel: errors');
-        expect(warnings).toMatchSnapshot('source map and parallel: warnings');
+        expect(errors).toMatchSnapshot('errors');
+        expect(warnings).toMatchSnapshot('warnings');
 
         for (const file in stats.compilation.assets) {
           if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
@@ -256,8 +256,8 @@ describe('when options.sourceMap', () => {
 
             asset.map.sources = [];
 
-            expect(asset.source).toMatchSnapshot(`source and parallel: asset ${file}`);
-            expect(asset.map).toMatchSnapshot(`source map and parallel: asset ${file}`);
+            expect(asset.source).toMatchSnapshot(`asset ${file}`);
+            expect(asset.map).toMatchSnapshot(`source map ${file}`);
           }
         }
       });

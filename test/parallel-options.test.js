@@ -132,12 +132,12 @@ describe('when options.parallel', () => {
         const errors = stats.compilation.errors.map(cleanErrorStack);
         const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('parallel `false`: errors');
-        expect(warnings).toMatchSnapshot('parallel `false`: warnings');
+        expect(errors).toMatchSnapshot('errors');
+        expect(warnings).toMatchSnapshot('warnings');
 
         for (const file in stats.compilation.assets) {
           if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(`parallel \`false\`: asset ${file}`);
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
           }
         }
       });
@@ -239,12 +239,12 @@ describe('when options.parallel', () => {
         const errors = stats.compilation.errors.map(cleanErrorStack);
         const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('parallel `true`: errors');
-        expect(warnings).toMatchSnapshot('parallel `true`: warnings');
+        expect(errors).toMatchSnapshot('errors');
+        expect(warnings).toMatchSnapshot('warnings');
 
         for (const file in stats.compilation.assets) {
           if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(`parallel \`true\`: asset ${file}`);
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
           }
         }
       });
@@ -348,12 +348,12 @@ describe('when options.parallel', () => {
         const errors = stats.compilation.errors.map(cleanErrorStack);
         const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('parallel `number`: errors');
-        expect(warnings).toMatchSnapshot('parallel `number`: warnings');
+        expect(errors).toMatchSnapshot('errors');
+        expect(warnings).toMatchSnapshot('warnings');
 
         for (const file in stats.compilation.assets) {
           if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(`parallel \`number\`: asset ${file}`);
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
           }
         }
       });

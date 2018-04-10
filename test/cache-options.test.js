@@ -134,12 +134,12 @@ describe('when options.cache', () => {
           const errors = stats.compilation.errors.map(cleanErrorStack);
           const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-          expect(errors).toMatchSnapshot('cache `false`: errors');
-          expect(warnings).toMatchSnapshot('cache `false`: warnings');
+          expect(errors).toMatchSnapshot('errors');
+          expect(warnings).toMatchSnapshot('warnings');
 
           for (const file in stats.compilation.assets) {
             if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-              expect(stats.compilation.assets[file].source()).toMatchSnapshot(`cache \`false\`: asset ${file}`);
+              expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
             }
           }
         });
@@ -244,7 +244,7 @@ describe('when options.cache', () => {
                     const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
 
                     expect([cacheEntryOptions.path, cacheEntryOptions.hash])
-                      .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntryOptions.path}`);
+                      .toMatchSnapshot(cacheEntryOptions.path);
                   });
 
                   // Reset compilation assets and mocks
@@ -279,12 +279,12 @@ describe('when options.cache', () => {
           const errors = stats.compilation.errors.map(cleanErrorStack);
           const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-          expect(errors).toMatchSnapshot('cache `true`: errors');
-          expect(warnings).toMatchSnapshot('cache `true`: warnings');
+          expect(errors).toMatchSnapshot('errors');
+          expect(warnings).toMatchSnapshot('warnings');
 
           for (const file in stats.compilation.assets) {
             if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-              expect(stats.compilation.assets[file].source()).toMatchSnapshot(`cache \`true\`: asset ${file}`);
+              expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
             }
           }
         });
@@ -390,7 +390,7 @@ describe('when options.cache', () => {
                     const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
 
                     expect([cacheEntryOptions.path, cacheEntryOptions.hash])
-                      .toMatchSnapshot(`cache \`true\`: cached entry ${cacheEntryOptions.path}`);
+                      .toMatchSnapshot(cacheEntryOptions.path);
                   });
 
                   // Reset compilation assets and mocks
@@ -425,12 +425,12 @@ describe('when options.cache', () => {
           const errors = stats.compilation.errors.map(cleanErrorStack);
           const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-          expect(errors).toMatchSnapshot('cache `string`: errors');
-          expect(warnings).toMatchSnapshot('cache `string`: warnings');
+          expect(errors).toMatchSnapshot('errors');
+          expect(warnings).toMatchSnapshot('warnings');
 
           for (const file in stats.compilation.assets) {
             if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-              expect(stats.compilation.assets[file].source()).toMatchSnapshot(`cache \`string\`: asset ${file}`);
+              expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
             }
           }
         });
