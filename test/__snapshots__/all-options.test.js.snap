@@ -57,7 +57,6 @@ exports[`when applied with all options matches snapshot: manifest.d6857f782c13a9
 
 exports[`when applied with all options matches snapshot: warnings 1`] = `
 Array [
-  "Error: main.0c220ec66316af2c1b24.js from UglifyJs
-Dropping unused variable a [./test/fixtures/entry.js:4,0]",
+  "Dropping unused variable a [./test/fixtures/entry.js:4,0]",
 ]
 `;

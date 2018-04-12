@@ -66,25 +66,30 @@ class UglifyJsPlugin {
     return new Error(`${file} from UglifyJs\n${err.message}`);
   }
 
-  static buildWarnings(warnings, file, sourceMap, warningsFilter, requestShortener) {
-    if (!sourceMap) {
-      return warnings;
+  static buildWarning(warning, file, sourceMap, warningsFilter, requestShortener) {
+    if (!file || !sourceMap) {
+      return warning;
     }
-    return warnings.reduce((accWarnings, warning) => {
-      const match = warningRegex.exec(warning);
-      const line = +match[1];
-      const column = +match[2];
-      const original = sourceMap.originalPositionFor({
-        line,
-        column,
-      });
 
-      if (original && original.source && original.source !== file && warningsFilter(original.source)) {
-        accWarnings.push(`${warning.replace(warningRegex, '')}[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`);
+    const match = warningRegex.exec(warning);
+    const line = +match[1];
+    const column = +match[2];
+    const original = sourceMap.originalPositionFor({
+      line,
+      column,
+    });
+
+    let warningMessage = null;
+
+    if (warningsFilter(original.source)) {
+      warningMessage = warning.replace(warningRegex, '');
+
+      if (original && original.source && original.source !== file) {
+        warningMessage += `[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`;
       }
+    }
 
-      return accWarnings;
-    }, []);
+    return warningMessage;
   }
 
   apply(compiler) {
@@ -247,20 +252,20 @@ class UglifyJsPlugin {
           uglifiedAssets.add(compilation.assets[file] = outputSource);
 
           // Handling warnings
-          if (warnings) {
-            const warnArr = UglifyJsPlugin.buildWarnings(
-              warnings,
-              file,
-              sourceMap,
-              this.options.warningsFilter,
-              requestShortener,
-            );
-
-            if (warnArr.length > 0) {
-              compilation.warnings.push(
-                new Error(`${file} from UglifyJs\n${warnArr.join('\n')}`),
+          if (warnings && warnings.length > 0) {
+            warnings.forEach((warning) => {
+              const builtWarning = UglifyJsPlugin.buildWarning(
+                warning,
+                file,
+                sourceMap,
+                this.options.warningsFilter,
+                requestShortener,
               );
-            }
+
+              if (builtWarning) {
+                compilation.warnings.push(builtWarning);
+              }
+            });
           }
         });
 
