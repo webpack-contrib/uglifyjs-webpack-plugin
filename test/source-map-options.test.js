@@ -20,6 +20,14 @@ describe('when options.sourceMap', () => {
     'test3.js': {
       source: () => 'function test3(foo) { foo = 1; }',
     },
+    'test4.js': {
+      sourceAndMap: () => {
+        return {
+          source: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+          map: null,
+        };
+      },
+    },
   };
 
   describe('true', () => {
@@ -62,7 +70,8 @@ describe('when options.sourceMap', () => {
         beforeEach(() => {
           chunkPluginEnvironment = new PluginEnvironment();
           compilation = chunkPluginEnvironment.getEnvironmentStub();
-          compilation.assets = assets;
+          compilation.assets = Object.assign({}, assets);
+          compilation.warnings = [];
           compilation.errors = [];
 
           eventBinding.handler(compilation);
@@ -107,8 +116,10 @@ describe('when options.sourceMap', () => {
           it('only calls callback once', (done) => {
             callback = jest.fn();
             compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
+              files: ['test.js', 'test1.js', 'test2.js', 'test3.js', 'test4.js'],
             }], () => {
+              expect(compilation.warnings).toMatchSnapshot('warnings');
+              expect(compilation.errors).toMatchSnapshot('errors');
               callback();
               expect(callback.mock.calls.length).toBe(1);
               done();
@@ -183,7 +194,8 @@ describe('when options.sourceMap', () => {
         beforeEach(() => {
           chunkPluginEnvironment = new PluginEnvironment();
           compilation = chunkPluginEnvironment.getEnvironmentStub();
-          compilation.assets = assets;
+          compilation.assets = Object.assign({}, assets);
+          compilation.warnings = [];
           compilation.errors = [];
 
           eventBinding.handler(compilation);
@@ -228,8 +240,10 @@ describe('when options.sourceMap', () => {
           it('only calls callback once', (done) => {
             callback = jest.fn();
             compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js'],
+              files: ['test.js', 'test1.js', 'test2.js', 'test3.js', 'test4.js'],
             }], () => {
+              expect(compilation.warnings).toMatchSnapshot('warnings');
+              expect(compilation.errors).toMatchSnapshot('errors');
               callback();
               expect(callback.mock.calls.length).toBe(1);
               done();
