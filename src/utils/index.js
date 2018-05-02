@@ -4,8 +4,8 @@ function isSourceMap(input) {
   return Boolean(input &&
     input.version &&
     input.sources &&
-    input.names &&
-    input.mappings);
+    Array.isArray(input.sources) &&
+    typeof input.mappings === 'string');
 }
 
 export default {

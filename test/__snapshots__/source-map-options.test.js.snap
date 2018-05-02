@@ -4,7 +4,7 @@ exports[`when options.sourceMap true and options.parallel true compilation handl
 
 exports[`when options.sourceMap true and options.parallel true compilation handler when called optimize-chunk-assets handler only calls callback once: warnings 1`] = `
 Array [
-  [Error: test4.js contain invalid source map],
+  [Error: test4.js contains invalid source map],
 ]
 `;
 
@@ -204,7 +204,7 @@ exports[`when options.sourceMap true compilation handler when called optimize-ch
 
 exports[`when options.sourceMap true compilation handler when called optimize-chunk-assets handler only calls callback once: warnings 1`] = `
 Array [
-  [Error: test4.js contain invalid source map],
+  [Error: test4.js contains invalid source map],
 ]
 `;
 
