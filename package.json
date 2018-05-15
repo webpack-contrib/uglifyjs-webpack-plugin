@@ -36,7 +36,7 @@
     "serialize-javascript": "^1.4.0",
     "schema-utils": "^0.4.5",
     "source-map": "^0.6.1",
-    "uglify-es": "^3.3.4",
+    "@fabiosantoscode/uglify-es": "^3.6.0",
     "webpack-sources": "^1.1.0",
     "worker-farm": "^1.5.2"
   },
