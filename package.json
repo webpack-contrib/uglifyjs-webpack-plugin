@@ -68,7 +68,7 @@
   "keywords": [
     "uglify",
     "uglify-js",
-    "uglify-es",
+    "terser",
     "webpack",
     "webpack-plugin"
   ],
