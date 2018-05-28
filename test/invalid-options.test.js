@@ -55,6 +55,18 @@ describe('when applied with invalid options', () => {
     }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
+      new UglifyJsPlugin({ additionalCacheKeys: false });
+    }).toThrowErrorMatchingSnapshot();
+
+    expect(() => {
+      new UglifyJsPlugin({ additionalCacheKeys: 'additional-cache-key' });
+    }).toThrowErrorMatchingSnapshot();
+
+    expect(() => {
+      new UglifyJsPlugin({ additionalCacheKeys: { path: 'path/to/output' } });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
       new UglifyJsPlugin({ parallel: true });
     }).not.toThrow('Validation Error');
 
