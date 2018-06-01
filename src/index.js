@@ -48,18 +48,19 @@ class UglifyJsPlugin {
         ...uglifyOptions,
       },
     };
-    this.sourceMapsCache = new WeakMap();
   }
 
-  buildError(err, file, inputSourceMap, requestShortener) {
+  static buildSourceMap(inputSourceMap) {
+    if (!inputSourceMap || !utils.isSourceMap(inputSourceMap)) {
+      return null;
+    }
+
+    return new SourceMapConsumer(inputSourceMap);
+  }
+
+  static buildError(err, file, sourceMap, requestShortener) {
     // Handling error which should have line, col, filename and message
     if (err.line) {
-      const sourceMapCacheKey = { file };
-      let sourceMap = this.sourceMapsCache.get(sourceMapCacheKey);
-      if (!sourceMap) {
-        sourceMap = new SourceMapConsumer(inputSourceMap);
-        this.sourceMapsCache.set(sourceMapCacheKey, sourceMap);
-      }
       const original = sourceMap && sourceMap.originalPositionFor({
         line: err.line,
         column: err.col,
@@ -74,18 +75,9 @@ class UglifyJsPlugin {
     return new Error(`${file} from UglifyJs\n${err.message}`);
   }
 
-  buildWarning(warning, file, inputSourceMap, warningsFilter, requestShortener) {
-    if (!file || !inputSourceMap) {
+  static buildWarning(warning, file, sourceMap, warningsFilter, requestShortener) {
+    if (!file || !sourceMap) {
       return warning;
-    }
-
-    const sourceMapCacheKey = { file };
-
-    let sourceMap = this.sourceMapsCache.get(sourceMapCacheKey);
-
-    if (!sourceMap) {
-      sourceMap = new SourceMapConsumer(inputSourceMap);
-      this.sourceMapsCache.set(sourceMapCacheKey, sourceMap);
     }
 
     const match = warningRegex.exec(warning);
@@ -188,10 +180,10 @@ class UglifyJsPlugin {
             tasks.push(task);
           } catch (error) {
             compilation.errors.push(
-              this.buildError(
+              UglifyJsPlugin.buildError(
                 error,
                 file,
-                inputSourceMap,
+                UglifyJsPlugin.buildSourceMap(inputSourceMap),
                 requestShortener,
               ),
             );
@@ -208,14 +200,20 @@ class UglifyJsPlugin {
           const { file, input, inputSourceMap, commentsFile } = tasks[index];
           const { error, map, code, warnings, extractedComments } = data;
 
+          let sourceMap = null;
+
+          if (error || (warnings && warnings.length > 0)) {
+            sourceMap = UglifyJsPlugin.buildSourceMap(inputSourceMap);
+          }
+
           // Handling results
           // Error case: add errors, and go to next file
           if (error) {
             compilation.errors.push(
-              this.buildError(
+              UglifyJsPlugin.buildError(
                 error,
                 file,
-                inputSourceMap,
+                sourceMap,
                 requestShortener,
               ),
             );
@@ -275,10 +273,10 @@ class UglifyJsPlugin {
           // Handling warnings
           if (warnings && warnings.length > 0) {
             warnings.forEach((warning) => {
-              const builtWarning = this.buildWarning(
+              const builtWarning = UglifyJsPlugin.buildWarning(
                 warning,
                 file,
-                inputSourceMap,
+                sourceMap,
                 this.options.warningsFilter,
                 requestShortener,
               );
