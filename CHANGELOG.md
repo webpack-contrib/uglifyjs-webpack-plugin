@@ -136,7 +136,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Reverts
 
-* **package:** use exact `terser` version (`dependencies`) ([#199](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/199)) ([#202](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/202)) ([426bafd](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/426bafd))
+* **package:** use exact `uglify-es` version (`dependencies`) ([#199](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/199)) ([#202](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/202)) ([426bafd](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/426bafd))
 
 
 
@@ -146,7 +146,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **package:** use exact `terser` version (`dependencies`) ([#199](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/199)) ([2e2ed36](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/2e2ed36))
+* **package:** use exact `uglify-es` version (`dependencies`) ([#199](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/199)) ([2e2ed36](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/2e2ed36))
 
 
 
@@ -156,7 +156,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Chores
 
-* update `terser` v3.2.0...v3.2.1 ([#190](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/190)) ([b356f74](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/b356f74))
+* update `uglify-es` v3.2.0...v3.2.1 ([#190](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/190)) ([b356f74](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/b356f74))
 
 
 
@@ -176,7 +176,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Chores
 
-* update `terser` v3.1.3...3.2.0 ([#176](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/176)) ([3be7f62](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/3be7f62))
+* update `uglify-es` v3.1.3...3.2.0 ([#176](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/176)) ([3be7f62](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/3be7f62))
 
 
 
@@ -224,7 +224,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* update to `terser` ([#63](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/63)) ([1d62560](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/1d62560))
+* update to `uglify-es` ([#63](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/63)) ([1d62560](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/1d62560))
 
 * add support for `parallelization` && `caching` (`options.parallel`) ([#77](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/77)) ([ee16639](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/ee16639))
 * **index:** add `options` validation (`schema-utils`) ([#80](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/80)) ([f19b2de](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/f19b2de))
@@ -277,7 +277,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* update to `terser` ([#63](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/63)) ([1d62560](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/1d62560))
+* update to `uglify-es` ([#63](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/63)) ([1d62560](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/1d62560))
 
 
 
