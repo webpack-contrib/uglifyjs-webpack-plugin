@@ -42,6 +42,9 @@ class UglifyJsPlugin {
       include,
       exclude,
       uglifyOptions: {
+        compress: {
+          inline: 1,
+        },
         output: {
           comments: extractComments ? false : /^\**!|@preserve|@license|@cc_on/,
         },
