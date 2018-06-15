@@ -21,9 +21,10 @@ const buildUglifyOptions = ({
 } = {}) => ({
   ecma,
   warnings,
-  parse,
-  compress,
-  mangle: mangle == null ? true : mangle,
+  parse: { ...parse },
+  compress: typeof compress === 'boolean' ? compress : { ...compress },
+  // eslint-disable-next-line no-nested-ternary
+  mangle: mangle == null ? true : typeof mangle === 'boolean' ? mangle : { ...mangle },
   output: {
     shebang: true,
     comments: false,
@@ -31,7 +32,7 @@ const buildUglifyOptions = ({
     semicolons: true,
     ...output,
   },
-  // Ignoring sourcemap from options
+  // Ignoring sourceMap from options
   sourceMap: null,
   toplevel,
   nameCache,

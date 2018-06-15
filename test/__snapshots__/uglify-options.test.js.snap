@@ -1,351 +1,182 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`when applied with uglify-es options disable inline optimization by default (have a lot of problems): errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options disable inline optimization by default (have a lot of problems): main.js 1`] = `"webpackJsonp([0],[function(o,c,n){\\"use strict\\";console.log(42)}],[0]);"`;
+
+exports[`when applied with uglify-es options disable inline optimization by default (have a lot of problems): manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with uglify-es options disable inline optimization by default (have a lot of problems): warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean false): errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean false): main.js 1`] = `"webpackJsonp([0],[function(t,e,n){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:true});var a=n(1);function o(){const t=a[\\"b\\"];const e=\`baz\${Math.random()}\`;return()=>{return{a:t+a[\\"a\\"]+e,b:t,baz:e}}}e[\\"default\\"]=o},function(t,e,n){\\"use strict\\";const a=\\"bar\\";e[\\"a\\"]=a;e[\\"b\\"]=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean false): manifest.js 1`] = `"(function(r){var e=window[\\"webpackJsonp\\"];window[\\"webpackJsonp\\"]=function n(f,i,u){var c,a,l=0,p=[],s;for(;l<f.length;l++){a=f[l];if(t[a]){p.push(t[a][0])}t[a]=0}for(c in i){if(Object.prototype.hasOwnProperty.call(i,c)){r[c]=i[c]}}if(e)e(f,i,u);while(p.length){p.shift()()}if(u){for(l=0;l<u.length;l++){s=o(o.s=u[l])}}return s};var n={};var t={1:0};function o(e){if(n[e]){return n[e].exports}var t=n[e]={i:e,l:false,exports:{}};r[e].call(t.exports,t,t.exports,o);t.l=true;return t.exports}o.m=r;o.c=n;o.d=function(r,e,n){if(!o.o(r,e)){Object.defineProperty(r,e,{configurable:false,enumerable:true,get:n})}};o.n=function(r){var e=r&&r.__esModule?function e(){return r[\\"default\\"]}:function e(){return r};o.d(e,\\"a\\",e);return e};o.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)};o.p=\\"\\";o.oe=function(r){console.error(r);throw r}})([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean false): warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean true): errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean true): main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean true): manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (boolean true): warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (object): errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (object): main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b;const a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (object): manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){var f,i,p,a=0,l=[];for(;a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={};var o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`compress\` option (object): warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`ie8\` option: errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`ie8\` option: main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a[\\"default\\"]=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`ie8\` option: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r[\\"default\\"]}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`ie8\` option: warnings 1`] = `Array []`;
+
 exports[`when applied with uglify-es options matches snapshot for \`keep_classnames\` option: errors 1`] = `Array []`;
 
-exports[`when applied with uglify-es options matches snapshot for \`keep_classnames\` option: main.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    Object.defineProperty(__webpack_exports__, \\"__esModule\\", {
-        value: !0
-    });
-    var __WEBPACK_IMPORTED_MODULE_0__dep__ = __webpack_require__(1);
-    __webpack_exports__.default = function() {
-        const b = __WEBPACK_IMPORTED_MODULE_0__dep__.b, baz = \`baz\${Math.random()}\`;
-        return () => ({
-            a: b + __WEBPACK_IMPORTED_MODULE_0__dep__.a + baz,
-            b: b,
-            baz: baz
-        });
-    };
-}, function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    __webpack_exports__.a = \\"bar\\", __webpack_exports__.b = \\"foo\\";
-} ], [ 0 ]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`keep_classnames\` option: main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
 
-exports[`when applied with uglify-es options matches snapshot for \`keep_classnames\` option: manifest.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
-            enumerable: !0,
-            get: getter
-        });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
-        } : function() {
-            return module;
-        };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`keep_classnames\` option: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
 
 exports[`when applied with uglify-es options matches snapshot for \`keep_classnames\` option: warnings 1`] = `Array []`;
 
 exports[`when applied with uglify-es options matches snapshot for \`keep_fnames\` option: errors 1`] = `Array []`;
 
-exports[`when applied with uglify-es options matches snapshot for \`keep_fnames\` option: main.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    Object.defineProperty(__webpack_exports__, \\"__esModule\\", {
-        value: !0
-    });
-    var __WEBPACK_IMPORTED_MODULE_0__dep__ = __webpack_require__(1);
-    __webpack_exports__.default = function Foo() {
-        const b = __WEBPACK_IMPORTED_MODULE_0__dep__.b, baz = \`baz\${Math.random()}\`;
-        return () => ({
-            a: b + __WEBPACK_IMPORTED_MODULE_0__dep__.a + baz,
-            b: b,
-            baz: baz
-        });
-    };
-}, function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    __webpack_exports__.a = \\"bar\\", __webpack_exports__.b = \\"foo\\";
-} ], [ 0 ]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`keep_fnames\` option: main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var o=e(1);a.default=function Foo(){const t=o.b,a=\`baz\${Math.random()}\`;return()=>({a:t+o.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
 
-exports[`when applied with uglify-es options matches snapshot for \`keep_fnames\` option: manifest.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
-            enumerable: !0,
-            get: getter
-        });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function getDefault() {
-            return module.default;
-        } : function getModuleExports() {
-            return module;
-        };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`keep_fnames\` option: manifest.js 1`] = `"!function(e){var r=window.webpackJsonp;window.webpackJsonp=function webpackJsonpCallback(_,n,o){for(var u,c,p,a=0,i=[];a<_.length;a++)c=_[a],t[c]&&i.push(t[c][0]),t[c]=0;for(u in n)Object.prototype.hasOwnProperty.call(n,u)&&(e[u]=n[u]);for(r&&r(_,n,o);i.length;)i.shift()();if(o)for(a=0;a<o.length;a++)p=__webpack_require__(__webpack_require__.s=o[a]);return p};var _={},t={1:0};function __webpack_require__(r){if(_[r])return _[r].exports;var t=_[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,__webpack_require__),t.l=!0,t.exports}__webpack_require__.m=e,__webpack_require__.c=_,__webpack_require__.d=function(e,r,_){__webpack_require__.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:_})},__webpack_require__.n=function(e){var r=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(r,\\"a\\",r),r},__webpack_require__.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},__webpack_require__.p=\\"\\",__webpack_require__.oe=function(e){throw console.error(e),e}}([]);"`;
 
 exports[`when applied with uglify-es options matches snapshot for \`keep_fnames\` option: warnings 1`] = `Array []`;
 
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (false): errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (false): main.js 1`] = `"webpackJsonp([0],[function(module,__webpack_exports__,__webpack_require__){\\"use strict\\";Object.defineProperty(__webpack_exports__,\\"__esModule\\",{value:!0});var __WEBPACK_IMPORTED_MODULE_0__dep__=__webpack_require__(1);__webpack_exports__.default=function(){const b=__WEBPACK_IMPORTED_MODULE_0__dep__.b,baz=\`baz\${Math.random()}\`;return()=>({a:b+__WEBPACK_IMPORTED_MODULE_0__dep__.a+baz,b:b,baz:baz})}},function(module,__webpack_exports__,__webpack_require__){\\"use strict\\";__webpack_exports__.a=\\"bar\\",__webpack_exports__.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (false): manifest.js 1`] = `"!function(modules){var parentJsonpFunction=window.webpackJsonp;window.webpackJsonp=function(chunkIds,moreModules,executeModules){for(var moduleId,chunkId,result,i=0,resolves=[];i<chunkIds.length;i++)chunkId=chunkIds[i],installedChunks[chunkId]&&resolves.push(installedChunks[chunkId][0]),installedChunks[chunkId]=0;for(moduleId in moreModules)Object.prototype.hasOwnProperty.call(moreModules,moduleId)&&(modules[moduleId]=moreModules[moduleId]);for(parentJsonpFunction&&parentJsonpFunction(chunkIds,moreModules,executeModules);resolves.length;)resolves.shift()();if(executeModules)for(i=0;i<executeModules.length;i++)result=__webpack_require__(__webpack_require__.s=executeModules[i]);return result};var installedModules={},installedChunks={1:0};function __webpack_require__(moduleId){if(installedModules[moduleId])return installedModules[moduleId].exports;var module=installedModules[moduleId]={i:moduleId,l:!1,exports:{}};return modules[moduleId].call(module.exports,module,module.exports,__webpack_require__),module.l=!0,module.exports}__webpack_require__.m=modules,__webpack_require__.c=installedModules,__webpack_require__.d=function(exports,name,getter){__webpack_require__.o(exports,name)||Object.defineProperty(exports,name,{configurable:!1,enumerable:!0,get:getter})},__webpack_require__.n=function(module){var getter=module&&module.__esModule?function(){return module.default}:function(){return module};return __webpack_require__.d(getter,\\"a\\",getter),getter},__webpack_require__.o=function(object,property){return Object.prototype.hasOwnProperty.call(object,property)},__webpack_require__.p=\\"\\",__webpack_require__.oe=function(err){throw console.error(err),err}}([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (false): warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (object): errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (object): main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,baz=\`baz\${Math.random()}\`;return()=>({a:t+n.a+baz,b:t,baz:baz})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (object): manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (object): warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (true): errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (true): main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (true): manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`mangle\` option (true): warnings 1`] = `Array []`;
+
 exports[`when applied with uglify-es options matches snapshot for \`nameCache\` option: errors 1`] = `Array []`;
 
-exports[`when applied with uglify-es options matches snapshot for \`nameCache\` option: main.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    Object.defineProperty(__webpack_exports__, \\"__esModule\\", {
-        value: !0
-    });
-    var __WEBPACK_IMPORTED_MODULE_0__dep__ = __webpack_require__(1);
-    __webpack_exports__.default = function() {
-        const b = __WEBPACK_IMPORTED_MODULE_0__dep__.b, baz = \`baz\${Math.random()}\`;
-        return () => ({
-            a: b + __WEBPACK_IMPORTED_MODULE_0__dep__.a + baz,
-            b: b,
-            baz: baz
-        });
-    };
-}, function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    __webpack_exports__.a = \\"bar\\", __webpack_exports__.b = \\"foo\\";
-} ], [ 0 ]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`nameCache\` option: main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
 
-exports[`when applied with uglify-es options matches snapshot for \`nameCache\` option: manifest.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
-            enumerable: !0,
-            get: getter
-        });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
-        } : function() {
-            return module;
-        };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`nameCache\` option: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
 
 exports[`when applied with uglify-es options matches snapshot for \`nameCache\` option: warnings 1`] = `Array []`;
 
-exports[`when applied with uglify-es options matches snapshot for \`safari10\` option: errors 1`] = `Array []`;
+exports[`when applied with uglify-es options matches snapshot for \`output\` option: errors 1`] = `Array []`;
 
-exports[`when applied with uglify-es options matches snapshot for \`safari10\` option: main.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, __webpack_exports__, __webpack_require__) {
+exports[`when applied with uglify-es options matches snapshot for \`output\` option: main.js 1`] = `
+"webpackJsonp([ 0 ], [ function(t, a, e) {
     \\"use strict\\";
-    Object.defineProperty(__webpack_exports__, \\"__esModule\\", {
+    Object.defineProperty(a, \\"__esModule\\", {
         value: !0
     });
-    var __WEBPACK_IMPORTED_MODULE_0__dep__ = __webpack_require__(1);
-    __webpack_exports__.default = function() {
-        const b = __WEBPACK_IMPORTED_MODULE_0__dep__.b, baz = \`baz\${Math.random()}\`;
+    var n = e(1);
+    a.default = function() {
+        const t = n.b, a = \`baz\${Math.random()}\`;
         return () => ({
-            a: b + __WEBPACK_IMPORTED_MODULE_0__dep__.a + baz,
-            b: b,
-            baz: baz
+            a: t + n.a + a,
+            b: t,
+            baz: a
         });
     };
-}, function(module, __webpack_exports__, __webpack_require__) {
+}, function(t, a, e) {
     \\"use strict\\";
-    __webpack_exports__.a = \\"bar\\", __webpack_exports__.b = \\"foo\\";
+    a.a = \\"bar\\", a.b = \\"foo\\";
 } ], [ 0 ]);"
 `;
 
-exports[`when applied with uglify-es options matches snapshot for \`safari10\` option: manifest.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
+exports[`when applied with uglify-es options matches snapshot for \`output\` option: manifest.js 1`] = `
+"!function(r) {
+    var n = window.webpackJsonp;
+    window.webpackJsonp = function(e, u, c) {
+        for (var f, i, p, a = 0, l = []; a < e.length; a++) i = e[a], o[i] && l.push(o[i][0]), 
+        o[i] = 0;
+        for (f in u) Object.prototype.hasOwnProperty.call(u, f) && (r[f] = u[f]);
+        for (n && n(e, u, c); l.length; ) l.shift()();
+        if (c) for (a = 0; a < c.length; a++) p = t(t.s = c[a]);
+        return p;
     };
-    var installedModules = {}, installedChunks = {
+    var e = {}, o = {
         1: 0
     };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
+    function t(n) {
+        if (e[n]) return e[n].exports;
+        var o = e[n] = {
+            i: n,
             l: !1,
             exports: {}
         };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
+        return r[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports;
     }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+    t.m = r, t.c = e, t.d = function(r, n, e) {
+        t.o(r, n) || Object.defineProperty(r, n, {
             configurable: !1,
             enumerable: !0,
-            get: getter
+            get: e
         });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
+    }, t.n = function(r) {
+        var n = r && r.__esModule ? function() {
+            return r.default;
         } : function() {
-            return module;
+            return r;
         };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
+        return t.d(n, \\"a\\", n), n;
+    }, t.o = function(r, n) {
+        return Object.prototype.hasOwnProperty.call(r, n);
+    }, t.p = \\"\\", t.oe = function(r) {
+        throw console.error(r), r;
     };
 }([]);"
 `;
+
+exports[`when applied with uglify-es options matches snapshot for \`output\` option: warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`parse\` options: errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`parse\` options: main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`parse\` options: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`parse\` options: warnings 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`safari10\` option: errors 1`] = `Array []`;
+
+exports[`when applied with uglify-es options matches snapshot for \`safari10\` option: main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
+
+exports[`when applied with uglify-es options matches snapshot for \`safari10\` option: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
 
 exports[`when applied with uglify-es options matches snapshot for \`safari10\` option: warnings 1`] = `Array []`;
 
 exports[`when applied with uglify-es options matches snapshot for \`toplevel\` option: errors 1`] = `Array []`;
 
-exports[`when applied with uglify-es options matches snapshot for \`toplevel\` option: main.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    Object.defineProperty(__webpack_exports__, \\"__esModule\\", {
-        value: !0
-    });
-    var __WEBPACK_IMPORTED_MODULE_0__dep__ = __webpack_require__(1);
-    __webpack_exports__.default = function() {
-        const b = __WEBPACK_IMPORTED_MODULE_0__dep__.b, baz = \`baz\${Math.random()}\`;
-        return () => ({
-            a: b + __WEBPACK_IMPORTED_MODULE_0__dep__.a + baz,
-            b: b,
-            baz: baz
-        });
-    };
-}, function(module, __webpack_exports__, __webpack_require__) {
-    \\"use strict\\";
-    __webpack_exports__.a = \\"bar\\", __webpack_exports__.b = \\"foo\\";
-} ], [ 0 ]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`toplevel\` option: main.js 1`] = `"webpackJsonp([0],[function(t,a,e){\\"use strict\\";Object.defineProperty(a,\\"__esModule\\",{value:!0});var n=e(1);a.default=function(){const t=n.b,a=\`baz\${Math.random()}\`;return()=>({a:t+n.a+a,b:t,baz:a})}},function(t,a,e){\\"use strict\\";a.a=\\"bar\\",a.b=\\"foo\\"}],[0]);"`;
 
-exports[`when applied with uglify-es options matches snapshot for \`toplevel\` option: manifest.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
-            enumerable: !0,
-            get: getter
-        });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
-        } : function() {
-            return module;
-        };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
+exports[`when applied with uglify-es options matches snapshot for \`toplevel\` option: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
 
 exports[`when applied with uglify-es options matches snapshot for \`toplevel\` option: warnings 1`] = `Array []`;
