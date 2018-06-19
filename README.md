@@ -165,7 +165,7 @@ Number of concurrent runs.
 |**[`parse`](https://github.com/mishoo/UglifyJS2/tree/harmony#parse-options)**|`{Object}`|`{}`|Additional Parse Options|
 |**[`compress`](https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options)**|`{Boolean\|Object}`|`true`|Additional Compress Options|
 |**[`mangle`](https://github.com/mishoo/UglifyJS2/tree/harmony#mangle-options)**|`{Boolean\|Object}`|`{inline: false}`|Enable Name Mangling (See [Mangle Properties](https://github.com/mishoo/UglifyJS2/tree/harmony#mangle-properties-options) for advanced setups, use with ⚠️)|
-|**[`output`](https://github.com/mishoo/UglifyJS2/tree/harmony#output-options)**|`{Object}`|`{comments: extractComments ? false : /^\**!|@preserve|@license|@cc_on/,}`|Additional Output Options (The defaults are optimized for best compression)|
+|**[`output`](https://github.com/mishoo/UglifyJS2/tree/harmony#output-options)**|`{Object}`|`{comments: extractComments ? false : /^\**!\|@preserve\|@license\|@cc_on/,}`|Additional Output Options (The defaults are optimized for best compression)|
 |**`toplevel`**|`{Boolean}`|`false`|Enable top level variable and function name mangling and to drop unused variables and functions|
 |**`nameCache`**|`{Object}`|`null`|Enable cache of mangled variable and property names across multiple invocations|
 |**`ie8`**|`{Boolean}`|`false`|Enable IE8 Support|
