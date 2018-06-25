@@ -99,36 +99,40 @@ describe('when applied with all options', () => {
         chunkPluginEnvironment = new PluginEnvironment();
         compilation = chunkPluginEnvironment.getEnvironmentStub();
         compilation.assets = {
-          'test.js': {
-            source: () => '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
-            map: () => {
-              return {
+          sourceAndMap: () => {
+            return {
+              source: '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
+              map: {
                 version: 3,
                 sources: ['test.js'],
                 names: ['foo', 'longVariableName'],
                 mappings: 'AAAA,QAASA,KAAIC,kBACTA,iBAAmB',
-              };
-            },
+              },
+            };
           },
           'test1.js': {
-            source: () => 'invalid javascript',
-            map: () => {
+            sourceAndMap: () => {
               return {
-                version: 3,
-                sources: ['test1.js'],
-                names: [''],
-                mappings: 'AAAA',
+                source: 'invalid javascript',
+                map: {
+                  version: 3,
+                  sources: ['test1.js'],
+                  names: [''],
+                  mappings: 'AAAA',
+                },
               };
             },
           },
           'test2.js': {
-            source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
-            map: () => {
+            sourceAndMap: () => {
               return {
-                version: 3,
-                sources: ['test1.js'],
-                names: ['foo', 'x', 'bar', 'not_called1'],
-                mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                source: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+                map: {
+                  version: 3,
+                  sources: ['test1.js'],
+                  names: ['foo', 'x', 'bar', 'not_called1'],
+                  mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                },
               };
             },
           },
@@ -146,13 +150,15 @@ describe('when applied with all options', () => {
             },
           },
           'test4.js': {
-            source: () => '/*! this comment should be extracted */ function foo(longVariableName) { /* this will not be extracted */ longVariableName = 1; } // another comment that should be extracted to a separate file\n function foo2(bar) { return bar; }',
-            map: () => {
+            sourceAndMap: () => {
               return {
-                version: 3,
-                sources: ['test.js'],
-                names: ['foo', 'longVariableName'],
-                mappings: 'AAAA,QAASA,KAAIC,kBACTA,iBAAmB',
+                source: '/*! this comment should be extracted */ function foo(longVariableName) { /* this will not be extracted */ longVariableName = 1; } // another comment that should be extracted to a separate file\n function foo2(bar) { return bar; }',
+                map: {
+                  version: 3,
+                  sources: ['test.js'],
+                  names: ['foo', 'longVariableName'],
+                  mappings: 'AAAA,QAASA,KAAIC,kBACTA,iBAAmB',
+                },
               };
             },
           },
@@ -279,7 +285,7 @@ describe('when applied with all options', () => {
         });
 
         describe('with warningsFilter set', () => {
-          describe('and the filter returns true', () => {
+          describe('and the filter returns true without source map', () => {
             beforeEach(() => {
               const pluginEnvironment = new PluginEnvironment();
               const compilerEnv = pluginEnvironment.getEnvironmentStub();
@@ -302,14 +308,61 @@ describe('when applied with all options', () => {
               chunkPluginEnvironment = new PluginEnvironment();
               compilation = chunkPluginEnvironment.getEnvironmentStub();
               compilation.assets = {
-                'test2.js': {
+                'test.js': {
                   source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
-                  map: () => {
+                },
+              };
+              compilation.errors = [];
+              compilation.warnings = [];
+
+              eventBindings[0].handler(compilation);
+              compilationEventBindings = chunkPluginEnvironment.getEventBindings();
+            });
+
+            it('should get all warnings', () => {
+              compilationEventBindings[1].handler([{
+                files: ['test.js'],
+              }], () => {
+                expect(compilation.warnings.length).toBe(1);
+                expect(compilation.warnings[0]).toBeInstanceOf(Error);
+                expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
+              });
+            });
+          });
+
+          describe('and the filter returns true with source map', () => {
+            beforeEach(() => {
+              const pluginEnvironment = new PluginEnvironment();
+              const compilerEnv = pluginEnvironment.getEnvironmentStub();
+              compilerEnv.context = '';
+
+              const plugin = new UglifyJsPlugin({
+                warningsFilter: () => true,
+                sourceMap: true,
+                uglifyOptions: {
+                  warnings: true,
+                  mangle: false,
+                  output: {
+                    beautify: true,
+                  },
+                },
+              });
+              plugin.apply(compilerEnv);
+              eventBindings = pluginEnvironment.getEventBindings();
+
+              chunkPluginEnvironment = new PluginEnvironment();
+              compilation = chunkPluginEnvironment.getEnvironmentStub();
+              compilation.assets = {
+                'test.js': {
+                  sourceAndMap: () => {
                     return {
-                      version: 3,
-                      sources: ['test1.js'],
-                      names: ['foo', 'x', 'bar', 'not_called1'],
-                      mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                      source: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+                      map: {
+                        version: 3,
+                        sources: ['test.js'],
+                        names: ['foo', 'x', 'bar', 'not_called1'],
+                        mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                      },
                     };
                   },
                 },
@@ -323,7 +376,7 @@ describe('when applied with all options', () => {
 
             it('should get all warnings', () => {
               compilationEventBindings[1].handler([{
-                files: ['test2.js'],
+                files: ['test.js'],
               }], () => {
                 expect(compilation.warnings.length).toBe(1);
                 expect(compilation.warnings[0]).toBeInstanceOf(Error);
@@ -332,7 +385,7 @@ describe('when applied with all options', () => {
             });
           });
 
-          describe('and the filter returns false', () => {
+          describe('and the filter returns false without source map', () => {
             beforeEach(() => {
               const pluginEnvironment = new PluginEnvironment();
               const compilerEnv = pluginEnvironment.getEnvironmentStub();
@@ -355,14 +408,59 @@ describe('when applied with all options', () => {
               chunkPluginEnvironment = new PluginEnvironment();
               compilation = chunkPluginEnvironment.getEnvironmentStub();
               compilation.assets = {
-                'test2.js': {
+                'test.js': {
                   source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
-                  map: () => {
+                },
+              };
+              compilation.errors = [];
+              compilation.warnings = [];
+
+              eventBindings[0].handler(compilation);
+              compilationEventBindings = chunkPluginEnvironment.getEventBindings();
+            });
+
+            it('should get no warnings', () => {
+              compilationEventBindings[1].handler([{
+                files: ['test.js'],
+              }], () => {
+                expect(compilation.warnings.length).toBe(0);
+              });
+            });
+          });
+
+          describe('and the filter returns false with source map', () => {
+            beforeEach(() => {
+              const pluginEnvironment = new PluginEnvironment();
+              const compilerEnv = pluginEnvironment.getEnvironmentStub();
+              compilerEnv.context = '';
+
+              const plugin = new UglifyJsPlugin({
+                warningsFilter: () => false,
+                sourceMap: true,
+                uglifyOptions: {
+                  warnings: true,
+                  mangle: false,
+                  output: {
+                    beautify: true,
+                  },
+                },
+              });
+              plugin.apply(compilerEnv);
+              eventBindings = pluginEnvironment.getEventBindings();
+
+              chunkPluginEnvironment = new PluginEnvironment();
+              compilation = chunkPluginEnvironment.getEnvironmentStub();
+              compilation.assets = {
+                'test.js': {
+                  sourceAndMap: () => {
                     return {
-                      version: 3,
-                      sources: ['test1.js'],
-                      names: ['foo', 'x', 'bar', 'not_called1'],
-                      mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                      source: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
+                      map: {
+                        version: 3,
+                        sources: ['test.js'],
+                        names: ['foo', 'x', 'bar', 'not_called1'],
+                        mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+                      },
                     };
                   },
                 },
@@ -376,7 +474,7 @@ describe('when applied with all options', () => {
 
             it('should get no warnings', () => {
               compilationEventBindings[1].handler([{
-                files: ['test2.js'],
+                files: ['test.js'],
               }], () => {
                 expect(compilation.warnings.length).toBe(0);
               });
