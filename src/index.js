@@ -91,14 +91,14 @@ class UglifyJsPlugin {
       column,
     });
 
-    let warningMessage = null;
+    if (!warningsFilter(original.source)) {
+      return null;
+    }
 
-    if (warningsFilter(original.source)) {
-      warningMessage = warning.replace(warningRegex, '');
+    let warningMessage = warning.replace(warningRegex, '');
 
-      if (original && original.source && original.source !== file) {
-        warningMessage += `[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`;
-      }
+    if (original && original.source && original.source !== file) {
+      warningMessage += `[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`;
     }
 
     return `UglifyJs Plugin: ${warningMessage} in ${file}`;
