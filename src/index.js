@@ -8,7 +8,6 @@ import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
-import serialize from 'serialize-javascript';
 import schema from './options.json';
 import Uglify from './uglify';
 import versions from './uglify/versions';
@@ -27,6 +26,7 @@ class UglifyJsPlugin {
       extractComments = false,
       sourceMap = false,
       cache = false,
+      cacheKeys = defaultCacheKeys => defaultCacheKeys,
       parallel = false,
       include,
       exclude,
@@ -38,6 +38,7 @@ class UglifyJsPlugin {
       extractComments,
       sourceMap,
       cache,
+      cacheKeys,
       parallel,
       include,
       exclude,
@@ -171,13 +172,15 @@ class UglifyJsPlugin {
             };
 
             if (this.options.cache) {
-              task.cacheKey = serialize({
+              const defaultCacheKeys = {
                 'uglify-es': versions.uglify,
                 'uglifyjs-webpack-plugin': versions.plugin,
                 'uglifyjs-webpack-plugin-options': this.options,
                 path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
                 hash: crypto.createHash('md4').update(input).digest('hex'),
-              });
+              };
+
+              task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
             }
 
             tasks.push(task);

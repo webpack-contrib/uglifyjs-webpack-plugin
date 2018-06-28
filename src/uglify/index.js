@@ -57,7 +57,7 @@ export default class {
           const done = () => step(index, result);
 
           if (this.cacheDir && !result.error) {
-            cacache.put(this.cacheDir, task.cacheKey, JSON.stringify(data)).then(done, done);
+            cacache.put(this.cacheDir, serialize(task.cacheKeys), JSON.stringify(data)).then(done, done);
           } else {
             done();
           }
@@ -65,7 +65,7 @@ export default class {
       };
 
       if (this.cacheDir) {
-        cacache.get(this.cacheDir, task.cacheKey).then(({ data }) => step(index, JSON.parse(data)), enqueue);
+        cacache.get(this.cacheDir, serialize(task.cacheKeys)).then(({ data }) => step(index, JSON.parse(data)), enqueue);
       } else {
         enqueue();
       }

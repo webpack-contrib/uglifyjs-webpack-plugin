@@ -10,6 +10,9 @@
         { "type": "string" }
       ]
     },
+    "cacheKeys": {
+      "instanceof": "Function"
+    },
     "parallel": {
       "oneOf": [
         { "type": "boolean" },
