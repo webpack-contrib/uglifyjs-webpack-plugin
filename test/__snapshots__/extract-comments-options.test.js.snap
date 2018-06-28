@@ -4,6 +4,11 @@ exports[`when options.extractComments normalizes when options.extractComments is
 
 exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": test.js 1`] = `"var foo=1;"`;
 
+exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": test.js.LICENSE 1`] = `
+"/*! Legal Comment */
+"
+`;
+
 exports[`when options.extractComments normalizes when options.extractComments is boolean - "true": test1.js 1`] = `
 "/*! For license information please see test1.js.LICENSE */
 var foo=1;"
@@ -68,6 +73,11 @@ exports[`when options.extractComments normalizes when options.extractComments is
 exports[`when options.extractComments normalizes when options.extractComments is regex: errors 1`] = `Array []`;
 
 exports[`when options.extractComments normalizes when options.extractComments is regex: test.js 1`] = `"var foo=1;"`;
+
+exports[`when options.extractComments normalizes when options.extractComments is regex: test.js.LICENSE 1`] = `
+"// foo
+"
+`;
 
 exports[`when options.extractComments normalizes when options.extractComments is regex: test1.js 1`] = `
 "/*! For license information please see test1.js.LICENSE */

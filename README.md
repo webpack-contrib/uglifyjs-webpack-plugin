@@ -50,6 +50,7 @@ module.exports = {
 |**`cacheKeys`**|`{Function(defaultCacheKeys, file) -> {Object}}`|`defaultCacheKeys => defaultCacheKeys`|Allows you to override default cache keys|
 |**`parallel`**|`{Boolean\|Number}`|`false`|Use multi-process parallel running to improve the build speed|
 |**`sourceMap`**|`{Boolean}`|`false`|Use source maps to map error message locations to modules (This slows down the compilation) ⚠️ **`cheap-source-map` options don't work with this plugin**|
+|**`minify`**|`{Function}`|`(file, uglifyOptions) => uglify.minify(file, uglifyOptions)`|Allows you to override default minify function|
 |**`uglifyOptions`**|`{Object}`|[`{...defaults}`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions)|`uglify` [Options](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)|
 |**`extractComments`**|`{Boolean\|RegExp\|Function<(node, comment) -> {Boolean\|Object}>}`|`false`|Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a) (`webpack >= 2.3.0`)|
 |**`warningsFilter`**|`{Function(source) -> {Boolean}}`|`() => true`|Allow to filter uglify warnings|
@@ -188,6 +189,57 @@ Number of concurrent runs.
 ```
 
 > ⚠️ **`cheap-source-map` options don't work with this plugin**
+
+### `minify`
+
+**webpack.config.js**
+```js
+[
+  new UglifyJsPlugin({
+     minify(file, uglifyOptions) {
+        return uglifyCompatibilityPackage.minify(file, uglifyOptions);
+      }
+  })
+]
+```
+
+By default plugin use `uglify-es.minify` function.
+
+Examples:
+
+#### `uglify-js`
+
+```bash
+npm i -D uglify-js
+```
+
+**webpack.config.js**
+```js
+[
+  new UglifyJsPlugin({
+     minify(file, uglifyOptions) {
+       return require('uglify-js').minify(file, uglifyOptions);
+     }
+  })
+]
+```
+
+#### `terser`
+
+```bash
+npm i -D terser
+```
+
+**webpack.config.js**
+```js
+[
+  new UglifyJsPlugin({
+     minify(file, uglifyOptions) {
+       return require('terser').minify(file, uglifyOptions);
+     }
+  })
+]
+```
 
 ### [`uglifyOptions`](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)
 
