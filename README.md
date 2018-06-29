@@ -30,9 +30,12 @@ npm i -D uglifyjs-webpack-plugin
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  plugins: [
-    new UglifyJsPlugin()
-  ]
+  //...
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin()
+    ]
+  }
 }
 ```
 
