@@ -27,6 +27,7 @@ class UglifyJsPlugin {
       extractComments = false,
       sourceMap = false,
       cache = false,
+      additionalCacheKeys = {},
       parallel = false,
       include,
       exclude,
@@ -38,6 +39,7 @@ class UglifyJsPlugin {
       extractComments,
       sourceMap,
       cache,
+      additionalCacheKeys,
       parallel,
       include,
       exclude,
@@ -177,6 +179,7 @@ class UglifyJsPlugin {
                 'uglifyjs-webpack-plugin-options': this.options,
                 path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
                 hash: crypto.createHash('md4').update(input).digest('hex'),
+                ...this.options.additionalCacheKeys,
               });
             }
 

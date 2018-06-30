@@ -47,6 +47,7 @@ module.exports = {
 |**`include`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `include`|
 |**`exclude`**|`{RegExp\|Array<RegExp>}`|`undefined`|Files to `exclude`|
 |**`cache`**|`{Boolean\|String}`|`false`|Enable file caching|
+|**`additionalCacheKeys`**|`{Object}`|`{}`|Add additional keys to the default cache key generator|
 |**`parallel`**|`{Boolean\|Number}`|`false`|Use multi-process parallel running to improve the build speed|
 |**`sourceMap`**|`{Boolean}`|`false`|Use source maps to map error message locations to modules (This slows down the compilation) ⚠️ **`cheap-source-map` options don't work with this plugin**|
 |**`uglifyOptions`**|`{Object}`|[`{...defaults}`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions)|`uglify` [Options](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)|
@@ -114,6 +115,35 @@ Default path to cache directory: `node_modules/.cache/uglifyjs-webpack-plugin`.
 ```
 
 Path to cache directory.
+
+### `additionalCacheKeys`
+
+#### `{Object}`
+
+**webpack.config.js**
+```js
+[
+  new UglifyJsPlugin({
+    cache: true,
+    additionalCacheKeys: {
+      myCustomKey: 'myCustomValue',
+    }
+  })
+]
+```
+
+Add additional keys to the default cache key generator.
+
+Default keys:
+```js
+{
+  'uglify-es': versions.uglify, // uglify version
+  'uglifyjs-webpack-plugin': versions.plugin, // plugin version
+  'uglifyjs-webpack-plugin-options': this.options, // plugin options
+  path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file, // asset path
+  hash: crypto.createHash('md4').update(input).digest('hex'), // source file hash
+}
+```
 
 ### `parallel`
 
