@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when applied with minify option matches snapshot for \`terser\` minifier: errors 1`] = `Array []`;
+
+exports[`when applied with minify option matches snapshot for \`terser\` minifier: main.js 1`] = `"webpackJsonp([0],[function(t,e,s){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const s=t.x-e.x,c=t.y-e.y;return Math.hypot(s,c)}}}],[0]);"`;
+
+exports[`when applied with minify option matches snapshot for \`terser\` minifier: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with minify option matches snapshot for \`terser\` minifier: warnings 1`] = `Array []`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-es\` minifier: errors 1`] = `Array []`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-es\` minifier: main.js 1`] = `"webpackJsonp([0],[function(t,e,s){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const s=t.x-e.x,c=t.y-e.y;return Math.hypot(s,c)}}}],[0]);"`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-es\` minifier: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-es\` minifier: warnings 1`] = `Array []`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-js\` minifier: errors 1`] = `Array []`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-js\` minifier: main.js 1`] = `"webpackJsonp([0],[function(e,n){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}],[0]);"`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-js\` minifier: manifest.js 1`] = `"!function(i){var p=window.webpackJsonp;window.webpackJsonp=function(r,n,e){for(var o,t,u,c=0,f=[];c<r.length;c++)t=r[c],a[t]&&f.push(a[t][0]),a[t]=0;for(o in n)Object.prototype.hasOwnProperty.call(n,o)&&(i[o]=n[o]);for(p&&p(r,n,e);f.length;)f.shift()();if(e)for(c=0;c<e.length;c++)u=l(l.s=e[c]);return u};var e={},a={1:0};function l(r){if(e[r])return e[r].exports;var n=e[r]={i:r,l:!1,exports:{}};return i[r].call(n.exports,n,n.exports,l),n.l=!0,n.exports}l.m=i,l.c=e,l.d=function(r,n,e){l.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},l.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return l.d(n,\\"a\\",n),n},l.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},l.p=\\"\\",l.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`when applied with minify option matches snapshot for \`uglify-js\` minifier: warnings 1`] = `Array []`;

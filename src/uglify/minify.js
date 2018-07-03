@@ -1,8 +1,6 @@
 /* eslint-disable
   arrow-body-style
 */
-import uglify from 'uglify-es';
-
 const buildUglifyOptions = ({
   ecma,
   warnings,
@@ -127,9 +125,9 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
 };
 
 const minify = (options) => {
-  const { file, input, inputSourceMap, extractComments } = options;
+  const { file, input, inputSourceMap, extractComments, minify: minifyFn } = options;
   // Copy uglify options
-  const uglifyOptions = buildUglifyOptions(options.uglifyOptions);
+  const uglifyOptions = minify ? options.uglifyOptions : buildUglifyOptions(options.uglifyOptions);
 
   // Add source map data
   if (inputSourceMap) {
@@ -148,7 +146,7 @@ const minify = (options) => {
     );
   }
 
-  const { error, map, code, warnings } = uglify.minify(
+  const { error, map, code, warnings } = minifyFn(
     { [file]: input },
     uglifyOptions,
   );

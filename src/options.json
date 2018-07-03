@@ -19,6 +19,9 @@
         { "type": "integer" }
       ]
     },
+    "minify": {
+      "instanceof": "Function"
+    },
     "warningsFilter": {},
     "extractComments": {},
     "sourceMap": {
