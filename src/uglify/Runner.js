@@ -12,7 +12,7 @@ try {
   workerFile = require.resolve('../../dist/uglify/worker');
 } catch (e) { } // eslint-disable-line no-empty
 
-export default class {
+export default class Runner {
   constructor(options = {}) {
     const { cache, parallel } = options;
     this.cacheDir = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;

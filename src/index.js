@@ -9,7 +9,7 @@ import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
 import schema from './options.json';
-import Uglify from './uglify';
+import Runner from './uglify/Runner';
 import versions from './uglify/versions';
 import utils from './utils';
 
@@ -20,6 +20,7 @@ class UglifyJsPlugin {
     validateOptions(schema, options, 'UglifyJs Plugin');
 
     const {
+      minify,
       uglifyOptions = {},
       test = /\.js(\?.*)?$/i,
       warningsFilter = () => true,
@@ -42,6 +43,7 @@ class UglifyJsPlugin {
       parallel,
       include,
       exclude,
+      minify,
       uglifyOptions: {
         compress: {
           inline: 1,
@@ -114,7 +116,7 @@ class UglifyJsPlugin {
     };
 
     const optimizeFn = (compilation, chunks, callback) => {
-      const uglify = new Uglify({
+      const runner = new Runner({
         cache: this.options.cache,
         parallel: this.options.parallel,
       });
@@ -169,6 +171,7 @@ class UglifyJsPlugin {
               commentsFile,
               extractComments: this.options.extractComments,
               uglifyOptions: this.options.uglifyOptions,
+              minify: this.options.minify,
             };
 
             if (this.options.cache) {
@@ -196,7 +199,7 @@ class UglifyJsPlugin {
           }
         });
 
-      uglify.runTasks(tasks, (tasksError, results) => {
+      runner.runTasks(tasks, (tasksError, results) => {
         if (tasksError) {
           compilation.errors.push(tasksError);
           return;
@@ -294,7 +297,7 @@ class UglifyJsPlugin {
           }
         });
 
-        uglify.exit();
+        runner.exit();
 
         callback();
       });

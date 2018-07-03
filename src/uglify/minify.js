@@ -127,7 +127,12 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
 };
 
 const minify = (options) => {
-  const { file, input, inputSourceMap, extractComments } = options;
+  const { file, input, inputSourceMap, extractComments, minify: minifyFn } = options;
+
+  if (minifyFn) {
+    return minifyFn({ [file]: input }, inputSourceMap);
+  }
+
   // Copy uglify options
   const uglifyOptions = buildUglifyOptions(options.uglifyOptions);
 

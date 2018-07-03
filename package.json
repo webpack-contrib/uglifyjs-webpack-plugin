@@ -57,6 +57,8 @@
     "nsp": "^3.1.0",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.3.0",
+    "terser": "^3.7.6",
+    "uglify-js": "^3.4.3",
     "webpack": "^3.10.0",
     "webpack-defaults": "^1.6.0"
   },
