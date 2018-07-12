@@ -24,6 +24,9 @@
     "sourceMap": {
       "type": "boolean"
     },
+    "minify": {
+      "instanceof": "Function"
+    },
     "uglifyOptions": {
       "additionalProperties": true,
       "type": "object",
