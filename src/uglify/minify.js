@@ -1,7 +1,7 @@
 /* eslint-disable
   arrow-body-style
 */
-import uglify from 'uglify-es';
+import uglify from 'terser';
 
 const buildUglifyOptions = ({
   ecma,

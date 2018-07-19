@@ -176,7 +176,7 @@ class UglifyJsPlugin {
 
             if (this.options.cache) {
               const defaultCacheKeys = {
-                'uglify-es': versions.uglify,
+                terser: versions.uglify,
                 'uglifyjs-webpack-plugin': versions.plugin,
                 'uglifyjs-webpack-plugin-options': this.options,
                 path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,

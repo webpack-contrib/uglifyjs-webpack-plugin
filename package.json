@@ -36,7 +36,7 @@
     "serialize-javascript": "^1.4.0",
     "schema-utils": "^0.4.5",
     "source-map": "^0.6.1",
-    "uglify-es": "^3.3.4",
+    "terser": "^3.8.0",
     "webpack-sources": "^1.1.0",
     "worker-farm": "^1.5.2"
   },
@@ -57,7 +57,7 @@
     "nsp": "^3.1.0",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.3.0",
-    "terser": "^3.7.6",
+    "uglify-es": "^3.3.4",
     "uglify-js": "^3.4.3",
     "webpack": "^3.10.0",
     "webpack-defaults": "^1.6.0"
@@ -68,7 +68,7 @@
   "keywords": [
     "uglify",
     "uglify-js",
-    "uglify-es",
+    "terser",
     "webpack",
     "webpack-plugin"
   ],
