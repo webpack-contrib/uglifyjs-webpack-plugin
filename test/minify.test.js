@@ -1,7 +1,4 @@
 import path from 'path';
-import uglifyJs from 'uglify-js';
-import uglifyEs from 'uglify-es';
-import terser from 'terser';
 import UglifyJsPlugin from '../src';
 import { cleanErrorStack, compile, createCompiler } from './helpers';
 
@@ -18,7 +15,8 @@ describe('when applied with minify option', () => {
 
     new UglifyJsPlugin({
       minify(file) {
-        return uglifyJs.minify(file, {
+        // eslint-disable-next-line global-require
+        return require('uglify-js').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
@@ -54,7 +52,8 @@ describe('when applied with minify option', () => {
 
     new UglifyJsPlugin({
       minify(file) {
-        return uglifyEs.minify(file, {
+        // eslint-disable-next-line global-require
+        return require('uglify-es').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
@@ -90,7 +89,8 @@ describe('when applied with minify option', () => {
 
     new UglifyJsPlugin({
       minify(file) {
-        return terser.minify(file, {
+        // eslint-disable-next-line global-require
+        return require('terser').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
@@ -148,7 +148,8 @@ describe('when applied with minify option', () => {
           };
         }
 
-        return terser.minify(file, terserOption);
+        // eslint-disable-next-line global-require
+        return require('terser').minify(file, terserOption);
       },
     }).apply(compiler);
 
@@ -163,6 +164,44 @@ describe('when applied with minify option', () => {
         for (const file in stats.compilation.assets) {
           if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
             expect(removeAbsoluteSourceMapSources(stats.compilation.assets[file].sourceAndMap())).toMatchSnapshot(file);
+          }
+        }
+      });
+  });
+
+  it('matches snapshot for `terser` minifier and `parallel: true`', () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/minify/es6.js`,
+      output: {
+        path: `${__dirname}/dist-terser`,
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+      },
+    });
+
+    new UglifyJsPlugin({
+      parallel: true,
+      minify(file) {
+        // eslint-disable-next-line global-require
+        return require('terser').minify(file, {
+          mangle: {
+            reserved: ['baz'],
+          },
+        });
+      },
+    }).apply(compiler);
+
+    return compile(compiler)
+      .then((stats) => {
+        const errors = stats.compilation.errors.map(cleanErrorStack);
+        const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+        expect(errors).toMatchSnapshot('errors');
+        expect(warnings).toMatchSnapshot('warnings');
+
+        for (const file in stats.compilation.assets) {
+          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
           }
         }
       });
