@@ -196,6 +196,8 @@ If you use your own `minify` function please read the `minify` section for handl
 
 ### `minify`
 
+> ⚠️ **Always use `require` inside `minify` function when `parallel` option enabled**
+
 **webpack.config.js**
 ```js
 [
@@ -204,11 +206,12 @@ If you use your own `minify` function please read the `minify` section for handl
        const extractedComments = [];
 
        // Custom logic for extract comments
-
-       const { error, map, code, warnings } = minify(
-         file,
-         { /* Your options for minification */ },
-       );
+      
+       const { error, map, code, warnings } = require('uglify-module') // Or require('./path/to/uglify-module')
+         .minify(
+           file,
+           { /* Your options for minification */ },
+         );
 
        return { error, map, code, warnings, extractedComments };
       }
