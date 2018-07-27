@@ -53,6 +53,10 @@ describe('UglifyJsPlugin', () => {
     }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
+      new UglifyJsPlugin({ cacheKeys() {} });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
       new UglifyJsPlugin({ parallel: true });
     }).not.toThrow('Validation Error');
 
@@ -85,11 +89,34 @@ describe('UglifyJsPlugin', () => {
     }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
+      new UglifyJsPlugin({ minify() {} });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
       new UglifyJsPlugin({ uglifyOptions: null });
     }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: {} });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          ecma: 5,
+          warnings: false,
+          parse: {},
+          compress: true,
+          mangle: { inline: false },
+          output: { comments: /^\**!|@preserve|@license|@cc_on/ },
+          toplevel: false,
+          nameCache: {},
+          ie8: false,
+          keep_classnames: false,
+          keep_fnames: false,
+          safari10: false,
+        },
+      });
     }).not.toThrow('Validation Error');
 
     expect(() => {
@@ -131,6 +158,26 @@ describe('UglifyJsPlugin', () => {
     expect(() => {
       new UglifyJsPlugin({ uglifyOptions: { ecma: 10 } });
     }).toThrowErrorMatchingSnapshot();
+
+    expect(() => {
+      new UglifyJsPlugin({ extractComments: true });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ extractComments: false });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ extractComments: /comment/ });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ extractComments() {} });
+    }).not.toThrow('Validation Error');
+
+    expect(() => {
+      new UglifyJsPlugin({ warningsFilter() {} });
+    }).not.toThrow('Validation Error');
   });
 
   it('contain errors when uglify has unknown option', () => {
