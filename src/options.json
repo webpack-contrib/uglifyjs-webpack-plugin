@@ -19,8 +19,6 @@
         { "type": "integer" }
       ]
     },
-    "warningsFilter": {},
-    "extractComments": {},
     "sourceMap": {
       "type": "boolean"
     },
@@ -67,7 +65,9 @@
           "type": ["object", "null"]
         }
       }
-    }
+    },
+    "extractComments": {},
+    "warningsFilter": {}
   },
   "additionalProperties": false
 }
