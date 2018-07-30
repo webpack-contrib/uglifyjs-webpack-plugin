@@ -1,4 +1,3 @@
-import { SourceMapSource } from 'webpack-sources';
 import UglifyJsPlugin from '../src/index';
 import {
   PluginEnvironment,
@@ -207,48 +206,12 @@ describe('when applied with all options', () => {
           });
         });
 
-        it('outputs SourceMapSource for valid javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            expect(compilation.assets['test.js']).toBeInstanceOf(SourceMapSource);
-          });
-        });
-
-        it('does not output mangled javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test.js']._value).toEqual(expect.stringContaining('longVariableName'));
-          });
-        });
-
-        it('outputs beautified javascript', () => {
-          compilationEventBinding.handler([{
-            files: ['test.js'],
-          }], () => {
-            // eslint-disable-next-line no-underscore-dangle
-            expect(compilation.assets['test.js']._value).toEqual(expect.stringContaining('\n'));
-          });
-        });
-
         it('does not preserve comments', () => {
           compilationEventBinding.handler([{
             files: ['test.js'],
           }], () => {
             // eslint-disable-next-line no-underscore-dangle
             expect(compilation.assets['test.js']._value).not.toBe(expect.stringContaining('/**'));
-          });
-        });
-
-        it('outputs parsing errors', () => {
-          compilationEventBinding.handler([{
-            files: ['test1.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(1);
-            expect(compilation.errors[0]).toBeInstanceOf(Error);
-            expect(compilation.errors[0].message).toEqual(expect.stringContaining('[test1.js:1,0][test1.js:1,8]'));
           });
         });
 
@@ -259,28 +222,6 @@ describe('when applied with all options', () => {
             expect(compilation.warnings.length).toBe(1);
             expect(compilation.warnings[0]).toBeInstanceOf(Error);
             expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
-          });
-        });
-
-        it('works with sourceAndMap assets as well', () => {
-          compilationEventBinding.handler([{
-            files: ['test3.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(0);
-            expect(compilation.assets['test3.js']).toBeInstanceOf(SourceMapSource);
-          });
-        });
-
-        it('extracts license information to separate file', () => {
-          compilationEventBinding.handler([{
-            files: ['test4.js'],
-          }], () => {
-            expect(compilation.errors.length).toBe(0);
-            /* eslint-disable no-underscore-dangle */
-            expect(compilation.assets['test4.license.js'].source()).toContain('/*! this comment should be extracted */');
-            expect(compilation.assets['test4.license.js'].source()).toContain('// another comment that should be extracted to a separate file');
-            expect(compilation.assets['test4.license.js'].source()).not.toEqual(expect.stringContaining('/* this will not be extracted */'));
-            /* eslint-enable no-underscore-dangle */
           });
         });
       });

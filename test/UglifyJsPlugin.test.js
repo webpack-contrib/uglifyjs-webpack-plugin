@@ -54,6 +54,7 @@ describe('UglifyJsPlugin', () => {
               source: () => '/** @preserve Foo Bar */ function foo(longVariableName) { longVariableName = 1; }',
             },
           };
+          compilation.warnings = [];
           compilation.errors = [];
 
           eventBinding.handler(compilation);
@@ -89,7 +90,7 @@ describe('UglifyJsPlugin', () => {
             });
           });
 
-          it('early returns if private property is already set', () => {
+          it('empty asset', () => {
             compilationEventBinding.handler([{
               files: ['test.js'],
             }], () => {
@@ -139,8 +140,7 @@ describe('UglifyJsPlugin', () => {
               files: ['test3.js'],
             }], () => {
               // eslint-disable-next-line no-underscore-dangle
-              expect(compilation.assets['test3.js']._value)
-                .not.toEqual(expect.stringContaining('longVariableName'));
+              expect(compilation.assets['test3.js']._value).not.toEqual(expect.stringContaining('longVariableName'));
             });
           });
 
