@@ -65,6 +65,6 @@ export function removeCWD(str) {
 }
 
 export function cleanErrorStack(error) {
-  return exports.removeCWD(error.toString()).split('\n').slice(0, 2).join('\n');
+  return removeCWD(error.toString()).split('\n').slice(0, 2).join('\n');
 }
 
