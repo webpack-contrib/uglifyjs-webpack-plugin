@@ -1,25 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when options.parallel false matches snapshot: errors 1`] = `Array []`;
+exports[`when applied with parallel option matches snapshot with 2 value (number): errors 1`] = `Array []`;
 
-exports[`when options.parallel false matches snapshot: main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with parallel option matches snapshot with 2 value (number): four.0741ac92c5e76ec45240.js 1`] = `"webpackJsonp([3],[],[0]);"`;
 
-exports[`when options.parallel false matches snapshot: manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with parallel option matches snapshot with 2 value (number): manifest.f504b5c36c66d8aa6a74.js 1`] = `"!function(n){var o=window.webpackJsonp;window.webpackJsonp=function(r,c,u){for(var f,i,p,l=0,a=[];l<r.length;l++)i=r[l],t[i]&&a.push(t[i][0]),t[i]=0;for(f in c)Object.prototype.hasOwnProperty.call(c,f)&&(n[f]=c[f]);for(o&&o(r,c,u);a.length;)a.shift()();if(u)for(l=0;l<u.length;l++)p=e(e.s=u[l]);return p};var r={},t={4:0};function e(o){if(r[o])return r[o].exports;var t=r[o]={i:o,l:!1,exports:{}};return n[o].call(t.exports,t,t.exports,e),t.l=!0,t.exports}e.m=n,e.c=r,e.d=function(n,o,r){e.o(n,o)||Object.defineProperty(n,o,{configurable:!1,enumerable:!0,get:r})},e.n=function(n){var o=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(o,\\"a\\",o),o},e.o=function(n,o){return Object.prototype.hasOwnProperty.call(n,o)},e.p=\\"\\",e.oe=function(n){throw console.error(n),n}}([function(n,o){n.exports=function(){console.log(7)}}]);"`;
 
-exports[`when options.parallel false matches snapshot: warnings 1`] = `Array []`;
+exports[`when applied with parallel option matches snapshot with 2 value (number): one.91254a4178472993cf9f.js 1`] = `"webpackJsonp([0],[],[0]);"`;
 
-exports[`when options.parallel number matches snapshot: errors 1`] = `Array []`;
+exports[`when applied with parallel option matches snapshot with 2 value (number): three.16209e63e6e5fb2ca2e3.js 1`] = `"webpackJsonp([2],[],[0]);"`;
 
-exports[`when options.parallel number matches snapshot: main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with parallel option matches snapshot with 2 value (number): two.e9fc295fcef530d66dc5.js 1`] = `"webpackJsonp([1],[],[0]);"`;
 
-exports[`when options.parallel number matches snapshot: manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with parallel option matches snapshot with 2 value (number): warnings 1`] = `Array []`;
 
-exports[`when options.parallel number matches snapshot: warnings 1`] = `Array []`;
+exports[`when applied with parallel option matches snapshot with false value: errors 1`] = `Array []`;
 
-exports[`when options.parallel true matches snapshot: errors 1`] = `Array []`;
+exports[`when applied with parallel option matches snapshot with false value: four.0741ac92c5e76ec45240.js 1`] = `"webpackJsonp([3],[],[0]);"`;
 
-exports[`when options.parallel true matches snapshot: main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with parallel option matches snapshot with false value: manifest.f504b5c36c66d8aa6a74.js 1`] = `"!function(n){var o=window.webpackJsonp;window.webpackJsonp=function(r,c,u){for(var f,i,p,l=0,a=[];l<r.length;l++)i=r[l],t[i]&&a.push(t[i][0]),t[i]=0;for(f in c)Object.prototype.hasOwnProperty.call(c,f)&&(n[f]=c[f]);for(o&&o(r,c,u);a.length;)a.shift()();if(u)for(l=0;l<u.length;l++)p=e(e.s=u[l]);return p};var r={},t={4:0};function e(o){if(r[o])return r[o].exports;var t=r[o]={i:o,l:!1,exports:{}};return n[o].call(t.exports,t,t.exports,e),t.l=!0,t.exports}e.m=n,e.c=r,e.d=function(n,o,r){e.o(n,o)||Object.defineProperty(n,o,{configurable:!1,enumerable:!0,get:r})},e.n=function(n){var o=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(o,\\"a\\",o),o},e.o=function(n,o){return Object.prototype.hasOwnProperty.call(n,o)},e.p=\\"\\",e.oe=function(n){throw console.error(n),n}}([function(n,o){n.exports=function(){console.log(7)}}]);"`;
 
-exports[`when options.parallel true matches snapshot: manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with parallel option matches snapshot with false value: one.91254a4178472993cf9f.js 1`] = `"webpackJsonp([0],[],[0]);"`;
 
-exports[`when options.parallel true matches snapshot: warnings 1`] = `Array []`;
+exports[`when applied with parallel option matches snapshot with false value: three.16209e63e6e5fb2ca2e3.js 1`] = `"webpackJsonp([2],[],[0]);"`;
+
+exports[`when applied with parallel option matches snapshot with false value: two.e9fc295fcef530d66dc5.js 1`] = `"webpackJsonp([1],[],[0]);"`;
+
+exports[`when applied with parallel option matches snapshot with false value: warnings 1`] = `Array []`;
+
+exports[`when applied with parallel option matches snapshot with true value: errors 1`] = `Array []`;
+
+exports[`when applied with parallel option matches snapshot with true value: four.0741ac92c5e76ec45240.js 1`] = `"webpackJsonp([3],[],[0]);"`;
+
+exports[`when applied with parallel option matches snapshot with true value: manifest.f504b5c36c66d8aa6a74.js 1`] = `"!function(n){var o=window.webpackJsonp;window.webpackJsonp=function(r,c,u){for(var f,i,p,l=0,a=[];l<r.length;l++)i=r[l],t[i]&&a.push(t[i][0]),t[i]=0;for(f in c)Object.prototype.hasOwnProperty.call(c,f)&&(n[f]=c[f]);for(o&&o(r,c,u);a.length;)a.shift()();if(u)for(l=0;l<u.length;l++)p=e(e.s=u[l]);return p};var r={},t={4:0};function e(o){if(r[o])return r[o].exports;var t=r[o]={i:o,l:!1,exports:{}};return n[o].call(t.exports,t,t.exports,e),t.l=!0,t.exports}e.m=n,e.c=r,e.d=function(n,o,r){e.o(n,o)||Object.defineProperty(n,o,{configurable:!1,enumerable:!0,get:r})},e.n=function(n){var o=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(o,\\"a\\",o),o},e.o=function(n,o){return Object.prototype.hasOwnProperty.call(n,o)},e.p=\\"\\",e.oe=function(n){throw console.error(n),n}}([function(n,o){n.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with parallel option matches snapshot with true value: one.91254a4178472993cf9f.js 1`] = `"webpackJsonp([0],[],[0]);"`;
+
+exports[`when applied with parallel option matches snapshot with true value: three.16209e63e6e5fb2ca2e3.js 1`] = `"webpackJsonp([2],[],[0]);"`;
+
+exports[`when applied with parallel option matches snapshot with true value: two.e9fc295fcef530d66dc5.js 1`] = `"webpackJsonp([1],[],[0]);"`;
+
+exports[`when applied with parallel option matches snapshot with true value: warnings 1`] = `Array []`;
