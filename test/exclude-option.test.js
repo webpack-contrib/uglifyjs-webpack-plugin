@@ -7,6 +7,7 @@ import {
 
 describe('when applied with exclude option', () => {
   let compiler;
+
   beforeEach(() => {
     compiler = createCompiler({
       entry: {
@@ -17,9 +18,9 @@ describe('when applied with exclude option', () => {
     });
   });
 
-  it('matches snapshot for a single exclude', () => {
+  it('matches snapshot for a single exclude value', () => {
     new UglifyJsPlugin({
-      exclude: /excluded1/,
+      exclude: /excluded1/i,
     }).apply(compiler);
 
 
@@ -38,11 +39,11 @@ describe('when applied with exclude option', () => {
     });
   });
 
-  it('matches snapshot for multiple excludes', () => {
+  it('matches snapshot for multiple exclude values', () => {
     new UglifyJsPlugin({
       exclude: [
-        /excluded1/,
-        /excluded2/,
+        /excluded1/i,
+        /excluded2/i,
       ],
     }).apply(compiler);
 
