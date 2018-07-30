@@ -53,59 +53,6 @@ describe('when options.extractComments', () => {
     });
   });
 
-  it('outputs warnings for unreachable code', () => {
-    const pluginEnvironment = new PluginEnvironment();
-    const compilerEnv = pluginEnvironment.getEnvironmentStub();
-    compilerEnv.context = '';
-
-    const plugin = new UglifyJsPlugin({
-      uglifyOptions: {
-        warnings: true,
-        mangle: {
-          properties: {
-            builtins: true,
-          },
-        },
-      },
-      extractComments: true,
-    });
-    plugin.apply(compilerEnv);
-
-    const [eventBinding] = pluginEnvironment.getEventBindings();
-    const chunkPluginEnvironment = new PluginEnvironment();
-
-    const compilation = chunkPluginEnvironment.getEnvironmentStub();
-    compilation.assets = {
-      'test.js': {
-        source: () => 'var foo = 1;',
-      },
-      'test1.js': {
-        source: () => 'function foo(x) { if (x) { return bar(); not_called1(); } }',
-        map: () => {
-          return {
-            version: 3,
-            sources: ['test1.js'],
-            names: ['foo', 'x', 'bar', 'not_called1'],
-            mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
-          };
-        },
-      },
-    };
-    compilation.warnings = [];
-    compilation.errors = [];
-
-    eventBinding.handler(compilation);
-    const [compilationEventBinding] = chunkPluginEnvironment.getEventBindings();
-
-    compilationEventBinding.handler([{
-      files: ['test.js', 'test1.js'],
-    }], () => {
-      expect(compilation.warnings.length).toBe(1);
-      expect(compilation.warnings[0]).toBeInstanceOf(Error);
-      expect(compilation.warnings[0].message).toEqual(expect.stringContaining('Dropping unreachable code'));
-    });
-  });
-
   it('normalizes when options.extractComments is not specify', () => {
     const pluginEnvironment = new PluginEnvironment();
     const compilerEnv = pluginEnvironment.getEnvironmentStub();
