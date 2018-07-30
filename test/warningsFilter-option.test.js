@@ -5,27 +5,33 @@ import {
   compile,
 } from './helpers';
 
-describe('when applied with `test` option', () => {
+describe('when applied with `warningsFilter` option', () => {
   let compiler;
 
   beforeEach(() => {
     compiler = createCompiler({
       entry: {
-        js: `${__dirname}/fixtures/entry.js`,
-        mjs: `${__dirname}/fixtures/entry.mjs`,
-        importExport: `${__dirname}/fixtures/import-export/entry.js`,
-        AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
-      },
-      output: {
-        path: `${__dirname}/dist`,
-        filename: '[name].js?var=[hash]',
-        chunkFilename: '[id].[name].js?ver=[hash]',
+        one: `${__dirname}/fixtures/unreachable-code.js`,
+        two: `${__dirname}/fixtures/unreachable-code-2.js`,
       },
     });
   });
 
-  it('matches snapshot with empty value', () => {
-    new UglifyJsPlugin().apply(compiler);
+  it('matches snapshot for a `function` value and `sourceMap` is `true`', () => {
+    new UglifyJsPlugin({
+      warningsFilter(source) {
+        if (/unreachable-code-2\.js/.test(source)) {
+          return true;
+        }
+
+        return false;
+      },
+      uglifyOptions: {
+        warnings: true,
+      },
+      sourceMap: true,
+    }).apply(compiler);
+
 
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
@@ -42,33 +48,21 @@ describe('when applied with `test` option', () => {
     });
   });
 
-  it('matches snapshot for a single `test` value', () => {
+  it('matches snapshot for a `function` value and `sourceMap` is `false`', () => {
     new UglifyJsPlugin({
-      test: /(m)?js\.js(\?.*)?$/i,
-    }).apply(compiler);
-
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
-
-      for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+      warningsFilter(source) {
+        if (/unreachable-code-2\.js/.test(source)) {
+          return true;
         }
-      }
-    });
-  });
 
-  it('matches snapshot for multiple `test` values', () => {
-    new UglifyJsPlugin({
-      test: [
-        /(m)?js\.js(\?.*)?$/i,
-        /AsyncImportExport\.js(\?.*)?$/i,
-      ],
+        return false;
+      },
+      uglifyOptions: {
+        warnings: true,
+      },
+      sourceMap: false,
     }).apply(compiler);
+
 
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);

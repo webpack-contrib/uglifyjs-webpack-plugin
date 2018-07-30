@@ -2,7 +2,7 @@ import path from 'path';
 import UglifyJsPlugin from '../src';
 import { cleanErrorStack, compile, createCompiler } from './helpers';
 
-describe('when applied with minify option', () => {
+describe('when applied with `minify` option', () => {
   it('matches snapshot for `uglify-js` minifier', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,
@@ -114,7 +114,7 @@ describe('when applied with minify option', () => {
       });
   });
 
-  it('matches snapshot for `terser` minifier and `sourceMap: true`', () => {
+  it('matches snapshot for `terser` minifier and `sourceMap` is `true`', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
@@ -169,7 +169,7 @@ describe('when applied with minify option', () => {
       });
   });
 
-  it('matches snapshot for `terser` minifier and `parallel: true`', () => {
+  it('matches snapshot for `terser` minifier and `parallel` is `true`', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {

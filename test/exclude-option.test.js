@@ -5,7 +5,7 @@ import {
   compile,
 } from './helpers';
 
-describe('when applied with exclude option', () => {
+describe('when applied with `exclude` option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('when applied with exclude option', () => {
     });
   });
 
-  it('matches snapshot for a single exclude value', () => {
+  it('matches snapshot for a single `exclude` value', () => {
     new UglifyJsPlugin({
       exclude: /excluded1/i,
     }).apply(compiler);
@@ -39,7 +39,7 @@ describe('when applied with exclude option', () => {
     });
   });
 
-  it('matches snapshot for multiple exclude values', () => {
+  it('matches snapshot for multiple `exclude` values', () => {
     new UglifyJsPlugin({
       exclude: [
         /excluded1/i,

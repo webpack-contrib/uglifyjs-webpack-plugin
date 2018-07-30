@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when using MultiCompiler with empty options matches snapshot: compiler plugin count 1`] = `
+exports[`when using MultiCompiler matches snapshot with empty options: compiler plugin count 1`] = `
 Object {
   "after-emit": 1,
   "after-resolvers": 2,
@@ -14,13 +14,13 @@ Object {
 }
 `;
 
-exports[`when using MultiCompiler with empty options matches snapshot: errors 1`] = `Array []`;
+exports[`when using MultiCompiler matches snapshot with empty options: errors 1`] = `Array []`;
 
-exports[`when using MultiCompiler with empty options matches snapshot: errors 2`] = `Array []`;
+exports[`when using MultiCompiler matches snapshot with empty options: errors 2`] = `Array []`;
 
-exports[`when using MultiCompiler with empty options matches snapshot: errors 3`] = `Array []`;
+exports[`when using MultiCompiler matches snapshot with empty options: errors 3`] = `Array []`;
 
-exports[`when using MultiCompiler with empty options matches snapshot: main.4dff64fd1192e906e901.js 1`] = `
+exports[`when using MultiCompiler matches snapshot with empty options: main.4dff64fd1192e906e901.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -105,12 +105,12 @@ module.exports = function Foo() {
 /******/ ]);"
 `;
 
-exports[`when using MultiCompiler with empty options matches snapshot: main.4dff64fd1192e906e901.js 2`] = `"!function(n){var t={};function e(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:r})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,\\"a\\",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p=\\"\\",e(e.s=0)}([function(n,t){n.exports=function(){console.log(7)}}]);"`;
+exports[`when using MultiCompiler matches snapshot with empty options: main.4dff64fd1192e906e901.js 2`] = `"!function(n){var t={};function e(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:r})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,\\"a\\",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p=\\"\\",e(e.s=0)}([function(n,t){n.exports=function(){console.log(7)}}]);"`;
 
-exports[`when using MultiCompiler with empty options matches snapshot: main.286f3599c95e4eaa6950.js 1`] = `"!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:n})},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});var n=r(1);e.default=function(){const t=n.b,e=\`baz\${Math.random()}\`;return()=>({a:t+n.a+e,b:t,baz:e})}},function(t,e,r){\\"use strict\\";e.a=\\"bar\\",e.b=\\"foo\\"}]);"`;
+exports[`when using MultiCompiler matches snapshot with empty options: main.286f3599c95e4eaa6950.js 1`] = `"!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:n})},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});var n=r(1);e.default=function(){const t=n.b,e=\`baz\${Math.random()}\`;return()=>({a:t+n.a+e,b:t,baz:e})}},function(t,e,r){\\"use strict\\";e.a=\\"bar\\",e.b=\\"foo\\"}]);"`;
 
-exports[`when using MultiCompiler with empty options matches snapshot: warnings 1`] = `Array []`;
+exports[`when using MultiCompiler matches snapshot with empty options: warnings 1`] = `Array []`;
 
-exports[`when using MultiCompiler with empty options matches snapshot: warnings 2`] = `Array []`;
+exports[`when using MultiCompiler matches snapshot with empty options: warnings 2`] = `Array []`;
 
-exports[`when using MultiCompiler with empty options matches snapshot: warnings 3`] = `Array []`;
+exports[`when using MultiCompiler matches snapshot with empty options: warnings 3`] = `Array []`;

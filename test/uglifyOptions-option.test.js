@@ -5,15 +5,10 @@ import {
   compile,
 } from './helpers';
 
-describe('when applied with uglify-es options', () => {
-  it('matches snapshot for ecma 5', () => {
+describe('when applied with uglifyOptions options', () => {
+  it('matches snapshot for `ecma` option (value is `5`)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/ecma-5/entry.js`,
-      output: {
-        path: `${__dirname}/dist-ecma-5`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
     });
 
     new UglifyJsPlugin({
@@ -42,14 +37,9 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for ecma 6', () => {
+  it('matches snapshot for `ecma` option (value is `6`)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/ecma-6/entry.js`,
-      output: {
-        path: `${__dirname}/dist-ecma-6`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
     });
 
     new UglifyJsPlugin({
@@ -78,14 +68,9 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for ecma 7', () => {
+  it('matches snapshot for `ecma` option (value is `7`)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/ecma-7/entry.js`,
-      output: {
-        path: `${__dirname}/dist-ecma-7`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
     });
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -113,14 +98,9 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for ecma 8', () => {
+  it('matches snapshot for `ecma` option (value is `8`)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/ecma-8/entry.js`,
-      output: {
-        path: `${__dirname}/dist-ecma-8`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
     });
 
     new UglifyJsPlugin({
@@ -149,15 +129,60 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `parse` options', () => {
+  it('matches snapshot for `warnings` option (boolean `true` value)', () => {
     const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
+      entry: `${__dirname}/fixtures/unreachable-code.js`,
     });
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        warnings: true,
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for `warnings` option (boolean `false` value)', () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/unreachable-code.js`,
+    });
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        warnings: false,
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for `parse` option (object value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -182,15 +207,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `compress` option (boolean true)', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `compress` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -213,15 +231,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `compress` option (boolean false)', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `compress` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -244,15 +255,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `compress` option (object)', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `compress` option (object value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -277,15 +281,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `mangle` option (true)', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `mangle` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -308,15 +305,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `mangle` option (false)', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `mangle` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -339,15 +329,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `mangle` option (object)', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `mangle` option (object value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -372,15 +355,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `output` option', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `output` option (object value with `true` value for `beautify`)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -405,15 +381,34 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `toplevel` option', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
+  it('matches snapshot for `output` option (object value with `true` value for `comments`)', () => {
+    const compiler = createCompiler();
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          comments: true,
+        },
       },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
     });
+  });
+
+  it('matches snapshot for `toplevel` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -436,15 +431,32 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `nameCache` option', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
+  it('matches snapshot for `toplevel` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        toplevel: false,
       },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
     });
+  });
+
+  it('matches snapshot for `nameCache` option (empty object value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -467,15 +479,8 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `ie8` option', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
+  it('matches snapshot for `ie8` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -498,15 +503,32 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `keep_classnames` option', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
+  it('matches snapshot for `ie8` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ie8: false,
       },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
     });
+  });
+
+  it('matches snapshot for `keep_classnames` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -529,15 +551,32 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `keep_fnames` option', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
+  it('matches snapshot for `keep_classnames` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        keep_classnames: false,
       },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
     });
+  });
+
+  it('matches snapshot for `keep_fnames` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -560,15 +599,32 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
-  it('matches snapshot for `safari10` option', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/import-export/entry.js`,
-      output: {
-        path: `${__dirname}/dist-import-export`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
+  it('matches snapshot for `keep_fnames` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        keep_fnames: false,
       },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
     });
+  });
+
+  it('matches snapshot for `safari10` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -591,14 +647,33 @@ describe('when applied with uglify-es options', () => {
     });
   });
 
+  it('matches snapshot for `safari10` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        safari10: false,
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
   it('disable inline optimization by default (have a lot of problems)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/inline-optimization.js`,
-      output: {
-        path: `${__dirname}/dist-inline-optimization`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
     });
 
     new UglifyJsPlugin().apply(compiler);

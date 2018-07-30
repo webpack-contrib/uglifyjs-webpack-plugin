@@ -22,7 +22,7 @@ jest.mock('worker-farm', () => {
   return mock;
 });
 
-describe('when applied with parallel option', () => {
+describe('when applied with `parallel` option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -39,7 +39,7 @@ describe('when applied with parallel option', () => {
     });
   });
 
-  it('matches snapshot with false value', () => {
+  it('matches snapshot for `false` value', () => {
     new UglifyJsPlugin({ parallel: false }).apply(compiler);
 
     return compile(compiler).then((stats) => {
@@ -60,7 +60,7 @@ describe('when applied with parallel option', () => {
     });
   });
 
-  it('matches snapshot with true value', () => {
+  it('matches snapshot for `true` value', () => {
     new UglifyJsPlugin({ parallel: true }).apply(compiler);
 
     return compile(compiler).then((stats) => {
@@ -83,7 +83,7 @@ describe('when applied with parallel option', () => {
     });
   });
 
-  it('matches snapshot with 2 value (number)', () => {
+  it('matches snapshot for `2` value (number)', () => {
     new UglifyJsPlugin({ parallel: 2 }).apply(compiler);
 
     return compile(compiler).then((stats) => {
