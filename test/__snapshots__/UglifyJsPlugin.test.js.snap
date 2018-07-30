@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UglifyJsPlugin contain errors when uglify has unknown option: errors 1`] = `
+exports[`UglifyJsPlugin should contains error when uglify has unknown option: errors 1`] = `
 Array [
   "Error: main.0c220ec66316af2c1b24.js from UglifyJs
 DefaultsError: \`unknown\` is not a supported option",
@@ -9,7 +9,7 @@ DefaultsError: \`unknown\` is not a supported option",
 ]
 `;
 
-exports[`UglifyJsPlugin contain errors when uglify has unknown option: main.0c220ec66316af2c1b24.js 1`] = `
+exports[`UglifyJsPlugin should contains error when uglify has unknown option: main.0c220ec66316af2c1b24.js 1`] = `
 "webpackJsonp([0],[
 /* 0 */
 /***/ (function(module, exports) {
@@ -29,7 +29,7 @@ module.exports = function Foo() {
 ],[0]);"
 `;
 
-exports[`UglifyJsPlugin contain errors when uglify has unknown option: manifest.d6857f782c13a99b5917.js 1`] = `
+exports[`UglifyJsPlugin should contains error when uglify has unknown option: manifest.d6857f782c13a99b5917.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
@@ -133,16 +133,16 @@ exports[`UglifyJsPlugin contain errors when uglify has unknown option: manifest.
 /******/ ([]);"
 `;
 
-exports[`UglifyJsPlugin contain errors when uglify has unknown option: warnings 1`] = `Array []`;
+exports[`UglifyJsPlugin should contains error when uglify has unknown option: warnings 1`] = `Array []`;
 
-exports[`UglifyJsPlugin validation errors 1`] = `
+exports[`UglifyJsPlugin should handle validation errors 1`] = `
 "UglifyJs Plugin Invalid Options
 
 options['doesntExist'] is an invalid additional property
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 2`] = `
+exports[`UglifyJsPlugin should handle validation errors 2`] = `
 "UglifyJs Plugin Invalid Options
 
 options.cache should be boolean
@@ -151,7 +151,7 @@ options.cache should match exactly one schema in oneOf
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 3`] = `
+exports[`UglifyJsPlugin should handle validation errors 3`] = `
 "UglifyJs Plugin Invalid Options
 
 options.parallel should be boolean
@@ -160,7 +160,7 @@ options.parallel should match exactly one schema in oneOf
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 4`] = `
+exports[`UglifyJsPlugin should handle validation errors 4`] = `
 "UglifyJs Plugin Invalid Options
 
 options.parallel should be boolean
@@ -169,58 +169,66 @@ options.parallel should match exactly one schema in oneOf
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 5`] = `
+exports[`UglifyJsPlugin should handle validation errors 5`] = `
 "UglifyJs Plugin Invalid Options
 
 options.sourceMap should be boolean
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 6`] = `
+exports[`UglifyJsPlugin should handle validation errors 6`] = `
 "UglifyJs Plugin Invalid Options
 
 options.uglifyOptions should be object
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 7`] = `
+exports[`UglifyJsPlugin should handle validation errors 7`] = `
 "UglifyJs Plugin Invalid Options
 
 options.uglifyOptions.ie8 should be boolean
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 8`] = `
+exports[`UglifyJsPlugin should handle validation errors 8`] = `
 "UglifyJs Plugin Invalid Options
 
 options.uglifyOptions.ecma should be integer
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 9`] = `
+exports[`UglifyJsPlugin should handle validation errors 9`] = `
 "UglifyJs Plugin Invalid Options
 
 options.uglifyOptions.ecma should be integer
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 10`] = `
+exports[`UglifyJsPlugin should handle validation errors 10`] = `
 "UglifyJs Plugin Invalid Options
 
 options.uglifyOptions.ecma should be integer
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 11`] = `
+exports[`UglifyJsPlugin should handle validation errors 11`] = `
 "UglifyJs Plugin Invalid Options
 
 options.uglifyOptions.ecma should be >= 5
 "
 `;
 
-exports[`UglifyJsPlugin validation errors 12`] = `
+exports[`UglifyJsPlugin should handle validation errors 12`] = `
 "UglifyJs Plugin Invalid Options
 
 options.uglifyOptions.ecma should be <= 8
 "
 `;
+
+exports[`UglifyJsPlugin when applied with no options matches snapshot: errors 1`] = `Array []`;
+
+exports[`UglifyJsPlugin when applied with no options matches snapshot: main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+
+exports[`UglifyJsPlugin when applied with no options matches snapshot: manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+
+exports[`UglifyJsPlugin when applied with no options matches snapshot: warnings 1`] = `Array []`;
