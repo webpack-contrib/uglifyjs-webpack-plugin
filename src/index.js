@@ -10,8 +10,6 @@ import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
 import schema from './options.json';
 import Runner from './uglify/Runner';
-import versions from './uglify/versions';
-import utils from './utils';
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
@@ -56,8 +54,18 @@ class UglifyJsPlugin {
     };
   }
 
+  static isSourceMap(input) {
+    // All required options for `new SourceMapConsumer(...options)`
+    // https://github.com/mozilla/source-map#new-sourcemapconsumerrawsourcemap
+    return Boolean(input &&
+      input.version &&
+      input.sources &&
+      Array.isArray(input.sources) &&
+      typeof input.mappings === 'string');
+  }
+
   static buildSourceMap(inputSourceMap) {
-    if (!inputSourceMap || !utils.isSourceMap(inputSourceMap)) {
+    if (!inputSourceMap || !UglifyJsPlugin.isSourceMap(inputSourceMap)) {
       return null;
     }
 
@@ -71,6 +79,7 @@ class UglifyJsPlugin {
         line: err.line,
         column: err.col,
       });
+
       if (original && original.source) {
         return new Error(`${file} from UglifyJs\n${err.message} [${requestShortener.shorten(original.source)}:${original.line},${original.column}][${file}:${err.line},${err.col}]`);
       }
@@ -78,6 +87,7 @@ class UglifyJsPlugin {
     } else if (err.stack) {
       return new Error(`${file} from UglifyJs\n${err.stack}`);
     }
+
     return new Error(`${file} from UglifyJs\n${err.message}`);
   }
 
@@ -129,7 +139,9 @@ class UglifyJsPlugin {
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
         .forEach((file) => {
           let inputSourceMap;
+
           const asset = compilation.assets[file];
+
           if (uglifiedAssets.has(asset)) {
             return;
           }
@@ -142,7 +154,7 @@ class UglifyJsPlugin {
 
               input = source;
 
-              if (utils.isSourceMap(map)) {
+              if (UglifyJsPlugin.isSourceMap(map)) {
                 inputSourceMap = map;
               } else {
                 inputSourceMap = map;
@@ -157,8 +169,10 @@ class UglifyJsPlugin {
 
             // Handling comment extraction
             let commentsFile = false;
+
             if (this.options.extractComments) {
               commentsFile = this.options.extractComments.filename || `${file}.LICENSE`;
+
               if (typeof commentsFile === 'function') {
                 commentsFile = commentsFile(file);
               }
@@ -176,8 +190,10 @@ class UglifyJsPlugin {
 
             if (this.options.cache) {
               const defaultCacheKeys = {
-                'uglify-es': versions.uglify,
-                'uglifyjs-webpack-plugin': versions.plugin,
+                // eslint-disable-next-line global-require
+                'uglify-es': require('uglify-es/package.json').version,
+                // eslint-disable-next-line global-require
+                'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,
                 path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
                 hash: crypto.createHash('md4').update(input).digest('hex'),
@@ -202,6 +218,7 @@ class UglifyJsPlugin {
       runner.runTasks(tasks, (tasksError, results) => {
         if (tasksError) {
           compilation.errors.push(tasksError);
+
           return;
         }
 
@@ -231,6 +248,7 @@ class UglifyJsPlugin {
           }
 
           let outputSource;
+
           if (map) {
             outputSource = new SourceMapSource(
               code,
