@@ -8,8 +8,8 @@ import {
   compile,
 } from './helpers';
 
-describe('when using MultiCompiler with empty options', () => {
-  it('matches snapshot', () => {
+describe('when using MultiCompiler', () => {
+  it('matches snapshot with empty options', () => {
     const multiCompiler = createCompiler([
       {
         bail: true,
