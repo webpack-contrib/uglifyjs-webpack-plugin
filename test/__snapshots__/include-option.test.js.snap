@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when applied with include option matches snapshot for a single include: entry.a3533847fa24ef98733c.js 1`] = `
+exports[`when applied with include option matches snapshot for a single include value: entry.a3533847fa24ef98733c.js 1`] = `
 "webpackJsonp([2],{
 
 /***/ 2:
@@ -22,11 +22,11 @@ module.exports = function Foo() {
 },[2]);"
 `;
 
-exports[`when applied with include option matches snapshot for a single include: errors 1`] = `Array []`;
+exports[`when applied with include option matches snapshot for a single include value: errors 1`] = `Array []`;
 
-exports[`when applied with include option matches snapshot for a single include: included1.3c000166b4174c9cb9a0.js 1`] = `"webpackJsonp([1],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with include option matches snapshot for a single include value: included1.3c000166b4174c9cb9a0.js 1`] = `"webpackJsonp([1],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
 
-exports[`when applied with include option matches snapshot for a single include: included2.110cfb201ee67fa7a412.js 1`] = `
+exports[`when applied with include option matches snapshot for a single include value: included2.110cfb201ee67fa7a412.js 1`] = `
 "webpackJsonp([0],[
 /* 0 */,
 /* 1 */
@@ -42,7 +42,7 @@ module.exports = function Bar2() {
 ],[1]);"
 `;
 
-exports[`when applied with include option matches snapshot for a single include: manifest.d37b2b873f771997c745.js 1`] = `
+exports[`when applied with include option matches snapshot for a single include value: manifest.d37b2b873f771997c745.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
@@ -146,9 +146,9 @@ exports[`when applied with include option matches snapshot for a single include:
 /******/ ([]);"
 `;
 
-exports[`when applied with include option matches snapshot for a single include: warnings 1`] = `Array []`;
+exports[`when applied with include option matches snapshot for a single include value: warnings 1`] = `Array []`;
 
-exports[`when applied with include option matches snapshot for multiple includes: entry.a3533847fa24ef98733c.js 1`] = `
+exports[`when applied with include option matches snapshot for multiple include values: entry.a3533847fa24ef98733c.js 1`] = `
 "webpackJsonp([2],{
 
 /***/ 2:
@@ -170,13 +170,13 @@ module.exports = function Foo() {
 },[2]);"
 `;
 
-exports[`when applied with include option matches snapshot for multiple includes: errors 1`] = `Array []`;
+exports[`when applied with include option matches snapshot for multiple include values: errors 1`] = `Array []`;
 
-exports[`when applied with include option matches snapshot for multiple includes: included1.3c000166b4174c9cb9a0.js 1`] = `"webpackJsonp([1],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with include option matches snapshot for multiple include values: included1.3c000166b4174c9cb9a0.js 1`] = `"webpackJsonp([1],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
 
-exports[`when applied with include option matches snapshot for multiple includes: included2.110cfb201ee67fa7a412.js 1`] = `"webpackJsonp([0],[,function(o,n){o.exports=function(){console.log(7)}}],[1]);"`;
+exports[`when applied with include option matches snapshot for multiple include values: included2.110cfb201ee67fa7a412.js 1`] = `"webpackJsonp([0],[,function(o,n){o.exports=function(){console.log(7)}}],[1]);"`;
 
-exports[`when applied with include option matches snapshot for multiple includes: manifest.d37b2b873f771997c745.js 1`] = `
+exports[`when applied with include option matches snapshot for multiple include values: manifest.d37b2b873f771997c745.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
@@ -280,4 +280,4 @@ exports[`when applied with include option matches snapshot for multiple includes
 /******/ ([]);"
 `;
 
-exports[`when applied with include option matches snapshot for multiple includes: warnings 1`] = `Array []`;
+exports[`when applied with include option matches snapshot for multiple include values: warnings 1`] = `Array []`;

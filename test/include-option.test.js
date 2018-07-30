@@ -7,6 +7,7 @@ import {
 
 describe('when applied with include option', () => {
   let compiler;
+
   beforeEach(() => {
     compiler = createCompiler({
       entry: {
@@ -17,9 +18,9 @@ describe('when applied with include option', () => {
     });
   });
 
-  it('matches snapshot for a single include', () => {
+  it('matches snapshot for a single include value', () => {
     new UglifyJsPlugin({
-      include: /included1/,
+      include: /included1/i,
     }).apply(compiler);
 
 
@@ -38,11 +39,11 @@ describe('when applied with include option', () => {
     });
   });
 
-  it('matches snapshot for multiple includes', () => {
+  it('matches snapshot for multiple include values', () => {
     new UglifyJsPlugin({
       include: [
-        /included1/,
-        /included2/,
+        /included1/i,
+        /included2/i,
       ],
     }).apply(compiler);
 

@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when applied with exclude option matches snapshot for a single exclude: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
+exports[`when applied with exclude option matches snapshot for a single exclude value: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: errors 1`] = `Array []`;
+exports[`when applied with exclude option matches snapshot for a single exclude value: errors 1`] = `Array []`;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
+exports[`when applied with exclude option matches snapshot for a single exclude value: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
 "webpackJsonp([1],[
 /* 0 */
 /***/ (function(module, exports) {
@@ -18,17 +18,17 @@ module.exports = function Bar1() {
 ],[0]);"
 `;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: excluded2.a96f544a34079b25c7b4.js 1`] = `"webpackJsonp([0],[,function(o,n){o.exports=function(){console.log(7)}}],[1]);"`;
+exports[`when applied with exclude option matches snapshot for a single exclude value: excluded2.a96f544a34079b25c7b4.js 1`] = `"webpackJsonp([0],[,function(o,n){o.exports=function(){console.log(7)}}],[1]);"`;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: manifest.d37b2b873f771997c745.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={3:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with exclude option matches snapshot for a single exclude value: manifest.d37b2b873f771997c745.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={3:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
 
-exports[`when applied with exclude option matches snapshot for a single exclude: warnings 1`] = `Array []`;
+exports[`when applied with exclude option matches snapshot for a single exclude value: warnings 1`] = `Array []`;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
+exports[`when applied with exclude option matches snapshot for multiple exclude values: entry.a3533847fa24ef98733c.js 1`] = `"webpackJsonp([2],{2:function(o,n){o.exports=function(){console.log(7)}}},[2]);"`;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: errors 1`] = `Array []`;
+exports[`when applied with exclude option matches snapshot for multiple exclude values: errors 1`] = `Array []`;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
+exports[`when applied with exclude option matches snapshot for multiple exclude values: excluded1.4d3a1b43eccbc2acc9d6.js 1`] = `
 "webpackJsonp([1],[
 /* 0 */
 /***/ (function(module, exports) {
@@ -42,7 +42,7 @@ module.exports = function Bar1() {
 ],[0]);"
 `;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: excluded2.a96f544a34079b25c7b4.js 1`] = `
+exports[`when applied with exclude option matches snapshot for multiple exclude values: excluded2.a96f544a34079b25c7b4.js 1`] = `
 "webpackJsonp([0],[
 /* 0 */,
 /* 1 */
@@ -57,6 +57,6 @@ module.exports = function Bar2() {
 ],[1]);"
 `;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: manifest.d37b2b873f771997c745.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={3:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with exclude option matches snapshot for multiple exclude values: manifest.d37b2b873f771997c745.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={3:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
 
-exports[`when applied with exclude option matches snapshot for multiple excludes: warnings 1`] = `Array []`;
+exports[`when applied with exclude option matches snapshot for multiple exclude values: warnings 1`] = `Array []`;
