@@ -5,7 +5,7 @@ import {
   compile,
 } from './helpers';
 
-describe('when applied with test option', () => {
+describe('when applied with `test` option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -42,7 +42,7 @@ describe('when applied with test option', () => {
     });
   });
 
-  it('matches snapshot for a single test value', () => {
+  it('matches snapshot for a single `test` value', () => {
     new UglifyJsPlugin({
       test: /(m)?js\.js(\?.*)?$/i,
     }).apply(compiler);
@@ -62,7 +62,7 @@ describe('when applied with test option', () => {
     });
   });
 
-  it('matches snapshot for a multiple test values', () => {
+  it('matches snapshot for multiple `test` values', () => {
     new UglifyJsPlugin({
       test: [
         /(m)?js\.js(\?.*)?$/i,

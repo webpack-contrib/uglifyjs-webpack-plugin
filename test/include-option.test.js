@@ -5,7 +5,7 @@ import {
   compile,
 } from './helpers';
 
-describe('when applied with include option', () => {
+describe('when applied with `include` option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('when applied with include option', () => {
     });
   });
 
-  it('matches snapshot for a single include value', () => {
+  it('matches snapshot for a single `include` value', () => {
     new UglifyJsPlugin({
       include: /included1/i,
     }).apply(compiler);
@@ -39,7 +39,7 @@ describe('when applied with include option', () => {
     });
   });
 
-  it('matches snapshot for multiple include values', () => {
+  it('matches snapshot for multiple `include` values', () => {
     new UglifyJsPlugin({
       include: [
         /included1/i,
