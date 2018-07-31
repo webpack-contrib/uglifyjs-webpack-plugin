@@ -118,8 +118,6 @@ class UglifyJsPlugin {
   }
 
   apply(compiler) {
-    const requestShortener = new RequestShortener(compiler.context);
-
     const buildModuleFn = (moduleArg) => {
       // to get detailed location info about errors
       moduleArg.useSourceMap = true;
@@ -209,7 +207,7 @@ class UglifyJsPlugin {
                 error,
                 file,
                 UglifyJsPlugin.buildSourceMap(inputSourceMap),
-                requestShortener,
+                new RequestShortener(compiler.context),
               ),
             );
           }
@@ -240,7 +238,7 @@ class UglifyJsPlugin {
                 error,
                 file,
                 sourceMap,
-                requestShortener,
+                new RequestShortener(compiler.context),
               ),
             );
 
@@ -305,7 +303,7 @@ class UglifyJsPlugin {
                 file,
                 sourceMap,
                 this.options.warningsFilter,
-                requestShortener,
+                new RequestShortener(compiler.context),
               );
 
               if (builtWarning) {
