@@ -321,6 +321,7 @@ class UglifyJsPlugin {
       });
     };
 
+    /* istanbul ignore if */
     if (compiler.hooks) {
       const plugin = { name: 'UglifyJSPlugin' };
 
