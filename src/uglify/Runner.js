@@ -33,8 +33,8 @@ export default class Runner {
       this.boundWorkers = (options, cb) => {
         try {
           cb(null, minify(options));
-        } catch (errors) {
-          cb(errors);
+        } catch (error) {
+          cb(error);
         }
       };
     }
