@@ -1,280 +1,104 @@
 import UglifyJsPlugin from '../src/index';
-import {
-  PluginEnvironment,
-  createCompiler,
-  compile,
-  cleanErrorStack,
-} from './helpers';
+import { createCompiler, compile, cleanErrorStack } from './helpers';
 
 describe('when options.sourceMap', () => {
-  const assets = {
-    'test.js': {
-      source: () => 'function test(foo) { foo = 1; }',
-    },
-    'test1.js': {
-      source: () => 'function test1(foo) { foo = 1; }',
-    },
-    'test2.js': {
-      source: () => 'function test2(foo) { foo = 1; }',
-    },
-    'test3.js': {
-      source: () => 'function test3(foo) { foo = 1; }',
-    },
-    'test4.js': {
-      sourceAndMap: () => {
-        return {
-          source: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
-          map: null,
-        };
+  it('matches snapshot for a single `false` value (`devtool` is `source-map`)', () => {
+    const compiler = createCompiler({
+      entry: {
+        entry: `${__dirname}/fixtures/entry.js`,
       },
-    },
-  };
-
-  describe('true', () => {
-    let eventBindings;
-    let eventBinding;
-
-    beforeEach(() => {
-      const pluginEnvironment = new PluginEnvironment();
-      const compilerEnv = pluginEnvironment.getEnvironmentStub();
-      compilerEnv.context = '';
-      compilerEnv.devtool = 'source-map';
-
-      const plugin = new UglifyJsPlugin({
-        sourceMap: true,
-      });
-      plugin.apply(compilerEnv);
-      eventBindings = pluginEnvironment.getEventBindings();
+      devtool: 'source-map',
     });
 
-    it('binds one event handler', () => {
-      expect(eventBindings.length).toBe(1);
-    });
+    new UglifyJsPlugin({ sourceMap: false }).apply(compiler);
 
-    describe('compilation handler', () => {
-      beforeEach(() => {
-        [eventBinding] = eventBindings;
-      });
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      it('binds to compilation event', () => {
-        expect(eventBinding.name).toBe('compilation');
-      });
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
-      describe('when called', () => {
-        let chunkPluginEnvironment;
-        let compilationEventBindings;
-        let compilationEventBinding;
-        let compilation;
-        let callback;
-
-        beforeEach(() => {
-          chunkPluginEnvironment = new PluginEnvironment();
-          compilation = chunkPluginEnvironment.getEnvironmentStub();
-          compilation.assets = Object.assign({}, assets);
-          compilation.warnings = [];
-          compilation.errors = [];
-
-          eventBinding.handler(compilation);
-          compilationEventBindings = chunkPluginEnvironment.getEventBindings();
-        });
-
-        it('binds two event handler', () => {
-          expect(compilationEventBindings[0].name).toBe('build-module');
-          expect(compilationEventBindings[1].name).toBe('optimize-chunk-assets');
-        });
-
-        describe('build-module handler', () => {
-          beforeEach(() => {
-            [compilationEventBinding] = compilationEventBindings;
-          });
-
-          it('binds to build-module event', () => {
-            expect(compilationEventBinding.name).toEqual('build-module');
-          });
-
-          it('build-module handler', (done) => {
-            const moduleArgs = { useSourceMap: false };
-            const mockBuildModuleEvent = jest.fn(() => compilationEventBinding.handler(moduleArgs));
-
-            mockBuildModuleEvent();
-
-            expect(mockBuildModuleEvent.mock.calls.length).toBe(1);
-            expect(moduleArgs.useSourceMap).toBe(true);
-            done();
-          });
-        });
-
-        describe('optimize-chunk-assets handler', () => {
-          beforeEach(() => {
-            [, compilationEventBinding] = compilationEventBindings;
-          });
-
-          it('binds to optimize-chunk-assets event', () => {
-            expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
-          });
-
-          it('only calls callback once', (done) => {
-            callback = jest.fn();
-            compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js', 'test4.js'],
-            }], () => {
-              expect(compilation.warnings).toMatchSnapshot('warnings');
-              expect(compilation.errors).toMatchSnapshot('errors');
-              callback();
-              expect(callback.mock.calls.length).toBe(1);
-              done();
-            });
-          });
-        });
-      });
-    });
-
-    it('matches snapshot', () => {
-      const compiler = createCompiler();
-      new UglifyJsPlugin({ sourceMap: true }).apply(compiler);
-
-      return compile(compiler).then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
-
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            const asset = stats.compilation.assets[file].sourceAndMap();
-
-            asset.map.sources = [];
-
-            expect(asset.source).toMatchSnapshot(`asset ${file}`);
-            expect(asset.map).toMatchSnapshot(`source map ${file}`);
-          }
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
-      });
+      }
     });
   });
 
-  describe('true and options.parallel true', () => {
-    let eventBindings;
-    let eventBinding;
-
-    beforeEach(() => {
-      const pluginEnvironment = new PluginEnvironment();
-      const compilerEnv = pluginEnvironment.getEnvironmentStub();
-      compilerEnv.context = '';
-
-      const plugin = new UglifyJsPlugin({
-        parallel: true,
-        sourceMap: true,
-      });
-      plugin.apply(compilerEnv);
-      eventBindings = pluginEnvironment.getEventBindings();
+  it('matches snapshot for a single `false` value (`devtool` is `false`)', () => {
+    const compiler = createCompiler({
+      entry: {
+        entry: `${__dirname}/fixtures/entry.js`,
+      },
+      devtool: false,
     });
 
-    it('binds one event handler', () => {
-      expect(eventBindings.length).toBe(1);
-    });
+    new UglifyJsPlugin({ sourceMap: false }).apply(compiler);
 
-    describe('compilation handler', () => {
-      beforeEach(() => {
-        [eventBinding] = eventBindings;
-      });
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      it('binds to compilation event', () => {
-        expect(eventBinding.name).toBe('compilation');
-      });
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
-      describe('when called', () => {
-        let chunkPluginEnvironment;
-        let compilationEventBindings;
-        let compilationEventBinding;
-        let compilation;
-        let callback;
-
-        beforeEach(() => {
-          chunkPluginEnvironment = new PluginEnvironment();
-          compilation = chunkPluginEnvironment.getEnvironmentStub();
-          compilation.assets = Object.assign({}, assets);
-          compilation.warnings = [];
-          compilation.errors = [];
-
-          eventBinding.handler(compilation);
-          compilationEventBindings = chunkPluginEnvironment.getEventBindings();
-        });
-
-        it('binds two event handler', () => {
-          expect(compilationEventBindings[0].name).toBe('build-module');
-          expect(compilationEventBindings[1].name).toBe('optimize-chunk-assets');
-        });
-
-        describe('build-module handler', () => {
-          beforeEach(() => {
-            [compilationEventBinding] = compilationEventBindings;
-          });
-
-          it('binds to build-module event', () => {
-            expect(compilationEventBinding.name).toEqual('build-module');
-          });
-
-          it('build-module handler', (done) => {
-            const moduleArgs = { useSourceMap: false };
-            const mockBuildModuleEvent = jest.fn(() => compilationEventBinding.handler(moduleArgs));
-
-            mockBuildModuleEvent();
-
-            expect(mockBuildModuleEvent.mock.calls.length).toBe(1);
-            expect(moduleArgs.useSourceMap).toBe(true);
-            done();
-          });
-        });
-
-        describe('optimize-chunk-assets handler', () => {
-          beforeEach(() => {
-            [, compilationEventBinding] = compilationEventBindings;
-          });
-
-          it('binds to optimize-chunk-assets event', () => {
-            expect(compilationEventBinding.name).toEqual('optimize-chunk-assets');
-          });
-
-          it('only calls callback once', (done) => {
-            callback = jest.fn();
-            compilationEventBinding.handler([{
-              files: ['test.js', 'test1.js', 'test2.js', 'test3.js', 'test4.js'],
-            }], () => {
-              expect(compilation.warnings).toMatchSnapshot('warnings');
-              expect(compilation.errors).toMatchSnapshot('errors');
-              callback();
-              expect(callback.mock.calls.length).toBe(1);
-              done();
-            });
-          });
-        });
-      });
-    });
-
-    it('matches snapshot', () => {
-      const compiler = createCompiler();
-      new UglifyJsPlugin({ parallel: true, sourceMap: true }).apply(compiler);
-
-      return compile(compiler).then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
-
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            const asset = stats.compilation.assets[file].sourceAndMap();
-
-            asset.map.sources = [];
-
-            expect(asset.source).toMatchSnapshot(`asset ${file}`);
-            expect(asset.map).toMatchSnapshot(`source map ${file}`);
-          }
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
-      });
+      }
+    });
+  });
+
+  it('matches snapshot for a single `true` value (`devtool` is `source-map`)', () => {
+    const compiler = createCompiler({
+      entry: {
+        entry: `${__dirname}/fixtures/entry.js`,
+      },
+      devtool: 'source-map',
+    });
+
+    new UglifyJsPlugin({ sourceMap: true }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for a single `true` value (`devtool` is `false`)', () => {
+    const compiler = createCompiler({
+      entry: {
+        entry: `${__dirname}/fixtures/entry.js`,
+      },
+      devtool: false,
+    });
+
+    new UglifyJsPlugin({ sourceMap: true }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
     });
   });
 });
