@@ -34,8 +34,8 @@ describe('when applied with `extractComments` option', () => {
     });
   });
 
-  it('matches snapshot for a `true` value', () => {
-    new UglifyJsPlugin({ extractComments: true }).apply(compiler);
+  it('matches snapshot for a `false` value', () => {
+    new UglifyJsPlugin({ extractComments: false }).apply(compiler);
 
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
@@ -52,8 +52,8 @@ describe('when applied with `extractComments` option', () => {
     });
   });
 
-  it('matches snapshot for a `false` value', () => {
-    new UglifyJsPlugin({ extractComments: false }).apply(compiler);
+  it('matches snapshot for a `true` value', () => {
+    new UglifyJsPlugin({ extractComments: true }).apply(compiler);
 
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
