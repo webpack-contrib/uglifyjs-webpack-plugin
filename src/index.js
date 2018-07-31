@@ -156,6 +156,7 @@ class UglifyJsPlugin {
                 inputSourceMap = map;
               } else {
                 inputSourceMap = map;
+
                 compilation.warnings.push(
                   new Error(`${file} contains invalid source map`),
                 );
