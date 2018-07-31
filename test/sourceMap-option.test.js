@@ -4,9 +4,7 @@ import { createCompiler, compile, cleanErrorStack } from './helpers';
 describe('when options.sourceMap', () => {
   it('matches snapshot for a single `false` value (`devtool` is `source-map`)', () => {
     const compiler = createCompiler({
-      entry: {
-        entry: `${__dirname}/fixtures/entry.js`,
-      },
+      entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
     });
 
@@ -29,9 +27,7 @@ describe('when options.sourceMap', () => {
 
   it('matches snapshot for a single `false` value (`devtool` is `false`)', () => {
     const compiler = createCompiler({
-      entry: {
-        entry: `${__dirname}/fixtures/entry.js`,
-      },
+      entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
     });
 
@@ -54,9 +50,7 @@ describe('when options.sourceMap', () => {
 
   it('matches snapshot for a single `true` value (`devtool` is `source-map`)', () => {
     const compiler = createCompiler({
-      entry: {
-        entry: `${__dirname}/fixtures/entry.js`,
-      },
+      entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
     });
 
@@ -79,9 +73,7 @@ describe('when options.sourceMap', () => {
 
   it('matches snapshot for a single `true` value (`devtool` is `false`)', () => {
     const compiler = createCompiler({
-      entry: {
-        entry: `${__dirname}/fixtures/entry.js`,
-      },
+      entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
     });
 
