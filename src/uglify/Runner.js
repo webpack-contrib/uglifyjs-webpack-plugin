@@ -20,6 +20,7 @@ export default class Runner {
   }
 
   runTasks(tasks, callback) {
+    /* istanbul ignore if */
     if (!tasks.length) {
       callback(null, []);
       return;
