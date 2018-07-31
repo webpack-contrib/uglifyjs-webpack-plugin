@@ -747,7 +747,7 @@ exports[`when applied with uglifyOptions options matches snapshot for \`warnings
 
 exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`true\` value): warnings 1`] = `
 Array [
-  "Dropping unreachable code [main.b30dcc7a86bd9929c922.js:5,41]",
-  "Dropping unused function foo [main.b30dcc7a86bd9929c922.js:5,9]",
+  "UglifyJs Plugin: Dropping unreachable code [main.b30dcc7a86bd9929c922.js:5,41]",
+  "UglifyJs Plugin: Dropping unused function foo [main.b30dcc7a86bd9929c922.js:5,9]",
 ]
 `;
