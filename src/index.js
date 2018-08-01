@@ -80,9 +80,10 @@ class UglifyJsPlugin {
         column: err.col,
       });
 
-      if (original && original.source) {
+      if (original && original.source && requestShortener) {
         return new Error(`${file} from UglifyJs\n${err.message} [${requestShortener.shorten(original.source)}:${original.line},${original.column}][${file}:${err.line},${err.col}]`);
       }
+
       return new Error(`${file} from UglifyJs\n${err.message} [${file}:${err.line},${err.col}]`);
     } else if (err.stack) {
       return new Error(`${file} from UglifyJs\n${err.stack}`);
@@ -93,33 +94,34 @@ class UglifyJsPlugin {
 
   static buildWarning(warning, file, sourceMap, warningsFilter, requestShortener) {
     if (!file || !sourceMap) {
-      return warning;
+      return `UglifyJs Plugin: ${warning}`;
     }
+
+    let warningMessage = warning;
 
     const match = warningRegex.exec(warning);
-    const line = +match[1];
-    const column = +match[2];
-    const original = sourceMap.originalPositionFor({
-      line,
-      column,
-    });
 
-    if (!warningsFilter(original.source)) {
-      return null;
-    }
+    if (match) {
+      const line = +match[1];
+      const column = +match[2];
+      const original = sourceMap.originalPositionFor({
+        line,
+        column,
+      });
 
-    let warningMessage = warning.replace(warningRegex, '');
+      if (warningsFilter && !warningsFilter(original.source)) {
+        return null;
+      }
 
-    if (original && original.source && original.source !== file) {
-      warningMessage += `[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`;
+      if (original && original.source && original.source !== file && requestShortener) {
+        warningMessage = `${warningMessage.replace(warningRegex, '')}[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`;
+      }
     }
 
     return `UglifyJs Plugin: ${warningMessage} in ${file}`;
   }
 
   apply(compiler) {
-    const requestShortener = new RequestShortener(compiler.context);
-
     const buildModuleFn = (moduleArg) => {
       // to get detailed location info about errors
       moduleArg.useSourceMap = true;
@@ -158,6 +160,7 @@ class UglifyJsPlugin {
                 inputSourceMap = map;
               } else {
                 inputSourceMap = map;
+
                 compilation.warnings.push(
                   new Error(`${file} contains invalid source map`),
                 );
@@ -209,7 +212,7 @@ class UglifyJsPlugin {
                 error,
                 file,
                 UglifyJsPlugin.buildSourceMap(inputSourceMap),
-                requestShortener,
+                new RequestShortener(compiler.context),
               ),
             );
           }
@@ -240,7 +243,7 @@ class UglifyJsPlugin {
                 error,
                 file,
                 sourceMap,
-                requestShortener,
+                new RequestShortener(compiler.context),
               ),
             );
 
@@ -272,7 +275,8 @@ class UglifyJsPlugin {
 
               if (banner) {
                 outputSource = new ConcatSource(
-                  `/*! ${banner} */\n`, outputSource,
+                  `/*! ${banner} */\n`,
+                  outputSource,
                 );
               }
             }
@@ -286,7 +290,9 @@ class UglifyJsPlugin {
                 compilation.assets[commentsFile].add(commentsSource);
               } else {
                 compilation.assets[commentsFile] = new ConcatSource(
-                  compilation.assets[commentsFile], '\n', commentsSource,
+                  compilation.assets[commentsFile],
+                  '\n',
+                  commentsSource,
                 );
               }
             } else {
@@ -305,7 +311,7 @@ class UglifyJsPlugin {
                 file,
                 sourceMap,
                 this.options.warningsFilter,
-                requestShortener,
+                new RequestShortener(compiler.context),
               );
 
               if (builtWarning) {
@@ -321,6 +327,7 @@ class UglifyJsPlugin {
       });
     };
 
+    /* istanbul ignore if */
     if (compiler.hooks) {
       const plugin = { name: 'UglifyJSPlugin' };
 

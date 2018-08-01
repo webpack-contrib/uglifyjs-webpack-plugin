@@ -244,3 +244,289 @@ exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` 
 exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: manifest.js 1`] = `"!function(i){var p=window.webpackJsonp;window.webpackJsonp=function(r,n,e){for(var o,t,u,c=0,f=[];c<r.length;c++)t=r[c],a[t]&&f.push(a[t][0]),a[t]=0;for(o in n)Object.prototype.hasOwnProperty.call(n,o)&&(i[o]=n[o]);for(p&&p(r,n,e);f.length;)f.shift()();if(e)for(c=0;c<e.length;c++)u=l(l.s=e[c]);return u};var e={},a={1:0};function l(r){if(e[r])return e[r].exports;var n=e[r]={i:r,l:!1,exports:{}};return i[r].call(n.exports,n,n.exports,l),n.l=!0,n.exports}l.m=i,l.c=e,l.d=function(r,n,e){l.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},l.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return l.d(n,\\"a\\",n),n},l.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},l.p=\\"\\",l.oe=function(r){throw console.error(r),r}}([]);"`;
 
 exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: warnings 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: errors 1`] = `
+Array [
+  "Error: main.js from UglifyJs
+Error: Error",
+  "Error: manifest.js from UglifyJs
+Error: Error",
+]
+`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: main.js 1`] = `
+"webpackJsonp([0],[
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+\\"use strict\\";
+Object.defineProperty(__webpack_exports__, \\"__esModule\\", { value: true });
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+/* harmony default export */ __webpack_exports__[\\"default\\"] = (Point);
+
+
+/***/ })
+],[0]);"
+`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: manifest.js 1`] = `
+"/******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
+/******/ 	window[\\"webpackJsonp\\"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+/******/ 		// add \\"moreModules\\" to the modules object,
+/******/ 		// then flag all \\"chunkIds\\" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/ 		if(executeModules) {
+/******/ 			for(i=0; i < executeModules.length; i++) {
+/******/ 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
+/******/ 			}
+/******/ 		}
+/******/ 		return result;
+/******/ 	};
+/******/
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// objects to store loaded and loading chunks
+/******/ 	var installedChunks = {
+/******/ 		1: 0
+/******/ 	};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = \\"\\";
+/******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/ })
+/************************************************************************/
+/******/ ([]);"
+`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: warnings 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option: errors 1`] = `
+Array [
+  "Error: main.js from UglifyJs
+Error: Error",
+  "Error: manifest.js from UglifyJs
+Error: Error",
+]
+`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option: main.js 1`] = `
+"webpackJsonp([0],[
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+\\"use strict\\";
+Object.defineProperty(__webpack_exports__, \\"__esModule\\", { value: true });
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+/* harmony default export */ __webpack_exports__[\\"default\\"] = (Point);
+
+
+/***/ })
+],[0]);"
+`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option: manifest.js 1`] = `
+"/******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
+/******/ 	window[\\"webpackJsonp\\"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+/******/ 		// add \\"moreModules\\" to the modules object,
+/******/ 		// then flag all \\"chunkIds\\" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/ 		if(executeModules) {
+/******/ 			for(i=0; i < executeModules.length; i++) {
+/******/ 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
+/******/ 			}
+/******/ 		}
+/******/ 		return result;
+/******/ 	};
+/******/
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// objects to store loaded and loading chunks
+/******/ 	var installedChunks = {
+/******/ 		1: 0
+/******/ 	};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = \\"\\";
+/******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/ })
+/************************************************************************/
+/******/ ([]);"
+`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option: warnings 1`] = `Array []`;

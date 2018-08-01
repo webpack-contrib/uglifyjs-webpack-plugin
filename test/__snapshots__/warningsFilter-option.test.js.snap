@@ -10,10 +10,10 @@ exports[`when applied with \`warningsFilter\` option matches snapshot for a \`fu
 
 exports[`when applied with \`warningsFilter\` option matches snapshot for a \`function\` value and \`sourceMap\` is \`false\`: warnings 1`] = `
 Array [
-  "Dropping unreachable code [one.d321aed3a325448435a0.js:5,41]",
-  "Dropping unused function foo [one.d321aed3a325448435a0.js:5,9]",
-  "Dropping unreachable code [two.da1b0e3de955e7df6b6e.js:6,41]",
-  "Dropping unused function foo [two.da1b0e3de955e7df6b6e.js:6,9]",
+  "UglifyJs Plugin: Dropping unreachable code [one.d321aed3a325448435a0.js:5,41]",
+  "UglifyJs Plugin: Dropping unused function foo [one.d321aed3a325448435a0.js:5,9]",
+  "UglifyJs Plugin: Dropping unreachable code [two.da1b0e3de955e7df6b6e.js:6,41]",
+  "UglifyJs Plugin: Dropping unused function foo [two.da1b0e3de955e7df6b6e.js:6,9]",
 ]
 `;
 

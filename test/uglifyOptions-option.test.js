@@ -129,14 +129,14 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `warnings` option (boolean `true` value)', () => {
+  it('matches snapshot for `warnings` option (boolean `false` value)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/unreachable-code.js`,
     });
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        warnings: true,
+        warnings: false,
       },
     }).apply(compiler);
 
@@ -155,14 +155,14 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `warnings` option (boolean `false` value)', () => {
+  it('matches snapshot for `warnings` option (boolean `true` value)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/unreachable-code.js`,
     });
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        warnings: false,
+        warnings: true,
       },
     }).apply(compiler);
 
@@ -207,12 +207,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `compress` option (boolean `true` value)', () => {
+  it('matches snapshot for `compress` option (boolean `false` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        compress: true,
+        compress: false,
       },
     }).apply(compiler);
 
@@ -231,12 +231,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `compress` option (boolean `false` value)', () => {
+  it('matches snapshot for `compress` option (boolean `true` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        compress: false,
+        compress: true,
       },
     }).apply(compiler);
 
@@ -281,12 +281,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `mangle` option (boolean `true` value)', () => {
+  it('matches snapshot for `mangle` option (boolean `false` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        mangle: true,
+        mangle: false,
       },
     }).apply(compiler);
 
@@ -305,12 +305,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `mangle` option (boolean `false` value)', () => {
+  it('matches snapshot for `mangle` option (boolean `true` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        mangle: false,
+        mangle: true,
       },
     }).apply(compiler);
 
@@ -407,12 +407,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `toplevel` option (boolean `true` value)', () => {
+  it('matches snapshot for `toplevel` option (boolean `false` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        toplevel: true,
+        toplevel: false,
       },
     }).apply(compiler);
 
@@ -431,12 +431,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `toplevel` option (boolean `false` value)', () => {
+  it('matches snapshot for `toplevel` option (boolean `true` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        toplevel: false,
+        toplevel: true,
       },
     }).apply(compiler);
 
@@ -479,30 +479,6 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `ie8` option (boolean `true` value)', () => {
-    const compiler = createCompiler();
-
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        ie8: true,
-      },
-    }).apply(compiler);
-
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
-
-      for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
-  });
-
   it('matches snapshot for `ie8` option (boolean `false` value)', () => {
     const compiler = createCompiler();
 
@@ -527,12 +503,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `keep_classnames` option (boolean `true` value)', () => {
+  it('matches snapshot for `ie8` option (boolean `true` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        keep_classnames: true,
+        ie8: true,
       },
     }).apply(compiler);
 
@@ -575,12 +551,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `keep_fnames` option (boolean `true` value)', () => {
+  it('matches snapshot for `keep_classnames` option (boolean `true` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        keep_fnames: true,
+        keep_classnames: true,
       },
     }).apply(compiler);
 
@@ -623,12 +599,12 @@ describe('when applied with uglifyOptions options', () => {
     });
   });
 
-  it('matches snapshot for `safari10` option (boolean `true` value)', () => {
+  it('matches snapshot for `keep_fnames` option (boolean `true` value)', () => {
     const compiler = createCompiler();
 
     new UglifyJsPlugin({
       uglifyOptions: {
-        safari10: true,
+        keep_fnames: true,
       },
     }).apply(compiler);
 
@@ -653,6 +629,55 @@ describe('when applied with uglifyOptions options', () => {
     new UglifyJsPlugin({
       uglifyOptions: {
         safari10: false,
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for `safari10` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        safari10: true,
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for `unknown` option', () => {
+    const compiler = createCompiler();
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          unknown: true,
+        },
       },
     }).apply(compiler);
 

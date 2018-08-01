@@ -17,7 +17,7 @@ describe('when applied with `warningsFilter` option', () => {
     });
   });
 
-  it('matches snapshot for a `function` value and `sourceMap` is `true`', () => {
+  it('matches snapshot for a `function` value and `sourceMap` is `false`', () => {
     new UglifyJsPlugin({
       warningsFilter(source) {
         if (/unreachable-code-2\.js/.test(source)) {
@@ -29,7 +29,7 @@ describe('when applied with `warningsFilter` option', () => {
       uglifyOptions: {
         warnings: true,
       },
-      sourceMap: true,
+      sourceMap: false,
     }).apply(compiler);
 
 
@@ -48,7 +48,7 @@ describe('when applied with `warningsFilter` option', () => {
     });
   });
 
-  it('matches snapshot for a `function` value and `sourceMap` is `false`', () => {
+  it('matches snapshot for a `function` value and `sourceMap` is `true`', () => {
     new UglifyJsPlugin({
       warningsFilter(source) {
         if (/unreachable-code-2\.js/.test(source)) {
@@ -60,7 +60,7 @@ describe('when applied with `warningsFilter` option', () => {
       uglifyOptions: {
         warnings: true,
       },
-      sourceMap: false,
+      sourceMap: true,
     }).apply(compiler);
 
 

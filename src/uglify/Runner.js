@@ -20,6 +20,7 @@ export default class Runner {
   }
 
   runTasks(tasks, callback) {
+    /* istanbul ignore if */
     if (!tasks.length) {
       callback(null, []);
       return;
@@ -33,8 +34,8 @@ export default class Runner {
       this.boundWorkers = (options, cb) => {
         try {
           cb(null, minify(options));
-        } catch (errors) {
-          cb(errors);
+        } catch (error) {
+          cb(error);
         }
       };
     }
