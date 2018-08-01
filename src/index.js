@@ -275,7 +275,8 @@ class UglifyJsPlugin {
 
               if (banner) {
                 outputSource = new ConcatSource(
-                  `/*! ${banner} */\n`, outputSource,
+                  `/*! ${banner} */\n`,
+                  outputSource,
                 );
               }
             }
@@ -289,7 +290,9 @@ class UglifyJsPlugin {
                 compilation.assets[commentsFile].add(commentsSource);
               } else {
                 compilation.assets[commentsFile] = new ConcatSource(
-                  compilation.assets[commentsFile], '\n', commentsSource,
+                  compilation.assets[commentsFile],
+                  '\n',
+                  commentsSource,
                 );
               }
             } else {
