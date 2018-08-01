@@ -93,4 +93,56 @@ describe('when options.sourceMap', () => {
       }
     });
   });
+
+  it('matches snapshot for a single `true` value (`devtool` is `source-map`) and source map invalid', () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'source-map',
+      plugins: [
+        {
+          apply(pluginCompiler) {
+            pluginCompiler.plugin('compilation', (compilation) => {
+              compilation.plugin('additional-chunk-assets', () => {
+                compilation.additionalChunkAssets.push('broken-source-map.js');
+
+                const assetContent = 'var test = 1;';
+
+                // eslint-disable-next-line no-param-reassign
+                compilation.assets['broken-source-map.js'] = {
+                  size() {
+                    return assetContent.length;
+                  },
+                  source() {
+                    return assetContent;
+                  },
+                  sourceAndMap() {
+                    return {
+                      source: this.source(),
+                      map: {},
+                    };
+                  },
+                };
+              });
+            });
+          },
+        },
+      ],
+    });
+
+    new UglifyJsPlugin({ sourceMap: true }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
 });
