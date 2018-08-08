@@ -16,7 +16,10 @@ export default class Runner {
   constructor(options = {}) {
     const { cache, parallel } = options;
     this.cacheDir = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;
-    this.maxConcurrentWorkers = parallel === true ? os.cpus().length - 1 : Math.min(Number(parallel) || 0, os.cpus().length - 1);
+    // https://github.com/nodejs/node/issues/19022
+    // in some cases cpus() returns undefined
+    const cpusLength = (os.cpus() ? os.cpus().length : 1);
+    this.maxConcurrentWorkers = parallel === true ? cpusLength - 1 : Math.min(Number(parallel) || 0, cpusLength - 1);
   }
 
   runTasks(tasks, callback) {
