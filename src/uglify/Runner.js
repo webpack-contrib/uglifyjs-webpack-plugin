@@ -18,7 +18,7 @@ export default class Runner {
     this.cacheDir = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;
     // https://github.com/nodejs/node/issues/19022
     // in some cases cpus() returns undefined
-    const cpusLength = (os.cpus() ? os.cpus().length : 1);
+    const cpusLength = (os.cpus() || { length: 1 }).length;
     this.maxConcurrentWorkers = parallel === true ? cpusLength - 1 : Math.min(Number(parallel) || 0, cpusLength - 1);
   }
 
