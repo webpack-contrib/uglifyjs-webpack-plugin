@@ -237,6 +237,7 @@ class UglifyJsPlugin {
 
           // Handling results
           // Error case: add errors, and go to next file
+          // Using when we don't use parallel
           if (error) {
             compilation.errors.push(
               UglifyJsPlugin.buildError(

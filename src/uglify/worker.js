@@ -14,7 +14,9 @@ module.exports = (options, callback) => {
       `'use strict'\nreturn ${options}`,
     )(exports, require, module, __filename, __dirname);
 
-    callback(null, minify(options));
+    const result = minify(options);
+
+    callback(result.error, result);
   } catch (errors) {
     callback(errors);
   }
