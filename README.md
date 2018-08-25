@@ -51,6 +51,7 @@ module.exports = {
 |**`parallel`**|`{Boolean\|Number}`|`false`|Use multi-process parallel running to improve the build speed|
 |**`sourceMap`**|`{Boolean}`|`false`|Use source maps to map error message locations to modules (This slows down the compilation) ⚠️ **`cheap-source-map` options don't work with this plugin**|
 |**`minify`**|`{Function}`|`undefined`|Allows you to override default minify function|
+|**`minifyContext`**|{Object}|`undefined`|Allows passing contextual information to the minify function.  Useful in combination with `parallel`.  The object must be serializable.
 |**`uglifyOptions`**|`{Object}`|[`{...defaults}`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions)|`uglify` [Options](https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options)|
 |**`extractComments`**|`{Boolean\|RegExp\|Function<(node, comment) -> {Boolean\|Object}>}`|`false`|Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a) (`webpack >= 2.3.0`)|
 |**`warningsFilter`**|`{Function(source) -> {Boolean}}`|`() => true`|Allow to filter uglify warnings|
@@ -128,7 +129,7 @@ Path to cache directory.
     cache: true,
     cacheKeys: (defaultCacheKeys, file) => {
       defaultCacheKeys.myCacheKey = 'myCacheKeyValue';
-      
+
       return defaultCacheKeys;
     },
   })
@@ -206,7 +207,7 @@ If you use your own `minify` function please read the `minify` section for handl
        const extractedComments = [];
 
        // Custom logic for extract comments
-      
+
        const { error, map, code, warnings } = require('uglify-module') // Or require('./path/to/uglify-module')
          .minify(
            file,

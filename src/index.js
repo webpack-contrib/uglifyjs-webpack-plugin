@@ -27,6 +27,7 @@ class UglifyJsPlugin {
       cache = false,
       cacheKeys = defaultCacheKeys => defaultCacheKeys,
       parallel = false,
+      minifyContext,
       include,
       exclude,
     } = options;
@@ -42,6 +43,7 @@ class UglifyJsPlugin {
       include,
       exclude,
       minify,
+      minifyContext,
       uglifyOptions: {
         compress: {
           inline: 1,
@@ -189,6 +191,7 @@ class UglifyJsPlugin {
               extractComments: this.options.extractComments,
               uglifyOptions: this.options.uglifyOptions,
               minify: this.options.minify,
+              minifyContext: this.options.minifyContext,
             };
 
             if (this.options.cache) {
