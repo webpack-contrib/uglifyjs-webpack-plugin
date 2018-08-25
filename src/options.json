@@ -25,6 +25,7 @@
     "minify": {
       "instanceof": "Function"
     },
+    "minifyContext": {},
     "uglifyOptions": {
       "additionalProperties": true,
       "type": "object",
