@@ -24,7 +24,8 @@ export class PluginEnvironment {
 
 export function compile(compiler) {
   return new Promise((resolve, reject) => {
-    compiler.run((err, stats) => { // eslint-disable-line consistent-return
+    compiler.run((err, stats) => {
+      // eslint-disable-line consistent-return
       if (err) {
         return reject(err);
       }
@@ -35,22 +36,26 @@ export function compile(compiler) {
 }
 
 export function createCompiler(options = {}) {
-  const compiler = webpack(Array.isArray(options) ? options : {
-    mode: 'production',
-    bail: true,
-    cache: false,
-    entry: `${__dirname}/fixtures/entry.js`,
-    optimization: {
-      minimize: false,
-    },
-    output: {
-      path: `${__dirname}/dist`,
-      filename: '[name].[chunkhash].js',
-      chunkFilename: '[id].[name].[chunkhash].js',
-    },
-    plugins: [],
-    ...options,
-  });
+  const compiler = webpack(
+    Array.isArray(options)
+      ? options
+      : {
+          mode: 'production',
+          bail: true,
+          cache: false,
+          entry: `${__dirname}/fixtures/entry.js`,
+          optimization: {
+            minimize: false,
+          },
+          output: {
+            path: `${__dirname}/dist`,
+            filename: '[name].[chunkhash].js',
+            chunkFilename: '[id].[name].[chunkhash].js',
+          },
+          plugins: [],
+          ...options,
+        }
+  );
   compiler.outputFileSystem = new MemoryFileSystem();
   return compiler;
 }
@@ -70,6 +75,8 @@ export function removeCWD(str) {
 }
 
 export function cleanErrorStack(error) {
-  return removeCWD(error.toString()).split('\n').slice(0, 2).join('\n');
+  return removeCWD(error.toString())
+    .split('\n')
+    .slice(0, 2)
+    .join('\n');
 }
-

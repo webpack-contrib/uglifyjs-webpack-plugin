@@ -1,4 +1,5 @@
 import UglifyJsPlugin from '../src/index';
+
 import { createCompiler, compile, cleanErrorStack } from './helpers';
 
 describe('when options.sourceMap', () => {
@@ -18,7 +19,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -41,7 +44,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -64,7 +69,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -87,7 +94,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -139,7 +148,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }

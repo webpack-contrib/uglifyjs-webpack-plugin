@@ -1,9 +1,6 @@
 import UglifyJsPlugin from '../src/index';
-import {
-  cleanErrorStack,
-  createCompiler,
-  compile,
-} from './helpers';
+
+import { cleanErrorStack, createCompiler, compile } from './helpers';
 
 describe('when applied with uglifyOptions options', () => {
   it('matches snapshot for `ecma` option (value is `5`)', () => {
@@ -30,7 +27,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -61,7 +60,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -91,7 +92,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -122,7 +125,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -148,7 +153,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -174,7 +181,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -200,7 +209,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -224,7 +235,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -248,7 +261,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -274,7 +289,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -298,7 +315,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -322,7 +341,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -348,7 +369,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -374,7 +397,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -400,7 +425,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -424,7 +451,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -448,7 +477,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -472,7 +503,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -496,7 +529,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -520,7 +555,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -544,7 +581,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -568,7 +607,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -592,7 +633,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -616,7 +659,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -640,7 +685,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -664,7 +711,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -689,7 +738,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -711,7 +762,9 @@ describe('when applied with uglifyOptions options', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }

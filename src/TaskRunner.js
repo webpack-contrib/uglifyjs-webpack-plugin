@@ -1,25 +1,33 @@
 import os from 'os';
+
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import workerFarm from 'worker-farm';
 import serialize from 'serialize-javascript';
+
 import minify from './minify';
 
 let workerFile = require.resolve('./worker');
 
 try {
   // run test
-  workerFile = require.resolve('../../dist/uglify/worker');
-} catch (e) { } // eslint-disable-line no-empty
+  workerFile = require.resolve('../dist/worker');
+} catch (e) {} // eslint-disable-line no-empty
 
-export default class Runner {
+export default class TaskRunner {
   constructor(options = {}) {
     const { cache, parallel } = options;
-    this.cacheDir = cache === true ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) : cache;
+    this.cacheDir =
+      cache === true
+        ? findCacheDir({ name: 'uglifyjs-webpack-plugin' })
+        : cache;
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
-    const cpus = (os.cpus() || { length: 1 });
-    this.maxConcurrentWorkers = parallel === true ? cpus.length - 1 : Math.min(Number(parallel) || 0, cpus.length - 1);
+    const cpus = os.cpus() || { length: 1 };
+    this.maxConcurrentWorkers =
+      parallel === true
+        ? cpus.length - 1
+        : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
   runTasks(tasks, callback) {
@@ -30,7 +38,13 @@ export default class Runner {
     }
 
     if (this.maxConcurrentWorkers > 1) {
-      const workerOptions = process.platform === 'win32' ? { maxConcurrentWorkers: this.maxConcurrentWorkers, maxConcurrentCallsPerWorker: 1 } : { maxConcurrentWorkers: this.maxConcurrentWorkers };
+      const workerOptions =
+        process.platform === 'win32'
+          ? {
+              maxConcurrentWorkers: this.maxConcurrentWorkers,
+              maxConcurrentCallsPerWorker: 1,
+            }
+          : { maxConcurrentWorkers: this.maxConcurrentWorkers };
       this.workers = workerFarm(workerOptions, workerFile);
       this.boundWorkers = (options, cb) => this.workers(serialize(options), cb);
     } else {
@@ -61,7 +75,13 @@ export default class Runner {
           const done = () => step(index, result);
 
           if (this.cacheDir && !result.error) {
-            cacache.put(this.cacheDir, serialize(task.cacheKeys), JSON.stringify(data)).then(done, done);
+            cacache
+              .put(
+                this.cacheDir,
+                serialize(task.cacheKeys),
+                JSON.stringify(data)
+              )
+              .then(done, done);
           } else {
             done();
           }
@@ -69,7 +89,9 @@ export default class Runner {
       };
 
       if (this.cacheDir) {
-        cacache.get(this.cacheDir, serialize(task.cacheKeys)).then(({ data }) => step(index, JSON.parse(data)), enqueue);
+        cacache
+          .get(this.cacheDir, serialize(task.cacheKeys))
+          .then(({ data }) => step(index, JSON.parse(data)), enqueue);
       } else {
         enqueue();
       }

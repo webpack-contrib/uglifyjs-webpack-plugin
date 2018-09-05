@@ -1,9 +1,6 @@
 import UglifyJsPlugin from '../src/index';
-import {
-  cleanErrorStack,
-  createCompiler,
-  compile,
-} from './helpers';
+
+import { cleanErrorStack, createCompiler, compile } from './helpers';
 
 describe('when applied with `test` option', () => {
   let compiler;
@@ -35,7 +32,9 @@ describe('when applied with `test` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -55,7 +54,9 @@ describe('when applied with `test` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -64,10 +65,7 @@ describe('when applied with `test` option', () => {
 
   it('matches snapshot for multiple `test` values', () => {
     new UglifyJsPlugin({
-      test: [
-        /(m)?js\.js(\?.*)?$/i,
-        /AsyncImportExport\.js(\?.*)?$/i,
-      ],
+      test: [/(m)?js\.js(\?.*)?$/i, /AsyncImportExport\.js(\?.*)?$/i],
     }).apply(compiler);
 
     return compile(compiler).then((stats) => {
@@ -78,7 +76,9 @@ describe('when applied with `test` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }

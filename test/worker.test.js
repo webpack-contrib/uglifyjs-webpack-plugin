@@ -1,5 +1,6 @@
 import serialize from 'serialize-javascript';
-import worker from '../../src/uglify/worker';
+
+import worker from '../src/worker';
 
 describe('matches snapshot', () => {
   it('normalizes when options.extractComments is regex', () => {

@@ -3,13 +3,15 @@
 */
 import crypto from 'crypto';
 import path from 'path';
+
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
+
 import schema from './options.json';
-import Runner from './uglify/Runner';
+import TaskRunner from './TaskRunner';
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
@@ -25,7 +27,7 @@ class UglifyJsPlugin {
       extractComments = false,
       sourceMap = false,
       cache = false,
-      cacheKeys = defaultCacheKeys => defaultCacheKeys,
+      cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = false,
       include,
       exclude,
@@ -57,11 +59,13 @@ class UglifyJsPlugin {
   static isSourceMap(input) {
     // All required options for `new SourceMapConsumer(...options)`
     // https://github.com/mozilla/source-map#new-sourcemapconsumerrawsourcemap
-    return Boolean(input &&
-      input.version &&
-      input.sources &&
-      Array.isArray(input.sources) &&
-      typeof input.mappings === 'string');
+    return Boolean(
+      input &&
+        input.version &&
+        input.sources &&
+        Array.isArray(input.sources) &&
+        typeof input.mappings === 'string'
+    );
   }
 
   static buildSourceMap(inputSourceMap) {
@@ -75,16 +79,26 @@ class UglifyJsPlugin {
   static buildError(err, file, sourceMap, requestShortener) {
     // Handling error which should have line, col, filename and message
     if (err.line) {
-      const original = sourceMap && sourceMap.originalPositionFor({
-        line: err.line,
-        column: err.col,
-      });
+      const original =
+        sourceMap &&
+        sourceMap.originalPositionFor({
+          line: err.line,
+          column: err.col,
+        });
 
       if (original && original.source && requestShortener) {
-        return new Error(`${file} from UglifyJs\n${err.message} [${requestShortener.shorten(original.source)}:${original.line},${original.column}][${file}:${err.line},${err.col}]`);
+        return new Error(
+          `${file} from UglifyJs\n${err.message} [${requestShortener.shorten(
+            original.source
+          )}:${original.line},${original.column}][${file}:${err.line},${
+            err.col
+          }]`
+        );
       }
 
-      return new Error(`${file} from UglifyJs\n${err.message} [${file}:${err.line},${err.col}]`);
+      return new Error(
+        `${file} from UglifyJs\n${err.message} [${file}:${err.line},${err.col}]`
+      );
     } else if (err.stack) {
       return new Error(`${file} from UglifyJs\n${err.stack}`);
     }
@@ -92,7 +106,13 @@ class UglifyJsPlugin {
     return new Error(`${file} from UglifyJs\n${err.message}`);
   }
 
-  static buildWarning(warning, file, sourceMap, warningsFilter, requestShortener) {
+  static buildWarning(
+    warning,
+    file,
+    sourceMap,
+    warningsFilter,
+    requestShortener
+  ) {
     if (!file || !sourceMap) {
       return `UglifyJs Plugin: ${warning}`;
     }
@@ -113,8 +133,18 @@ class UglifyJsPlugin {
         return null;
       }
 
-      if (original && original.source && original.source !== file && requestShortener) {
-        warningMessage = `${warningMessage.replace(warningRegex, '')}[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`;
+      if (
+        original &&
+        original.source &&
+        original.source !== file &&
+        requestShortener
+      ) {
+        warningMessage = `${warningMessage.replace(
+          warningRegex,
+          ''
+        )}[${requestShortener.shorten(original.source)}:${original.line},${
+          original.column
+        }]`;
       }
     }
 
@@ -128,7 +158,7 @@ class UglifyJsPlugin {
     };
 
     const optimizeFn = (compilation, chunks, callback) => {
-      const runner = new Runner({
+      const taskRunner = new TaskRunner({
         cache: this.options.cache,
         parallel: this.options.parallel,
       });
@@ -136,7 +166,8 @@ class UglifyJsPlugin {
       const uglifiedAssets = new WeakSet();
       const tasks = [];
 
-      chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])
+      chunks
+        .reduce((acc, chunk) => acc.concat(chunk.files || []), [])
         .concat(compilation.additionalChunkAssets || [])
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
         .forEach((file) => {
@@ -162,7 +193,7 @@ class UglifyJsPlugin {
                 inputSourceMap = map;
 
                 compilation.warnings.push(
-                  new Error(`${file} contains invalid source map`),
+                  new Error(`${file} contains invalid source map`)
                 );
               }
             } else {
@@ -174,7 +205,8 @@ class UglifyJsPlugin {
             let commentsFile = false;
 
             if (this.options.extractComments) {
-              commentsFile = this.options.extractComments.filename || `${file}.LICENSE`;
+              commentsFile =
+                this.options.extractComments.filename || `${file}.LICENSE`;
 
               if (typeof commentsFile === 'function') {
                 commentsFile = commentsFile(file);
@@ -198,8 +230,13 @@ class UglifyJsPlugin {
                 // eslint-disable-next-line global-require
                 'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,
-                path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
-                hash: crypto.createHash('md4').update(input).digest('hex'),
+                path: compiler.outputPath
+                  ? `${compiler.outputPath}/${file}`
+                  : file,
+                hash: crypto
+                  .createHash('md4')
+                  .update(input)
+                  .digest('hex'),
               };
 
               task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
@@ -212,13 +249,13 @@ class UglifyJsPlugin {
                 error,
                 file,
                 UglifyJsPlugin.buildSourceMap(inputSourceMap),
-                new RequestShortener(compiler.context),
-              ),
+                new RequestShortener(compiler.context)
+              )
             );
           }
         });
 
-      runner.runTasks(tasks, (tasksError, results) => {
+      taskRunner.runTasks(tasks, (tasksError, results) => {
         if (tasksError) {
           compilation.errors.push(tasksError);
 
@@ -243,8 +280,8 @@ class UglifyJsPlugin {
                 error,
                 file,
                 sourceMap,
-                new RequestShortener(compiler.context),
-              ),
+                new RequestShortener(compiler.context)
+              )
             );
 
             return;
@@ -256,7 +293,9 @@ class UglifyJsPlugin {
             outputSource = new SourceMapSource(
               code,
               file,
-              JSON.parse(map), input, inputSourceMap,
+              JSON.parse(map),
+              input,
+              inputSourceMap
             );
           } else {
             outputSource = new RawSource(code);
@@ -266,8 +305,11 @@ class UglifyJsPlugin {
           if (commentsFile && extractedComments.length > 0) {
             // Add a banner to the original file
             if (this.options.extractComments.banner !== false) {
-              let banner = this.options.extractComments.banner
-                || `For license information please see ${path.posix.basename(commentsFile)}`;
+              let banner =
+                this.options.extractComments.banner ||
+                `For license information please see ${path.posix.basename(
+                  commentsFile
+                )}`;
 
               if (typeof banner === 'function') {
                 banner = banner(commentsFile);
@@ -276,12 +318,14 @@ class UglifyJsPlugin {
               if (banner) {
                 outputSource = new ConcatSource(
                   `/*! ${banner} */\n`,
-                  outputSource,
+                  outputSource
                 );
               }
             }
 
-            const commentsSource = new RawSource(`${extractedComments.join('\n\n')}\n`);
+            const commentsSource = new RawSource(
+              `${extractedComments.join('\n\n')}\n`
+            );
 
             if (commentsFile in compilation.assets) {
               // commentsFile already exists, append new comments...
@@ -292,7 +336,7 @@ class UglifyJsPlugin {
                 compilation.assets[commentsFile] = new ConcatSource(
                   compilation.assets[commentsFile],
                   '\n',
-                  commentsSource,
+                  commentsSource
                 );
               }
             } else {
@@ -301,7 +345,7 @@ class UglifyJsPlugin {
           }
 
           // Updating assets
-          uglifiedAssets.add(compilation.assets[file] = outputSource);
+          uglifiedAssets.add((compilation.assets[file] = outputSource));
 
           // Handling warnings
           if (warnings && warnings.length > 0) {
@@ -311,7 +355,7 @@ class UglifyJsPlugin {
                 file,
                 sourceMap,
                 this.options.warningsFilter,
-                new RequestShortener(compiler.context),
+                new RequestShortener(compiler.context)
               );
 
               if (builtWarning) {
@@ -321,7 +365,7 @@ class UglifyJsPlugin {
           }
         });
 
-        runner.exit();
+        taskRunner.exit();
 
         callback();
       });
@@ -336,7 +380,7 @@ class UglifyJsPlugin {
 
       compilation.hooks.optimizeChunkAssets.tapAsync(
         plugin,
-        optimizeFn.bind(this, compilation),
+        optimizeFn.bind(this, compilation)
       );
     });
   }

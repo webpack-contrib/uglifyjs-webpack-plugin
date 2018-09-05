@@ -1,9 +1,6 @@
 import UglifyJsPlugin from '../src/index';
-import {
-  cleanErrorStack,
-  createCompiler,
-  compile,
-} from './helpers';
+
+import { cleanErrorStack, createCompiler, compile } from './helpers';
 
 describe('when applied with `include` option', () => {
   let compiler;
@@ -23,7 +20,6 @@ describe('when applied with `include` option', () => {
       include: /included1/i,
     }).apply(compiler);
 
-
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
@@ -32,7 +28,9 @@ describe('when applied with `include` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -41,12 +39,8 @@ describe('when applied with `include` option', () => {
 
   it('matches snapshot for multiple `include` values', () => {
     new UglifyJsPlugin({
-      include: [
-        /included1/i,
-        /included2/i,
-      ],
+      include: [/included1/i, /included2/i],
     }).apply(compiler);
-
 
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
@@ -56,7 +50,9 @@ describe('when applied with `include` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }

@@ -1,11 +1,10 @@
 import os from 'os';
+
 import workerFarm from 'worker-farm';
+
 import UglifyJsPlugin from '../src/index';
-import {
-  createCompiler,
-  compile,
-  cleanErrorStack,
-} from './helpers';
+
+import { createCompiler, compile, cleanErrorStack } from './helpers';
 
 // Based on https://github.com/facebook/jest/blob/edde20f75665c2b1e3c8937f758902b5cf28a7b4/packages/jest-runner/src/__tests__/test_runner.test.js
 let workerFarmMock;
@@ -15,8 +14,8 @@ jest.mock('worker-farm', () => {
     (options, worker) =>
       (workerFarmMock = jest.fn((data, callback) =>
         // eslint-disable-next-line global-require, import/no-dynamic-require
-        require(worker)(data, callback),
-      )),
+        require(worker)(data, callback)
+      ))
   );
   mock.end = jest.fn();
   return mock;
@@ -53,7 +52,9 @@ describe('when applied with `parallel` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -68,15 +69,21 @@ describe('when applied with `parallel` option', () => {
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
       expect(workerFarm.mock.calls.length).toBe(1);
-      expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(os.cpus().length - 1);
-      expect(workerFarmMock.mock.calls.length).toBe(Object.keys(stats.compilation.assets).length);
+      expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
+        os.cpus().length - 1
+      );
+      expect(workerFarmMock.mock.calls.length).toBe(
+        Object.keys(stats.compilation.assets).length
+      );
       expect(workerFarm.end.mock.calls.length).toBe(1);
 
       expect(errors).toMatchSnapshot('errors');
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -92,14 +99,18 @@ describe('when applied with `parallel` option', () => {
 
       expect(workerFarm.mock.calls.length).toBe(1);
       expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(2);
-      expect(workerFarmMock.mock.calls.length).toBe(Object.keys(stats.compilation.assets).length);
+      expect(workerFarmMock.mock.calls.length).toBe(
+        Object.keys(stats.compilation.assets).length
+      );
       expect(workerFarm.end.mock.calls.length).toBe(1);
 
       expect(errors).toMatchSnapshot('errors');
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
