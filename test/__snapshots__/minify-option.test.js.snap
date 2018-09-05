@@ -2,9 +2,7 @@
 
 exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`parallel\` is \`true\`: errors 1`] = `Array []`;
 
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`parallel\` is \`true\`: main.js 1`] = `"webpackJsonp([0],[function(t,e,s){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const s=t.x-e.x,c=t.y-e.y;return Math.hypot(s,c)}}}],[0]);"`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`parallel\` is \`true\`: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`parallel\` is \`true\`: main.js 1`] = `"!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);"`;
 
 exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`parallel\` is \`true\`: warnings 1`] = `Array []`;
 
@@ -14,12 +12,46 @@ exports[`when applied with \`minify\` option matches snapshot for \`terser\` min
 Object {
   "map": Object {
     "file": "x",
-    "mappings": "+CAAAA,OAAAC,eAAAC,EAAA,cAAAC,OAAA,IAcAD,EAAA,QAdA,MACAE,YAAAC,EAAAC,GACAC,KAAAF,IACAE,KAAAD,IAGAF,gBAAAI,EAAAC,GACA,MAAAC,EAAAF,EAAAH,EAAAI,EAAAJ,EACAM,EAAAH,EAAAF,EAAAG,EAAAH,EAEA,OAAAM,KAAAC,MAAAH,EAAAC",
+    "mappings": "aACA,IAAAA,EAAA,GAGA,SAAAC,EAAAC,GAGA,GAAAF,EAAAE,GACA,OAAAF,EAAAE,GAAAC,QAGA,IAAAC,EAAAJ,EAAAE,GAAA,CACAG,EAAAH,EACAI,GAAA,EACAH,QAAA,IAUA,OANAI,EAAAL,GAAAM,KAAAJ,EAAAD,QAAAC,IAAAD,QAAAF,GAGAG,EAAAE,GAAA,EAGAF,EAAAD,QAKAF,EAAAQ,EAAAF,EAGAN,EAAAS,EAAAV,EAGAC,EAAAU,EAAA,SAAAR,EAAAS,EAAAC,GACAZ,EAAAa,EAAAX,EAAAS,IACAG,OAAAC,eAAAb,EAAAS,EAAA,CAA0CK,YAAA,EAAAC,IAAAL,KAK1CZ,EAAAkB,EAAA,SAAAhB,GACA,oBAAAiB,eAAAC,aACAN,OAAAC,eAAAb,EAAAiB,OAAAC,YAAA,CAAwDC,MAAA,WAExDP,OAAAC,eAAAb,EAAA,cAAiDmB,OAAA,KAQjDrB,EAAAsB,EAAA,SAAAD,EAAAE,GAEA,GADA,EAAAA,IAAAF,EAAArB,EAAAqB,IACA,EAAAE,EAAA,OAAAF,EACA,KAAAE,GAAA,iBAAAF,QAAAG,WAAA,OAAAH,EACA,IAAAI,EAAAX,OAAAY,OAAA,MAGA,GAFA1B,EAAAkB,EAAAO,GACAX,OAAAC,eAAAU,EAAA,WAAyCT,YAAA,EAAAK,UACzC,EAAAE,GAAA,iBAAAF,EAAA,QAAAM,KAAAN,EAAArB,EAAAU,EAAAe,EAAAE,EAAA,SAAAA,GAAgH,OAAAN,EAAAM,IAAqBC,KAAA,KAAAD,IACrI,OAAAF,GAIAzB,EAAA6B,EAAA,SAAA1B,GACA,IAAAS,EAAAT,KAAAqB,WACA,WAA2B,OAAArB,EAAA,SAC3B,WAAiC,OAAAA,GAEjC,OADAH,EAAAU,EAAAE,EAAA,IAAAA,GACAA,GAIAZ,EAAAa,EAAA,SAAAiB,EAAAC,GAAsD,OAAAjB,OAAAkB,UAAAC,eAAA1B,KAAAuB,EAAAC,IAGtD/B,EAAAkC,EAAA,GAIAlC,IAAAmC,EAAA,kCClFAnC,EAAAkB,EAAAkB,GAceA,EAAA,QAdf,MACAC,YAAAC,EAAAC,GACAC,KAAAF,IACAE,KAAAD,IAGAF,gBAAAI,EAAAC,GACA,MAAAC,EAAAF,EAAAH,EAAAI,EAAAJ,EACAM,EAAAH,EAAAF,EAAAG,EAAAH,EAEA,OAAAM,KAAAC,MAAAH,EAAAC",
     "names": Array [
+      "installedModules",
+      "__webpack_require__",
+      "moduleId",
+      "exports",
+      "module",
+      "i",
+      "l",
+      "modules",
+      "call",
+      "m",
+      "c",
+      "d",
+      "name",
+      "getter",
+      "o",
       "Object",
       "defineProperty",
-      "__webpack_exports__",
+      "enumerable",
+      "get",
+      "r",
+      "Symbol",
+      "toStringTag",
       "value",
+      "t",
+      "mode",
+      "__esModule",
+      "ns",
+      "create",
+      "key",
+      "bind",
+      "n",
+      "object",
+      "property",
+      "prototype",
+      "hasOwnProperty",
+      "p",
+      "s",
+      "__webpack_exports__",
       "[object Object]",
       "x",
       "y",
@@ -32,125 +64,12 @@ Object {
       "hypot",
     ],
     "sources": Array [
+      "webpack/bootstrap",
       "test/fixtures/minify/es6.js",
     ],
     "sourcesContent": Array [
-      "class Point {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  static distance(a, b) {
-    const dx = a.x - b.x;
-    const dy = a.y - b.y;
-
-    return Math.hypot(dx, dy);
-  }
-}
-
-export default Point;
-",
-    ],
-    "version": 3,
-  },
-  "source": "webpackJsonp([0],[function(t,e,s){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const s=t.x-e.x,c=t.y-e.y;return Math.hypot(s,c)}}}],[0]);",
-}
-`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`sourceMap\` is \`true\`: manifest.js 1`] = `
-Object {
-  "map": Object {
-    "file": "x",
-    "mappings": "aACA,IAAAA,EAAAC,OAAA,aACAA,OAAA,sBAAAC,EAAAC,EAAAC,GAIA,IADA,IAAAC,EAAAC,EAAAC,EAAAC,EAAA,EAAAC,EAAA,GACQD,EAAAN,EAAAQ,OAAoBF,IAC5BF,EAAAJ,EAAAM,GACAG,EAAAL,IACAG,EAAAG,KAAAD,EAAAL,GAAA,IAEAK,EAAAL,GAAA,EAEA,IAAAD,KAAAF,EACAU,OAAAC,UAAAC,eAAAC,KAAAb,EAAAE,KACAY,EAAAZ,GAAAF,EAAAE,IAIA,IADAL,KAAAE,EAAAC,EAAAC,GACAK,EAAAC,QACAD,EAAAS,OAAAT,GAEA,GAAAL,EACA,IAAAI,EAAA,EAAYA,EAAAJ,EAAAM,OAA2BF,IACvCD,EAAAY,IAAAC,EAAAhB,EAAAI,IAGA,OAAAD,GAIA,IAAAc,EAAA,GAGAV,EAAA,CACAW,EAAA,GAIA,SAAAH,EAAAd,GAGA,GAAAgB,EAAAhB,GACA,OAAAgB,EAAAhB,GAAAkB,QAGA,IAAAC,EAAAH,EAAAhB,GAAA,CACAG,EAAAH,EACAoB,GAAA,EACAF,QAAA,IAUA,OANAN,EAAAZ,GAAAW,KAAAQ,EAAAD,QAAAC,IAAAD,QAAAJ,GAGAK,EAAAC,GAAA,EAGAD,EAAAD,QAKAJ,EAAAO,EAAAT,EAGAE,EAAAQ,EAAAN,EAGAF,EAAAS,EAAA,SAAAL,EAAAM,EAAAC,GACAX,EAAAY,EAAAR,EAAAM,IACAhB,OAAAmB,eAAAT,EAAAM,EAAA,CACAI,cAAA,EACAC,YAAA,EACAC,IAAAL,KAMAX,EAAAiB,EAAA,SAAAZ,GACA,IAAAM,EAAAN,KAAAa,WACA,WAA2B,OAAAb,EAAA,SAC3B,WAAiC,OAAAA,GAEjC,OADAL,EAAAS,EAAAE,EAAA,IAAAA,GACAA,GAIAX,EAAAY,EAAA,SAAAO,EAAAC,GAAsD,OAAA1B,OAAAC,UAAAC,eAAAC,KAAAsB,EAAAC,IAGtDpB,EAAAqB,EAAA,GAGArB,EAAAsB,GAAA,SAAAC,GAA8D,MAApBC,QAAAC,MAAAF,GAAoBA",
-    "names": Array [
-      "parentJsonpFunction",
-      "window",
-      "chunkIds",
-      "moreModules",
-      "executeModules",
-      "moduleId",
-      "chunkId",
-      "result",
-      "i",
-      "resolves",
-      "length",
-      "installedChunks",
-      "push",
-      "Object",
-      "prototype",
-      "hasOwnProperty",
-      "call",
-      "modules",
-      "shift",
-      "__webpack_require__",
-      "s",
-      "installedModules",
-      "1",
-      "exports",
-      "module",
-      "l",
-      "m",
-      "c",
-      "d",
-      "name",
-      "getter",
-      "o",
-      "defineProperty",
-      "configurable",
-      "enumerable",
-      "get",
-      "n",
-      "__esModule",
-      "object",
-      "property",
-      "p",
-      "oe",
-      "err",
-      "console",
-      "error",
-    ],
-    "sources": Array [
-      "webpack/bootstrap 3a73c860b0d2c6572303",
-    ],
-    "sourcesContent": Array [
-      " 	// install a JSONP callback for chunk loading
- 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
- 	window[\\"webpackJsonp\\"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
- 		// add \\"moreModules\\" to the modules object,
- 		// then flag all \\"chunkIds\\" as loaded and fire callback
- 		var moduleId, chunkId, i = 0, resolves = [], result;
- 		for(;i < chunkIds.length; i++) {
- 			chunkId = chunkIds[i];
- 			if(installedChunks[chunkId]) {
- 				resolves.push(installedChunks[chunkId][0]);
- 			}
- 			installedChunks[chunkId] = 0;
- 		}
- 		for(moduleId in moreModules) {
- 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
- 				modules[moduleId] = moreModules[moduleId];
- 			}
- 		}
- 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
- 		while(resolves.length) {
- 			resolves.shift()();
- 		}
- 		if(executeModules) {
- 			for(i=0; i < executeModules.length; i++) {
- 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
- 			}
- 		}
- 		return result;
- 	};
-
- 	// The module cache
+      " 	// The module cache
  	var installedModules = {};
-
- 	// objects to store loaded and loading chunks
- 	var installedChunks = {
- 		1: 0
- 	};
 
  	// The require function
  	function __webpack_require__(moduleId) {
@@ -186,12 +105,32 @@ Object {
  	// define getter function for harmony exports
  	__webpack_require__.d = function(exports, name, getter) {
  		if(!__webpack_require__.o(exports, name)) {
- 			Object.defineProperty(exports, name, {
- 				configurable: false,
- 				enumerable: true,
- 				get: getter
- 			});
+ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
  		}
+ 	};
+
+ 	// define __esModule on exports
+ 	__webpack_require__.r = function(exports) {
+ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+ 		}
+ 		Object.defineProperty(exports, '__esModule', { value: true });
+ 	};
+
+ 	// create a fake namespace object
+ 	// mode & 1: value is a module id, require it
+ 	// mode & 2: merge all properties of value into the ns
+ 	// mode & 4: return value when already ns object
+ 	// mode & 8|1: behave like require
+ 	__webpack_require__.t = function(value, mode) {
+ 		if(mode & 1) value = __webpack_require__(value);
+ 		if(mode & 8) return value;
+ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+ 		var ns = Object.create(null);
+ 		__webpack_require__.r(ns);
+ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+ 		return ns;
  	};
 
  	// getDefaultExport function for compatibility with non-harmony modules
@@ -209,59 +148,11 @@ Object {
  	// __webpack_public_path__
  	__webpack_require__.p = \\"\\";
 
- 	// on error function for async loading
- 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+
+ 	// Load entry module and return exports
+ 	return __webpack_require__(__webpack_require__.s = 0);
 ",
-    ],
-    "version": 3,
-  },
-  "source": "!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);",
-}
-`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`sourceMap\` is \`true\`: warnings 1`] = `Array []`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier: errors 1`] = `Array []`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier: main.js 1`] = `"webpackJsonp([0],[function(t,e,s){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const s=t.x-e.x,c=t.y-e.y;return Math.hypot(s,c)}}}],[0]);"`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier: warnings 1`] = `Array []`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-es\` minifier: errors 1`] = `Array []`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-es\` minifier: main.js 1`] = `"webpackJsonp([0],[function(t,e,s){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const s=t.x-e.x,c=t.y-e.y;return Math.hypot(s,c)}}}],[0]);"`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-es\` minifier: manifest.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-es\` minifier: warnings 1`] = `Array []`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: errors 1`] = `Array []`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: main.js 1`] = `"webpackJsonp([0],[function(e,n){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}],[0]);"`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: manifest.js 1`] = `"!function(i){var p=window.webpackJsonp;window.webpackJsonp=function(r,n,e){for(var o,t,u,c=0,f=[];c<r.length;c++)t=r[c],a[t]&&f.push(a[t][0]),a[t]=0;for(o in n)Object.prototype.hasOwnProperty.call(n,o)&&(i[o]=n[o]);for(p&&p(r,n,e);f.length;)f.shift()();if(e)for(c=0;c<e.length;c++)u=l(l.s=e[c]);return u};var e={},a={1:0};function l(r){if(e[r])return e[r].exports;var n=e[r]={i:r,l:!1,exports:{}};return i[r].call(n.exports,n,n.exports,l),n.l=!0,n.exports}l.m=i,l.c=e,l.d=function(r,n,e){l.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},l.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return l.d(n,\\"a\\",n),n},l.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},l.p=\\"\\",l.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: warnings 1`] = `Array []`;
-
-exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: errors 1`] = `
-Array [
-  "Error: main.js from UglifyJs
-Error: Error",
-  "Error: manifest.js from UglifyJs
-Error: Error",
-]
-`;
-
-exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: main.js 1`] = `
-"webpackJsonp([0],[
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-\\"use strict\\";
-Object.defineProperty(__webpack_exports__, \\"__esModule\\", { value: true });
-class Point {
+      "class Point {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -275,52 +166,46 @@ class Point {
   }
 }
 
-/* harmony default export */ __webpack_exports__[\\"default\\"] = (Point);
-
-
-/***/ })
-],[0]);"
+export default Point;
+",
+    ],
+    "version": 3,
+  },
+  "source": "!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);",
+}
 `;
 
-exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: manifest.js 1`] = `
+exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier and \`sourceMap\` is \`true\`: warnings 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier: errors 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier: main.js 1`] = `"!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);"`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`terser\` minifier: warnings 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`uglify-es\` minifier: errors 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`uglify-es\` minifier: main.js 1`] = `"!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);"`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`uglify-es\` minifier: warnings 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: errors 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: main.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}]);"`;
+
+exports[`when applied with \`minify\` option matches snapshot for \`uglify-js\` minifier: warnings 1`] = `Array []`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: errors 1`] = `
+Array [
+  "Error: main.js from UglifyJs
+Error: Error",
+]
+`;
+
+exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: main.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
-/******/ 	window[\\"webpackJsonp\\"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
-/******/ 		// add \\"moreModules\\" to the modules object,
-/******/ 		// then flag all \\"chunkIds\\" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/ 		if(executeModules) {
-/******/ 			for(i=0; i < executeModules.length; i++) {
-/******/ 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-/******/ 			}
-/******/ 		}
-/******/ 		return result;
-/******/ 	};
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// objects to store loaded and loading chunks
-/******/ 	var installedChunks = {
-/******/ 		1: 0
-/******/ 	};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -356,12 +241,32 @@ exports[`when applied with \`minify\` option matches snapshot for errors into \`
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -379,11 +284,36 @@ exports[`when applied with \`minify\` option matches snapshot for errors into \`
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = \\"\\";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([]);"
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+\\"use strict\\";
+__webpack_require__.r(__webpack_exports__);
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+/* harmony default export */ __webpack_exports__[\\"default\\"] = (Point);
+
+
+/***/ })
+/******/ ]);"
 `;
 
 exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option and \`parallel\` is \`true\`: warnings 1`] = `Array []`;
@@ -392,78 +322,13 @@ exports[`when applied with \`minify\` option matches snapshot for errors into \`
 Array [
   "Error: main.js from UglifyJs
 Error: Error",
-  "Error: manifest.js from UglifyJs
-Error: Error",
 ]
 `;
 
 exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option: main.js 1`] = `
-"webpackJsonp([0],[
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-\\"use strict\\";
-Object.defineProperty(__webpack_exports__, \\"__esModule\\", { value: true });
-class Point {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  static distance(a, b) {
-    const dx = a.x - b.x;
-    const dy = a.y - b.y;
-
-    return Math.hypot(dx, dy);
-  }
-}
-
-/* harmony default export */ __webpack_exports__[\\"default\\"] = (Point);
-
-
-/***/ })
-],[0]);"
-`;
-
-exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option: manifest.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
-/******/ 	window[\\"webpackJsonp\\"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
-/******/ 		// add \\"moreModules\\" to the modules object,
-/******/ 		// then flag all \\"chunkIds\\" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/ 		if(executeModules) {
-/******/ 			for(i=0; i < executeModules.length; i++) {
-/******/ 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-/******/ 			}
-/******/ 		}
-/******/ 		return result;
-/******/ 	};
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// objects to store loaded and loading chunks
-/******/ 	var installedChunks = {
-/******/ 		1: 0
-/******/ 	};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -499,12 +364,32 @@ exports[`when applied with \`minify\` option matches snapshot for errors into \`
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -522,11 +407,36 @@ exports[`when applied with \`minify\` option matches snapshot for errors into \`
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = \\"\\";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([]);"
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+\\"use strict\\";
+__webpack_require__.r(__webpack_exports__);
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+/* harmony default export */ __webpack_exports__[\\"default\\"] = (Point);
+
+
+/***/ })
+/******/ ]);"
 `;
 
 exports[`when applied with \`minify\` option matches snapshot for errors into \`minify\` option: warnings 1`] = `Array []`;

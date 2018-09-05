@@ -327,26 +327,18 @@ class UglifyJsPlugin {
       });
     };
 
-    /* istanbul ignore if */
-    if (compiler.hooks) {
-      const plugin = { name: 'UglifyJSPlugin' };
+    const plugin = { name: this.constructor.name };
 
-      compiler.hooks.compilation.tap(plugin, (compilation) => {
-        if (this.options.sourceMap) {
-          compilation.hooks.buildModule.tap(plugin, buildModuleFn);
-        }
+    compiler.hooks.compilation.tap(plugin, (compilation) => {
+      if (this.options.sourceMap) {
+        compilation.hooks.buildModule.tap(plugin, buildModuleFn);
+      }
 
-        compilation.hooks.optimizeChunkAssets.tapAsync(plugin, optimizeFn.bind(this, compilation));
-      });
-    } else {
-      compiler.plugin('compilation', (compilation) => {
-        if (this.options.sourceMap) {
-          compilation.plugin('build-module', buildModuleFn);
-        }
-
-        compilation.plugin('optimize-chunk-assets', optimizeFn.bind(this, compilation));
-      });
-    }
+      compilation.hooks.optimizeChunkAssets.tapAsync(
+        plugin,
+        optimizeFn.bind(this, compilation),
+      );
+    });
   }
 }
 

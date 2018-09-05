@@ -3,7 +3,7 @@
 exports[`validation 1`] = `
 "UglifyJs Plugin Invalid Options
 
-options['doesntExist'] is an invalid additional property
+options should NOT have additional properties
 "
 `;
 

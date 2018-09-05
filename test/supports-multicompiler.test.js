@@ -12,6 +12,7 @@ describe('when using MultiCompiler', () => {
   it('matches snapshot with empty options', () => {
     const multiCompiler = createCompiler([
       {
+        mode: 'production',
         bail: true,
         cache: false,
         entry: `${__dirname}/fixtures/entry.js`,
@@ -20,8 +21,12 @@ describe('when using MultiCompiler', () => {
           filename: '[name].[chunkhash].js',
           chunkFilename: '[id].[name].[chunkhash].js',
         },
+        optimization: {
+          minimize: false,
+        },
       },
       {
+        mode: 'production',
         bail: true,
         cache: false,
         entry: `${__dirname}/fixtures/entry.js`,
@@ -31,8 +36,12 @@ describe('when using MultiCompiler', () => {
           chunkFilename: '[id].[name].[chunkhash].js',
         },
         plugins: [new UglifyJsPlugin()],
+        optimization: {
+          minimize: false,
+        },
       },
       {
+        mode: 'production',
         bail: true,
         cache: false,
         entry: `${__dirname}/fixtures/import-export/entry.js`,
@@ -42,6 +51,9 @@ describe('when using MultiCompiler', () => {
           chunkFilename: '[id].[name].[chunkhash].js',
         },
         plugins: [new UglifyJsPlugin()],
+        optimization: {
+          minimize: false,
+        },
       },
     ]);
 
