@@ -37,10 +37,10 @@ describe('when using MultiCompiler', () => {
           filename: '[name].[chunkhash].js',
           chunkFilename: '[id].[name].[chunkhash].js',
         },
-        plugins: [new UglifyJsPlugin()],
         optimization: {
           minimize: false,
         },
+        plugins: [new UglifyJsPlugin()],
       },
       {
         mode: 'production',
@@ -52,10 +52,10 @@ describe('when using MultiCompiler', () => {
           filename: '[name].[chunkhash].js',
           chunkFilename: '[id].[name].[chunkhash].js',
         },
-        plugins: [new UglifyJsPlugin()],
         optimization: {
           minimize: false,
         },
+        plugins: [new UglifyJsPlugin()],
       },
     ]);
 

@@ -118,47 +118,43 @@ describe('UglifyJsPlugin', () => {
   });
 
   it('buildWarning method', () => {
-    expect(UglifyJsPlugin.buildWarning('Warning[foo:1,1]')).toMatchSnapshot();
     expect(
-      UglifyJsPlugin.buildWarning('Warning[foo:1,1]', 'test.js')
+      UglifyJsPlugin.buildWarning('Warning [test.js:1,1]')
+    ).toMatchSnapshot();
+    expect(
+      UglifyJsPlugin.buildWarning('Warning [test.js:1,1]', 'test.js')
     ).toMatchSnapshot();
     expect(
       UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
+        'Warning [test.js:1,1]',
         'test.js',
         UglifyJsPlugin.buildSourceMap(rawSourceMap)
       )
     ).toMatchSnapshot();
     expect(
       UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
-        'test.js',
-        UglifyJsPlugin.buildSourceMap(rawSourceMap)
-      )
-    ).toMatchSnapshot();
-    expect(
-      UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
+        'Warning [test.js:1,1]',
         'test.js',
         UglifyJsPlugin.buildSourceMap(rawSourceMap),
+        new RequestShortener('http://example.com/www/js/')
+      )
+    ).toMatchSnapshot();
+    expect(
+      UglifyJsPlugin.buildWarning(
+        'Warning [test.js:1,1]',
+        'test.js',
+        UglifyJsPlugin.buildSourceMap(rawSourceMap),
+        new RequestShortener('http://example.com/www/js/'),
         () => true
       )
     ).toMatchSnapshot();
     expect(
       UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
+        'Warning [test.js:1,1]',
         'test.js',
         UglifyJsPlugin.buildSourceMap(rawSourceMap),
+        new RequestShortener('http://example.com/www/js/'),
         () => false
-      )
-    ).toMatchSnapshot();
-    expect(
-      UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
-        'test.js',
-        UglifyJsPlugin.buildSourceMap(rawSourceMap),
-        () => true,
-        new RequestShortener('http://example.com/www/js/')
       )
     ).toMatchSnapshot();
   });

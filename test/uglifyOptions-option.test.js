@@ -2,7 +2,7 @@ import UglifyJsPlugin from '../src/index';
 
 import { cleanErrorStack, createCompiler, compile } from './helpers';
 
-describe('when applied with uglifyOptions options', () => {
+describe('when applied with `uglifyOptions` options', () => {
   it('matches snapshot for `ecma` option (value is `5`)', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/ecma-5/entry.js`,
@@ -73,6 +73,7 @@ describe('when applied with uglifyOptions options', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/ecma-7/entry.js`,
     });
+
     new UglifyJsPlugin({
       uglifyOptions: {
         ecma: 7,
@@ -722,6 +723,7 @@ describe('when applied with uglifyOptions options', () => {
 
   it('matches snapshot for `unknown` option', () => {
     const compiler = createCompiler();
+
     new UglifyJsPlugin({
       uglifyOptions: {
         output: {
@@ -729,30 +731,6 @@ describe('when applied with uglifyOptions options', () => {
         },
       },
     }).apply(compiler);
-
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
-
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
-  });
-
-  it('disable inline optimization by default (have a lot of problems)', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/inline-optimization.js`,
-    });
-
-    new UglifyJsPlugin().apply(compiler);
 
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);

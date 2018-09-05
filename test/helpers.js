@@ -1,3 +1,5 @@
+import path from 'path';
+
 import MemoryFileSystem from 'memory-fs'; // eslint-disable-line import/no-extraneous-dependencies
 import webpack from 'webpack';
 
@@ -25,7 +27,6 @@ export class PluginEnvironment {
 export function compile(compiler) {
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      // eslint-disable-line consistent-return
       if (err) {
         return reject(err);
       }
@@ -48,6 +49,7 @@ export function createCompiler(options = {}) {
             minimize: false,
           },
           output: {
+            pathinfo: false,
             path: `${__dirname}/dist`,
             filename: '[name].[chunkhash].js',
             chunkFilename: '[id].[name].[chunkhash].js',
@@ -72,6 +74,17 @@ export function countPlugins({ hooks }) {
 
 export function removeCWD(str) {
   return str.split(`${process.cwd()}/`).join('');
+}
+
+export function normalizeSourceMap(source) {
+  if (source.map && source.map.sources) {
+    // eslint-disable-next-line no-param-reassign
+    source.map.sources = source.map.sources.map((sourceFromMap) =>
+      path.relative(process.cwd(), sourceFromMap).replace(/\\/g, '/')
+    );
+  }
+
+  return source;
 }
 
 export function cleanErrorStack(error) {

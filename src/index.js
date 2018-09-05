@@ -45,11 +45,10 @@ class UglifyJsPlugin {
       exclude,
       minify,
       uglifyOptions: {
-        compress: {
-          inline: 1,
-        },
         output: {
-          comments: extractComments ? false : /^\**!|@preserve|@license|@cc_on/,
+          comments: extractComments
+            ? false
+            : /^\**!|@preserve|@license|@cc_on/i,
         },
         ...uglifyOptions,
       },
@@ -110,45 +109,45 @@ class UglifyJsPlugin {
     warning,
     file,
     sourceMap,
-    warningsFilter,
-    requestShortener
+    requestShortener,
+    warningsFilter
   ) {
-    if (!file || !sourceMap) {
-      return `UglifyJs Plugin: ${warning}`;
-    }
-
     let warningMessage = warning;
+    let locationMessage = '';
+    let source = null;
 
-    const match = warningRegex.exec(warning);
+    if (sourceMap) {
+      const match = warningRegex.exec(warning);
 
-    if (match) {
-      const line = +match[1];
-      const column = +match[2];
-      const original = sourceMap.originalPositionFor({
-        line,
-        column,
-      });
+      if (match) {
+        const line = +match[1];
+        const column = +match[2];
+        const original = sourceMap.originalPositionFor({
+          line,
+          column,
+        });
 
-      if (warningsFilter && !warningsFilter(original.source)) {
-        return null;
-      }
+        if (
+          original &&
+          original.source &&
+          original.source !== file &&
+          requestShortener
+        ) {
+          ({ source } = original);
+          warningMessage = `${warningMessage.replace(warningRegex, '')}`;
 
-      if (
-        original &&
-        original.source &&
-        original.source !== file &&
-        requestShortener
-      ) {
-        warningMessage = `${warningMessage.replace(
-          warningRegex,
-          ''
-        )}[${requestShortener.shorten(original.source)}:${original.line},${
-          original.column
-        }]`;
+          locationMessage = `[${requestShortener.shorten(original.source)}:${
+            original.line
+          },${original.column}]`;
+        }
       }
     }
 
-    return `UglifyJs Plugin: ${warningMessage} in ${file}`;
+    if (warningsFilter && !warningsFilter(warning, source)) {
+      return null;
+    }
+
+    return `UglifyJs Plugin: ${warningMessage}${locationMessage}`;
   }
 
   apply(compiler) {
@@ -163,7 +162,7 @@ class UglifyJsPlugin {
         parallel: this.options.parallel,
       });
 
-      const uglifiedAssets = new WeakSet();
+      const processedAssets = new WeakSet();
       const tasks = [];
 
       chunks
@@ -175,7 +174,7 @@ class UglifyJsPlugin {
 
           const asset = compilation.assets[file];
 
-          if (uglifiedAssets.has(asset)) {
+          if (processedAssets.has(asset)) {
             return;
           }
 
@@ -224,15 +223,14 @@ class UglifyJsPlugin {
             };
 
             if (this.options.cache) {
+              const { outputPath } = compiler;
               const defaultCacheKeys = {
                 // eslint-disable-next-line global-require
                 'uglify-es': require('uglify-es/package.json').version,
                 // eslint-disable-next-line global-require
                 'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,
-                path: compiler.outputPath
-                  ? `${compiler.outputPath}/${file}`
-                  : file,
+                path: `${outputPath ? `${outputPath}/` : ''}${file}`,
                 hash: crypto
                   .createHash('md4')
                   .update(input)
@@ -255,7 +253,7 @@ class UglifyJsPlugin {
           }
         });
 
-      taskRunner.runTasks(tasks, (tasksError, results) => {
+      taskRunner.run(tasks, (tasksError, results) => {
         if (tasksError) {
           compilation.errors.push(tasksError);
 
@@ -345,7 +343,7 @@ class UglifyJsPlugin {
           }
 
           // Updating assets
-          uglifiedAssets.add((compilation.assets[file] = outputSource));
+          processedAssets.add((compilation.assets[file] = outputSource));
 
           // Handling warnings
           if (warnings && warnings.length > 0) {
@@ -354,8 +352,8 @@ class UglifyJsPlugin {
                 warning,
                 file,
                 sourceMap,
-                this.options.warningsFilter,
-                new RequestShortener(compiler.context)
+                new RequestShortener(compiler.context),
+                this.options.warningsFilter
               );
 
               if (builtWarning) {

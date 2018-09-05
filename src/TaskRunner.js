@@ -30,7 +30,7 @@ export default class TaskRunner {
         : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  runTasks(tasks, callback) {
+  run(tasks, callback) {
     /* istanbul ignore if */
     if (!tasks.length) {
       callback(null, []);

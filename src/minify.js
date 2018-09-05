@@ -51,10 +51,10 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = uglifyOptions.output.comments;
 
-  // /^\**!|@preserve|@license|@cc_on/
+  // Use /^\**!|@preserve|@license|@cc_on/i RegExp
   if (typeof options.extractComments === 'boolean') {
     condition.preserve = commentsOpts;
-    condition.extract = /^\**!|@preserve|@license|@cc_on/;
+    condition.extract = /^\**!|@preserve|@license|@cc_on/i;
   } else if (
     typeof options.extractComments === 'string' ||
     options.extractComments instanceof RegExp
@@ -63,7 +63,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
     condition.preserve = commentsOpts;
     condition.extract = options.extractComments;
   } else if (typeof options.extractComments === 'function') {
-    condition.preserve = false;
+    condition.preserve = commentsOpts;
     condition.extract = options.extractComments;
   } else if (
     Object.prototype.hasOwnProperty.call(options.extractComments, 'condition')
@@ -100,7 +100,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
           condition[key] = (astNode, comment) => {
             return (
               comment.type === 'comment2' &&
-              /@preserve|@license|@cc_on/i.test(comment.value)
+              /^\**!|@preserve|@license|@cc_on/i.test(comment.value)
             );
           };
 

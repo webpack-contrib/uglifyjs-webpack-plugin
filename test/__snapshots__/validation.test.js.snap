@@ -12,7 +12,7 @@ exports[`validation 2`] = `
 
 options.cache should be boolean
 options.cache should be string
-options.cache should match exactly one schema in oneOf
+options.cache should match some schema in anyOf
 "
 `;
 
@@ -21,7 +21,7 @@ exports[`validation 3`] = `
 
 options.parallel should be boolean
 options.parallel should be integer
-options.parallel should match exactly one schema in oneOf
+options.parallel should match some schema in anyOf
 "
 `;
 
@@ -30,7 +30,7 @@ exports[`validation 4`] = `
 
 options.parallel should be boolean
 options.parallel should be integer
-options.parallel should match exactly one schema in oneOf
+options.parallel should match some schema in anyOf
 "
 `;
 
@@ -51,41 +51,6 @@ options.uglifyOptions should be object
 exports[`validation 7`] = `
 "UglifyJs Plugin Invalid Options
 
-options.uglifyOptions.ie8 should be boolean
-"
-`;
-
-exports[`validation 8`] = `
-"UglifyJs Plugin Invalid Options
-
-options.uglifyOptions.ecma should be integer
-"
-`;
-
-exports[`validation 9`] = `
-"UglifyJs Plugin Invalid Options
-
-options.uglifyOptions.ecma should be integer
-"
-`;
-
-exports[`validation 10`] = `
-"UglifyJs Plugin Invalid Options
-
-options.uglifyOptions.ecma should be integer
-"
-`;
-
-exports[`validation 11`] = `
-"UglifyJs Plugin Invalid Options
-
-options.uglifyOptions.ecma should be >= 5
-"
-`;
-
-exports[`validation 12`] = `
-"UglifyJs Plugin Invalid Options
-
-options.uglifyOptions.ecma should be <= 8
+options.warningsFilter should pass \\"instanceof\\" keyword validation
 "
 `;
