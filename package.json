@@ -47,7 +47,7 @@
     "schema-utils": "^1.0.0",
     "serialize-javascript": "^1.4.0",
     "source-map": "^0.6.1",
-    "uglify-es": "^3.3.4",
+    "uglify-js": "^3.4.9",
     "webpack-sources": "^1.1.0",
     "worker-farm": "^1.5.2"
   },
@@ -76,7 +76,6 @@
     "prettier": "^1.14.2",
     "standard-version": "^4.3.0",
     "terser": "^3.7.6",
-    "uglify-js": "^3.4.3",
     "webpack": "^4.17.2",
     "webpack-defaults": "^2.3.0"
   },

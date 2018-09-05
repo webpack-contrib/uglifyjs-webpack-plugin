@@ -1,15 +1,15 @@
-import foo, { bar } from './dep';
+var foo = require('./dep');
 
 function Foo() {
-  const b = foo;
-  const baz = `baz${Math.random()}`;
-  return () => {
+  var b = foo;
+  var baz = 'baz' + Math.random();
+  return function () {
     return {
-      a: b + bar + baz,
-      b,
-      baz,
+      a: b + foo.bar + baz,
+      b: b,
+      baz: baz,
     };
   };
 }
 
-export default Foo;
+module.exports = Foo;

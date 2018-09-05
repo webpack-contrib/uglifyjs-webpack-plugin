@@ -1,4 +1,4 @@
-import('./nested/comments.js');
+require('./nested/comments.js');
 
 /*! Legal Comment */
 

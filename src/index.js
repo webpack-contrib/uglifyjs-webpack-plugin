@@ -226,7 +226,7 @@ class UglifyJsPlugin {
               const { outputPath } = compiler;
               const defaultCacheKeys = {
                 // eslint-disable-next-line global-require
-                'uglify-es': require('uglify-es/package.json').version,
+                'uglify-js': require('uglify-js/package.json').version,
                 // eslint-disable-next-line global-require
                 'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,

@@ -1,2 +1,2 @@
-export const bar = 'bar';
-export default 'foo';
+module.exports = 'foo';
+module.exports.bar = 'bar';

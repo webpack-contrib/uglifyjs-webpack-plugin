@@ -1,10 +1,9 @@
 /* eslint-disable
   arrow-body-style
 */
-import uglify from 'uglify-es';
+import uglify from 'uglify-js';
 
 const buildUglifyOptions = ({
-  ecma,
   warnings,
   parse = {},
   compress = {},
@@ -14,12 +13,9 @@ const buildUglifyOptions = ({
   nameCache,
   ie8,
   /* eslint-disable camelcase */
-  keep_classnames,
   keep_fnames,
   /* eslint-enable camelcase */
-  safari10,
 } = {}) => ({
-  ecma,
   warnings,
   parse: { ...parse },
   compress: typeof compress === 'boolean' ? compress : { ...compress },
@@ -42,9 +38,7 @@ const buildUglifyOptions = ({
   toplevel,
   nameCache,
   ie8,
-  keep_classnames,
   keep_fnames,
-  safari10,
 });
 
 const buildComments = (options, uglifyOptions, extractedComments) => {

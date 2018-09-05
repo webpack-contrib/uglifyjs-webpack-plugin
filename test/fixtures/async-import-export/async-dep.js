@@ -1,1 +1,1 @@
-export default "async-dep";
+module.exports = "async-dep";
