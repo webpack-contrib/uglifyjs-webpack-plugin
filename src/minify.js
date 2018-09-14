@@ -1,10 +1,9 @@
 /* eslint-disable
   arrow-body-style
 */
-import uglify from 'uglify-es';
+import uglify from 'uglify-js';
 
 const buildUglifyOptions = ({
-  ecma,
   warnings,
   parse = {},
   compress = {},
@@ -14,17 +13,19 @@ const buildUglifyOptions = ({
   nameCache,
   ie8,
   /* eslint-disable camelcase */
-  keep_classnames,
   keep_fnames,
   /* eslint-enable camelcase */
-  safari10,
 } = {}) => ({
-  ecma,
   warnings,
   parse: { ...parse },
   compress: typeof compress === 'boolean' ? compress : { ...compress },
   // eslint-disable-next-line no-nested-ternary
-  mangle: mangle == null ? true : typeof mangle === 'boolean' ? mangle : { ...mangle },
+  mangle:
+    mangle == null
+      ? true
+      : typeof mangle === 'boolean'
+        ? mangle
+        : { ...mangle },
   output: {
     shebang: true,
     comments: false,
@@ -37,19 +38,17 @@ const buildUglifyOptions = ({
   toplevel,
   nameCache,
   ie8,
-  keep_classnames,
   keep_fnames,
-  safari10,
 });
 
 const buildComments = (options, uglifyOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = uglifyOptions.output.comments;
 
-  // /^\**!|@preserve|@license|@cc_on/
+  // Use /^\**!|@preserve|@license|@cc_on/i RegExp
   if (typeof options.extractComments === 'boolean') {
     condition.preserve = commentsOpts;
-    condition.extract = /^\**!|@preserve|@license|@cc_on/;
+    condition.extract = /^\**!|@preserve|@license|@cc_on/i;
   } else if (
     typeof options.extractComments === 'string' ||
     options.extractComments instanceof RegExp
@@ -58,7 +57,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
     condition.preserve = commentsOpts;
     condition.extract = options.extractComments;
   } else if (typeof options.extractComments === 'function') {
-    condition.preserve = false;
+    condition.preserve = commentsOpts;
     condition.extract = options.extractComments;
   } else if (
     Object.prototype.hasOwnProperty.call(options.extractComments, 'condition')
@@ -77,7 +76,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
     let regexStr;
     let regex;
 
-    switch (typeof (condition[key])) {
+    switch (typeof condition[key]) {
       case 'boolean':
         condition[key] = condition[key] ? () => true : () => false;
 
@@ -93,7 +92,10 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
 
         if (condition[key] === 'some') {
           condition[key] = (astNode, comment) => {
-            return comment.type === 'comment2' && /@preserve|@license|@cc_on/i.test(comment.value);
+            return (
+              comment.type === 'comment2' &&
+              /^\**!|@preserve|@license|@cc_on/i.test(comment.value)
+            );
           };
 
           break;
@@ -109,7 +111,7 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
       default:
         regex = condition[key];
 
-        condition[key] = (astNode, comment) => (regex.test(comment.value));
+        condition[key] = (astNode, comment) => regex.test(comment.value);
     }
   });
 
@@ -118,7 +120,9 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
   return (astNode, comment) => {
     if (condition.extract(astNode, comment)) {
       extractedComments.push(
-        comment.type === 'comment2' ? `/*${comment.value}*/` : `//${comment.value}`,
+        comment.type === 'comment2'
+          ? `/*${comment.value}*/`
+          : `//${comment.value}`
       );
     }
 
@@ -127,7 +131,13 @@ const buildComments = (options, uglifyOptions, extractedComments) => {
 };
 
 const minify = (options) => {
-  const { file, input, inputSourceMap, extractComments, minify: minifyFn } = options;
+  const {
+    file,
+    input,
+    inputSourceMap,
+    extractComments,
+    minify: minifyFn,
+  } = options;
 
   if (minifyFn) {
     return minifyFn({ [file]: input }, inputSourceMap);
@@ -149,13 +159,13 @@ const minify = (options) => {
     uglifyOptions.output.comments = buildComments(
       options,
       uglifyOptions,
-      extractedComments,
+      extractedComments
     );
   }
 
   const { error, map, code, warnings } = uglify.minify(
     { [file]: input },
-    uglifyOptions,
+    uglifyOptions
   );
 
   return { error, map, code, warnings, extractedComments };

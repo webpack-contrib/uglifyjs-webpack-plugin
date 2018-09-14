@@ -1,1 +1,3 @@
-module.exports = require('./index').default;
+const plugin = require('./index');
+
+module.exports = plugin.default;

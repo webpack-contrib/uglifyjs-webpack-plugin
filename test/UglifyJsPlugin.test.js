@@ -1,5 +1,7 @@
 import RequestShortener from 'webpack/lib/RequestShortener';
+
 import UglifyJsPlugin from '../src/index';
+
 import { cleanErrorStack, compile, createCompiler } from './helpers';
 
 describe('UglifyJsPlugin', () => {
@@ -9,7 +11,8 @@ describe('UglifyJsPlugin', () => {
     names: ['bar', 'baz', 'n'],
     sources: ['one.js', 'two.js'],
     sourceRoot: 'http://example.com/www/js/',
-    mappings: 'CAAC,IAAI,IAAM,SAAUA,GAClB,OAAOC,IAAID;CCDb,IAAI,IAAM,SAAUE,GAClB,OAAOA',
+    mappings:
+      'CAAC,IAAI,IAAM,SAAUA,GAClB,OAAOC,IAAID;CCDb,IAAI,IAAM,SAAUE,GAClB,OAAOA',
   };
   const emptyRawSourceMap = {
     version: 3,
@@ -30,7 +33,9 @@ describe('UglifyJsPlugin', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -47,9 +52,15 @@ describe('UglifyJsPlugin', () => {
     expect(UglifyJsPlugin.isSourceMap({ sources: '' })).toBe(false);
     expect(UglifyJsPlugin.isSourceMap({ mappings: [] })).toBe(false);
     expect(UglifyJsPlugin.isSourceMap({ version: 3, sources: '' })).toBe(false);
-    expect(UglifyJsPlugin.isSourceMap({ version: 3, mappings: [] })).toBe(false);
-    expect(UglifyJsPlugin.isSourceMap({ sources: '', mappings: [] })).toBe(false);
-    expect(UglifyJsPlugin.isSourceMap({ version: 3, sources: '', mappings: [] })).toBe(false);
+    expect(UglifyJsPlugin.isSourceMap({ version: 3, mappings: [] })).toBe(
+      false
+    );
+    expect(UglifyJsPlugin.isSourceMap({ sources: '', mappings: [] })).toBe(
+      false
+    );
+    expect(
+      UglifyJsPlugin.isSourceMap({ version: 3, sources: '', mappings: [] })
+    ).toBe(false);
     expect(UglifyJsPlugin.isSourceMap(rawSourceMap)).toBe(true);
     expect(UglifyJsPlugin.isSourceMap(emptyRawSourceMap)).toBe(true);
   });
@@ -78,8 +89,8 @@ describe('UglifyJsPlugin', () => {
       UglifyJsPlugin.buildError(
         errorWithLineAndCol,
         'test.js',
-        UglifyJsPlugin.buildSourceMap(rawSourceMap),
-      ),
+        UglifyJsPlugin.buildSourceMap(rawSourceMap)
+      )
     ).toMatchSnapshot();
 
     const otherErrorWithLineAndCol = new Error('Message');
@@ -93,57 +104,58 @@ describe('UglifyJsPlugin', () => {
         otherErrorWithLineAndCol,
         'test.js',
         UglifyJsPlugin.buildSourceMap(rawSourceMap),
-        new RequestShortener('http://example.com/www/js/'),
-      ),
+        new RequestShortener('http://example.com/www/js/')
+      )
     ).toMatchSnapshot();
 
     const errorWithStack = new Error('Message');
 
     errorWithStack.stack = 'Stack';
 
-    expect(UglifyJsPlugin.buildError(errorWithStack, 'test.js')).toMatchSnapshot();
+    expect(
+      UglifyJsPlugin.buildError(errorWithStack, 'test.js')
+    ).toMatchSnapshot();
   });
 
   it('buildWarning method', () => {
-    expect(UglifyJsPlugin.buildWarning('Warning[foo:1,1]')).toMatchSnapshot();
-    expect(UglifyJsPlugin.buildWarning('Warning[foo:1,1]', 'test.js')).toMatchSnapshot();
     expect(
-      UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
-        'test.js',
-        UglifyJsPlugin.buildSourceMap(rawSourceMap),
-      ),
+      UglifyJsPlugin.buildWarning('Warning [test.js:1,1]')
+    ).toMatchSnapshot();
+    expect(
+      UglifyJsPlugin.buildWarning('Warning [test.js:1,1]', 'test.js')
     ).toMatchSnapshot();
     expect(
       UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]', 'test.js',
-        UglifyJsPlugin.buildSourceMap(rawSourceMap),
-      ),
+        'Warning [test.js:1,1]',
+        'test.js',
+        UglifyJsPlugin.buildSourceMap(rawSourceMap)
+      )
     ).toMatchSnapshot();
     expect(
       UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
+        'Warning [test.js:1,1]',
         'test.js',
         UglifyJsPlugin.buildSourceMap(rawSourceMap),
-        () => true,
-      ),
+        new RequestShortener('http://example.com/www/js/')
+      )
     ).toMatchSnapshot();
     expect(
       UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
+        'Warning [test.js:1,1]',
         'test.js',
         UglifyJsPlugin.buildSourceMap(rawSourceMap),
-        () => false,
-      ),
-    ).toMatchSnapshot();
-    expect(
-      UglifyJsPlugin.buildWarning(
-        'Warning[foo:1,1]',
-        'test.js',
-        UglifyJsPlugin.buildSourceMap(rawSourceMap),
-        () => true,
         new RequestShortener('http://example.com/www/js/'),
-      ),
+        () => true
+      )
+    ).toMatchSnapshot();
+    expect(
+      UglifyJsPlugin.buildWarning(
+        'Warning [test.js:1,1]',
+        'test.js',
+        UglifyJsPlugin.buildSourceMap(rawSourceMap),
+        new RequestShortener('http://example.com/www/js/'),
+        () => false
+      )
     ).toMatchSnapshot();
   });
 });

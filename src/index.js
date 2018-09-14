@@ -3,13 +3,15 @@
 */
 import crypto from 'crypto';
 import path from 'path';
+
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
+
 import schema from './options.json';
-import Runner from './uglify/Runner';
+import TaskRunner from './TaskRunner';
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
@@ -25,7 +27,7 @@ class UglifyJsPlugin {
       extractComments = false,
       sourceMap = false,
       cache = false,
-      cacheKeys = defaultCacheKeys => defaultCacheKeys,
+      cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = false,
       include,
       exclude,
@@ -43,11 +45,10 @@ class UglifyJsPlugin {
       exclude,
       minify,
       uglifyOptions: {
-        compress: {
-          inline: 1,
-        },
         output: {
-          comments: extractComments ? false : /^\**!|@preserve|@license|@cc_on/,
+          comments: extractComments
+            ? false
+            : /^\**!|@preserve|@license|@cc_on/i,
         },
         ...uglifyOptions,
       },
@@ -57,11 +58,13 @@ class UglifyJsPlugin {
   static isSourceMap(input) {
     // All required options for `new SourceMapConsumer(...options)`
     // https://github.com/mozilla/source-map#new-sourcemapconsumerrawsourcemap
-    return Boolean(input &&
-      input.version &&
-      input.sources &&
-      Array.isArray(input.sources) &&
-      typeof input.mappings === 'string');
+    return Boolean(
+      input &&
+        input.version &&
+        input.sources &&
+        Array.isArray(input.sources) &&
+        typeof input.mappings === 'string'
+    );
   }
 
   static buildSourceMap(inputSourceMap) {
@@ -75,16 +78,26 @@ class UglifyJsPlugin {
   static buildError(err, file, sourceMap, requestShortener) {
     // Handling error which should have line, col, filename and message
     if (err.line) {
-      const original = sourceMap && sourceMap.originalPositionFor({
-        line: err.line,
-        column: err.col,
-      });
+      const original =
+        sourceMap &&
+        sourceMap.originalPositionFor({
+          line: err.line,
+          column: err.col,
+        });
 
       if (original && original.source && requestShortener) {
-        return new Error(`${file} from UglifyJs\n${err.message} [${requestShortener.shorten(original.source)}:${original.line},${original.column}][${file}:${err.line},${err.col}]`);
+        return new Error(
+          `${file} from UglifyJs\n${err.message} [${requestShortener.shorten(
+            original.source
+          )}:${original.line},${original.column}][${file}:${err.line},${
+            err.col
+          }]`
+        );
       }
 
-      return new Error(`${file} from UglifyJs\n${err.message} [${file}:${err.line},${err.col}]`);
+      return new Error(
+        `${file} from UglifyJs\n${err.message} [${file}:${err.line},${err.col}]`
+      );
     } else if (err.stack) {
       return new Error(`${file} from UglifyJs\n${err.stack}`);
     }
@@ -92,33 +105,49 @@ class UglifyJsPlugin {
     return new Error(`${file} from UglifyJs\n${err.message}`);
   }
 
-  static buildWarning(warning, file, sourceMap, warningsFilter, requestShortener) {
-    if (!file || !sourceMap) {
-      return `UglifyJs Plugin: ${warning}`;
-    }
-
+  static buildWarning(
+    warning,
+    file,
+    sourceMap,
+    requestShortener,
+    warningsFilter
+  ) {
     let warningMessage = warning;
+    let locationMessage = '';
+    let source = null;
 
-    const match = warningRegex.exec(warning);
+    if (sourceMap) {
+      const match = warningRegex.exec(warning);
 
-    if (match) {
-      const line = +match[1];
-      const column = +match[2];
-      const original = sourceMap.originalPositionFor({
-        line,
-        column,
-      });
+      if (match) {
+        const line = +match[1];
+        const column = +match[2];
+        const original = sourceMap.originalPositionFor({
+          line,
+          column,
+        });
 
-      if (warningsFilter && !warningsFilter(original.source)) {
-        return null;
-      }
+        if (
+          original &&
+          original.source &&
+          original.source !== file &&
+          requestShortener
+        ) {
+          ({ source } = original);
+          warningMessage = `${warningMessage.replace(warningRegex, '')}`;
 
-      if (original && original.source && original.source !== file && requestShortener) {
-        warningMessage = `${warningMessage.replace(warningRegex, '')}[${requestShortener.shorten(original.source)}:${original.line},${original.column}]`;
+          locationMessage = `[${requestShortener.shorten(original.source)}:${
+            original.line
+          },${original.column}]`;
+        }
       }
     }
 
-    return `UglifyJs Plugin: ${warningMessage} in ${file}`;
+    if (warningsFilter && !warningsFilter(warning, source)) {
+      return null;
+    }
+
+    return `UglifyJs Plugin: ${warningMessage}${locationMessage}`;
   }
 
   apply(compiler) {
@@ -128,15 +157,16 @@ class UglifyJsPlugin {
     };
 
     const optimizeFn = (compilation, chunks, callback) => {
-      const runner = new Runner({
+      const taskRunner = new TaskRunner({
         cache: this.options.cache,
         parallel: this.options.parallel,
       });
 
-      const uglifiedAssets = new WeakSet();
+      const processedAssets = new WeakSet();
       const tasks = [];
 
-      chunks.reduce((acc, chunk) => acc.concat(chunk.files || []), [])
+      chunks
+        .reduce((acc, chunk) => acc.concat(chunk.files || []), [])
         .concat(compilation.additionalChunkAssets || [])
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
         .forEach((file) => {
@@ -144,7 +174,7 @@ class UglifyJsPlugin {
 
           const asset = compilation.assets[file];
 
-          if (uglifiedAssets.has(asset)) {
+          if (processedAssets.has(asset)) {
             return;
           }
 
@@ -162,7 +192,7 @@ class UglifyJsPlugin {
                 inputSourceMap = map;
 
                 compilation.warnings.push(
-                  new Error(`${file} contains invalid source map`),
+                  new Error(`${file} contains invalid source map`)
                 );
               }
             } else {
@@ -174,7 +204,8 @@ class UglifyJsPlugin {
             let commentsFile = false;
 
             if (this.options.extractComments) {
-              commentsFile = this.options.extractComments.filename || `${file}.LICENSE`;
+              commentsFile =
+                this.options.extractComments.filename || `${file}.LICENSE`;
 
               if (typeof commentsFile === 'function') {
                 commentsFile = commentsFile(file);
@@ -192,14 +223,18 @@ class UglifyJsPlugin {
             };
 
             if (this.options.cache) {
+              const { outputPath } = compiler;
               const defaultCacheKeys = {
                 // eslint-disable-next-line global-require
-                'uglify-es': require('uglify-es/package.json').version,
+                'uglify-js': require('uglify-js/package.json').version,
                 // eslint-disable-next-line global-require
                 'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,
-                path: compiler.outputPath ? `${compiler.outputPath}/${file}` : file,
-                hash: crypto.createHash('md4').update(input).digest('hex'),
+                path: `${outputPath ? `${outputPath}/` : ''}${file}`,
+                hash: crypto
+                  .createHash('md4')
+                  .update(input)
+                  .digest('hex'),
               };
 
               task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
@@ -212,13 +247,13 @@ class UglifyJsPlugin {
                 error,
                 file,
                 UglifyJsPlugin.buildSourceMap(inputSourceMap),
-                new RequestShortener(compiler.context),
-              ),
+                new RequestShortener(compiler.context)
+              )
             );
           }
         });
 
-      runner.runTasks(tasks, (tasksError, results) => {
+      taskRunner.run(tasks, (tasksError, results) => {
         if (tasksError) {
           compilation.errors.push(tasksError);
 
@@ -243,8 +278,8 @@ class UglifyJsPlugin {
                 error,
                 file,
                 sourceMap,
-                new RequestShortener(compiler.context),
-              ),
+                new RequestShortener(compiler.context)
+              )
             );
 
             return;
@@ -256,7 +291,9 @@ class UglifyJsPlugin {
             outputSource = new SourceMapSource(
               code,
               file,
-              JSON.parse(map), input, inputSourceMap,
+              JSON.parse(map),
+              input,
+              inputSourceMap
             );
           } else {
             outputSource = new RawSource(code);
@@ -266,8 +303,11 @@ class UglifyJsPlugin {
           if (commentsFile && extractedComments.length > 0) {
             // Add a banner to the original file
             if (this.options.extractComments.banner !== false) {
-              let banner = this.options.extractComments.banner
-                || `For license information please see ${path.posix.basename(commentsFile)}`;
+              let banner =
+                this.options.extractComments.banner ||
+                `For license information please see ${path.posix.basename(
+                  commentsFile
+                )}`;
 
               if (typeof banner === 'function') {
                 banner = banner(commentsFile);
@@ -276,12 +316,14 @@ class UglifyJsPlugin {
               if (banner) {
                 outputSource = new ConcatSource(
                   `/*! ${banner} */\n`,
-                  outputSource,
+                  outputSource
                 );
               }
             }
 
-            const commentsSource = new RawSource(`${extractedComments.join('\n\n')}\n`);
+            const commentsSource = new RawSource(
+              `${extractedComments.join('\n\n')}\n`
+            );
 
             if (commentsFile in compilation.assets) {
               // commentsFile already exists, append new comments...
@@ -292,7 +334,7 @@ class UglifyJsPlugin {
                 compilation.assets[commentsFile] = new ConcatSource(
                   compilation.assets[commentsFile],
                   '\n',
-                  commentsSource,
+                  commentsSource
                 );
               }
             } else {
@@ -301,7 +343,7 @@ class UglifyJsPlugin {
           }
 
           // Updating assets
-          uglifiedAssets.add(compilation.assets[file] = outputSource);
+          processedAssets.add((compilation.assets[file] = outputSource));
 
           // Handling warnings
           if (warnings && warnings.length > 0) {
@@ -310,8 +352,8 @@ class UglifyJsPlugin {
                 warning,
                 file,
                 sourceMap,
-                this.options.warningsFilter,
                 new RequestShortener(compiler.context),
+                this.options.warningsFilter
               );
 
               if (builtWarning) {
@@ -321,32 +363,24 @@ class UglifyJsPlugin {
           }
         });
 
-        runner.exit();
+        taskRunner.exit();
 
         callback();
       });
     };
 
-    /* istanbul ignore if */
-    if (compiler.hooks) {
-      const plugin = { name: 'UglifyJSPlugin' };
+    const plugin = { name: this.constructor.name };
 
-      compiler.hooks.compilation.tap(plugin, (compilation) => {
-        if (this.options.sourceMap) {
-          compilation.hooks.buildModule.tap(plugin, buildModuleFn);
-        }
+    compiler.hooks.compilation.tap(plugin, (compilation) => {
+      if (this.options.sourceMap) {
+        compilation.hooks.buildModule.tap(plugin, buildModuleFn);
+      }
 
-        compilation.hooks.optimizeChunkAssets.tapAsync(plugin, optimizeFn.bind(this, compilation));
-      });
-    } else {
-      compiler.plugin('compilation', (compilation) => {
-        if (this.options.sourceMap) {
-          compilation.plugin('build-module', buildModuleFn);
-        }
-
-        compilation.plugin('optimize-chunk-assets', optimizeFn.bind(this, compilation));
-      });
-    }
+      compilation.hooks.optimizeChunkAssets.tapAsync(
+        plugin,
+        optimizeFn.bind(this, compilation)
+      );
+    });
   }
 }
 

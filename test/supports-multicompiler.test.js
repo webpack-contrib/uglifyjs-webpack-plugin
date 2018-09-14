@@ -1,6 +1,8 @@
 import MultiCompiler from 'webpack/lib/MultiCompiler';
 import MultiStats from 'webpack/lib/MultiStats';
+
 import UglifyJsPlugin from '../src/index';
+
 import {
   cleanErrorStack,
   createCompiler,
@@ -12,6 +14,7 @@ describe('when using MultiCompiler', () => {
   it('matches snapshot with empty options', () => {
     const multiCompiler = createCompiler([
       {
+        mode: 'production',
         bail: true,
         cache: false,
         entry: `${__dirname}/fixtures/entry.js`,
@@ -20,8 +23,12 @@ describe('when using MultiCompiler', () => {
           filename: '[name].[chunkhash].js',
           chunkFilename: '[id].[name].[chunkhash].js',
         },
+        optimization: {
+          minimize: false,
+        },
       },
       {
+        mode: 'production',
         bail: true,
         cache: false,
         entry: `${__dirname}/fixtures/entry.js`,
@@ -29,10 +36,14 @@ describe('when using MultiCompiler', () => {
           path: `${__dirname}/dist`,
           filename: '[name].[chunkhash].js',
           chunkFilename: '[id].[name].[chunkhash].js',
+        },
+        optimization: {
+          minimize: false,
         },
         plugins: [new UglifyJsPlugin()],
       },
       {
+        mode: 'production',
         bail: true,
         cache: false,
         entry: `${__dirname}/fixtures/import-export/entry.js`,
@@ -40,6 +51,9 @@ describe('when using MultiCompiler', () => {
           path: `${__dirname}/dist-MultiCompiler`,
           filename: '[name].[chunkhash].js',
           chunkFilename: '[id].[name].[chunkhash].js',
+        },
+        optimization: {
+          minimize: false,
         },
         plugins: [new UglifyJsPlugin()],
       },
@@ -74,8 +88,12 @@ describe('when using MultiCompiler', () => {
         expect(warnings).toMatchSnapshot('warnings');
 
         for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+          if (
+            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+          ) {
+            expect(stats.compilation.assets[file].source()).toMatchSnapshot(
+              file
+            );
           }
         }
       });

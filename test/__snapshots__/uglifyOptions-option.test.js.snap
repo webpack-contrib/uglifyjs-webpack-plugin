@@ -1,507 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when applied with uglifyOptions options disable inline optimization by default (have a lot of problems): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (boolean \`false\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options disable inline optimization by default (have a lot of problems): main.9150fdfbc7675d270df7.js 1`] = `"webpackJsonp([0],[function(o,c,n){\\"use strict\\";console.log(42)}],[0]);"`;
-
-exports[`when applied with uglifyOptions options disable inline optimization by default (have a lot of problems): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options disable inline optimization by default (have a lot of problems): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`false\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`false\` value): main.0c220ec66316af2c1b24.js 1`] = `
-"webpackJsonp([0],[function(o,n){
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (boolean \`false\` value): main.2c64d283d851e74b63a7.js 1`] = `
+"(function(r){var n={};function o(e){if(n[e]){return n[e].exports}var t=n[e]={i:e,l:false,exports:{}};r[e].call(t.exports,t,t.exports,o);t.l=true;return t.exports}o.m=r;o.c=n;o.d=function(e,t,r){if(!o.o(e,t)){Object.defineProperty(e,t,{enumerable:true,get:r})}};o.r=function(e){if(typeof Symbol!==\\"undefined\\"&&Symbol.toStringTag){Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"})}Object.defineProperty(e,\\"__esModule\\",{value:true})};o.t=function(t,e){if(e&1)t=o(t);if(e&8)return t;if(e&4&&typeof t===\\"object\\"&&t&&t.__esModule)return t;var r=Object.create(null);o.r(r);Object.defineProperty(r,\\"default\\",{enumerable:true,value:t});if(e&2&&typeof t!=\\"string\\")for(var n in t)o.d(r,n,function(e){return t[e]}.bind(null,n));return r};o.n=function(t){var e=t&&t.__esModule?function e(){return t[\\"default\\"]}:function e(){return t};o.d(e,\\"a\\",e);return e};o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)};o.p=\\"\\";return o(o.s=0)})([function(e,t){
 /* @preserve*/
-const c=2+2;o.exports=function o(){const n=2+2;console.log(n+1+2)}}],[0]);"
+var r=2+2;e.exports=function e(){var t=2+2;console.log(t+1+2)}}]);"
 `;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"(function(r){var e=window[\\"webpackJsonp\\"];window[\\"webpackJsonp\\"]=function n(f,i,u){var c,a,l=0,p=[],s;for(;l<f.length;l++){a=f[l];if(t[a]){p.push(t[a][0])}t[a]=0}for(c in i){if(Object.prototype.hasOwnProperty.call(i,c)){r[c]=i[c]}}if(e)e(f,i,u);while(p.length){p.shift()()}if(u){for(l=0;l<u.length;l++){s=o(o.s=u[l])}}return s};var n={};var t={1:0};function o(e){if(n[e]){return n[e].exports}var t=n[e]={i:e,l:false,exports:{}};r[e].call(t.exports,t,t.exports,o);t.l=true;return t.exports}o.m=r;o.c=n;o.d=function(r,e,n){if(!o.o(r,e)){Object.defineProperty(r,e,{configurable:false,enumerable:true,get:n})}};o.n=function(r){var e=r&&r.__esModule?function e(){return r[\\"default\\"]}:function e(){return r};o.d(e,\\"a\\",e);return e};o.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)};o.p=\\"\\";o.oe=function(r){console.error(r);throw r}})([]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (boolean \`false\` value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (boolean \`true\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`true\` value): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (boolean \`true\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`true\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (boolean \`true\` value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (object value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (object value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (object value): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`compress\` option (object value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (object value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`ie8\` option (boolean \`false\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (object value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){var f,i,p,a=0,l=[];for(;a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={};var o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`ie8\` option (boolean \`false\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`compress\` option (object value): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`ie8\` option (boolean \`false\` value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`5\`): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`ie8\` option (boolean \`true\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`5\`): main.02715f41215b20b60a75.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, exports) {
-    var Person = {
-        firstName: null,
-        lastName: null
-    }, Employee = Object.create(Person, {
-        id: {
-            value: null,
-            enumerable: !0,
-            configurable: !0,
-            writable: !0
-        }
-    }), Manager = Object.create(Employee, {
-        department: {
-            value: null,
-            enumerable: !0,
-            configurable: !0,
-            writable: !0
-        }
-    });
-    module.exports = {
-        Person: Person,
-        Employee: Employee,
-        Manager: Manager
-    };
-} ], [ 0 ]);"
-`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`ie8\` option (boolean \`true\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e[\\"default\\"]}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`5\`): manifest.d6857f782c13a99b5917.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`ie8\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(r){var t={};function __webpack_require__(e){if(t[e])return t[e].exports;var _=t[e]={i:e,l:!1,exports:{}};return r[e].call(_.exports,_,_.exports,__webpack_require__),_.l=!0,_.exports}__webpack_require__.m=r,__webpack_require__.c=t,__webpack_require__.d=function(e,_,r){__webpack_require__.o(e,_)||Object.defineProperty(e,_,{enumerable:!0,get:r})},__webpack_require__.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},__webpack_require__.t=function(_,e){if(1&e&&(_=__webpack_require__(_)),8&e)return _;if(4&e&&\\"object\\"==typeof _&&_&&_.__esModule)return _;var r=Object.create(null);if(__webpack_require__.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:_}),2&e&&\\"string\\"!=typeof _)for(var t in _)__webpack_require__.d(r,t,function(e){return _[e]}.bind(null,t));return r},__webpack_require__.n=function(e){var _=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(_,\\"a\\",_),_},__webpack_require__.o=function(e,_){return Object.prototype.hasOwnProperty.call(e,_)},__webpack_require__.p=\\"\\",__webpack_require__(__webpack_require__.s=0)}([function(e,_){e.exports=function Foo(){console.log(7)}}]);"`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (boolean \`false\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(modules){var installedModules={};function __webpack_require__(moduleId){if(installedModules[moduleId])return installedModules[moduleId].exports;var module=installedModules[moduleId]={i:moduleId,l:!1,exports:{}};return modules[moduleId].call(module.exports,module,module.exports,__webpack_require__),module.l=!0,module.exports}__webpack_require__.m=modules,__webpack_require__.c=installedModules,__webpack_require__.d=function(exports,name,getter){__webpack_require__.o(exports,name)||Object.defineProperty(exports,name,{enumerable:!0,get:getter})},__webpack_require__.r=function(exports){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(exports,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(exports,\\"__esModule\\",{value:!0})},__webpack_require__.t=function(value,mode){if(1&mode&&(value=__webpack_require__(value)),8&mode)return value;if(4&mode&&\\"object\\"==typeof value&&value&&value.__esModule)return value;var ns=Object.create(null);if(__webpack_require__.r(ns),Object.defineProperty(ns,\\"default\\",{enumerable:!0,value:value}),2&mode&&\\"string\\"!=typeof value)for(var key in value)__webpack_require__.d(ns,key,function(key){return value[key]}.bind(null,key));return ns},__webpack_require__.n=function(module){var getter=module&&module.__esModule?function(){return module.default}:function(){return module};return __webpack_require__.d(getter,\\"a\\",getter),getter},__webpack_require__.o=function(object,property){return Object.prototype.hasOwnProperty.call(object,property)},__webpack_require__.p=\\"\\",__webpack_require__(__webpack_require__.s=0)}([function(module,exports){module.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (boolean \`true\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (object value): errors 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (object value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`mangle\` option (object value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`nameCache\` option (empty object value): errors 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`nameCache\` option (empty object value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`nameCache\` option (empty object value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): errors 1`] = `Array []`;
+
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): main.2c64d283d851e74b63a7.js 1`] = `
+"!function(n) {
+    var r = {};
+    function o(e) {
+        if (r[e]) return r[e].exports;
+        var t = r[e] = {
+            i: e,
             l: !1,
             exports: {}
         };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
+        return n[e].call(t.exports, t, t.exports, o), t.l = !0, t.exports;
     }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
+    o.m = n, o.c = r, o.d = function(e, t, n) {
+        o.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
-            get: getter
+            get: n
         });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
-        } : function() {
-            return module;
-        };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`5\`): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`6\`): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`6\`): main.875ac7586113af087b13.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, exports) {
-    module.exports = class {
-        constructor(principal, years, rate) {
-            this.principal = principal, this.years = years, this.rate = rate;
-        }
-        get monthlyPayment() {
-            let monthlyRate = this.rate / 100 / 12;
-            return this.principal * monthlyRate / (1 - Math.pow(1 / (1 + monthlyRate), 12 * this.years));
-        }
-        get amortization() {
-            let monthlyPayment = this.monthlyPayment, monthlyRate = this.rate / 100 / 12, balance = this.principal, amortization = [];
-            for (let y = 0; y < this.years; y++) {
-                let interestY = 0, principalY = 0;
-                for (let m = 0; m < 12; m++) {
-                    let interestM = balance * monthlyRate, principalM = monthlyPayment - interestM;
-                    interestY += interestM, principalY += principalM, balance -= principalM;
-                }
-                amortization.push({
-                    principalY,
-                    interestY,
-                    balance
-                });
-            }
-            return amortization;
-        }
-    };
-} ], [ 0 ]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`6\`): manifest.d6857f782c13a99b5917.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
+    }, o.r = function(e) {
+        \\"undefined\\" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+            value: \\"Module\\"
+        }), Object.defineProperty(e, \\"__esModule\\", {
+            value: !0
+        });
+    }, o.t = function(t, e) {
+        if (1 & e && (t = o(t)), 8 & e) return t;
+        if (4 & e && \\"object\\" == typeof t && t && t.__esModule) return t;
+        var n = Object.create(null);
+        if (o.r(n), Object.defineProperty(n, \\"default\\", {
             enumerable: !0,
-            get: getter
-        });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
+            value: t
+        }), 2 & e && \\"string\\" != typeof t) for (var r in t) o.d(n, r, function(e) {
+            return t[e];
+        }.bind(null, r));
+        return n;
+    }, o.n = function(e) {
+        var t = e && e.__esModule ? function() {
+            return e.default;
         } : function() {
-            return module;
+            return e;
         };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`6\`): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`7\`): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`7\`): main.f690b673413c9fda80d6.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, exports) {
-    module.exports = function(base, exponent) {
-        return base ** exponent;
-    };
-} ], [ 0 ]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`7\`): manifest.d6857f782c13a99b5917.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
-            enumerable: !0,
-            get: getter
-        });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
-        } : function() {
-            return module;
-        };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`7\`): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`8\`): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`8\`): main.3ebe0445ff35a4de58c0.js 1`] = `
-"webpackJsonp([ 0 ], [ function(module, exports) {
-    module.exports = async function(url) {
-        try {
-            let request = await fetch(url), text = await request.text();
-            return JSON.parse(text);
-        } catch (error) {
-            console.log(\`ERROR: \${error.stack}\`);
-        }
-    };
-} ], [ 0 ]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`8\`): manifest.d6857f782c13a99b5917.js 1`] = `
-"!function(modules) {
-    var parentJsonpFunction = window.webpackJsonp;
-    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
-        for (var moduleId, chunkId, result, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
-        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
-        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
-        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
-        if (executeModules) for (i = 0; i < executeModules.length; i++) result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-        return result;
-    };
-    var installedModules = {}, installedChunks = {
-        1: 0
-    };
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) return installedModules[moduleId].exports;
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: !1,
-            exports: {}
-        };
-        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
-        module.l = !0, module.exports;
-    }
-    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
-        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-            configurable: !1,
-            enumerable: !0,
-            get: getter
-        });
-    }, __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function() {
-            return module.default;
-        } : function() {
-            return module;
-        };
-        return __webpack_require__.d(getter, \\"a\\", getter), getter;
-    }, __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = \\"\\", __webpack_require__.oe = function(err) {
-        throw console.error(err), err;
-    };
-}([]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ecma\` option (value is \`8\`): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`false\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`false\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`false\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`true\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`true\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r[\\"default\\"]}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`ie8\` option (boolean \`true\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`false\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`false\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`false\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`true\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`true\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_classnames\` option (boolean \`true\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function Foo(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(e){var r=window.webpackJsonp;window.webpackJsonp=function webpackJsonpCallback(_,n,o){for(var u,c,p,a=0,i=[];a<_.length;a++)c=_[a],t[c]&&i.push(t[c][0]),t[c]=0;for(u in n)Object.prototype.hasOwnProperty.call(n,u)&&(e[u]=n[u]);for(r&&r(_,n,o);i.length;)i.shift()();if(o)for(a=0;a<o.length;a++)p=__webpack_require__(__webpack_require__.s=o[a]);return p};var _={},t={1:0};function __webpack_require__(r){if(_[r])return _[r].exports;var t=_[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,__webpack_require__),t.l=!0,t.exports}__webpack_require__.m=e,__webpack_require__.c=_,__webpack_require__.d=function(e,r,_){__webpack_require__.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:_})},__webpack_require__.n=function(e){var r=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(r,\\"a\\",r),r},__webpack_require__.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},__webpack_require__.p=\\"\\",__webpack_require__.oe=function(e){throw console.error(e),e}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`false\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`false\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(module,exports){module.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(modules){var parentJsonpFunction=window.webpackJsonp;window.webpackJsonp=function(chunkIds,moreModules,executeModules){for(var moduleId,chunkId,result,i=0,resolves=[];i<chunkIds.length;i++)chunkId=chunkIds[i],installedChunks[chunkId]&&resolves.push(installedChunks[chunkId][0]),installedChunks[chunkId]=0;for(moduleId in moreModules)Object.prototype.hasOwnProperty.call(moreModules,moduleId)&&(modules[moduleId]=moreModules[moduleId]);for(parentJsonpFunction&&parentJsonpFunction(chunkIds,moreModules,executeModules);resolves.length;)resolves.shift()();if(executeModules)for(i=0;i<executeModules.length;i++)result=__webpack_require__(__webpack_require__.s=executeModules[i]);return result};var installedModules={},installedChunks={1:0};function __webpack_require__(moduleId){if(installedModules[moduleId])return installedModules[moduleId].exports;var module=installedModules[moduleId]={i:moduleId,l:!1,exports:{}};return modules[moduleId].call(module.exports,module,module.exports,__webpack_require__),module.l=!0,module.exports}__webpack_require__.m=modules,__webpack_require__.c=installedModules,__webpack_require__.d=function(exports,name,getter){__webpack_require__.o(exports,name)||Object.defineProperty(exports,name,{configurable:!1,enumerable:!0,get:getter})},__webpack_require__.n=function(module){var getter=module&&module.__esModule?function(){return module.default}:function(){return module};return __webpack_require__.d(getter,\\"a\\",getter),getter},__webpack_require__.o=function(object,property){return Object.prototype.hasOwnProperty.call(object,property)},__webpack_require__.p=\\"\\",__webpack_require__.oe=function(err){throw console.error(err),err}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`false\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`true\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`true\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (boolean \`true\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (object value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (object value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (object value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`mangle\` option (object value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`nameCache\` option (empty object value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`nameCache\` option (empty object value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`nameCache\` option (empty object value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`nameCache\` option (empty object value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): main.0c220ec66316af2c1b24.js 1`] = `
-"webpackJsonp([ 0 ], [ function(o, n) {
-    o.exports = function() {
+        return o.d(t, \\"a\\", t), t;
+    }, o.o = function(e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t);
+    }, o.p = \\"\\", o(o.s = 0);
+}([ function(e, t) {
+    e.exports = function() {
         console.log(7);
     };
-} ], [ 0 ]);"
+} ]);"
 `;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): manifest.d6857f782c13a99b5917.js 1`] = `
-"!function(r) {
-    var n = window.webpackJsonp;
-    window.webpackJsonp = function(e, u, c) {
-        for (var f, i, p, a = 0, l = []; a < e.length; a++) i = e[a], o[i] && l.push(o[i][0]), 
-        o[i] = 0;
-        for (f in u) Object.prototype.hasOwnProperty.call(u, f) && (r[f] = u[f]);
-        for (n && n(e, u, c); l.length; ) l.shift()();
-        if (c) for (a = 0; a < c.length; a++) p = t(t.s = c[a]);
-        return p;
-    };
-    var e = {}, o = {
-        1: 0
-    };
-    function t(n) {
-        if (e[n]) return e[n].exports;
-        var o = e[n] = {
-            i: n,
-            l: !1,
-            exports: {}
-        };
-        return r[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports;
-    }
-    t.m = r, t.c = e, t.d = function(r, n, e) {
-        t.o(r, n) || Object.defineProperty(r, n, {
-            configurable: !1,
-            enumerable: !0,
-            get: e
-        });
-    }, t.n = function(r) {
-        var n = r && r.__esModule ? function() {
-            return r.default;
-        } : function() {
-            return r;
-        };
-        return t.d(n, \\"a\\", n), n;
-    }, t.o = function(r, n) {
-        return Object.prototype.hasOwnProperty.call(r, n);
-    }, t.p = \\"\\", t.oe = function(r) {
-        throw console.error(r), r;
-    };
-}([]);"
-`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): main.0c220ec66316af2c1b24.js 1`] = `
-"webpackJsonp([0],[
-/* 0 */
-/***/function(o,n){o.exports=function(){console.log(7)}}],[0]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): manifest.d6857f782c13a99b5917.js 1`] = `
-"/******/!function(r){// webpackBootstrap
-/******/ // install a JSONP callback for chunk loading
-/******/var n=window.webpackJsonp;
-/******/window.webpackJsonp=function(e,u,c){
-/******/for(
-/******/ // add \\"moreModules\\" to the modules object,
-/******/ // then flag all \\"chunkIds\\" as loaded and fire callback
-/******/var f,i,p,a=0,l=[];a<e.length;a++)
-/******/i=e[a],
-/******/o[i]&&
-/******/l.push(o[i][0])
-/******/,o[i]=0;
-/******/for(f in u)
-/******/Object.prototype.hasOwnProperty.call(u,f)&&(
-/******/r[f]=u[f])
-/******/;
-/******/
-/******/for(n&&n(e,u,c);l.length;)
-/******/l.shift()();
-/******/
-/******/if(c)
-/******/for(a=0;a<c.length;a++)
-/******/p=t(t.s=c[a]);
-/******/
-/******/
-/******/return p;
-/******/};
-/******/
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): main.2c64d283d851e74b63a7.js 1`] = `
+"/******/!function(n){// webpackBootstrap
 /******/ // The module cache
-/******/var e={},o={
-/******/1:0
-/******/};
-/******/
-/******/ // objects to store loaded and loading chunks
-/******/
+/******/var r={};
 /******/
 /******/ // The require function
-/******/function t(n){
+/******/function o(e){
 /******/
 /******/ // Check if module is in cache
-/******/if(e[n])
-/******/return e[n].exports;
+/******/if(r[e])
+/******/return r[e].exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var o=e[n]={
-/******/i:n,
+/******/var t=r[e]={
+/******/i:e,
 /******/l:!1,
 /******/exports:{}
 /******/};
@@ -510,160 +150,104 @@ exports[`when applied with uglifyOptions options matches snapshot for \`output\`
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return r[n].call(o.exports,o,o.exports,t),
+/******/return n[e].call(t.exports,t,t.exports,o),
 /******/
 /******/ // Flag the module as loaded
-/******/o.l=!0,o.exports;
+/******/t.l=!0,t.exports;
 /******/}
 /******/
 /******/
 /******/ // expose the modules object (__webpack_modules__)
-/******/t.m=r,
+/******/
+/******/
+/******/
+/******/ // Load entry module and return exports
+/******/o.m=n,
 /******/
 /******/ // expose the module cache
-/******/t.c=e,
+/******/o.c=r,
 /******/
 /******/ // define getter function for harmony exports
-/******/t.d=function(r,n,e){
-/******/t.o(r,n)||
-/******/Object.defineProperty(r,n,{
-/******/configurable:!1,
-/******/enumerable:!0,
-/******/get:e
-/******/})
+/******/o.d=function(e,t,n){
+/******/o.o(e,t)||
+/******/Object.defineProperty(e,t,{enumerable:!0,get:n})
+/******/},
+/******/
+/******/ // define __esModule on exports
+/******/o.r=function(e){
+/******/\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&
+/******/Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"})
+/******/,Object.defineProperty(e,\\"__esModule\\",{value:!0})},
+/******/
+/******/ // create a fake namespace object
+/******/ // mode & 1: value is a module id, require it
+/******/ // mode & 2: merge all properties of value into the ns
+/******/ // mode & 4: return value when already ns object
+/******/ // mode & 8|1: behave like require
+/******/o.t=function(t,e){
+/******/if(
+/******/1&e&&(t=o(t)),8&e)return t;
+/******/if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;
+/******/var n=Object.create(null);
+/******/
+/******/if(o.r(n),
+/******/Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));
+/******/return n;
 /******/},
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/t.n=function(r){
-/******/var n=r&&r.__esModule?
-/******/function(){return r.default}:
-/******/function(){return r};
+/******/o.n=function(e){
+/******/var t=e&&e.__esModule?
+/******/function(){return e.default}:
+/******/function(){return e};
 /******/
-/******/return t.d(n,\\"a\\",n),n;
+/******/return o.d(t,\\"a\\",t),t;
 /******/},
 /******/
 /******/ // Object.prototype.hasOwnProperty.call
-/******/t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},
+/******/o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},
 /******/
 /******/ // __webpack_public_path__
-/******/t.p=\\"\\",
-/******/
-/******/ // on error function for async loading
-/******/t.oe=function(r){throw console.error(r),r}}
+/******/o.p=\\"\\",o(o.s=0);
+/******/}
 /************************************************************************/
-/******/([]);"
+/******/([
+/* 0 */
+/***/function(e,t){e.exports=function(){console.log(7)}}
+/******/]);"
 `;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`parse\` option (object value): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`parse\` option (object value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`parse\` option (object value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`parse\` option (object value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`parse\` option (object value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`parse\` option (object value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`parse\` option (object value): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`toplevel\` option (boolean \`false\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`false\` value): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`toplevel\` option (boolean \`false\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`false\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`toplevel\` option (boolean \`false\` value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`toplevel\` option (boolean \`true\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`toplevel\` option (boolean \`true\` value): main.2c64d283d851e74b63a7.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`true\` value): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`toplevel\` option (boolean \`true\` value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`true\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`safari10\` option (boolean \`true\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`false\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`false\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`false\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`true\` value): errors 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`true\` value): main.0c220ec66316af2c1b24.js 1`] = `"webpackJsonp([0],[function(o,n){o.exports=function(){console.log(7)}}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`toplevel\` option (boolean \`true\` value): warnings 1`] = `Array []`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`unknown\` option: errors 1`] = `
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`unknown\` option: errors 1`] = `
 Array [
-  "Error: main.0c220ec66316af2c1b24.js from UglifyJs
-DefaultsError: \`unknown\` is not a supported option",
-  "Error: manifest.d6857f782c13a99b5917.js from UglifyJs
+  "Error: main.2c64d283d851e74b63a7.js from UglifyJs
 DefaultsError: \`unknown\` is not a supported option",
 ]
 `;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`unknown\` option: main.0c220ec66316af2c1b24.js 1`] = `
-"webpackJsonp([0],[
-/* 0 */
-/***/ (function(module, exports) {
-
-// foo
-/* @preserve*/
-// bar
-const a = 2 + 2;
-
-module.exports = function Foo() {
-  const b = 2 + 2;
-  console.log(b + 1 + 2);
-};
-
-
-/***/ })
-],[0]);"
-`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`unknown\` option: manifest.d6857f782c13a99b5917.js 1`] = `
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`unknown\` option: main.2c64d283d851e74b63a7.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window[\\"webpackJsonp\\"];
-/******/ 	window[\\"webpackJsonp\\"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
-/******/ 		// add \\"moreModules\\" to the modules object,
-/******/ 		// then flag all \\"chunkIds\\" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/ 		if(executeModules) {
-/******/ 			for(i=0; i < executeModules.length; i++) {
-/******/ 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-/******/ 			}
-/******/ 		}
-/******/ 		return result;
-/******/ 	};
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// objects to store loaded and loading chunks
-/******/ 	var installedChunks = {
-/******/ 		1: 0
-/******/ 	};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -699,12 +283,32 @@ exports[`when applied with uglifyOptions options matches snapshot for \`unknown\
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -722,32 +326,45 @@ exports[`when applied with uglifyOptions options matches snapshot for \`unknown\
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = \\"\\";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([]);"
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+// foo
+/* @preserve*/
+// bar
+var a = 2 + 2;
+
+module.exports = function Foo() {
+  var b = 2 + 2;
+  console.log(b + 1 + 2);
+};
+
+
+/***/ })
+/******/ ]);"
 `;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`unknown\` option: warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`unknown\` option: warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`false\` value): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`warnings\` option (boolean \`false\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`false\` value): main.b30dcc7a86bd9929c922.js 1`] = `"webpackJsonp([0],[function(n,c){}],[0]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`warnings\` option (boolean \`false\` value): main.2dfcd6e62439ea46196c.js 1`] = `"!function(r){var n={};function o(e){if(n[e])return n[e].exports;var t=n[e]={i:e,l:!1,exports:{}};return r[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=n,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var n in t)o.d(r,n,function(e){return t[e]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`false\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`warnings\` option (boolean \`false\` value): warnings 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`warnings\` option (boolean \`true\` value): errors 1`] = `Array []`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`true\` value): errors 1`] = `Array []`;
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`warnings\` option (boolean \`true\` value): main.2dfcd6e62439ea46196c.js 1`] = `"!function(r){var n={};function o(e){if(n[e])return n[e].exports;var t=n[e]={i:e,l:!1,exports:{}};return r[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=n,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var n in t)o.d(r,n,function(e){return t[e]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){}]);"`;
 
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`true\` value): main.b30dcc7a86bd9929c922.js 1`] = `"webpackJsonp([0],[function(n,c){}],[0]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`true\` value): manifest.d6857f782c13a99b5917.js 1`] = `"!function(r){var n=window.webpackJsonp;window.webpackJsonp=function(e,u,c){for(var f,i,p,a=0,l=[];a<e.length;a++)i=e[a],o[i]&&l.push(o[i][0]),o[i]=0;for(f in u)Object.prototype.hasOwnProperty.call(u,f)&&(r[f]=u[f]);for(n&&n(e,u,c);l.length;)l.shift()();if(c)for(a=0;a<c.length;a++)p=t(t.s=c[a]);return p};var e={},o={1:0};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=r,t.c=e,t.d=function(r,n,e){t.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:e})},t.n=function(r){var n=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(n,\\"a\\",n),n},t.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},t.p=\\"\\",t.oe=function(r){throw console.error(r),r}}([]);"`;
-
-exports[`when applied with uglifyOptions options matches snapshot for \`warnings\` option (boolean \`true\` value): warnings 1`] = `
+exports[`when applied with \`uglifyOptions\` options matches snapshot for \`warnings\` option (boolean \`true\` value): warnings 1`] = `
 Array [
-  "UglifyJs Plugin: Dropping unreachable code [main.b30dcc7a86bd9929c922.js:5,41]",
-  "UglifyJs Plugin: Dropping unused function foo [main.b30dcc7a86bd9929c922.js:5,9]",
+  "UglifyJs Plugin: Dropping unreachable code [main.2dfcd6e62439ea46196c.js:91,41]",
+  "UglifyJs Plugin: Dropping unused function w [main.2dfcd6e62439ea46196c.js:91,9]",
 ]
 `;

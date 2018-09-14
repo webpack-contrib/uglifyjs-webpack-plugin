@@ -2,15 +2,30 @@
 
 exports[`when using MultiCompiler matches snapshot with empty options: compiler plugin count 1`] = `
 Object {
-  "after-emit": 1,
-  "after-resolvers": 2,
-  "before-run": 1,
-  "compilation": 32,
+  "additionalPass": 0,
+  "afterCompile": 0,
+  "afterEmit": 1,
+  "afterEnvironment": 0,
+  "afterPlugins": 0,
+  "afterResolvers": 2,
+  "beforeCompile": 0,
+  "beforeRun": 1,
+  "compilation": 41,
+  "compile": 0,
+  "contextModuleFactory": 0,
   "done": 1,
-  "entry-option": 1,
+  "emit": 0,
+  "entryOption": 1,
+  "environment": 0,
+  "failed": 0,
   "invalid": 1,
   "make": 1,
-  "this-compilation": 1,
+  "normalModuleFactory": 1,
+  "run": 0,
+  "shouldEmit": 1,
+  "thisCompilation": 3,
+  "watchClose": 0,
+  "watchRun": 0,
 }
 `;
 
@@ -20,7 +35,7 @@ exports[`when using MultiCompiler matches snapshot with empty options: errors 2`
 
 exports[`when using MultiCompiler matches snapshot with empty options: errors 3`] = `Array []`;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.4dff64fd1192e906e901.js 1`] = `
+exports[`when using MultiCompiler matches snapshot with empty options: main.2c64d283d851e74b63a7.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,12 +74,32 @@ exports[`when using MultiCompiler matches snapshot with empty options: main.4dff
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -82,6 +117,7 @@ exports[`when using MultiCompiler matches snapshot with empty options: main.4dff
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = \\"\\";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
@@ -93,10 +129,10 @@ exports[`when using MultiCompiler matches snapshot with empty options: main.4dff
 // foo
 /* @preserve*/
 // bar
-const a = 2 + 2;
+var a = 2 + 2;
 
 module.exports = function Foo() {
-  const b = 2 + 2;
+  var b = 2 + 2;
   console.log(b + 1 + 2);
 };
 
@@ -105,9 +141,9 @@ module.exports = function Foo() {
 /******/ ]);"
 `;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.4dff64fd1192e906e901.js 2`] = `"!function(n){var t={};function e(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:r})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,\\"a\\",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p=\\"\\",e(e.s=0)}([function(n,t){n.exports=function(){console.log(7)}}]);"`;
+exports[`when using MultiCompiler matches snapshot with empty options: main.2c64d283d851e74b63a7.js 2`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.286f3599c95e4eaa6950.js 1`] = `"!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:n})},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";Object.defineProperty(e,\\"__esModule\\",{value:!0});var n=r(1);e.default=function(){const t=n.b,e=\`baz\${Math.random()}\`;return()=>({a:t+n.a+e,b:t,baz:e})}},function(t,e,r){\\"use strict\\";e.a=\\"bar\\",e.b=\\"foo\\"}]);"`;
+exports[`when using MultiCompiler matches snapshot with empty options: main.e4da317e55bdb1f92386.js 1`] = `"!function(t){var n={};function o(e){if(n[e])return n[e].exports;var r=n[e]={i:e,l:!1,exports:{}};return t[e].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.m=t,o.c=n,o.d=function(e,r,t){o.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&\\"object\\"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(o.r(t),Object.defineProperty(t,\\"default\\",{enumerable:!0,value:r}),2&e&&\\"string\\"!=typeof r)for(var n in r)o.d(t,n,function(e){return r[e]}.bind(null,n));return t},o.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(r,\\"a\\",r),r},o.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},o.p=\\"\\",o(o.s=0)}([function(e,r,t){var n=t(1);e.exports=function(){var e=n,r=\\"baz\\"+Math.random();return function(){return{a:e+n.bar+r,b:e,baz:r}}}},function(e,r){e.exports=\\"foo\\",e.exports.bar=\\"bar\\"}]);"`;
 
 exports[`when using MultiCompiler matches snapshot with empty options: warnings 1`] = `Array []`;
 

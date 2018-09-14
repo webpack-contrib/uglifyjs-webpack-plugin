@@ -1,82 +1,26 @@
-import path from 'path';
 import UglifyJsPlugin from '../src';
-import { cleanErrorStack, compile, createCompiler } from './helpers';
+
+import {
+  cleanErrorStack,
+  compile,
+  createCompiler,
+  normalizeSourceMap,
+} from './helpers';
+
+// Based on https://github.com/facebook/jest/blob/edde20f75665c2b1e3c8937f758902b5cf28a7b4/packages/jest-runner/src/__tests__/test_runner.test.js
+
+jest.mock('worker-farm', () => {
+  const mock = jest.fn((options, worker) =>
+    jest.fn((data, callback) =>
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      require(worker)(data, callback)
+    )
+  );
+  mock.end = jest.fn();
+  return mock;
+});
 
 describe('when applied with `minify` option', () => {
-  it('matches snapshot for `uglify-js` minifier', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/minify/es5.js`,
-      output: {
-        path: `${__dirname}/dist-uglify-js`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
-
-    new UglifyJsPlugin({
-      minify(file) {
-        // eslint-disable-next-line global-require
-        return require('uglify-js').minify(file, {
-          mangle: {
-            reserved: ['baz'],
-          },
-        });
-      },
-    }).apply(compiler);
-
-    return compile(compiler)
-      .then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
-
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-          }
-        }
-      });
-  });
-
-  it('matches snapshot for `uglify-es` minifier', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/minify/es6.js`,
-      output: {
-        path: `${__dirname}/dist-uglify-es`,
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
-
-    new UglifyJsPlugin({
-      minify(file) {
-        // eslint-disable-next-line global-require
-        return require('uglify-es').minify(file, {
-          mangle: {
-            reserved: ['baz'],
-          },
-        });
-      },
-    }).apply(compiler);
-
-    return compile(compiler)
-      .then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
-
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-          }
-        }
-      });
-  });
-
   it('matches snapshot for `terser` minifier', () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
@@ -98,20 +42,21 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler)
-      .then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-          }
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
-      });
+      }
+    });
   });
 
   it('matches snapshot for `terser` minifier and `sourceMap` is `true`', () => {
@@ -123,15 +68,6 @@ describe('when applied with `minify` option', () => {
         chunkFilename: '[id].[name].js',
       },
     });
-
-    function removeAbsoluteSourceMapSources(source) {
-      if (source.map && source.map.sources) {
-        // eslint-disable-next-line no-param-reassign
-        source.map.sources = source.map.sources.map(sourceFromMap => path.relative(process.cwd(), sourceFromMap));
-      }
-
-      return source;
-    }
 
     new UglifyJsPlugin({
       sourceMap: true,
@@ -153,20 +89,23 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler)
-      .then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(removeAbsoluteSourceMapSources(stats.compilation.assets[file].sourceAndMap())).toMatchSnapshot(file);
-          }
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(
+            normalizeSourceMap(stats.compilation.assets[file].sourceAndMap())
+          ).toMatchSnapshot(file);
         }
-      });
+      }
+    });
   });
 
   it('matches snapshot for `terser` minifier and `parallel` is `true`', () => {
@@ -191,20 +130,21 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler)
-      .then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-          }
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
-      });
+      }
+    });
   });
 
   it('matches snapshot for errors into `minify` option', () => {
@@ -223,20 +163,21 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler)
-      .then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-          }
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
-      });
+      }
+    });
   });
 
   it('matches snapshot for errors into `minify` option and `parallel` is `true`', () => {
@@ -256,19 +197,20 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler)
-      .then((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
 
-        for (const file in stats.compilation.assets) {
-          if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-          }
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
-      });
+      }
+    });
   });
 });

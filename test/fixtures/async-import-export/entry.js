@@ -1,5 +1,7 @@
-import("./async-dep").then(() => {
+require.ensure([], function() {
+  require('./async-dep');
+
   console.log('Good')
 });
 
-export default "Awesome";
+module.exports = "Awesome";

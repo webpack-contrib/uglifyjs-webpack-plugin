@@ -1,12 +1,11 @@
 import path from 'path';
+
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
+
 import UglifyJsPlugin from '../src/index';
-import {
-  createCompiler,
-  compile,
-  cleanErrorStack,
-} from './helpers';
+
+import { createCompiler, compile, cleanErrorStack } from './helpers';
 
 const cacheDir = findCacheDir({ name: 'uglifyjs-webpack-plugin' });
 const otherCacheDir = findCacheDir({ name: 'other-cache-directory' });
@@ -30,10 +29,8 @@ describe('when applied with `cache` option', () => {
     ]);
   });
 
-  afterEach(() => Promise.all([
-    cacache.rm.all(cacheDir),
-    cacache.rm.all(otherCacheDir),
-  ]));
+  afterEach(() =>
+    Promise.all([cacache.rm.all(cacheDir), cacache.rm.all(otherCacheDir)]));
 
   it('matches snapshot for `false` value', () => {
     new UglifyJsPlugin({ cache: false }).apply(compiler);
@@ -49,7 +46,9 @@ describe('when applied with `cache` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -82,7 +81,9 @@ describe('when applied with `cache` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -94,46 +95,62 @@ describe('when applied with `cache` option', () => {
       // Put files in cache
       expect(cacache.put.mock.calls.length).toBe(countAssets);
 
-      return Promise.resolve()
-        .then(() => cacache.ls(cacheDir))
-        .then((cacheEntriesList) => {
-          const cacheKeys = Object.keys(cacheEntriesList);
+      return (
+        Promise.resolve()
+          .then(() => cacache.ls(cacheDir))
+          .then((cacheEntriesList) => {
+            const cacheKeys = Object.keys(cacheEntriesList);
 
-          // Make sure that we cached files
-          expect(cacheKeys.length).toBe(countAssets);
+            // Make sure that we cached files
+            expect(cacheKeys.length).toBe(countAssets);
 
-          cacheKeys.forEach((cacheEntry) => {
-            // eslint-disable-next-line no-new-func
-            const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
-            const basename = path.basename(cacheEntryOptions.path);
+            cacheKeys.forEach((cacheEntry) => {
+              // eslint-disable-next-line no-new-func
+              const cacheEntryOptions = new Function(
+                `'use strict'\nreturn ${cacheEntry}`
+              )();
+              const basename = path.basename(cacheEntryOptions.path);
 
-            expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(basename);
-          });
+              expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(
+                basename
+              );
+            });
 
-          cacache.get.mockClear();
-          cacache.put.mockClear();
-        })
-        // Run second compilation to ensure cached files will be taken from cache
-        .then(() => compile(compiler))
-        .then((newStats) => {
-          const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-          const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
+            cacache.get.mockClear();
+            cacache.put.mockClear();
+          })
+          // Run second compilation to ensure cached files will be taken from cache
+          .then(() => compile(compiler))
+          .then((newStats) => {
+            const newErrors = newStats.compilation.errors.map(cleanErrorStack);
+            const newWarnings = newStats.compilation.warnings.map(
+              cleanErrorStack
+            );
 
-          expect(newErrors).toMatchSnapshot('errors');
-          expect(newWarnings).toMatchSnapshot('warnings');
+            expect(newErrors).toMatchSnapshot('errors');
+            expect(newWarnings).toMatchSnapshot('warnings');
 
-          for (const file in newStats.compilation.assets) {
-            if (Object.prototype.hasOwnProperty.call(newStats.compilation.assets, file)) {
-              expect(newStats.compilation.assets[file].source()).toMatchSnapshot(file);
+            for (const file in newStats.compilation.assets) {
+              if (
+                Object.prototype.hasOwnProperty.call(
+                  newStats.compilation.assets,
+                  file
+                )
+              ) {
+                expect(
+                  newStats.compilation.assets[file].source()
+                ).toMatchSnapshot(file);
+              }
             }
-          }
 
-          const newCountAssets = Object.keys(newStats.compilation.assets).length;
+            const newCountAssets = Object.keys(newStats.compilation.assets)
+              .length;
 
-          // Now we have cached files so we get their and don't put
-          expect(cacache.get.mock.calls.length).toBe(newCountAssets);
-          expect(cacache.put.mock.calls.length).toBe(0);
-        });
+            // Now we have cached files so we get their and don't put
+            expect(cacache.get.mock.calls.length).toBe(newCountAssets);
+            expect(cacache.put.mock.calls.length).toBe(0);
+          })
+      );
     });
   });
 
@@ -151,7 +168,9 @@ describe('when applied with `cache` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -163,46 +182,62 @@ describe('when applied with `cache` option', () => {
       // Put files in cache
       expect(cacache.put.mock.calls.length).toBe(countAssets);
 
-      return Promise.resolve()
-        .then(() => cacache.ls(otherCacheDir))
-        .then((cacheEntriesList) => {
-          const cacheKeys = Object.keys(cacheEntriesList);
+      return (
+        Promise.resolve()
+          .then(() => cacache.ls(otherCacheDir))
+          .then((cacheEntriesList) => {
+            const cacheKeys = Object.keys(cacheEntriesList);
 
-          // Make sure that we cached files
-          expect(cacheKeys.length).toBe(countAssets);
+            // Make sure that we cached files
+            expect(cacheKeys.length).toBe(countAssets);
 
-          cacheKeys.forEach((cacheEntry) => {
-            // eslint-disable-next-line no-new-func
-            const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
-            const basename = path.basename(cacheEntryOptions.path);
+            cacheKeys.forEach((cacheEntry) => {
+              // eslint-disable-next-line no-new-func
+              const cacheEntryOptions = new Function(
+                `'use strict'\nreturn ${cacheEntry}`
+              )();
+              const basename = path.basename(cacheEntryOptions.path);
 
-            expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(basename);
-          });
+              expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(
+                basename
+              );
+            });
 
-          cacache.get.mockClear();
-          cacache.put.mockClear();
-        })
-        // Run second compilation to ensure cached files will be taken from cache
-        .then(() => compile(compiler))
-        .then((newStats) => {
-          const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-          const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
+            cacache.get.mockClear();
+            cacache.put.mockClear();
+          })
+          // Run second compilation to ensure cached files will be taken from cache
+          .then(() => compile(compiler))
+          .then((newStats) => {
+            const newErrors = newStats.compilation.errors.map(cleanErrorStack);
+            const newWarnings = newStats.compilation.warnings.map(
+              cleanErrorStack
+            );
 
-          expect(newErrors).toMatchSnapshot('errors');
-          expect(newWarnings).toMatchSnapshot('warnings');
+            expect(newErrors).toMatchSnapshot('errors');
+            expect(newWarnings).toMatchSnapshot('warnings');
 
-          for (const file in newStats.compilation.assets) {
-            if (Object.prototype.hasOwnProperty.call(newStats.compilation.assets, file)) {
-              expect(newStats.compilation.assets[file].source()).toMatchSnapshot(file);
+            for (const file in newStats.compilation.assets) {
+              if (
+                Object.prototype.hasOwnProperty.call(
+                  newStats.compilation.assets,
+                  file
+                )
+              ) {
+                expect(
+                  newStats.compilation.assets[file].source()
+                ).toMatchSnapshot(file);
+              }
             }
-          }
 
-          const newCountAssets = Object.keys(newStats.compilation.assets).length;
+            const newCountAssets = Object.keys(newStats.compilation.assets)
+              .length;
 
-          // Now we have cached files so we get their and don't put
-          expect(cacache.get.mock.calls.length).toBe(newCountAssets);
-          expect(cacache.put.mock.calls.length).toBe(0);
-        });
+            // Now we have cached files so we get their and don't put
+            expect(cacache.get.mock.calls.length).toBe(newCountAssets);
+            expect(cacache.put.mock.calls.length).toBe(0);
+          })
+      );
     });
   });
 
@@ -230,7 +265,9 @@ describe('when applied with `cache` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -242,48 +279,66 @@ describe('when applied with `cache` option', () => {
       // Put files in cache
       expect(cacache.put.mock.calls.length).toBe(countAssets);
 
-      return Promise.resolve()
-        .then(() => cacache.ls(cacheDir))
-        .then((cacheEntriesList) => {
-          const cacheKeys = Object.keys(cacheEntriesList);
+      return (
+        Promise.resolve()
+          .then(() => cacache.ls(cacheDir))
+          .then((cacheEntriesList) => {
+            const cacheKeys = Object.keys(cacheEntriesList);
 
-          // Make sure that we cached files
-          expect(cacheKeys.length).toBe(countAssets);
+            // Make sure that we cached files
+            expect(cacheKeys.length).toBe(countAssets);
 
-          cacheKeys.forEach((cacheEntry) => {
-            // eslint-disable-next-line no-new-func
-            const cacheEntryOptions = new Function(`'use strict'\nreturn ${cacheEntry}`)();
-            const basename = path.basename(cacheEntryOptions.path);
+            cacheKeys.forEach((cacheEntry) => {
+              // eslint-disable-next-line no-new-func
+              const cacheEntryOptions = new Function(
+                `'use strict'\nreturn ${cacheEntry}`
+              )();
+              const basename = path.basename(cacheEntryOptions.path);
 
-            expect(cacheEntryOptions.myCacheKey).toBe(1);
-            expect(cacheEntryOptions.myCacheKeyBasedOnFile).toMatch(/file-(.+)?\.js/);
-            expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(basename);
-          });
+              expect(cacheEntryOptions.myCacheKey).toBe(1);
+              expect(cacheEntryOptions.myCacheKeyBasedOnFile).toMatch(
+                /file-(.+)?\.js/
+              );
+              expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(
+                basename
+              );
+            });
 
-          cacache.get.mockClear();
-          cacache.put.mockClear();
-        })
-        // Run second compilation to ensure cached files will be taken from cache
-        .then(() => compile(compiler))
-        .then((newStats) => {
-          const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-          const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
+            cacache.get.mockClear();
+            cacache.put.mockClear();
+          })
+          // Run second compilation to ensure cached files will be taken from cache
+          .then(() => compile(compiler))
+          .then((newStats) => {
+            const newErrors = newStats.compilation.errors.map(cleanErrorStack);
+            const newWarnings = newStats.compilation.warnings.map(
+              cleanErrorStack
+            );
 
-          expect(newErrors).toMatchSnapshot('errors');
-          expect(newWarnings).toMatchSnapshot('warnings');
+            expect(newErrors).toMatchSnapshot('errors');
+            expect(newWarnings).toMatchSnapshot('warnings');
 
-          for (const file in newStats.compilation.assets) {
-            if (Object.prototype.hasOwnProperty.call(newStats.compilation.assets, file)) {
-              expect(newStats.compilation.assets[file].source()).toMatchSnapshot(file);
+            for (const file in newStats.compilation.assets) {
+              if (
+                Object.prototype.hasOwnProperty.call(
+                  newStats.compilation.assets,
+                  file
+                )
+              ) {
+                expect(
+                  newStats.compilation.assets[file].source()
+                ).toMatchSnapshot(file);
+              }
             }
-          }
 
-          const newCountAssets = Object.keys(newStats.compilation.assets).length;
+            const newCountAssets = Object.keys(newStats.compilation.assets)
+              .length;
 
-          // Now we have cached files so we get their and don't put
-          expect(cacache.get.mock.calls.length).toBe(newCountAssets);
-          expect(cacache.put.mock.calls.length).toBe(0);
-        });
+            // Now we have cached files so we get their and don't put
+            expect(cacache.get.mock.calls.length).toBe(newCountAssets);
+            expect(cacache.put.mock.calls.length).toBe(0);
+          })
+      );
     });
   });
 
@@ -295,7 +350,6 @@ describe('when applied with `cache` option', () => {
       },
     }).apply(compiler);
 
-
     return compile(compiler).then((stats) => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
@@ -304,7 +358,9 @@ describe('when applied with `cache` option', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }

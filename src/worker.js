@@ -11,7 +11,7 @@ module.exports = (options, callback) => {
       'module',
       '__filename',
       '__dirname',
-      `'use strict'\nreturn ${options}`,
+      `'use strict'\nreturn ${options}`
     )(exports, require, module, __filename, __dirname);
 
     callback(null, minify(options));

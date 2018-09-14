@@ -1,4 +1,5 @@
 import UglifyJsPlugin from '../src/index';
+
 import { createCompiler, compile, cleanErrorStack } from './helpers';
 
 describe('when options.sourceMap', () => {
@@ -18,7 +19,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -41,7 +44,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -64,7 +69,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -87,7 +94,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
@@ -95,14 +104,14 @@ describe('when options.sourceMap', () => {
   });
 
   it('matches snapshot for a single `true` value (`devtool` is `source-map`) and source map invalid', () => {
-    const compiler = createCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
-      devtool: 'source-map',
-      plugins: [
-        {
-          apply(pluginCompiler) {
-            pluginCompiler.plugin('compilation', (compilation) => {
-              compilation.plugin('additional-chunk-assets', () => {
+    const emitBrokenSourceMapPlugin = new class EmitBrokenSourceMapPlugin {
+      apply(pluginCompiler) {
+        pluginCompiler.hooks.compilation.tap(
+          { name: this.constructor.name },
+          (compilation) => {
+            compilation.hooks.additionalChunkAssets.tap(
+              { name: this.constructor.name },
+              () => {
                 compilation.additionalChunkAssets.push('broken-source-map.js');
 
                 const assetContent = 'var test = 1;';
@@ -122,11 +131,16 @@ describe('when options.sourceMap', () => {
                     };
                   },
                 };
-              });
-            });
-          },
-        },
-      ],
+              }
+            );
+          }
+        );
+      }
+    }();
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'source-map',
+      plugins: [emitBrokenSourceMapPlugin],
     });
 
     new UglifyJsPlugin({ sourceMap: true }).apply(compiler);
@@ -139,7 +153,9 @@ describe('when options.sourceMap', () => {
       expect(warnings).toMatchSnapshot('warnings');
 
       for (const file in stats.compilation.assets) {
-        if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }

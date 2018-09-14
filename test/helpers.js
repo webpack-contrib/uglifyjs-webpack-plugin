@@ -1,3 +1,5 @@
+import path from 'path';
+
 import MemoryFileSystem from 'memory-fs'; // eslint-disable-line import/no-extraneous-dependencies
 import webpack from 'webpack';
 
@@ -24,38 +26,48 @@ export class PluginEnvironment {
 
 export function compile(compiler) {
   return new Promise((resolve, reject) => {
-    compiler.run((err, stats) => { // eslint-disable-line consistent-return
-      if (err) return reject(err);
-      resolve(stats);
+    compiler.run((err, stats) => {
+      if (err) {
+        return reject(err);
+      }
+
+      return resolve(stats);
     });
   });
 }
 
 export function createCompiler(options = {}) {
-  const compiler = webpack(Array.isArray(options) ? options : {
-    bail: true,
-    cache: false,
-    entry: `${__dirname}/fixtures/entry.js`,
-    output: {
-      path: `${__dirname}/dist`,
-      filename: '[name].[chunkhash].js',
-      chunkFilename: '[id].[name].[chunkhash].js',
-    },
-    plugins: [
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'manifest',
-      }),
-    ],
-    ...options,
-  });
+  const compiler = webpack(
+    Array.isArray(options)
+      ? options
+      : {
+          mode: 'production',
+          bail: true,
+          cache: false,
+          entry: `${__dirname}/fixtures/entry.js`,
+          optimization: {
+            minimize: false,
+          },
+          output: {
+            pathinfo: false,
+            path: `${__dirname}/dist`,
+            filename: '[name].[chunkhash].js',
+            chunkFilename: '[id].[name].[chunkhash].js',
+          },
+          plugins: [],
+          ...options,
+        }
+  );
   compiler.outputFileSystem = new MemoryFileSystem();
   return compiler;
 }
 
-export function countPlugins({ _plugins }) {
-  return Object.keys(_plugins).reduce((aggregate, name) => {
+export function countPlugins({ hooks }) {
+  return Object.keys(hooks).reduce((aggregate, name) => {
     // eslint-disable-next-line no-param-reassign
-    aggregate[name] = Array.isArray(_plugins[name]) ? _plugins[name].length : 0;
+    aggregate[name] = Array.isArray(hooks[name].taps)
+      ? hooks[name].taps.length
+      : 0;
     return aggregate;
   }, {});
 }
@@ -64,7 +76,20 @@ export function removeCWD(str) {
   return str.split(`${process.cwd()}/`).join('');
 }
 
-export function cleanErrorStack(error) {
-  return removeCWD(error.toString()).split('\n').slice(0, 2).join('\n');
+export function normalizeSourceMap(source) {
+  if (source.map && source.map.sources) {
+    // eslint-disable-next-line no-param-reassign
+    source.map.sources = source.map.sources.map((sourceFromMap) =>
+      path.relative(process.cwd(), sourceFromMap).replace(/\\/g, '/')
+    );
+  }
+
+  return source;
 }
 
+export function cleanErrorStack(error) {
+  return removeCWD(error.toString())
+    .split('\n')
+    .slice(0, 2)
+    .join('\n');
+}
