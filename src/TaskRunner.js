@@ -7,12 +7,7 @@ import serialize from 'serialize-javascript';
 
 import minify from './minify';
 
-let workerFile = require.resolve('./worker');
-
-try {
-  // run test
-  workerFile = require.resolve('../dist/worker');
-} catch (e) {} // eslint-disable-line no-empty
+const workerFile = require.resolve('./worker');
 
 export default class TaskRunner {
   constructor(options = {}) {
