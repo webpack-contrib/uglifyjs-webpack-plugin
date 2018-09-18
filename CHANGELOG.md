@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v2.0.0...v2.0.1) (2018-09-18)
+
+
+### Bug Fixes
+
+* decrease minimum required `uglify-js` version ([#357](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/357)) ([dc9d038](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/dc9d038))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v1.3.0...v2.0.0) (2018-09-14)
 
