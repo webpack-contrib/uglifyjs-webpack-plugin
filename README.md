@@ -89,6 +89,20 @@ new UglifyJsPlugin({
 })
 ```
 
+### `chunkFilter`
+
+Type: `Function<(chunk) -> boolean>`
+Default: `() => true`
+
+Test for Webpack chunks to include.
+
+```js
+// in your webpack.config.js
+new UglifyJsPlugin({
+  chunkFilter: chunk => chunk.name === 'vendor'
+})
+```
+
 ### `cache`
 
 Type: `Boolean|String`

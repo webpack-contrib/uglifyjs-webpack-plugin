@@ -20,6 +20,7 @@ class UglifyJsPlugin {
     validateOptions(schema, options, 'UglifyJs Plugin');
 
     const {
+      chunkFilter = () => true,
       minify,
       uglifyOptions = {},
       test = /\.js(\?.*)?$/i,
@@ -34,6 +35,7 @@ class UglifyJsPlugin {
     } = options;
 
     this.options = {
+      chunkFilter,
       test,
       warningsFilter,
       extractComments,
@@ -166,6 +168,7 @@ class UglifyJsPlugin {
       const tasks = [];
 
       Array.from(chunks)
+        .filter((c) => this.options.chunkFilter(c))
         .reduce((acc, chunk) => acc.concat(chunk.files || []), [])
         .concat(compilation.additionalChunkAssets || [])
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))

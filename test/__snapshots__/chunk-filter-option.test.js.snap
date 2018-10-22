@@ -1,41 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when using MultiCompiler matches snapshot with empty options: compiler plugin count 1`] = `
-Object {
-  "additionalPass": 0,
-  "afterCompile": 0,
-  "afterEmit": 1,
-  "afterEnvironment": 0,
-  "afterPlugins": 0,
-  "afterResolvers": 2,
-  "beforeCompile": 0,
-  "beforeRun": 1,
-  "compilation": 41,
-  "compile": 0,
-  "contextModuleFactory": 0,
-  "done": 1,
-  "emit": 0,
-  "entryOption": 1,
-  "environment": 0,
-  "failed": 0,
-  "invalid": 1,
-  "make": 1,
-  "normalModuleFactory": 1,
-  "run": 0,
-  "shouldEmit": 1,
-  "thisCompilation": 3,
-  "watchClose": 0,
-  "watchRun": 0,
-}
-`;
-
-exports[`when using MultiCompiler matches snapshot with empty options: errors 1`] = `Array []`;
-
-exports[`when using MultiCompiler matches snapshot with empty options: errors 2`] = `Array []`;
-
-exports[`when using MultiCompiler matches snapshot with empty options: errors 3`] = `Array []`;
-
-exports[`when using MultiCompiler matches snapshot with empty options: main.2c64d283d851e74b63a7.js 1`] = `
+exports[`when applied with \`chunkFilter\` option matches snapshot for a single \`chunkFilter\`: entry.3d56c95d56b5806e32ad.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -119,11 +84,12 @@ exports[`when using MultiCompiler matches snapshot with empty options: main.2c64
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports) {
 
 // foo
@@ -141,9 +107,7 @@ module.exports = function Foo() {
 /******/ ]);"
 `;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.2c64d283d851e74b63a7.js 2`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
-
-exports[`when using MultiCompiler matches snapshot with empty options: main.6f98329964756bcd9cda.js 1`] = `
+exports[`when applied with \`chunkFilter\` option matches snapshot for a single \`chunkFilter\`: entry.8307c448c476d1658ee0.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -227,11 +191,12 @@ exports[`when using MultiCompiler matches snapshot with empty options: main.6f98
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports) {
 
 // foo
@@ -249,14 +214,10 @@ module.exports = function Foo() {
 /******/ ]);"
 `;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.6f98329964756bcd9cda.js 2`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+exports[`when applied with \`chunkFilter\` option matches snapshot for a single \`chunkFilter\`: errors 1`] = `Array []`;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.cea8feb4e011f64fd73a.js 1`] = `"!function(t){var n={};function o(e){if(n[e])return n[e].exports;var r=n[e]={i:e,l:!1,exports:{}};return t[e].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.m=t,o.c=n,o.d=function(e,r,t){o.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&\\"object\\"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(o.r(t),Object.defineProperty(t,\\"default\\",{enumerable:!0,value:r}),2&e&&\\"string\\"!=typeof r)for(var n in r)o.d(t,n,function(e){return r[e]}.bind(null,n));return t},o.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(r,\\"a\\",r),r},o.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},o.p=\\"\\",o(o.s=0)}([function(e,r,t){var n=t(1);e.exports=function(){var e=n,r=\\"baz\\"+Math.random();return function(){return{a:e+n.bar+r,b:e,baz:r}}}},function(e,r){e.exports=\\"foo\\",e.exports.bar=\\"bar\\"}]);"`;
+exports[`when applied with \`chunkFilter\` option matches snapshot for a single \`chunkFilter\`: included.800c2a223cf78009dc09.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.e4da317e55bdb1f92386.js 1`] = `"!function(t){var n={};function o(e){if(n[e])return n[e].exports;var r=n[e]={i:e,l:!1,exports:{}};return t[e].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.m=t,o.c=n,o.d=function(e,r,t){o.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&\\"object\\"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(o.r(t),Object.defineProperty(t,\\"default\\",{enumerable:!0,value:r}),2&e&&\\"string\\"!=typeof r)for(var n in r)o.d(t,n,function(e){return r[e]}.bind(null,n));return t},o.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(r,\\"a\\",r),r},o.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},o.p=\\"\\",o(o.s=0)}([function(e,r,t){var n=t(1);e.exports=function(){var e=n,r=\\"baz\\"+Math.random();return function(){return{a:e+n.bar+r,b:e,baz:r}}}},function(e,r){e.exports=\\"foo\\",e.exports.bar=\\"bar\\"}]);"`;
+exports[`when applied with \`chunkFilter\` option matches snapshot for a single \`chunkFilter\`: included.c8e0dfac3e18ee64248c.js 1`] = `"!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
-exports[`when using MultiCompiler matches snapshot with empty options: warnings 1`] = `Array []`;
-
-exports[`when using MultiCompiler matches snapshot with empty options: warnings 2`] = `Array []`;
-
-exports[`when using MultiCompiler matches snapshot with empty options: warnings 3`] = `Array []`;
+exports[`when applied with \`chunkFilter\` option matches snapshot for a single \`chunkFilter\`: warnings 1`] = `Array []`;
