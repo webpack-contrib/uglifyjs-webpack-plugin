@@ -23,6 +23,7 @@ class UglifyJsPlugin {
       minify,
       uglifyOptions = {},
       test = /\.js(\?.*)?$/i,
+      chunkFilter = () => true,
       warningsFilter = () => true,
       extractComments = false,
       sourceMap = false,
@@ -35,6 +36,7 @@ class UglifyJsPlugin {
 
     this.options = {
       test,
+      chunkFilter,
       warningsFilter,
       extractComments,
       sourceMap,
@@ -165,7 +167,10 @@ class UglifyJsPlugin {
       const processedAssets = new WeakSet();
       const tasks = [];
 
+      const { chunkFilter } = this.options;
+
       Array.from(chunks)
+        .filter((chunk) => chunkFilter && chunkFilter(chunk))
         .reduce((acc, chunk) => acc.concat(chunk.files || []), [])
         .concat(compilation.additionalChunkAssets || [])
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
