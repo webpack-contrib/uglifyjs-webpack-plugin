@@ -27,6 +27,14 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
+    new UglifyJsPlugin({ chunkFilter: () => {} });
+  }).not.toThrow();
+
+  expect(() => {
+    new UglifyJsPlugin({ chunkFilter: true });
+  }).toThrowErrorMatchingSnapshot();
+
+  expect(() => {
     new UglifyJsPlugin({ doesntExist: true });
   }).toThrowErrorMatchingSnapshot();
 

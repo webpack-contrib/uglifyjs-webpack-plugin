@@ -3,25 +3,23 @@
 exports[`validation 1`] = `
 "UglifyJs Plugin Invalid Options
 
-options should NOT have additional properties
+options.chunkFilter should pass \\"instanceof\\" keyword validation
 "
 `;
 
 exports[`validation 2`] = `
 "UglifyJs Plugin Invalid Options
 
-options.cache should be boolean
-options.cache should be string
-options.cache should match some schema in anyOf
+options should NOT have additional properties
 "
 `;
 
 exports[`validation 3`] = `
 "UglifyJs Plugin Invalid Options
 
-options.parallel should be boolean
-options.parallel should be integer
-options.parallel should match some schema in anyOf
+options.cache should be boolean
+options.cache should be string
+options.cache should match some schema in anyOf
 "
 `;
 
@@ -37,18 +35,27 @@ options.parallel should match some schema in anyOf
 exports[`validation 5`] = `
 "UglifyJs Plugin Invalid Options
 
-options.sourceMap should be boolean
+options.parallel should be boolean
+options.parallel should be integer
+options.parallel should match some schema in anyOf
 "
 `;
 
 exports[`validation 6`] = `
 "UglifyJs Plugin Invalid Options
 
-options.uglifyOptions should be object
+options.sourceMap should be boolean
 "
 `;
 
 exports[`validation 7`] = `
+"UglifyJs Plugin Invalid Options
+
+options.uglifyOptions should be object
+"
+`;
+
+exports[`validation 8`] = `
 "UglifyJs Plugin Invalid Options
 
 options.warningsFilter should pass \\"instanceof\\" keyword validation
