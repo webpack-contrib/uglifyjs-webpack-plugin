@@ -228,14 +228,12 @@ class UglifyJsPlugin {
             };
 
             if (this.options.cache) {
-              const { outputPath } = compiler;
               const defaultCacheKeys = {
                 // eslint-disable-next-line global-require
                 'uglify-js': require('uglify-js/package.json').version,
                 // eslint-disable-next-line global-require
                 'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,
-                path: `${outputPath ? `${outputPath}/` : ''}${file}`,
                 hash: crypto
                   .createHash('md4')
                   .update(input)
