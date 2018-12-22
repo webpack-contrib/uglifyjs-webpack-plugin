@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v2.0.1...v2.1.0) (2018-12-22)
+
+
+### Bug Fixes
+
+* `chunks` is a `Set` in webpack@5 ([#365](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/365)) ([bf36e21](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/bf36e21))
+* catch `worker-farm` errors ([#380](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/380)) ([aa7a9fc](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/aa7a9fc))
+* dedupe extracted comments ([#383](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/383)) ([beaf1ad](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/beaf1ad))
+* more consistent cache ([#385](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/385)) ([f61439d](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/f61439d))
+* regenerate `contenthash` when assets was minified ([#386](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/386)) ([65a30da](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/65a30da))
+
+
+### Features
+
+* `chunkFilter` option for filtering chunks ([#382](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/382)) ([1e58c99](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/1e58c99))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v2.0.0...v2.0.1) (2018-09-18)
 
