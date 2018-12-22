@@ -9,6 +9,8 @@ import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
+import serialize from 'serialize-javascript';
+import uglifyJsPackageJson from 'uglify-js/package.json';
 
 import schema from './options.json';
 import TaskRunner from './TaskRunner';
@@ -230,7 +232,7 @@ class UglifyJsPlugin {
             if (this.options.cache) {
               const defaultCacheKeys = {
                 // eslint-disable-next-line global-require
-                'uglify-js': require('uglify-js/package.json').version,
+                'uglify-js': uglifyJsPackageJson.version,
                 // eslint-disable-next-line global-require
                 'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,
@@ -390,6 +392,21 @@ class UglifyJsPlugin {
     compiler.hooks.compilation.tap(plugin, (compilation) => {
       if (this.options.sourceMap) {
         compilation.hooks.buildModule.tap(plugin, buildModuleFn);
+      }
+
+      const { mainTemplate, chunkTemplate } = compilation;
+
+      // Regenerate `contenthash` for minified assets
+      for (const template of [mainTemplate, chunkTemplate]) {
+        template.hooks.hashForChunk.tap(plugin, (hash) => {
+          const data = serialize({
+            uglifyjs: uglifyJsPackageJson.version,
+            uglifyjsOptions: this.options.uglifyOptions,
+          });
+
+          hash.update('UglifyJsPlugin');
+          hash.update(data);
+        });
       }
 
       compilation.hooks.optimizeChunkAssets.tapAsync(

@@ -9,7 +9,7 @@
   "bugs": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues",
   "main": "dist/cjs.js",
   "engines": {
-    "node": ">= 6.9.0 <7.0.0 || >= 8.9.0"
+    "node": ">= 6.9.0"
   },
   "scripts": {
     "start": "npm run build -- -w",
@@ -35,7 +35,7 @@
     "dist"
   ],
   "peerDependencies": {
-    "webpack": "^4.3.0"
+    "webpack": "^4.0.0"
   },
   "dependencies": {
     "cacache": "^11.2.0",
@@ -55,7 +55,7 @@
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
     "@webpack-contrib/defaults": "^3.0.0",
-    "@webpack-contrib/eslint-config-webpack": "^2.0.4",
+    "@webpack-contrib/eslint-config-webpack": "^3.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.4.2",
     "conventional-github-releaser": "^3.1.2",
@@ -65,10 +65,10 @@
     "eslint": "^5.5.0",
     "eslint-config-webpack": "^1.2.5",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-prettier": "^2.6.2",
-    "husky": "^0.14.3",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.2.1",
     "jest": "^23.5.0",
-    "lint-staged": "^7.2.2",
+    "lint-staged": "^8.1.0",
     "memory-fs": "^0.4.1",
     "prettier": "^1.14.2",
     "standard-version": "^4.3.0",
