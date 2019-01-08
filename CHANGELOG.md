@@ -69,7 +69,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* all nodejs globals avaliable inside `minify` function ([#332](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/332)) ([24fe22b](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/24fe22b))
+* all nodejs globals available inside `minify` function ([#332](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/332)) ([24fe22b](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/24fe22b))
 * **uglify/Runner:** `cpus` length in a chroot environment (`os.cpus()`) ([#341](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/341)) ([6d9c36f](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/6d9c36f))
 
 
