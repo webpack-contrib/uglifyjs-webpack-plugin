@@ -78,11 +78,7 @@ export default class TaskRunner {
 
           if (this.cacheDir && !result.error) {
             cacache
-              .put(
-                this.cacheDir,
-                serialize(task.cacheKeys),
-                JSON.stringify(data)
-              )
+              .put(this.cacheDir, task.cacheKey, JSON.stringify(data))
               .then(done, done);
           } else {
             done();
@@ -92,7 +88,7 @@ export default class TaskRunner {
 
       if (this.cacheDir) {
         cacache
-          .get(this.cacheDir, serialize(task.cacheKeys))
+          .get(this.cacheDir, task.cacheKey)
           .then(({ data }) => step(index, JSON.parse(data)), enqueue);
       } else {
         enqueue();
