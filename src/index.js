@@ -231,8 +231,8 @@ class UglifyJsPlugin {
 
             if (this.options.cache) {
               const defaultCacheKeys = {
-                // eslint-disable-next-line global-require
                 'uglify-js': uglifyJsPackageJson.version,
+                node_version: process.version,
                 // eslint-disable-next-line global-require
                 'uglifyjs-webpack-plugin': require('../package.json').version,
                 'uglifyjs-webpack-plugin-options': this.options,
