@@ -120,13 +120,14 @@ describe('when applied with `minify` option', () => {
 
     new UglifyJsPlugin({
       parallel: true,
-      minify: (file) =>
+      minify(file) {
         // eslint-disable-next-line global-require
-        require('terser').minify(file, {
+        return require('terser').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
-        }),
+        });
+      },
     }).apply(compiler);
 
     return compile(compiler).then((stats) => {
@@ -157,7 +158,7 @@ describe('when applied with `minify` option', () => {
     });
 
     new UglifyJsPlugin({
-      minify: () => {
+      minify() {
         throw Error('Error');
       },
     }).apply(compiler);
@@ -191,7 +192,7 @@ describe('when applied with `minify` option', () => {
 
     new UglifyJsPlugin({
       parallel: true,
-      minify: () => {
+      minify: function minify() {
         throw Error('Error');
       },
     }).apply(compiler);
