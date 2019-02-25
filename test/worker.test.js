@@ -83,9 +83,12 @@ describe('matches snapshot', () => {
       },
       extractComments: {
         condition: 'should be extracted',
-        filename: (file) => file.replace(/(\.\w+)$/, '.license$1'),
-        banner: (licenseFile) =>
-          `License information can be found in ${licenseFile}`,
+        filename(file) {
+          return file.replace(/(\.\w+)$/, '.license$1');
+        },
+        banner(licenseFile) {
+          return `License information can be found in ${licenseFile}`;
+        },
       },
     };
     worker(serialize(options), (error, data) => {
