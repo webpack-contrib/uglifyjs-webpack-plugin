@@ -4,6 +4,7 @@ import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import workerFarm from 'worker-farm';
 import serialize from 'serialize-javascript';
+import isWsl from 'is-wsl';
 
 import minify from './minify';
 
@@ -19,10 +20,11 @@ export default class TaskRunner {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
     const cpus = os.cpus() || { length: 1 };
-    this.maxConcurrentWorkers =
-      parallel === true
-        ? cpus.length - 1
-        : Math.min(Number(parallel) || 0, cpus.length - 1);
+    this.maxConcurrentWorkers = isWsl
+      ? 1
+      : parallel === true
+      ? cpus.length - 1
+      : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
   run(tasks, callback) {
