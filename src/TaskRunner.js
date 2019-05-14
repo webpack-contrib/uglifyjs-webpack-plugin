@@ -14,7 +14,7 @@ export default class TaskRunner {
     const { cache, parallel } = options;
     this.cacheDir =
       cache === true
-        ? findCacheDir({ name: 'uglifyjs-webpack-plugin' })
+        ? findCacheDir({ name: 'uglifyjs-webpack-plugin' }) || os.tmpdir()
         : cache;
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
