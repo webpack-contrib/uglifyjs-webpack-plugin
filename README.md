@@ -721,8 +721,8 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [node-url]: https://nodejs.org
 [deps]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin.svg
 [deps-url]: https://david-dm.org/webpack-contrib/uglifyjs-webpack-plugin
-[tests]: https://img.shields.io/circleci/project/github/webpack-contrib/uglifyjs-webpack-plugin.svg
-[tests-url]: https://circleci.com/gh/webpack-contrib/uglifyjs-webpack-plugin
+[tests]: https://dev.azure.com/webpack-contrib/uglifyjs-webpack-plugin/_apis/build/status/webpack-contrib.uglifyjs-webpack-plugin?branchName=master
+[tests-url]: https://dev.azure.com/webpack-contrib/uglifyjs-webpack-plugin/_build/latest?definitionId=8&branchName=master
 [cover]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/uglifyjs-webpack-plugin
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg

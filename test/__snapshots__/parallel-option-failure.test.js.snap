@@ -2,12 +2,12 @@
 
 exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\` and \`cache\` is \`true\`: errors 1`] = `
 Array [
-  "Error: one.927244d489441955fcd4.js from UglifyJs
+  "Error: one.0a8d0b6d8f511f20794a.js from UglifyJs
 Error: worker-farm failed",
 ]
 `;
 
-exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\` and \`cache\` is \`true\`: one.927244d489441955fcd4.js 1`] = `
+exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\` and \`cache\` is \`true\`: one.0a8d0b6d8f511f20794a.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -117,12 +117,12 @@ exports[`when applied with \`parallel\` option matches snapshot for errors into 
 
 exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\`: errors 1`] = `
 Array [
-  "Error: one.927244d489441955fcd4.js from UglifyJs
+  "Error: one.0a8d0b6d8f511f20794a.js from UglifyJs
 Error: worker-farm failed",
 ]
 `;
 
-exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\`: one.927244d489441955fcd4.js 1`] = `
+exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\`: one.0a8d0b6d8f511f20794a.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
