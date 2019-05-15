@@ -1,6 +1,16 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.1.3](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v2.1.2...v2.1.3) (2019-05-15)
+
+
+### Bug Fixes
+
+* disable parallel on WSL ([#403](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/403)) ([7619736](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/7619736))
+* fallback for cache directory ([#401](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/401)) ([d117827](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/commit/d117827))
+
+
 
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/compare/v2.1.1...v2.1.2) (2019-02-25)
