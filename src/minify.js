@@ -152,11 +152,9 @@ const minify = (options) => {
   // Copy uglify options
   const uglifyOptions = buildUglifyOptions(options.uglifyOptions);
 
-  // Add source map data
+  // Let uglify-js generate a SourceMap
   if (inputSourceMap) {
-    uglifyOptions.sourceMap = {
-      content: inputSourceMap,
-    };
+    uglifyOptions.sourceMap = true;
   }
 
   const extractedComments = [];
