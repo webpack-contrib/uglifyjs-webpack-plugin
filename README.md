@@ -129,9 +129,9 @@ module.exports = {
           if (chunk.name === 'vendor') {
             return false;
           }
-          
+
           return true;
-        }
+        },
       }),
     ],
   },
