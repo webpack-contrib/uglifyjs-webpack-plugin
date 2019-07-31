@@ -299,7 +299,8 @@ class UglifyJsPlugin {
               file,
               JSON.parse(map),
               input,
-              inputSourceMap
+              inputSourceMap,
+              true
             );
           } else {
             outputSource = new RawSource(code);
